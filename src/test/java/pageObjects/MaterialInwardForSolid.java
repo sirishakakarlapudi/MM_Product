@@ -21,6 +21,8 @@ public class MaterialInwardForSolid extends BasePage {
 
 	}
 
+	/*-----------------------Material Inward Create--------------------------*/
+
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='materialCode']")
 	WebElement drpdwn_materialcode;
 
@@ -115,6 +117,8 @@ public class MaterialInwardForSolid extends BasePage {
 		enterValueInElementAtIndex(txt_noofpacks, index, noofpacks);
 	}
 
+	/*-----------------------To Save No Of Packs In Material Inward--------------------------*/
+
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement btn_save;
 
@@ -129,6 +133,28 @@ public class MaterialInwardForSolid extends BasePage {
 
 	}
 
+	/*--------------To View and Close Pack Details In View Material Inward -------------*/
+
+	@FindBy(xpath = "//button[normalize-space()='View']")
+	List<WebElement> btn_viewPackdetails;
+
+	public void clickViewPackDetails(int index) {
+		clickElementAtIndex(btn_viewPackdetails, index);
+	}
+
+	public int getViewPackDetailsButtonCount() {
+		return btn_viewPackdetails.size();
+	}
+
+	@FindBy(xpath = "//span[normalize-space()='Close']")
+	WebElement btn_closePackdetails;
+
+	public void clickClosePackDetails() {
+		waitForElementandClick(btn_closePackdetails);
+	}
+
+	/*-----------------------Pre-Inspection Report Button in Actions--------------------------*/
+
 	@FindBy(xpath = "//span[normalize-space()='Pre-Inspection Report']")
 	WebElement button_preinspectionreport;
 
@@ -136,6 +162,8 @@ public class MaterialInwardForSolid extends BasePage {
 		scrollAndClick(button_preinspectionreport);
 
 	}
+
+	/*-----------------------Review Pre-Inspection Report Button in Actions--------------------------*/
 
 	@FindBy(xpath = "//span[normalize-space()='Review Pre-Inspection Report']")
 	WebElement button_reviewpreinspectionreport;
@@ -148,10 +176,14 @@ public class MaterialInwardForSolid extends BasePage {
 	@FindBy(xpath = "//input[@formcontrolname='mainInputField' or @formcontrolname='subInputField']")
 	List<WebElement> txt_alldescriptioninput;
 
+	/*---------------------Checklist Description Type------------------------*/
+
 	public void enterDescriptionInput(String descriptioninput, int index) {
 
 		enterValueInElementAtIndex(txt_alldescriptioninput, index, descriptioninput);
 	}
+
+	/*---------------------Checklist Checkbox Type------------------------*/
 
 	@FindBy(xpath = "//table/thead/tr/th")
 	List<WebElement> get_checkboxheaders;
@@ -204,6 +236,8 @@ public class MaterialInwardForSolid extends BasePage {
 		}
 	}
 
+	/*--------------------To check Checklist Type is Description------------------------*/
+
 	public boolean areDescriptionInputsPresent() {
 		try {
 			// Check if list is not empty and the first element is displayed
@@ -214,6 +248,8 @@ public class MaterialInwardForSolid extends BasePage {
 		}
 	}
 
+	/*--------------------To check Checklist Type is Checkbox------------------------*/
+
 	public boolean areCheckboxesPresent() {
 		try {
 			List<WebElement> checkboxes = driver.findElements(By.xpath("//input[contains(@class,'option-box')]"));
@@ -223,14 +259,18 @@ public class MaterialInwardForSolid extends BasePage {
 		}
 	}
 
-	/**
-	 * Edits checklist items by providing a comma-separated string of values and a
-	 * comma-separated string of indexes.
-	 * 
-	 * @param valuesString  Comma-separated values (e.g., "Yes,No,NA" or
-	 *                      "Desc1,Desc2")
-	 * @param indexesString Comma-separated indexes (e.g., "0,1,2")
-	 */
+	/*-----------------------Edit Pre-Inspection Report Button In Actions--------------------------*/
+
+	@FindBy(xpath = "//span[normalize-space()='Edit Pre-Inspection Report']")
+	WebElement button_editpreinspectionreport;
+
+	public void clickEditPreInspectionReport() {
+		scrollAndClick(button_editpreinspectionreport);
+
+	}
+
+	/*--------------------Edit Pre-Inspection Checklist By giving the value and index------------------------*/
+
 	public void editPreInspectionChecklist(String valuesString, String indexesString) {
 		if (valuesString == null || valuesString.isEmpty() || indexesString == null || indexesString.isEmpty()) {
 			System.out.println("Values or indexes string is empty. Skipping edit.");
@@ -264,23 +304,7 @@ public class MaterialInwardForSolid extends BasePage {
 		}
 	}
 
-	@FindBy(xpath = "//button[normalize-space()='View']")
-	List<WebElement> btn_viewPackdetails;
-
-	public void clickViewPackDetails(int index) {
-		clickElementAtIndex(btn_viewPackdetails, index);
-	}
-
-	public int getViewPackDetailsButtonCount() {
-		return btn_viewPackdetails.size();
-	}
-
-	@FindBy(xpath = "//span[normalize-space()='Close']")
-	WebElement btn_closePackdetails;
-
-	public void clickClosePackDetails() {
-		waitForElementandClick(btn_closePackdetails);
-	}
+	/*-----------------------File Upload in Pre-Inspection--------------------------*/
 
 	@FindBy(xpath = "//input[@type='file']")
 	WebElement input_fileUpload;
@@ -292,6 +316,8 @@ public class MaterialInwardForSolid extends BasePage {
 		input_fileUpload.sendKeys(filePath);
 	}
 
+	/*-----------------------Remarks in Pre-Inspection--------------------------*/
+
 	@FindBy(xpath = "//textarea[@formcontrolname='allEntryRemarks']")
 	WebElement txt_remarks;
 
@@ -299,161 +325,105 @@ public class MaterialInwardForSolid extends BasePage {
 		waitAndSendKeys(txt_remarks, remarks);
 	}
 
-	@FindBy(xpath = "//span[normalize-space()='Edit Pre-Inspection Report']")
-	WebElement button_editpreinspectionreport;
-
-	public void clickEditPreInspectionReport() {
-		scrollAndClick(button_editpreinspectionreport);
-
-	}
-
-	// Captured values for further flow
-	public static String capturedInhouseBatchNumber = "";
-	public static String capturedGRNNumber = "";
-
-	@FindBy(xpath = "//input[@formcontrolname='grnNo']")
-	WebElement grnNo_display;
-
-	@FindBy(xpath = "//div[@formarrayname='batchDetails']//div[contains(@class,'col-md-12')]")
-	List<WebElement> list_batchDetailsRows;
+	/*-----------------------Weight Verification Button in Actions--------------------------*/
 
 	@FindBy(xpath = "//span[normalize-space()='Weight Verification']")
 	WebElement button_weightverification;
-
-	/**
-	 * Scans the weight verification dialog for a specific Mfg OR Inhouse Batch
-	 * Number,
-	 * captures both numbers and the GRN Number, saves them to
-	 * runtimeData.properties,
-	 * and clicks the corresponding row's Weight Verification button.
-	 * 
-	 * @param searchBatchNo The Mfg or Inhouse Batch Number to search for
-	 */
-	/**
-	 * Scans the weight verification dialog for a specific Mfg OR Inhouse Batch
-	 * Number,
-	 * captures both numbers and the GRN Number, and saves them to
-	 * runtimeData.properties.
-	 * 
-	 * @param searchBatchNo The Mfg or Inhouse Batch Number to search for
-	 */
-	public void captureWeightVerificationData(String searchBatchNo) {
-		if (searchBatchNo == null || searchBatchNo.isEmpty()) {
-			throw new RuntimeException("❌ Search Batch Number is empty.");
-		}
-
-		String target = searchBatchNo.trim();
-		System.out.println("🔍 Capturing all associated batches for Mfg: [" + target + "]");
-
-		// 1. Wait for values to load
-		wait.until(d -> {
-			String val = grnNo_display.getAttribute("value");
-			return val != null && !val.trim().isEmpty();
-		});
-
-		capturedGRNNumber = grnNo_display.getAttribute("value").trim();
-		DataStorage.save("GRN Number", capturedGRNNumber);
-
-		By rowXpath = By.xpath("//div[@formarrayname='batchDetails']/div[contains(@class,'col-md-12')]");
-		wait.until(ExpectedConditions.presenceOfElementLocated(rowXpath));
-		wait.until(d -> {
-			List<WebElement> r = d.findElements(rowXpath);
-			if (r.isEmpty())
-				return false;
-			String v = r.get(0).findElement(By.xpath(".//input[@formcontrolname='mfgDate']")).getAttribute("value");
-			return v != null && !v.trim().isEmpty();
-		});
-
-		// 2. Scan and store with Indexes (to support separate flows)
-		List<WebElement> rows = driver.findElements(rowXpath);
-		int matchCount = 0;
-		String allInhouse = "";
-
-		for (WebElement row : rows) {
-			String mfg = row.findElement(By.xpath(".//input[@formcontrolname='mfgDate']")).getAttribute("value").trim();
-			String inhouse = row.findElement(By.xpath(".//input[@formcontrolname='batchNo']")).getAttribute("value")
-					.trim();
-
-			if (mfg.equalsIgnoreCase(target)) {
-				matchCount++;
-				// Save as Indexed Key: e.g. LM-1Batch-112_1, LM-1Batch-112_2
-				DataStorage.save(target + "_" + matchCount, inhouse);
-
-				// Build comma list for overview
-				allInhouse = allInhouse.isEmpty() ? inhouse : allInhouse + "," + inhouse;
-				System.out.println("⭐ Match " + matchCount + ": " + inhouse);
-			}
-		}
-
-		// Save Summary and Count
-		if (matchCount > 0) {
-			DataStorage.save(target, allInhouse);
-			DataStorage.save(target + "_Count", String.valueOf(matchCount));
-			System.out.println("✅ Total " + matchCount + " Inhouse batches found for Mfg: " + target);
-		} else {
-			throw new RuntimeException("❌ No matching rows found for Mfg Batch: " + target);
-		}
-	}
-
-	/**
-	 * Flexible method to click Weight Verification.
-	 * 
-	 * @param identifier  Can be Mfg Batch or Inhouse Batch
-	 * @param indexOrType If a number (1, 2...), it treats identifier as Mfg Batch
-	 *                    and clicks that index.
-	 *                    If "B" or "Batch", it treats identifier as a literal
-	 *                    Inhouse Batch (for complex pack numbers).
-	 */
-	public void clickWeightVerificationAction(String identifier, String indexOrType) {
-		String target = identifier.trim();
-		boolean clicked = false;
-		int mfgOccurrence = 0;
-
-		List<WebElement> rows = driver
-				.findElements(By.xpath("//div[@formarrayname='batchDetails']/div[contains(@class,'col-md-12')]"));
-
-		System.out.println("🖱️ Attempting Click: [" + target + "] with spec [" + indexOrType + "]");
-
-		for (int i = 0; i < rows.size(); i++) {
-			WebElement row = rows.get(i);
-			String mfg = row.findElement(By.xpath(".//input[@formcontrolname='mfgDate']")).getAttribute("value").trim();
-			String inhouse = row.findElement(By.xpath(".//input[@formcontrolname='batchNo']")).getAttribute("value")
-					.trim();
-
-			// Mode 1: Literal Search (for complex inhouse batches)
-			if (indexOrType.equalsIgnoreCase("B") || indexOrType.equalsIgnoreCase("Batch")) {
-				if (inhouse.equalsIgnoreCase(target)) {
-					WebElement btn = row.findElement(By.xpath(".//button[contains(.,'Weight Verification')]"));
-					scrollAndClick(btn);
-					System.out.println("✅ Match Found! Clicked Inhouse Batch: " + inhouse);
-					clicked = true;
-					break;
-				}
-			}
-			// Mode 2: Mfg Batch + Index
-			else {
-				if (mfg.equalsIgnoreCase(target)) {
-					mfgOccurrence++;
-					int targetIndex = Integer.parseInt(indexOrType);
-					if (mfgOccurrence == targetIndex) {
-						WebElement btn = row.findElement(By.xpath(".//button[contains(.,'Weight Verification')]"));
-						scrollAndClick(btn);
-						System.out.println("✅ Match Found! Clicked Mfg " + mfg + " at index " + mfgOccurrence);
-						clicked = true;
-						break;
-					}
-				}
-			}
-		}
-
-		if (!clicked) {
-			throw new RuntimeException(
-					"❌ Weight Verification not found for [" + target + "] spec [" + indexOrType + "]");
-		}
-	}
 
 	public void clickWeightVerification() {
 		scrollAndClick(button_weightverification);
 
 	}
+
+	/*-----------------------To Click on Weight Verification button for a particular batch in Create Weight Verification pop up--------------------------*/
+
+	@FindBy(xpath = "//div[@formarrayname='batchDetails']//div[contains(@class,'row')]")
+	List<WebElement> weightVerificationRows;
+
+	/**
+	 * Identifies the correct row in the Weight Verification modal, captures the
+	 * Inhouse Batch Number, saves it to DataStorage, and clicks the verification
+	 * button.
+	 * 
+	 * @param targetMfgBatch The Manufacturing Batch Number to search for.
+	 * @param batchSuffix    Optional suffix (e.g., "[23]") to distinguish between
+	 *                       multiple inhouse batches for the same Mfg Batch.
+	 */
+	public void captureWeightVerificationData(String targetMfgBatch, String batchSuffix) throws Exception {
+		wait.until(ExpectedConditions.visibilityOfAllElements(weightVerificationRows));
+		boolean found = false;
+
+		for (WebElement row : weightVerificationRows) {
+			// Based on provided HTML: batchNo is Inhouse, mfgDate is Mfg Batch
+			WebElement inhouseInput = row.findElement(By.xpath(".//input[@formcontrolname='batchNo']"));
+			WebElement mfgInput = row.findElement(By.xpath(".//input[@formcontrolname='mfgDate']"));
+
+			String actualInhouse = inhouseInput.getAttribute("value").trim();
+			String actualMfg = mfgInput.getAttribute("value").trim();
+
+			System.out.println("🔍 Checking Row -> Mfg: " + actualMfg + ", Inhouse: " + actualInhouse);
+
+			if (actualMfg.equalsIgnoreCase(targetMfgBatch)) {
+				// If suffix is provided, it must match. If not, it clicks the first one
+				// matching Mfg Batch.
+				if (batchSuffix == null || batchSuffix.isEmpty() || actualInhouse.contains(batchSuffix)) {
+
+					// 1. Capture and store the Inhouse Batch Number
+					DataStorage.save("capturedInhouseBatch", actualInhouse);
+					System.out.println("✅ Captured Inhouse Batch Number: " + actualInhouse);
+
+					// 2. Click the Weight Verification button for this specific row
+					WebElement btn = row.findElement(By.xpath(".//button[normalize-space()='Weight Verification']"));
+					scrollAndClick(btn);
+
+					found = true;
+					break;
+				}
+			}
+		}
+
+		if (!found) {
+			String errorMsg = "❌ Could not find weight verification row for Mfg Batch: " + targetMfgBatch;
+			if (batchSuffix != null && !batchSuffix.isEmpty()) {
+				errorMsg += " with suffix: " + batchSuffix;
+			}
+			ScreenshotUtil.takeStepScreenshot("WeightVerificationRowNotFound");
+			throw new RuntimeException(errorMsg);
+		}
+	}
+
+	/*------------Create Weight Verification Record-----------*/
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='balenceCapacity']")
+	WebElement drpdwn_balanceid;
+
+	public void selBalanceId(String balanceid) {
+		waitForElementandClick(drpdwn_materialcode);
+		clickRelativeOption(drpdwn_balanceid, "li", balanceid);
+
+	}
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='weightType']")
+	WebElement drpdwn_weighttype;
+
+	public void selWeightType(String weighttype) {
+		waitForElementandClick(drpdwn_weighttype);
+		clickRelativeOption(drpdwn_weighttype, "li", weighttype);
+
+	}
+
+	@FindBy(xpath = "//input[@formcontrolname='grossWtPer']")
+	WebElement txt_wtperlabel;
+
+	public void enterWtPerLabel(String wtperlabel) {
+		waitAndSendKeys(txt_wtperlabel, wtperlabel);
+	}
+
+	@FindBy(xpath = "//input[@formcontrolname='actualWt']")
+	WebElement txt_actualwt;
+
+	public void enterActualWt(String actualwt) {
+		waitAndSendKeys(txt_actualwt, actualwt);
+	}
+
 }

@@ -32,5 +32,13 @@ public class MaterialInwardForSolidData {
     public static final String PRE_INSPECTION_EDIT_INDEXES = inwardconfig.get("preInspectionEditIndexes");
     public static final String TABLE_HEADERS= inwardconfig.get("tableHeaders");
     public static final String TABLE_SEARCH_VALUES= inwardconfig.get("tableSearchValues");
+    public static final String WEIGHT_VERIFICATION_BATCH= inwardconfig.get("weightVerificationBatch");
+    public static final String WEIGHT_VERIFICATION_BATCH_SEGREGATED_PACK= inwardconfig.get("weightVerificationBatchSegregatedPack");
+    public static final String BALANCE_ID= inwardconfig.get("balanceId");
+    public static final String WEIGHT_TYPE= inwardconfig.get("weightType");
+    public static final String WEIGHT_AS_PER_LABEL= inwardconfig.get("weightAsPerLabel");
+    public static final String ACTUAL_WEIGHT= inwardconfig.get("actualWeight");
+    public static final String PACK_NUMBERS= inwardconfig.get("packNumbers");
+   
 
 }
