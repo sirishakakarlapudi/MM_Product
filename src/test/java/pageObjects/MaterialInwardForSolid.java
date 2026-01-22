@@ -1,5 +1,6 @@
 package pageObjects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -88,6 +89,40 @@ public class MaterialInwardForSolid extends BasePage {
 		js.executeScript("arguments[0].dispatchEvent(new Event('blur', { bubbles: true }));", txt_gateentry);
 	}
 
+	
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='quantityInRecived']")
+	WebElement drpdwn_quantityinreceived;
+	
+	
+	public boolean quantityReceivedisDisplayed() {
+
+		wait.until(ExpectedConditions.visibilityOf(drpdwn_quantityinreceived));
+		return drpdwn_quantityinreceived.isDisplayed();
+	}
+
+
+	public void selQuantityReceivedIn(String quantityreceivedin) {
+		waitForElementandClick(drpdwn_quantityinreceived);
+		clickRelativeOption(drpdwn_quantityinreceived, "li", quantityreceivedin);
+
+	}
+	
+	@FindBy(xpath = ("//input[@formcontrolname='vehicleNumber']"))
+	WebElement txt_vehiclenumber;
+	public boolean vehicleNumberisDisplayed() {
+
+		wait.until(ExpectedConditions.visibilityOf(txt_vehiclenumber));
+		return txt_vehiclenumber.isDisplayed();
+	}
+
+	public void entervehicleNumber(String vehiclenumber) {
+		txt_vehiclenumber.clear();
+		waitAndSendKeys(txt_vehiclenumber, vehiclenumber);
+	}
+	
+	
+	
+	
 	@FindBy(xpath = ("//input[@formcontrolname='noOfBatches']"))
 	WebElement txt_noofbatches;
 
@@ -398,7 +433,7 @@ public class MaterialInwardForSolid extends BasePage {
 	WebElement drpdwn_balanceid;
 
 	public void selBalanceId(String balanceid) {
-		waitForElementandClick(drpdwn_materialcode);
+		waitForElementandClick(drpdwn_balanceid);
 		clickRelativeOption(drpdwn_balanceid, "li", balanceid);
 
 	}
@@ -407,7 +442,10 @@ public class MaterialInwardForSolid extends BasePage {
 	WebElement drpdwn_weighttype;
 
 	public void selWeightType(String weighttype) {
-		waitForElementandClick(drpdwn_weighttype);
+
+		WebElement dropdown = drpdwn_weighttype.findElement(By.xpath(".//span[@class='dropdown-multiselect__caret']"));
+
+		waitForElementandClick(dropdown);
 		clickRelativeOption(drpdwn_weighttype, "li", weighttype);
 
 	}
@@ -422,8 +460,159 @@ public class MaterialInwardForSolid extends BasePage {
 	@FindBy(xpath = "//input[@formcontrolname='actualWt']")
 	WebElement txt_actualwt;
 
+	@FindBy(xpath = "//input[@formcontrolname='result']")
+	WebElement txt_packsToBeWeighed;
+
 	public void enterActualWt(String actualwt) {
 		waitAndSendKeys(txt_actualwt, actualwt);
+	}
+
+	/*-----Sometimes when the pack numbers sre not given as per the number of packs to be weighed ,
+	 *  this method will take dynamically the required number of packs from the table and fills the weights  
+	 *  and if the weight as per label and actual weight is not given for all pack numbers it will take the latest weight value
+	 *   and give it to all pack numbers------*/
+
+	public void enterWeightsBulk(String[] providedPackNumbers, String[] labelWeights, String[] actualWeights)
+			throws Exception {
+
+		String requiredCountStr = txt_packsToBeWeighed.getAttribute("value");
+		int requiredCount = (requiredCountStr != null && !requiredCountStr.isEmpty())
+				? Integer.parseInt(requiredCountStr)
+				: 0;
+
+		System.out.println("📋 Application requires " + requiredCount + " packs to be weighed.");
+
+		// 2. Get all available pack numbers from the table rows
+		List<WebElement> tableRows = driver
+				.findElements(By.xpath("//tbody[@formarrayname='weightVarificationArray']/tr"));
+		List<String> availablePacks = new ArrayList<>();
+		for (WebElement row : tableRows) {
+			String val = row.findElement(By.xpath(".//input[@formcontrolname='countNo']")).getAttribute("value");
+			if (val != null)
+				availablePacks.add(val.trim());
+		}
+
+		// 3. Determine which packs to actually enter
+		List<String> finalPackList = new ArrayList<>();
+
+		// First, try to add user-provided packs ONLY if they exist in the table
+		if (providedPackNumbers != null && providedPackNumbers.length > 0 && !providedPackNumbers[0].trim().isEmpty()) {
+			for (String p : providedPackNumbers) {
+				String trimmed = p.trim();
+				if (availablePacks.contains(trimmed)) {
+					finalPackList.add(trimmed);
+				} else {
+					System.out.println(
+							"⚠️ Provided pack '" + trimmed + "' not found in table. Will auto-pick a replacement.");
+				}
+			}
+		}
+
+		// 4. Fill the remaining spots dynamically from the available list
+		if (finalPackList.size() < requiredCount) {
+			System.out.println("ℹ️ Adding dynamic packs to meet the required count of " + requiredCount);
+			for (String available : availablePacks) {
+				if (finalPackList.size() >= requiredCount)
+					break;
+				if (!finalPackList.contains(available)) {
+					finalPackList.add(available);
+				}
+			}
+		}
+
+		// 4. Enter weights for all selected packs using the fallback logic
+		for (int i = 0; i < finalPackList.size(); i++) {
+			String currentLabel = (i < labelWeights.length) ? labelWeights[i] : labelWeights[labelWeights.length - 1];
+			String currentActual = (i < actualWeights.length) ? actualWeights[i]
+					: actualWeights[actualWeights.length - 1];
+
+			System.out.println("📦 Filling Pack " + finalPackList.get(i) + " [" + (i + 1) + "/" + requiredCount + "]");
+			enterWeightsByPackNumber(finalPackList.get(i), currentLabel, currentActual);
+		}
+	}
+
+	/*-----------------------Enter Weights for the given Pack Number--------------------------*/
+
+	public void enterWeightsByPackNumber(String packNumber, String labelWeight, String actualWeight) {
+		// 1. Get all rows in the table
+		List<WebElement> rows = driver.findElements(By.xpath("//tbody[@formarrayname='weightVarificationArray']/tr"));
+
+		WebElement targetRow = null;
+		// 2. Iterate through rows to find the match using actual property value
+		for (WebElement row : rows) {
+			WebElement countInput = row.findElement(By.xpath(".//input[@formcontrolname='countNo']"));
+			String currentPackNo = countInput.getAttribute("value"); // Reads property, not just attribute
+
+			if (currentPackNo != null && currentPackNo.trim().equals(packNumber)) {
+				targetRow = row;
+				break;
+			}
+		}
+		if (targetRow == null) {
+			throw new RuntimeException(
+					"❌ Pack Number '" + packNumber + "' not found in the weight verification table.");
+		}
+		// 3. Locate inputs in the identified row (using names from your HTML)
+		WebElement labelInput = targetRow.findElement(By.xpath(".//input[@formcontrolname='grossWtPer']"));
+		WebElement actualInput = targetRow.findElement(By.xpath(".//input[@formcontrolname='actualWt']"));
+		// 4. Interaction
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", targetRow);
+
+		labelInput.clear();
+		waitAndSendKeys(labelInput, labelWeight);
+
+		actualInput.clear();
+		waitAndSendKeys(actualInput, actualWeight);
+		System.out.println("✅ Correctly identified and filled Pack: " + packNumber);
+	}
+
+	/*-----------------------Upload Attachment If Displayed--------------------------*/
+
+	@FindBy(xpath = "//input[@formcontrolname='attachment']")
+	WebElement input_verificationAttachment;
+
+	public void uploadAttachmentIfDisplayed(String filePath) {
+		try {
+			// Check if attachment field is displayed within 3 seconds
+
+			wait.until(ExpectedConditions.visibilityOf(input_verificationAttachment));
+
+			if (input_verificationAttachment.isDisplayed()) {
+				waitAndSendKeys(input_verificationAttachment, filePath);
+				System.out.println("✅ File attached successfully: " + filePath);
+			}
+		} catch (Exception e) {
+			System.out.println("ℹ️ Attachment field not displayed, skipping upload.");
+		}
+	}
+
+	/*--------------------To Click Start and End button----------------*/
+
+	@FindBy(xpath = "//button[normalize-space()='Start']")
+	WebElement button_start;
+
+	public boolean startButtonisDisplayed() {
+
+		wait.until(ExpectedConditions.visibilityOf(button_start));
+		return button_start.isDisplayed();
+	}
+
+	public void clickStart() {
+		waitForElementandClick(button_start);
+	}
+
+	@FindBy(xpath = "//span[normalize-space()='Weighing Area Cleaning']")
+	WebElement button_weighingareacleaning;
+
+	public void clickWeighingAreaCleaning() {
+		waitForElementandClick(button_weighingareacleaning);
+	}
+
+	@FindBy(xpath = "//button[normalize-space()='End']")
+	WebElement button_end;
+
+	public void clickEnd() {
+		waitForElementandClick(button_end);
 	}
 
 }

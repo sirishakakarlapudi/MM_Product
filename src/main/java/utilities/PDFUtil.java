@@ -3,6 +3,8 @@ package utilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import java.io.File;
 
@@ -50,12 +52,20 @@ public class PDFUtil {
         driver.get(pdf.toURI().toString());
         Thread.sleep(5000); // Time for PDF viewer to initialize
 
-        // 3. Ensure the PDF viewer has focus by clicking the center of the window
-        org.openqa.selenium.Dimension size = driver.manage().window().getSize();
-        new Actions(driver)
-                .moveByOffset(size.getWidth() / 2, size.getHeight() / 2)
-                .click()
-                .perform();
+        // 3. Ensure the PDF viewer has focus to enable scrolling
+        try {
+            // Move to the root element and click near the top-left to gain focus
+            WebElement root = driver.findElement(By.tagName("html"));
+            new Actions(driver).moveToElement(root, 10, 10).click().perform();
+        } catch (Exception e) {
+            System.out.println("⚠️ Mouse focus failed (MoveTargetOutOfBounds), attempting keyboard fallback...");
+            try {
+                // Just try to send a key that might trigger focus
+                new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+            } catch (Exception ex) {
+                System.out.println("⚠️ Keyboard focus also failed.");
+            }
+        }
         Thread.sleep(1000);
 
         // 4. Dynamic Scroll and Capture

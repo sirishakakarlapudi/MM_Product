@@ -36,23 +36,20 @@ public class BasePage {
 	}
 
 	protected void waitForElementandClick(WebElement element) {
-		try {
-			// Optimized: Check for loader presence with 0 implicit wait to avoid delays
-			driver.manage().timeouts().implicitlyWait(Duration.ZERO);
-			List<WebElement> loaders = driver.findElements(By.cssSelector("div.loader-container"));
-			if (!loaders.isEmpty() && loaders.get(0).isDisplayed()) {
-				// Only if loader exists and is visible, restore default wait and wait for it to
-				// disappear
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-				wait.until(ExpectedConditions.invisibilityOf(loaders.get(0)));
-			} else {
-				// Restore default implicit wait immediately if no loader found
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			}
-		} catch (Exception e) {
-			// Ensure defaults are restored in case of error
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		}
+		/*
+		 * try { // Optimized: Check for loader presence with 0 implicit wait to avoid
+		 * delays driver.manage().timeouts().implicitlyWait(Duration.ZERO);
+		 * List<WebElement> loaders =
+		 * driver.findElements(By.cssSelector("div.loader-container")); if
+		 * (!loaders.isEmpty() && loaders.get(0).isDisplayed()) { // Only if loader
+		 * exists and is visible, restore default wait and wait for it to // disappear
+		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		 * wait.until(ExpectedConditions.invisibilityOf(loaders.get(0))); } else { //
+		 * Restore default implicit wait immediately if no loader found
+		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); } } catch
+		 * (Exception e) { // Ensure defaults are restored in case of error
+		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); }
+		 */
 
 		// Standard element interaction
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -63,14 +60,12 @@ public class BasePage {
 	}
 
 	public void toast() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.cssSelector("div.p-toast-detail")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.p-toast-detail")));
 	}
 
 	public WebElement waitForCreateButton() {
 		try {
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(
-					By.cssSelector("div.loader-container")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.loader-container")));
 		} catch (TimeoutException e) {
 			System.out.println("Loader still visible, but proceeding...");
 		}
@@ -82,8 +77,7 @@ public class BasePage {
 
 	public WebElement waitForPageButton() {
 		try {
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(
-					By.cssSelector("div.loader-container")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.loader-container")));
 		} catch (TimeoutException e) {
 			System.out.println("Loader still visible, but proceeding...");
 		}
@@ -104,8 +98,7 @@ public class BasePage {
 	}
 
 	public void waitForLoading() {
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(
-				By.cssSelector("div.loader-container")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.loader-container")));
 	}
 
 	@FindBy(name = "q")
@@ -142,15 +135,13 @@ public class BasePage {
 	public void scrollAndClick(WebElement element) {
 
 		// Scroll element into view (centered)
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].scrollIntoView({block:'center'});", element);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 
 		// Wait until clickable
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 
 		// Click using JS (safe for Angular)
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].click();", element);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
 
 	public void userName(String username) throws Exception {
@@ -248,19 +239,8 @@ public class BasePage {
 	@FindBy(xpath = "//button[@id='save-entity' or normalize-space()='Submit']")
 	WebElement click_submit;
 
-	public void createSubmit() {
-
-		try {
-			WebElement button = wait.until(ExpectedConditions.elementToBeClickable(click_submit));
-			button.click();
-
-		} catch (Exception e) {
-
-			WebElement button = wait.until(ExpectedConditions.elementToBeClickable(click_submit));
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
-			button.click();
-
-		}
+	public void createSubmit() throws InterruptedException  {
+		scrollAndClickWithPageDown(click_submit);
 	}
 
 	public WebElement waitForSubmit() {
@@ -286,11 +266,9 @@ public class BasePage {
 	List<WebElement> active_page_count;
 
 	public void clickActions(String... expItemNames) throws Exception {
-		performTableActionGeneric(page_count,
-				"//tbody[@role='rowgroup']/tr",
+		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
 				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				"//span[contains(@class,'pi-ellipsis-v')]",
-				expItemNames);
+				"//span[contains(@class,'pi-ellipsis-v')]", expItemNames);
 
 	}
 
@@ -299,20 +277,16 @@ public class BasePage {
 	}
 
 	public void clickActionsForPendig(String expItemName) throws Exception {
-		performTableAction(pending_page_count,
-				"//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
+		performTableAction(pending_page_count, "//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
 				"//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button",
-				expItemName,
-				"//i[contains(@class,'pi-ellipsis-v')]");
+				expItemName, "//i[contains(@class,'pi-ellipsis-v')]");
 
 	}
 
 	public void clickActionsForActive(String expItemName) throws Exception {
-		performTableAction(active_page_count,
-				"//div[@class='card table-data'][2]//tbody[@role='rowgroup']/tr",
+		performTableAction(active_page_count, "//div[@class='card table-data'][2]//tbody[@role='rowgroup']/tr",
 				"//div[@class='card table-data'][2]//span[@class='p-paginator-pages ng-star-inserted']/button",
-				expItemName,
-				"//i[contains(@class,'pi-ellipsis-v')]");
+				expItemName, "//i[contains(@class,'pi-ellipsis-v')]");
 
 	}
 
@@ -331,8 +305,8 @@ public class BasePage {
 
 	/**
 	 * CONFIGURATION METHOD Call this at the start of your test to define how to
-	 * find rows. Example: department.setTableHeaders("Department Name");
-	 * Example 2: department.setTableHeaders("Department Name", "Dept Code");
+	 * find rows. Example: department.setTableHeaders("Department Name"); Example 2:
+	 * department.setTableHeaders("Department Name", "Dept Code");
 	 */
 	public void setTableHeaders(String... headers) {
 		this.tableHeaders = headers;
@@ -448,8 +422,7 @@ public class BasePage {
 	 * }
 	 */
 	public void clickEdit(String... expItemNames) throws Exception {
-		performTableActionGeneric(page_count,
-				"//tbody[@role='rowgroup']/tr",
+		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
 				"//span[@class='p-paginator-pages ng-star-inserted']/button",
 				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-pencil')]", // Merged locators
 				expItemNames);
@@ -460,8 +433,7 @@ public class BasePage {
 	}
 
 	public void clickView(String... expItemNames) throws Exception {
-		performTableActionGeneric(page_count,
-				"//tbody[@role='rowgroup']/tr",
+		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
 				"//span[@class='p-paginator-pages ng-star-inserted']/button",
 				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-eye')]", // Merged locators
 				expItemNames);
@@ -483,11 +455,9 @@ public class BasePage {
 	}
 
 	public void clickEditForPending(String expItemName) throws Exception {
-		performTableAction(pending_page_count,
-				"//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
+		performTableAction(pending_page_count, "//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
 				"//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button",
-				expItemName,
-				"//i[contains(@class,'pi-pencil')] | //span[contains(@class,'be-pencil')]");
+				expItemName, "//i[contains(@class,'pi-pencil')] | //span[contains(@class,'be-pencil')]");
 	}
 
 	/**
@@ -672,8 +642,8 @@ public class BasePage {
 	WebElement txt_remarks;
 
 	public void enterRemarks(String remarks) {
-		WebElement txt_remarks = driver.findElement(
-				By.xpath("//input[@formcontrolname='remarks'] | //textarea[@formcontrolname='remarks']"));
+		WebElement txt_remarks = driver
+				.findElement(By.xpath("//input[@formcontrolname='remarks'] | //textarea[@formcontrolname='remarks']"));
 		waitAndSendKeys(txt_remarks, remarks);
 
 	}
@@ -687,16 +657,16 @@ public class BasePage {
 	}
 
 	public void clickUpdate() throws Exception {
-		WebElement updateButton = driver.findElement(
-				By.xpath("//li//span[normalize-space()='Update'] | //button[normalize-space()='Update']"));
+		WebElement updateButton = driver
+				.findElement(By.xpath("//li//span[normalize-space()='Update'] | //button[normalize-space()='Update']"));
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", updateButton);
 
 	}
 
 	public void clickReview() throws InterruptedException {
-		WebElement reviewButton = driver.findElement(
-				By.xpath("//li//span[normalize-space()='Review'] | //button[normalize-space()='Review']"));
+		WebElement reviewButton = driver
+				.findElement(By.xpath("//li//span[normalize-space()='Review'] | //button[normalize-space()='Review']"));
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", reviewButton);
 		scrollAndClickWithPageDown(reviewButton);
@@ -704,8 +674,7 @@ public class BasePage {
 	}
 
 	public void clickCreateReview() throws InterruptedException {
-		WebElement reviewButton = driver.findElement(
-				By.xpath("//li[1]//span[normalize-space()='Review']"));
+		WebElement reviewButton = driver.findElement(By.xpath("//li[1]//span[normalize-space()='Review']"));
 		scrollAndClickWithPageDown(reviewButton);
 
 	}
@@ -718,8 +687,7 @@ public class BasePage {
 	}
 
 	public void clickCreateApprove() throws Exception {
-		WebElement approveButton = driver.findElement(
-				By.xpath("//li[2]//span[normalize-space()='Approve']"));
+		WebElement approveButton = driver.findElement(By.xpath("//li[2]//span[normalize-space()='Approve']"));
 		scrollAndClickWithPageDown(approveButton);
 
 	}
@@ -732,8 +700,8 @@ public class BasePage {
 	}
 
 	public void clickInactive() throws Exception {
-		WebElement inactiveButton = driver.findElement(
-				By.xpath("//span[normalize-space()='Inactive'] | //button[normalize-space()='Inactive']"));
+		WebElement inactiveButton = driver
+				.findElement(By.xpath("//span[normalize-space()='Inactive'] | //button[normalize-space()='Inactive']"));
 		scrollAndClickWithPageDown(inactiveButton);
 	}
 
@@ -747,20 +715,18 @@ public class BasePage {
 	}
 
 	public void clickActive() throws Exception {
-		WebElement activeButton = driver.findElement(
-				By.xpath("//span[normalize-space()='Active'] | //button[normalize-space()='Active']"));
+		WebElement activeButton = driver
+				.findElement(By.xpath("//span[normalize-space()='Active'] | //button[normalize-space()='Active']"));
 		scrollAndClickWithPageDown(activeButton);
 	}
 
 	public void clickAddStage() throws Exception {
-		WebElement addStageButton = driver.findElement(
-				By.xpath("//span[normalize-space()='Add Stage']"));
+		WebElement addStageButton = driver.findElement(By.xpath("//span[normalize-space()='Add Stage']"));
 		scrollAndClickWithPageDown(addStageButton);
 	}
 
 	public void clickAddRoute() throws Exception {
-		WebElement addStageButton = driver.findElement(
-				By.xpath("//span[normalize-space()='Add Stage']"));
+		WebElement addStageButton = driver.findElement(By.xpath("//span[normalize-space()='Add Stage']"));
 		scrollAndClickWithPageDown(addStageButton);
 	}
 
@@ -786,16 +752,12 @@ public class BasePage {
 
 	/*
 	 * public void enterValueInRandomElement(List<WebElement> elements, String
-	 * value) {
-	 * if (elements == null || elements.isEmpty()) {
-	 * throw new RuntimeException("Element list is empty or null.");
-	 * }
-	 * int randomIndex = (int) (Math.random() * elements.size());
-	 * WebElement element = elements.get(randomIndex);
-	 * waitAndSendKeys(element, value);
+	 * value) { if (elements == null || elements.isEmpty()) { throw new
+	 * RuntimeException("Element list is empty or null."); } int randomIndex = (int)
+	 * (Math.random() * elements.size()); WebElement element =
+	 * elements.get(randomIndex); waitAndSendKeys(element, value);
 	 * log.info("Entered value '{}' into random element at index {}.", value,
-	 * randomIndex);
-	 * }
+	 * randomIndex); }
 	 */
 
 	public WebElement clickLatestElement(List<WebElement> elements) {
@@ -820,16 +782,13 @@ public class BasePage {
 	}
 
 	/*
-	 * public WebElement clickRandomElement(List<WebElement> elements) {
-	 * if (elements == null || elements.isEmpty()) {
-	 * throw new RuntimeException("Element list is empty or null.");
-	 * }
-	 * int randomIndex = (int) (Math.random() * elements.size());
-	 * WebElement element = elements.get(randomIndex);
-	 * waitForElementandClick(element);
-	 * log.info("Clicked on random element at index {}.", randomIndex);
-	 * return element;
-	 * }
+	 * public WebElement clickRandomElement(List<WebElement> elements) { if
+	 * (elements == null || elements.isEmpty()) { throw new
+	 * RuntimeException("Element list is empty or null."); } int randomIndex = (int)
+	 * (Math.random() * elements.size()); WebElement element =
+	 * elements.get(randomIndex); waitForElementandClick(element);
+	 * log.info("Clicked on random element at index {}.", randomIndex); return
+	 * element; }
 	 */
 
 	public WebElement getLatestElement(List<WebElement> elements) {
@@ -848,14 +807,15 @@ public class BasePage {
 	}
 
 	public void clickDropdownOption(String containerXpath, String text) {
-		clickVisibleElementByXpath(containerXpath + "//li[normalize-space()='" + text
-				+ "']");
+		clickVisibleElementByXpath(containerXpath + "//li[normalize-space()='" + text + "']");
 	}
 
 	public void clickRelativeOption(WebElement parent, String tagName, String text) {
-		By locator = By.xpath(".//" + tagName + "[normalize-space()='" + text + "']");
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(parent.findElement(locator)));
-		element.click();
+
+		By locator = By.xpath(".//" + tagName + "[contains(normalize-space(),'" + text + "')]");
+		wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(parent, locator));
+		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+
 	}
 
 	protected void clickVisibleElementByXpath(String xpath) {
