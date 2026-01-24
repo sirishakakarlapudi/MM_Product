@@ -91,7 +91,7 @@ public class Material_Inward_TC extends BaseClass {
 			}
 
 		}
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 
 		ScreenshotUtil.capture();
 		inward.createSubmit();
