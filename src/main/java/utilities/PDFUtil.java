@@ -71,7 +71,11 @@ public class PDFUtil {
         // 4. Dynamic Scroll and Capture
         long previousScroll = -1;
         for (int i = 1; i <= 10; i++) {
-            ScreenshotUtil.takeStepScreenshot(stepLabel + " - Page " + i);
+            if (stepLabel != null && !stepLabel.isEmpty()) {
+                ScreenshotUtil.takeStepScreenshot(stepLabel + " - Page " + i);
+            } else {
+                ScreenshotUtil.capture(" - Page " + i);
+            }
 
             // Send Space key to scroll down
             new Actions(driver).sendKeys(Keys.SPACE).perform();

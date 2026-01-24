@@ -39,6 +39,71 @@ public class ScreenshotUtil {
     private static final List<ScreenshotEntry> screenshots = new ArrayList<>();
     private static final List<IBodyElement> templateBodyElements = new ArrayList<>();
 
+    // === Dynamic Numbering State ===
+    private static String currentScriptId = "4.1";
+    private static String currentStepId = "4.1.1";
+    private static int stepCounter = 0;
+    private static int screenshotCount = 1;
+
+    /**
+     * Initializes the Script prefix (e.g., "4.1") and resets the step counter.
+     */
+    public static void initScript(String prefix) {
+        currentScriptId = prefix;
+        stepCounter = 0;
+    }
+
+    /**
+     * Automatically increments to the next step (e.g., 4.1.1 -> 4.1.2)
+     * and resets the screenshot counter to 01.
+     */
+    public static void nextStep() {
+        stepCounter++;
+        currentStepId = currentScriptId + "." + stepCounter;
+        screenshotCount = 1;
+        System.out.println("📍 Current Step set to: " + currentStepId);
+    }
+
+    /**
+     * Manual override to jump to a specific step number or ID if needed
+     */
+    public static void setStepId(String stepId) {
+        currentStepId = stepId;
+        // If it's a standard format like "4.1.5", try to sync the counter
+        try {
+            String[] parts = stepId.split("\\.");
+            if (parts.length >= 3) {
+                stepCounter = Integer.parseInt(parts[parts.length - 1]);
+            }
+        } catch (Exception e) {
+            // Non-standard ID, just keep the counter where it is
+        }
+        screenshotCount = 1;
+    }
+
+    /**
+     * Captures screenshot with automatic numbering: "XX for step No.Y.Y.Y"
+     */
+    public static void capture() throws Exception {
+        String label = String.format("%02d for step No.%s", screenshotCount++, currentStepId);
+        takeStepScreenshot(label);
+    }
+
+    /**
+     * Captures screenshot with automatic numbering and a suffix (e.g., " - Page 1")
+     */
+    public static void capture(String suffix) throws Exception {
+        String label = String.format("%02d for step No.%s%s", screenshotCount++, currentStepId, suffix);
+        takeStepScreenshot(label);
+    }
+
+    /**
+     * Manual label override if absolutely necessary
+     */
+    public static void takeCustomScreenshot(String customLabel) throws Exception {
+        takeStepScreenshot(customLabel);
+    }
+
     // === Load Template and Prepare Output ===
     public static void loadTemplateForEndAppend(String templatePath, String outputPath) throws Exception {
         FileInputStream fis = new FileInputStream(templatePath);
@@ -104,7 +169,7 @@ public class ScreenshotUtil {
 
     // === Capture Screenshot ===
     public static void takeStepScreenshot(String label) throws Exception {
-        //Thread.sleep(3000); // Optional wait
+        // Thread.sleep(3000); // Optional wait
         Robot robot = new Robot();
         Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
         BufferedImage image = robot.createScreenCapture(screen);

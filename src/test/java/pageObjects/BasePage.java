@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,31 +33,26 @@ public class BasePage {
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
 	protected void waitForElementandClick(WebElement element) {
-		/*
-		 * try { // Optimized: Check for loader presence with 0 implicit wait to avoid
-		 * delays driver.manage().timeouts().implicitlyWait(Duration.ZERO);
-		 * List<WebElement> loaders =
-		 * driver.findElements(By.cssSelector("div.loader-container")); if
-		 * (!loaders.isEmpty() && loaders.get(0).isDisplayed()) { // Only if loader
-		 * exists and is visible, restore default wait and wait for it to // disappear
-		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		 * wait.until(ExpectedConditions.invisibilityOf(loaders.get(0))); } else { //
-		 * Restore default implicit wait immediately if no loader found
-		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); } } catch
-		 * (Exception e) { // Ensure defaults are restored in case of error
-		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); }
-		 */
-
 		// Standard element interaction
 		wait.until(ExpectedConditions.visibilityOf(element));
 		System.out.println("found on element");
 
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 		System.out.println("clicked on element");
+	}
+
+	protected void jsClick(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", element);
+	}
+
+	protected void jsScrollToElement(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 	}
 
 	public void toast() {
@@ -87,14 +83,17 @@ public class BasePage {
 	private void triggerInputAndChange(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].dispatchEvent(new Event('input', {bubbles: true}));", element);
-		js.executeScript("arguments[0].dispatchEvent(new Event('change', {bubbles: true}));", element);
-		js.executeScript("arguments[0].dispatchEvent(new Event('blur', {bubbles: true}));", element);
+		// js.executeScript("arguments[0].dispatchEvent(new Event('change', {bubbles:
+		// true}));", element);
+		// js.executeScript("arguments[0].dispatchEvent(new Event('blur', {bubbles:
+		// true}));", element);
 	}
 
 	protected void waitAndSendKeys(WebElement element, String value) {
 		wait.until(ExpectedConditions.visibilityOf(element));
-		element.sendKeys(value);
 		triggerInputAndChange(element);
+		element.sendKeys(value);
+
 	}
 
 	public void waitForLoading() {
@@ -142,6 +141,16 @@ public class BasePage {
 
 		// Click using JS (safe for Angular)
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+	}
+
+	public void scrollToElement(WebElement element) {
+
+		// Scroll element into view (centered)
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+
+		// Wait until clickable
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+
 	}
 
 	public void userName(String username) throws Exception {
@@ -194,6 +203,15 @@ public class BasePage {
 
 	}
 
+	public boolean pdfisDisplayed() {
+		try {
+			return click_pdf.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+
+	}
+
 	@FindBy(xpath = "//button[normalize-space()='Back']")
 	WebElement click_back;
 
@@ -239,13 +257,12 @@ public class BasePage {
 	@FindBy(xpath = "//button[@id='save-entity' or normalize-space()='Submit']")
 	WebElement click_submit;
 
-	public void createSubmit() throws InterruptedException  {
+	public void createSubmit() throws InterruptedException {
 		scrollAndClickWithPageDown(click_submit);
 	}
 
-	public WebElement waitForSubmit() {
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-				"//button[@id='save-entity'] | //button[@type='button'] | //button[normalize-space()='Update']")));
+	public void waitForElementToVisible(WebElement element) {
+		wait.until(ExpectedConditions.visibilityOf(element));
 
 	}
 
