@@ -611,33 +611,23 @@ public class MaterialInwardForSolid extends BasePage {
 	@FindBy(xpath = "//tbody[@formarrayname='mfgBatchArray']/tr")
 	List<WebElement> get_allrows;
 
-	@FindBy(xpath = "//div[contains(@class,'p-dialog-header')]//button[contains(@class,'p-dialog-header-close')]")
-	WebElement button_closeModal;
-
-	public void clickCloseRejectedModal() {
-		scrollAndClick(button_closeModal);
-	}
-
 	public int getRejectedBatchRowCount() {
 		return driver.findElements(By.xpath("//tbody[@formarrayname='mfgBatchArray']/tr")).size();
 	}
 
 	public void selectAndReturnBatch(int index) throws Exception {
-
-		if (index >= get_allrows.size())
+		List<WebElement> rows = driver.findElements(By.xpath("//tbody[@formarrayname='mfgBatchArray']/tr"));
+		if (index >= rows.size())
 			return;
 
-		WebElement row = get_allrows.get(index);
-		// Select Checkbox using jsClick for reliability with styled components
+		WebElement row = rows.get(index);
 		WebElement checkbox = row.findElement(By.xpath(".//input[@formcontrolname='checkStage']"));
 		if (!checkbox.isSelected()) {
-			waitForElementandClick(checkbox);
+			jsClick(checkbox);
 		}
-
 		WebElement btn = row.findElement(By.xpath(".//button[normalize-space()='Rejected Stock Return']"));
-		waitForElementandClick(btn);
-		;
-
+		jsClick(btn);
+		Thread.sleep(1000);
 	}
 
 	@FindBy(xpath = "//input[@formcontrolname='returnInvoiceNo']")
@@ -654,23 +644,8 @@ public class MaterialInwardForSolid extends BasePage {
 		waitAndSendKeys(txt_stockreturnremarks, remarks);
 	}
 
-	/*-----------------------Weight Verification Button in Actions--------------------------*/
-
-	@FindBy(xpath = "//span[normalize-space()='Weight Verification']")
-	WebElement button_weightverification;
-
-	public void clickWeightVerification() {
-		scrollAndClick(button_weightverification);
-
-	}
-
-	public boolean weightVerificationButtonisDisplayed() {
-		try {
-			return button_weightverification.isDisplayed();
-		} catch (NoSuchElementException e) {
-			return false;
-		}
-
+	public void clickSubmit() {
+		clickSubmitStockReturn();
 	}
 
 	/*-------------------------------Weight Verification below 5000kgs----------------*/
@@ -1019,6 +994,76 @@ public class MaterialInwardForSolid extends BasePage {
 
 	public void enterTareWeight(String tareweight) {
 		waitAndSendKeys(txt_tareweight, tareweight);
+	}
+
+	/*-------------View/Weight Verification Buttons in Actions---------------------*/
+
+	@FindBy(xpath = "//span[normalize-space()='View Weight Verification' or normalize-space()='Weight Verification']")
+	WebElement button_unifiedWeightVerification;
+
+	public void clickViewWeightVerification() {
+		scrollAndClick(button_unifiedWeightVerification);
+	}
+
+	public boolean weightVerificationButtonisDisplayed() {
+		try {
+			return button_unifiedWeightVerification.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	/*-------------View Weighing Area Cleaning in Actions---------------------*/
+
+	@FindBy(xpath = "//span[normalize-space()='View Weighing Area Cleaning']")
+	WebElement button_viewweighingareacleaning;
+
+	public void clickViewWeighingAreaCleaning() {
+		scrollAndClick(button_viewweighingareacleaning);
+	}
+
+	public boolean viewWeighingAreaCleaningButtonisDisplayed() {
+		try {
+			return button_viewweighingareacleaning.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Finds a row in a table by its text (e.g. Batch No) and clicks the View icon
+	 */
+	public void clickViewIconInRow(String matchText) {
+		String xpath = "//tr[td[contains(normalize-space(), '" + matchText + "')]]//i[contains(@class,'eye')] | "
+				+ "//tr[td[contains(normalize-space(), '" + matchText + "')]]//button[contains(@class,'view')] | "
+				+ "//tr[td[contains(normalize-space(), '" + matchText + "')]]//span[contains(@class,'eye')]";
+		WebElement eyeIcon = driver.findElement(By.xpath(xpath));
+		scrollAndClick(eyeIcon);
+	}
+
+	@FindBy(xpath = "//button[normalize-space()='Back']")
+	WebElement button_back;
+
+	public void clickBack() {
+		scrollAndClick(button_back);
+	}
+
+	@FindBy(xpath = "//div[contains(@class,'p-dialog-header')]//button[contains(@class,'p-dialog-header-close')] | //button[@aria-label='Close']")
+	WebElement button_closeModal;
+
+	public void clickCloseModal() {
+		scrollAndClick(button_closeModal);
+	}
+
+	@FindBy(xpath = "//button[normalize-space()='Submit']")
+	WebElement button_submitReturn;
+
+	public void clickSubmitStockReturn() {
+		scrollAndClick(button_submitReturn);
+	}
+
+	public void clickWeightVerification() {
+		clickViewWeightVerification();
 	}
 
 }

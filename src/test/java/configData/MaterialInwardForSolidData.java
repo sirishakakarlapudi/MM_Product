@@ -67,5 +67,9 @@ public class MaterialInwardForSolidData {
         public static final String PACK_NUMBERS = inwardconfig.get("packNumbers");
         public static final String GROSS_WEIGHT = inwardconfig.get("grossWeight");
         public static final String TARE_WEIGHT = inwardconfig.get("tareWeight");
+        public static final String VIEW_WEIGHT_VERIFICATION = inwardconfig.get("viewWeightVerification");
+        public static final String DOWNLOAD_WEIGHT_VERIFICATION_PDF = inwardconfig.get("downloadWeightVerificationPdf");
+        public static final String CAPTURE_WEIGHT_VERIFICATION_PDF = inwardconfig.get("captureWeightVerificationPdf");
+        public static final String VIEW_CLEANING_AREA = inwardconfig.get("viewCleaningArea");
 
 }

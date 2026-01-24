@@ -408,6 +408,7 @@ public class Material_Inward_TC extends BaseClass {
 
 					for (int j = 0; j < inhouseBatches.size(); j++) {
 						String inhouse = inhouseBatches.get(j);
+						boolean cleaningPerformed = false;
 
 						if (j > 0) {
 							if (!inward.weightVerificationButtonisDisplayed()) {
@@ -436,6 +437,7 @@ public class Material_Inward_TC extends BaseClass {
 						inward.createSubmit();
 
 						if (inward.startButtonisDisplayed()) {
+							cleaningPerformed = true;
 							inward.clickStart();
 							ScreenshotUtil.capture();
 							inward.passWord(PASSWORD);
@@ -456,6 +458,37 @@ public class Material_Inward_TC extends BaseClass {
 							inward.authenticateButton();
 						}
 						inward.waitForLoading();
+
+						// Post-verification View Report Flow
+						if (VIEW_WEIGHT_VERIFICATION.equalsIgnoreCase("yes")) {
+							inward.clickActions(TABLE_SEARCH_VALUES);
+							inward.clickViewWeightVerification();
+							inward.waitForLoading();
+							inward.clickViewIconInRow(inhouse);
+							ScreenshotUtil.capture();
+
+							if (DOWNLOAD_WEIGHT_VERIFICATION_PDF.equalsIgnoreCase("yes")) {
+								inward.click_PDF();
+								ScreenshotUtil.capture();
+								if (CAPTURE_WEIGHT_VERIFICATION_PDF.equalsIgnoreCase("yes")) {
+									utilities.PDFUtil.openAndCapturePDF(driver, downloadPath,
+											"Weight Verification report.pdf", null);
+								}
+							}
+							inward.clickBack();
+							inward.waitForLoading();
+						}
+
+						// Post-verification View Cleaning Flow
+						if (cleaningPerformed && VIEW_CLEANING_AREA.equalsIgnoreCase("yes")) {
+							inward.clickActions(TABLE_SEARCH_VALUES);
+							if (inward.viewWeighingAreaCleaningButtonisDisplayed()) {
+								inward.clickViewWeighingAreaCleaning();
+								ScreenshotUtil.capture();
+								inward.clickCloseModal();
+								ScreenshotUtil.capture();
+							}
+						}
 					}
 				}
 			} else {
@@ -466,6 +499,15 @@ public class Material_Inward_TC extends BaseClass {
 				inward.createSubmit();
 				inward.passWord(PASSWORD);
 				inward.authenticateButton();
+				inward.waitForLoading();
+
+				if (VIEW_WEIGHT_VERIFICATION.equalsIgnoreCase("yes")) {
+					inward.clickActions(TABLE_SEARCH_VALUES);
+					inward.clickViewWeightVerification();
+					ScreenshotUtil.capture();
+					inward.clickCloseModal();
+					ScreenshotUtil.capture();
+				}
 			}
 		}
 	}

@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testCasesForOQProjects.Material_Inward_Solid_TC">
+      <class name="testCasesForOQProjects.Material_Inward_TC">
         <methods>
           <include name="tearDown"/>
-          <include name="Step_4_1_9"/>
+          <include name="Step_4_1_21"/>
+          <include name="Step_4_1_15"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- testCasesForOQProjects.Material_Inward_Solid_TC -->
+      </class> <!-- testCasesForOQProjects.Material_Inward_TC -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
