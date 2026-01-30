@@ -19,7 +19,7 @@ import org.testng.annotations.AfterClass;
 
 public class BaseClass {
 	public WebDriver driver;
-	public Logger log;
+	public Logger log = LogManager.getLogger(this.getClass());
 	public String downloadPath;
 
 	public void browserOpen() throws Exception {
@@ -46,7 +46,6 @@ public class BaseClass {
 
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		log = LogManager.getLogger(this.getClass());
 
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

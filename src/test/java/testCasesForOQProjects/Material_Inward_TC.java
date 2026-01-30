@@ -7,12 +7,14 @@ import java.util.List;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import pageObjects.BasePage;
 import pageObjects.MaterialInwardForSolid;
 import testBase.BaseClass;
 import utilities.ScreenshotUtil;
 
 public class Material_Inward_TC extends BaseClass {
 	MaterialInwardForSolid inward;
+	BasePage base = new BasePage(driver);
 
 	@BeforeClass
 	public void setUp() throws Exception {
@@ -45,7 +47,7 @@ public class Material_Inward_TC extends BaseClass {
 		inward.masterClick(MASTER_MODULE);
 		ScreenshotUtil.nextStep();
 		ScreenshotUtil.capture();
-		// inward.Create();
+		inward.Create();
 		ScreenshotUtil.capture();
 
 	}
@@ -238,7 +240,7 @@ public class Material_Inward_TC extends BaseClass {
 	public void Step_4_1_6_1() throws Throwable {
 
 		ScreenshotUtil.nextStep();
-		if (PRE_INSPECTION_REJECT.equalsIgnoreCase("yes"))
+		if (PRE_INSPECTION_REJECT.equalsIgnoreCase("yes")) {
 			inward.clickActions(TABLE_SEARCH_VALUES);
 		ScreenshotUtil.capture();
 		inward.clickReviewPreInspectionReport();
@@ -318,6 +320,7 @@ public class Material_Inward_TC extends BaseClass {
 		inward.waitForLoading();
 
 	}
+	}
 
 	@Test(priority = 11)
 	public void Step_4_1_6() throws Throwable {
@@ -360,7 +363,7 @@ public class Material_Inward_TC extends BaseClass {
 
 		}
 
-		if (QA_REVIEW_VIEW.equalsIgnoreCase("yes")) {
+		if (QA_REVIEW_VIEW.equalsIgnoreCase("yes") && PRE_INSPECTION_REJECT.equalsIgnoreCase("yes")) {
 			inward.clickActions(TABLE_SEARCH_VALUES);
 			ScreenshotUtil.capture();
 			inward.clickQAReviewView();
@@ -375,139 +378,164 @@ public class Material_Inward_TC extends BaseClass {
 	@Test(priority = 13)
 	public void Step_4_1_8() throws Throwable {
 		ScreenshotUtil.nextStep(); // Automatically handles the next number
-		// 1. Initial Actions click
-		if (!inward.weightVerificationButtonisDisplayed()) {
-			inward.clickActions(TABLE_SEARCH_VALUES);
-		}
-		ScreenshotUtil.capture(); // 01
+		int pdfCount = 0;
 
-		if (inward.weightVerificationButtonisDisplayed()) {
-			// Open modal to see which flow we have
-			inward.clickWeightVerification();
-			ScreenshotUtil.capture(); // 02
+		// 2. Click Actions to open menu
+		inward.clickActions(TABLE_SEARCH_VALUES);
+		inward.clickWeightVerification();
 
-			if (inward.labelInhouseBatchNumberisDisplayed()) {
-				System.out.println("📦 Multi-Batch Flow (Below 5000kg) detected.");
-				String[] mfgBatches = WEIGHT_VERIFICATION_BATCH.split(",");
+		// 3. Choose button based on table status
 
-				for (int i = 0; i < mfgBatches.length; i++) {
-					String mfgBatch = mfgBatches[i].trim();
+		ScreenshotUtil.capture(); // 02
 
-					if (i > 0) {
-						if (!inward.weightVerificationButtonisDisplayed()) {
-							inward.clickActions(TABLE_SEARCH_VALUES);
-						}
+		if (inward.labelInhouseBatchNumberisDisplayed()) {
+			System.out.println("📦 Multi-Batch Flow (Below 5000kg) detected.");
+			String[] mfgBatches = WEIGHT_VERIFICATION_BATCH.split(",");
+
+			for (int i = 0; i < mfgBatches.length; i++) {
+				String mfgBatch = mfgBatches[i].trim();
+
+				// Ensure popup is open to read inhouse batches for this Mfg batch
+				if (!inward.labelInhouseBatchNumberisDisplayed()) {
+					inward.clickActions(TABLE_SEARCH_VALUES);
+					if (inward.viewWeightVerificationButtonisDisplayed()) {
+						inward.clickViewWeightVerification();
+					} else {
 						inward.clickWeightVerification();
 					}
+				}
 
-					List<String> inhouseBatches = inward.getInhouseBatches(mfgBatch);
-					if (inhouseBatches.isEmpty()) {
-						inward.clickCloseIconInPopUp();
-						throw new RuntimeException("❌ No inhouse batches found for: " + mfgBatch);
-					}
+				List<String> inhouseBatches = inward.getInhouseBatches(mfgBatch);
+				if (inhouseBatches.isEmpty()) {
+					inward.clickCloseIconInPopUp();
+					throw new RuntimeException("❌ No inhouse batches found for: " + mfgBatch);
+				}
 
-					for (int j = 0; j < inhouseBatches.size(); j++) {
-						String inhouse = inhouseBatches.get(j);
-						boolean cleaningPerformed = false;
+				for (int j = 0; j < inhouseBatches.size(); j++) {
+					String inhouse = inhouseBatches.get(j);
+					boolean cleaningPerformed = false;
 
-						if (j > 0) {
-							if (!inward.weightVerificationButtonisDisplayed()) {
-								inward.clickActions(TABLE_SEARCH_VALUES);
-							}
+					// Inhouse check: In case of authentication redirection, re-open popup
+					if (!inward.labelInhouseBatchNumberisDisplayed()) {
+						inward.clickActions(TABLE_SEARCH_VALUES);
+						if (inward.viewWeightVerificationButtonisDisplayed()) {
+							inward.clickViewWeightVerification();
+						} else {
 							inward.clickWeightVerification();
 						}
+					}
 
-						inward.clickWeightVerificationForInhouse(inhouse);
+					inward.clickWeightVerificationForInhouse(inhouse);
+					ScreenshotUtil.capture();
+
+					inward.selBalanceId(BALANCE_ID);
+					inward.selWeightType(WEIGHT_TYPE);
+
+					String[] weightasperlabel = WEIGHT_AS_PER_LABEL.split(",");
+					String[] actualweight = ACTUAL_WEIGHT.split(",");
+					String[] packnumbers = PACK_NUMBERS.split(",");
+
+					inward.enterWeightsBulk(packnumbers, weightasperlabel, actualweight);
+					inward.enterRemarks("Weight Verification Completed for batch: " + inhouse);
+
+					String projectPath = System.getProperty("user.dir");
+					String uploadloadPath = projectPath + "\\src\\test\\resources\\Pdf Folder\\Dummy.pdf";
+					inward.uploadAttachmentIfDisplayed(uploadloadPath);
+
+					inward.createSubmit();
+
+					if (inward.startButtonisDisplayed()) {
+						cleaningPerformed = true;
+						inward.clickStart();
 						ScreenshotUtil.capture();
-
-						inward.selBalanceId(BALANCE_ID);
-						inward.selWeightType(WEIGHT_TYPE);
-
-						String[] weightasperlabel = WEIGHT_AS_PER_LABEL.split(",");
-						String[] actualweight = ACTUAL_WEIGHT.split(",");
-						String[] packnumbers = PACK_NUMBERS.split(",");
-
-						inward.enterWeightsBulk(packnumbers, weightasperlabel, actualweight);
-						inward.enterRemarks("Weight Verification Completed for batch: " + inhouse);
-
-						String projectPath = System.getProperty("user.dir");
-						String uploadloadPath = projectPath + "\\src\\test\\resources\\Pdf Folder\\Dummy.pdf";
-						inward.uploadAttachmentIfDisplayed(uploadloadPath);
-
-						inward.createSubmit();
-
-						if (inward.startButtonisDisplayed()) {
-							cleaningPerformed = true;
-							inward.clickStart();
-							ScreenshotUtil.capture();
-							inward.passWord(PASSWORD);
-							inward.authenticateButton();
-							inward.waitForLoading();
-
-							if (!inward.weighingAreaCleaningButtonisDisplayed()) {
-								inward.clickActions(TABLE_SEARCH_VALUES);
-							}
-
-							inward.clickWeighingAreaCleaning();
-							inward.waitForLoading();
-							inward.clickEnd();
-							inward.passWord(PASSWORD);
-							inward.authenticateButton();
-						} else {
-							inward.passWord(PASSWORD);
-							inward.authenticateButton();
-						}
+						inward.passWord(PASSWORD);
+						inward.authenticateButton();
 						inward.waitForLoading();
 
-						// Post-verification View Report Flow
-						if (VIEW_WEIGHT_VERIFICATION.equalsIgnoreCase("yes")) {
+						if (!inward.weighingAreaCleaningButtonisDisplayed()) {
 							inward.clickActions(TABLE_SEARCH_VALUES);
-							inward.clickViewWeightVerification();
-							inward.waitForLoading();
-							inward.clickViewIconInRow(inhouse);
-							ScreenshotUtil.capture();
-
-							if (DOWNLOAD_WEIGHT_VERIFICATION_PDF.equalsIgnoreCase("yes")) {
-								inward.click_PDF();
-								ScreenshotUtil.capture();
-								if (CAPTURE_WEIGHT_VERIFICATION_PDF.equalsIgnoreCase("yes")) {
-									utilities.PDFUtil.openAndCapturePDF(driver, downloadPath,
-											"Weight Verification report.pdf", null);
-								}
-							}
-							inward.clickBack();
-							inward.waitForLoading();
 						}
 
-						// Post-verification View Cleaning Flow
-						if (cleaningPerformed && VIEW_CLEANING_AREA.equalsIgnoreCase("yes")) {
-							inward.clickActions(TABLE_SEARCH_VALUES);
-							if (inward.viewWeighingAreaCleaningButtonisDisplayed()) {
-								inward.clickViewWeighingAreaCleaning();
-								ScreenshotUtil.capture();
-								inward.clickCloseModal();
-								ScreenshotUtil.capture();
+						inward.clickWeighingAreaCleaning();
+						inward.waitForLoading();
+						inward.clickEnd();
+						inward.passWord(PASSWORD);
+						inward.authenticateButton();
+					} else {
+						inward.passWord(PASSWORD);
+						inward.authenticateButton();
+					}
+					inward.waitForLoading();
+
+					// Post-verification View Report Flow
+					if (VIEW_WEIGHT_VERIFICATION.equalsIgnoreCase("yes")) {
+						String innerStatus = inward.getInwardStatusFromTable(TABLE_SEARCH_VALUES);
+						inward.clickActions(TABLE_SEARCH_VALUES);
+						System.out.println("Processing Record Status: " + innerStatus);
+						boolean isFullyCompleted = innerStatus.equalsIgnoreCase("Weight Verification Completed");
+						if (isFullyCompleted) {
+							inward.clickViewWeightVerification();
+						} else if (inward.weightVerificationButtonisDisplayed()) {
+							inward.clickWeightVerification();
+						} else {
+							System.out.println("⚠️ Neither Weight Verification nor View button is displayed.");
+							return;
+						}
+						inward.waitForLoading();
+						inward.clickViewIconInRow(inhouse);
+						ScreenshotUtil.capture();
+						inward.waitForLoading();
+
+						if (DOWNLOAD_WEIGHT_VERIFICATION_PDF.equalsIgnoreCase("yes")) {
+							inward.click_PDF();
+							ScreenshotUtil.capture();
+							inward.waitForLoading();
+							if (CAPTURE_WEIGHT_VERIFICATION_PDF.equalsIgnoreCase("yes")) {
+								String fileName = (pdfCount == 0) ? "Weight Verification.pdf"
+										: "Weight Verification (" + pdfCount + ").pdf";
+								utilities.PDFUtil.openAndCapturePDF(driver, downloadPath, fileName, null);
+								pdfCount++;
 							}
+						}
+						inward.waitForLoading();
+						inward.clickBack();
+						inward.waitForLoading();
+					}
+
+					// Post-verification View Cleaning Flow
+					if (cleaningPerformed && VIEW_CLEANING_AREA.equalsIgnoreCase("yes")) {
+						inward.clickActions(TABLE_SEARCH_VALUES);
+						if (inward.viewWeighingAreaCleaningButtonisDisplayed()) {
+							inward.clickViewWeighingAreaCleaning();
+							ScreenshotUtil.capture();
+							inward.clickCloseIconInPopUp();
+							ScreenshotUtil.capture();
 						}
 					}
 				}
-			} else {
-				System.out.println("⚖️ Simple Flow (Above 5000kg) detected.");
-				inward.enterGrossWeight(GROSS_WEIGHT);
-				inward.enterTareWeight(TARE_WEIGHT);
-				inward.enterRemarks("Completed Simple Flow Verification");
-				inward.createSubmit();
-				inward.passWord(PASSWORD);
-				inward.authenticateButton();
-				inward.waitForLoading();
+				// Close the inhouse batches popup after all are done for this mfg batch
 
-				if (VIEW_WEIGHT_VERIFICATION.equalsIgnoreCase("yes")) {
-					inward.clickActions(TABLE_SEARCH_VALUES);
-					inward.clickViewWeightVerification();
-					ScreenshotUtil.capture();
-					inward.clickCloseModal();
-					ScreenshotUtil.capture();
-				}
+			}
+			if (inward.labelInhouseBatchNumberisDisplayed()) {
+				inward.clickCloseIconInPopUp();
+				ScreenshotUtil.capture();
+			}
+		} else {
+			System.out.println("⚖️ Simple Flow (Above 5000kg) detected.");
+			inward.enterGrossWeight(GROSS_WEIGHT);
+			inward.enterTareWeight(TARE_WEIGHT);
+			inward.enterRemarks("Completed Simple Flow Verification");
+			inward.createSubmit();
+			inward.passWord(PASSWORD);
+			inward.authenticateButton();
+			inward.waitForLoading();
+
+			if (VIEW_WEIGHT_VERIFICATION.equalsIgnoreCase("yes")) {
+				inward.clickActions(TABLE_SEARCH_VALUES);
+				inward.clickViewWeightVerification();
+				ScreenshotUtil.capture();
+				inward.clickCloseIconInPopUp();
+				ScreenshotUtil.capture();
 			}
 		}
 	}

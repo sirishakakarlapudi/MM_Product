@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,13 +37,282 @@ public class BasePage {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	protected void waitForElementandClick(WebElement element) {
-		// Standard element interaction
-		wait.until(ExpectedConditions.visibilityOf(element));
-		System.out.println("found on element");
+	/*--------------------	Supporting Methods---------------------*/
 
+	protected void waitForElementandClick(WebElement element) {
+
+		wait.until(ExpectedConditions.visibilityOf(element));
+		log.debug("The element is visible: {}", element);
 		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-		System.out.println("clicked on element");
+		log.debug("Clicked on the element: {}", element);
+	}
+
+	public String waitForToast() {
+		String message = "";
+		try {
+			// 1. Wait until the toast is visible
+			WebElement toast = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.p-toast-detail")));
+
+			// 2. Safely try to capture the text (handling quick disappearance)
+			try {
+				message = toast.getText().trim();
+			} catch (StaleElementReferenceException e) {
+				// If it becomes stale immediately, try to find it one last time
+				message = driver.findElement(By.cssSelector("div.p-toast-detail")).getText().trim();
+			}
+			log.info("Toast Message captured: {}", message);
+		} catch (Exception e) {
+			log.warn("Toast appeared but text was not captured (it may have disappeared too quickly).");
+		}
+		return message;
+	}
+
+	private void triggerInputAndChange(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].dispatchEvent(new Event('input', {bubbles: true}));", element);
+		js.executeScript("arguments[0].dispatchEvent(new Event('change', {bubbles: true}));", element);
+		js.executeScript("arguments[0].dispatchEvent(new Event('blur', {bubbles: true}));", element);
+	}
+
+	protected void waitAndSendKeys(WebElement element, String value) {
+		wait.until(ExpectedConditions.visibilityOf(element));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+		element.sendKeys(value.trim());
+		log.debug("Entered value: {}", value);
+		triggerInputAndChange(element);
+
+	}
+
+	public void waitForLoading() {
+		try {
+			// 1. Check if loader appears within a strict 200ms window
+			WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofMillis(200));
+			shortWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.loader-container")));
+
+			log.debug("⏳ Application is loading... waiting for spinner to disappear.");
+
+			// 2. If it appeared, wait for it to disappear (max 10s default)
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.loader-container")));
+			log.debug("✅ Loading complete.");
+		} catch (Exception e) {
+			// If it never appeared (or already disappeared), don't perform any further
+			// waits.
+			// This prevents the "blank wait" issue you were facing.
+		}
+	}
+
+	public void waitForElementToVisible(WebElement element) {
+		wait.until(ExpectedConditions.visibilityOf(element));
+
+	}
+
+	public void scrollAndClick(WebElement element) {
+
+		// Scroll element into view (centered)
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+
+		// Wait until clickable
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+
+		// Click using JS (safe for Angular)
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+	}
+
+	/*---------------------Google chrome Search box------------------*/
+
+	@FindBy(name = "q")
+	WebElement searchbox;
+
+	public WebElement getSearchBox() {
+		return searchbox;
+	}
+
+	public void searchBox(String url) throws Exception {
+		waitAndSendKeys(searchbox, url);
+	}
+
+	public void scrollAndClickWithPageDown(WebElement element) throws InterruptedException {
+
+		Actions actions = new Actions(driver);
+		int maxScrolls = 5;
+
+		for (int i = 0; i < maxScrolls; i++) {
+			actions.sendKeys(Keys.PAGE_DOWN).perform();
+			Thread.sleep(300);
+
+			if (element.isDisplayed()) {
+				break;
+			}
+		}
+
+		element.click();
+	}
+
+	public void scrollToElement(WebElement element) {
+
+		// Scroll element into view (centered)
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+
+		// Wait until clickable
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+
+	}
+
+	/*-------------------------Methods For UserName, Password, Login--------------------------*/
+
+	@FindBy(css = "input[autocomplete='username']")
+	protected WebElement txt_username;
+
+	@FindBy(id = "password")
+	WebElement txt_password;
+
+	public void userNameandPassword(String username, String password) throws Exception {
+		waitAndSendKeys(txt_username, username);
+		log.debug("Entered username: {}", username);
+		waitAndSendKeys(txt_password, password);
+		log.debug("Entered password: {}", password);
+
+	}
+
+	public void userName(String username) throws Exception {
+		waitAndSendKeys(txt_username, username);
+		log.debug("Entered username: {}", username);
+	}
+
+	@FindBy(xpath = "//button[@type='submit']")
+	WebElement btn_login;
+
+	public void loginButton() {
+
+		waitForElementandClick(btn_login);
+		log.debug("Clicked on Login button");
+	}
+
+	/*-------------------------Validations For UserName, Password, Login--------------------------*/
+
+	public WebElement getUsernameField() {
+		return txt_username;
+	}
+
+	public WebElement getPasswordField() {
+		return txt_password;
+	}
+
+	public WebElement getLoginButton() {
+		return btn_login;
+	}
+
+	/*-----------------------------Apps Xpaths----------------------*/
+
+	@FindBy(xpath = "//h5[normalize-space()='MASTERS']")
+	WebElement title_masters;
+
+	public void click_titleMasters() {
+
+		waitForElementandClick(title_masters);
+
+	}
+
+	@FindBy(xpath = "//h5[normalize-space()='MM (Material Management)']")
+	WebElement title_mm;
+
+	public void click_titleMM() {
+
+		waitForElementandClick(title_mm);
+
+	}
+
+	/*-----------------------Masters and module Validation----------------------*/
+
+	public WebElement getMastersTitle() {
+		return title_masters;
+	}
+
+	public WebElement getModuleElement(String moduleName) {
+		return driver.findElement(By.xpath("//a[normalize-space()='" + moduleName + "']"));
+	}
+
+	/*------------------------Master Module Xpath--------------------*/
+
+	public void masterClick(String mastername) throws Exception {
+		WebElement xpath = wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='" + mastername + "']")));
+		xpath.click();
+
+	}
+
+	/*----------------Profile Drop Down-----------------------*/
+
+	@FindBy(xpath = "//button[@class='profile-btn']/i")
+	WebElement profile_dropdown;
+
+	public void click_profileDropdown() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 0);");
+		profile_dropdown.click();
+	}
+
+	/*-----------------Password Input  and Authenticate Button-----------------------*/
+
+	public void passWord(String password) throws Exception {
+		waitAndSendKeys(txt_password, password);
+		log.debug("Entered password: {}", password);
+	}
+
+	@FindBy(xpath = "//button[normalize-space()='Authenticate']")
+	WebElement btn_authenticate;
+
+	public void authenticateButton() {
+		btn_authenticate.click();
+	}
+
+	/*--------------------Logout-----------------*/
+
+	@FindBy(xpath = "//li[normalize-space()='Logout']")
+	WebElement logout;
+
+	public void logout() {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(logout).perform();
+		logout.click();
+	}
+
+	/*---------------------Create Button------------------*/
+
+	@FindBy(xpath = "//span[normalize-space()='Create']")
+	WebElement create;
+
+	public void Create() throws Throwable {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 0);");
+		waitForElementandClick(create);
+
+	}
+
+	/*---------------Submit button In Create Screen---------------------*/
+	@FindBy(xpath = "//button[@id='save-entity' or normalize-space()='Submit']")
+	WebElement click_submit;
+
+	public void createSubmit() throws InterruptedException {
+		scrollAndClickWithPageDown(click_submit);
+	}
+
+	public WebElement getSubmitButton() {
+		return click_submit;
+	}
+
+	/*----------------Cancel Button in create Screen-----*/
+
+	@FindBy(xpath = "//button[normalize-space()='Cancel']")
+	WebElement click_cancel;
+
+	public WebElement getCancelButton() {
+		return click_cancel;
+	}
+
+	public void toast() {
+		waitForToast();
 	}
 
 	protected void jsClick(WebElement element) {
@@ -53,10 +323,6 @@ public class BasePage {
 	protected void jsScrollToElement(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
-	}
-
-	public void toast() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.p-toast-detail")));
 	}
 
 	public WebElement waitForCreateButton() {
@@ -78,120 +344,6 @@ public class BasePage {
 			System.out.println("Loader still visible, but proceeding...");
 		}
 		return wait.until(ExpectedConditions.elementToBeClickable(page_button));
-	}
-
-	private void triggerInputAndChange(WebElement element) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].dispatchEvent(new Event('input', {bubbles: true}));", element);
-		// js.executeScript("arguments[0].dispatchEvent(new Event('change', {bubbles:
-		// true}));", element);
-		// js.executeScript("arguments[0].dispatchEvent(new Event('blur', {bubbles:
-		// true}));", element);
-	}
-
-	protected void waitAndSendKeys(WebElement element, String value) {
-		wait.until(ExpectedConditions.visibilityOf(element));
-		triggerInputAndChange(element);
-		element.sendKeys(value);
-
-	}
-
-	public void waitForLoading() {
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.loader-container")));
-	}
-
-	@FindBy(name = "q")
-	WebElement searchbox;
-
-	public WebElement getSearchBox() {
-		return searchbox;
-	}
-
-	public void searchBox(String url) throws Exception {
-		waitAndSendKeys(searchbox, url);
-	}
-
-	@FindBy(css = "input[autocomplete='username']")
-	protected WebElement txt_username;
-
-	public void scrollAndClickWithPageDown(WebElement element) throws InterruptedException {
-
-		Actions actions = new Actions(driver);
-		int maxScrolls = 5;
-
-		for (int i = 0; i < maxScrolls; i++) {
-			actions.sendKeys(Keys.PAGE_DOWN).perform();
-			Thread.sleep(300);
-
-			if (element.isDisplayed()) {
-				break;
-			}
-		}
-
-		element.click();
-	}
-
-	public void scrollAndClick(WebElement element) {
-
-		// Scroll element into view (centered)
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
-
-		// Wait until clickable
-		wait.until(ExpectedConditions.elementToBeClickable(element));
-
-		// Click using JS (safe for Angular)
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-	}
-
-	public void scrollToElement(WebElement element) {
-
-		// Scroll element into view (centered)
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
-
-		// Wait until clickable
-		wait.until(ExpectedConditions.elementToBeClickable(element));
-
-	}
-
-	public void userName(String username) throws Exception {
-		waitAndSendKeys(txt_username, username);
-		log.info("Entered username: {}", username);
-
-	}
-
-	@FindBy(id = "password")
-	WebElement txt_password;
-
-	public void passWord(String password) throws Exception {
-		waitAndSendKeys(txt_password, password);
-		log.info("Entered password: {}", password);
-	}
-
-	@FindBy(xpath = "//button[@type='submit']")
-	WebElement btn_login;
-
-	public void loginButton() {
-
-		btn_login.click();
-		log.info("Clicked on Login button");
-	}
-
-	@FindBy(xpath = "//h5[normalize-space()='MASTERS']")
-	WebElement title_masters;
-
-	public void click_titleMasters() {
-
-		waitForElementandClick(title_masters);
-
-	}
-
-	@FindBy(xpath = "//h5[normalize-space()='MM (Material Management)']")
-	WebElement title_mm;
-
-	public void click_titleMM() {
-
-		waitForElementandClick(title_mm);
-
 	}
 
 	@FindBy(xpath = "//span[normalize-space()='PDF']")
@@ -216,123 +368,13 @@ public class BasePage {
 	WebElement click_back;
 
 	public void clickBack() throws InterruptedException {
-		scrollAndClickWithPageDown(click_back);
+		scrollAndClick(click_back);
 	}
 
-	@FindBy(xpath = "//button[@class='profile-btn']/i")
-	WebElement profile_dropdown;
+	/*----------------Methods for Actions List--------------------*/
 
-	public void click_profileDropdown() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, 0);");
-		profile_dropdown.click();
-	}
+	/*--------To get the table Headers---------------*/
 
-	@FindBy(xpath = "//li[normalize-space()='Logout']")
-	WebElement logout;
-
-	public void logout() {
-		Actions actions = new Actions(driver);
-		actions.moveToElement(logout).perform();
-		logout.click();
-	}
-
-	public void masterClick(String mastername) throws Exception {
-		WebElement xpath = wait.until(
-				ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='" + mastername + "']")));
-		xpath.click();
-
-	}
-
-	@FindBy(xpath = "//span[normalize-space()='Create']")
-	WebElement create;
-
-	public void Create() throws Throwable {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, 0);");
-		waitForElementandClick(create);
-
-	}
-
-	@FindBy(xpath = "//button[@id='save-entity' or normalize-space()='Submit']")
-	WebElement click_submit;
-
-	public void createSubmit() throws InterruptedException {
-		scrollAndClickWithPageDown(click_submit);
-	}
-
-	public void waitForElementToVisible(WebElement element) {
-		wait.until(ExpectedConditions.visibilityOf(element));
-
-	}
-
-	@FindBy(xpath = "//button[normalize-space()='Authenticate']")
-	WebElement btn_authenticate;
-
-	public void authenticateButton() {
-		btn_authenticate.click();
-	}
-
-	@FindBy(xpath = "//span[@class='p-paginator-pages ng-star-inserted']/button")
-	List<WebElement> page_count;
-
-	@FindBy(xpath = "//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button")
-	List<WebElement> pending_page_count;
-
-	@FindBy(xpath = "//div[@class='card table-data'][2]//span[@class='p-paginator-pages ng-star-inserted']/button")
-	List<WebElement> active_page_count;
-
-	public void clickActions(String... expItemNames) throws Exception {
-		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				"//span[contains(@class,'pi-ellipsis-v')]", expItemNames);
-
-	}
-
-	public void clickActions(String commaSeparatedValues) throws Exception {
-		clickActions(splitAndTrim(commaSeparatedValues));
-	}
-
-	public void clickActionsForPendig(String expItemName) throws Exception {
-		performTableAction(pending_page_count, "//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
-				"//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button",
-				expItemName, "//i[contains(@class,'pi-ellipsis-v')]");
-
-	}
-
-	public void clickActionsForActive(String expItemName) throws Exception {
-		performTableAction(active_page_count, "//div[@class='card table-data'][2]//tbody[@role='rowgroup']/tr",
-				"//div[@class='card table-data'][2]//span[@class='p-paginator-pages ng-star-inserted']/button",
-				expItemName, "//i[contains(@class,'pi-ellipsis-v')]");
-
-	}
-
-	/*
-	 * public int getColumnIndexByHeader(String headerName) {
-	 * 
-	 * List<WebElement> headers = driver.findElements( By.xpath("//thead//th"));
-	 * 
-	 * for (int i = 0; i < headers.size(); i++) { String headerText =
-	 * headers.get(i).getText().trim();
-	 * 
-	 * if (headerText.equalsIgnoreCase(headerName)) { return i + 1; // XPath index
-	 * starts from 1 } } throw new RuntimeException("Column not found: " +
-	 * headerName); }
-	 */
-
-	/**
-	 * CONFIGURATION METHOD Call this at the start of your test to define how to
-	 * find rows. Example: department.setTableHeaders("Department Name"); Example 2:
-	 * department.setTableHeaders("Department Name", "Dept Code");
-	 */
-	public void setTableHeaders(String... headers) {
-		this.tableHeaders = headers;
-	}
-
-	/**
-	 * Overloaded method to set table headers using a single comma-separated string.
-	 * Useful for reading from properties files.
-	 */
 	public void setTableHeaders(String commaSeparatedHeaders) {
 		if (commaSeparatedHeaders != null && !commaSeparatedHeaders.isEmpty()) {
 			this.tableHeaders = commaSeparatedHeaders.split(",");
@@ -343,10 +385,8 @@ public class BasePage {
 		}
 	}
 
-	/**
-	 * Internal helper to find column indices dynamically based on header names.
-	 * Returns a list of indices (1-based for XPath usage).
-	 */
+	/*-----------to Find the given Header column index-----------*/
+
 	private List<Integer> getDynamicColumnIndices() {
 		List<Integer> indices = new ArrayList<>();
 
@@ -375,114 +415,8 @@ public class BasePage {
 		return indices;
 	}
 
-	/*
-	 * public void clickActions(String expItemtName, String version) throws
-	 * Exception {
-	 * 
-	 * Boolean isFound = Boolean.FALSE; int specNoCol =
-	 * getColumnIndexByHeader("Specification Number"); int versionCol =
-	 * getColumnIndexByHeader("Version");
-	 * 
-	 * for (int p = 1; p <= page_count.size(); p++) {
-	 * System.out.println("Number of pages" + page_count.size());
-	 * wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(
-	 * "//tbody[@role='rowgroup']/tr"))); List<WebElement> item_list =
-	 * driver.findElements(By.xpath("//tbody[@role='rowgroup']/tr")); for (int r =
-	 * 1; r <= item_list.size(); r++) { WebElement specCell = driver.findElement(
-	 * By.xpath("//tbody[@role='rowgroup']/tr[" + r + "]/td[" + specNoCol + "]"));
-	 * WebElement versionCell = driver.findElement(
-	 * By.xpath("//tbody[@role='rowgroup']/tr[" + r + "]/td[" + versionCol + "]"));
-	 * ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].scrollIntoView({block:'center'});",
-	 * specCell); ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].scrollIntoView({block:'center'});",
-	 * versionCell); String specitemName = specCell.getText().trim(); String
-	 * versionItem = versionCell.getText().trim();
-	 * 
-	 * System.out.println("Expected: [" + expItemtName.trim() + "]");
-	 * System.out.println("Actual:   [" + specitemName.trim() + "]");
-	 * System.out.println("Equal? " +
-	 * specitemName.equalsIgnoreCase(expItemtName.trim()));
-	 * 
-	 * System.out.println("Expected Version: [" + version.trim() + "]");
-	 * System.out.println("Actual Version:   [" + versionItem.trim() + "]");
-	 * System.out.println("Version Equal? " +
-	 * versionItem.equalsIgnoreCase(version.trim()));
-	 * 
-	 * if (specitemName.equalsIgnoreCase(expItemtName) &&
-	 * versionItem.equalsIgnoreCase(version)) { isFound = true; System.out
-	 * .println("Item Found In Actions → SpecNo: " + specitemName + " , Version: " +
-	 * versionItem);
-	 * 
-	 * WebElement actionButton = driver.findElement(By.xpath( "//tbody/tr[" + r +
-	 * "]//span[@class='p-button-icon pi pi-ellipsis-v ng-star-inserted']"));
-	 * ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
-	 * actionButton); Thread.sleep(3000);
-	 * 
-	 * return;
-	 * 
-	 * } }
-	 * 
-	 * if (isFound == false && p < page_count.size()) { WebElement nextPage =
-	 * wait.until(ExpectedConditions.elementToBeClickable(
-	 * By.xpath("//span[@class='p-paginator-pages ng-star-inserted']/button[" + (p +
-	 * 1) + "]"))); ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
-	 * nextPage); ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].click();", nextPage); Thread.sleep(5000);
-	 * ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
-	 * 
-	 * }
-	 * 
-	 * } if (isFound == false) { System.out.println("Item not Found in Actions"); }
-	 * 
-	 * }
-	 */
-	public void clickEdit(String... expItemNames) throws Exception {
-		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-pencil')]", // Merged locators
-				expItemNames);
-	}
+	/*------------------To Perform table Actions like Actions, View, Edit-----------------*/
 
-	public void clickEdit(String commaSeparatedValues) throws Exception {
-		clickEdit(splitAndTrim(commaSeparatedValues));
-	}
-
-	public void clickView(String... expItemNames) throws Exception {
-		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-eye')]", // Merged locators
-				expItemNames);
-	}
-
-	public void clickView(String commaSeparatedValues) throws Exception {
-		clickView(splitAndTrim(commaSeparatedValues));
-	}
-
-	private String[] splitAndTrim(String commaSeparated) {
-		if (commaSeparated == null || commaSeparated.isEmpty()) {
-			return new String[0];
-		}
-		String[] parts = commaSeparated.split(",");
-		for (int i = 0; i < parts.length; i++) {
-			parts[i] = parts[i].trim();
-		}
-		return parts;
-	}
-
-	public void clickEditForPending(String expItemName) throws Exception {
-		performTableAction(pending_page_count, "//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
-				"//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button",
-				expItemName, "//i[contains(@class,'pi-pencil')] | //span[contains(@class,'be-pencil')]");
-	}
-
-	/**
-	 * Generic helper to verify item existence and click action/edit.
-	 */
-	/**
-	 * Generic helper to verify item existence and click action/edit.
-	 */
 	protected void performTableActionGeneric(List<WebElement> pageCountElements, String rowXpath,
 			String paginatorButtonPrefix, String actionButtonSubPath, String... expectedValues) throws Exception {
 
@@ -500,7 +434,7 @@ public class BasePage {
 		}
 
 		for (int p = 1; p <= totalPages; p++) {
-			// System.out.println("Scanning Page " + p);
+			log.info("🔍 Scanning Page {} of {} for items: {}", p, totalPages, Arrays.toString(expectedValues));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
 			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
 
@@ -512,10 +446,6 @@ public class BasePage {
 					for (int i = 0; i < targetIndices.size(); i++) {
 						int colIndex = targetIndices.get(i);
 						String expectedVal = expectedValues[i];
-
-						// If tableHeaders is null (Legacy), we use index 1 (which is
-						// targetIndices.get(0)).
-						// So this loop runs once.
 
 						WebElement cell = driver.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + colIndex + "]"));
 
@@ -533,13 +463,15 @@ public class BasePage {
 					}
 
 					if (rowMatches) {
-						System.out.println("✅ Item Found Matching: " + Arrays.toString(expectedValues));
+						log.info("✅ Item Found Matching: {} on Row {} of Page {}", Arrays.toString(expectedValues), r,
+								p);
 						isFound = true;
 
 						// Click Action/Edit Button
 						WebElement actionBtn = driver
 								.findElement(By.xpath(rowXpath + "[" + r + "]" + actionButtonSubPath));
 						((JavascriptExecutor) driver).executeScript("arguments[0].click();", actionBtn);
+						log.debug("Clicked the action button for the matching row.");
 						// Small wait for processing
 						Thread.sleep(2000);
 						return;
@@ -553,6 +485,7 @@ public class BasePage {
 			if (!isFound && p < totalPages) {
 				String nextBtnXpath = paginatorButtonPrefix + "[" + (p + 1) + "]";
 				try {
+					log.info("➡️ Navigating to next page (Page {})...", p + 1);
 					WebElement nextPage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nextBtnXpath)));
 					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
 							nextPage);
@@ -560,89 +493,352 @@ public class BasePage {
 					Thread.sleep(3000);
 					((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
 				} catch (Exception e) {
-					System.out.println("Next page not found or clickable");
+					log.error("❌ Next page button (Page {}) was not clickable or not found.", p + 1);
 					break;
 				}
 			}
 		}
 
 		if (!isFound) {
-			System.out.println("❌ Item not found: " + Arrays.toString(expectedValues));
+			log.error("❌ Item not found after scanning all {} pages: {}", totalPages, Arrays.toString(expectedValues));
 			ScreenshotUtil.takeStepScreenshot("ItemNotFound_" + Arrays.toString(expectedValues));
 		}
 	}
 
-	/**
-	 * Legacy method support - Redirects to generic
-	 */
-	protected void performTableAction(List<WebElement> pageCountElements, String rowXpath, String paginatorButtonPrefix,
-			String itemName, String actionButtonSubPath) throws Exception {
-		performTableActionGeneric(pageCountElements, rowXpath, paginatorButtonPrefix, actionButtonSubPath, itemName);
+	private String[] splitAndTrim(String commaSeparated) {
+		if (commaSeparated == null || commaSeparated.isEmpty()) {
+			return new String[0];
+		}
+		String[] parts = commaSeparated.split(",");
+		for (int i = 0; i < parts.length; i++) {
+			parts[i] = parts[i].trim();
+		}
+		return parts;
 	}
 
-	/*
-	 * public void clickEdit(String expItemName, String version) throws Exception {
-	 * boolean isFound = false;
-	 * 
-	 * int specNoCol = getColumnIndexByHeader("Specification Number"); int
-	 * versionCol = getColumnIndexByHeader("Version");
-	 * 
-	 * for (int p = 1; p <= page_count.size(); p++) {
-	 * System.out.println("Number of pages" + page_count.size()); // Wait until
-	 * table rows are present
-	 * wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(
-	 * "//tbody[@role='rowgroup']/tr"))); List<WebElement> item_list =
-	 * driver.findElements(By.xpath("//tbody[@role='rowgroup']/tr"));
-	 * 
-	 * for (int r = 1; r <= item_list.size(); r++) { WebElement specCell =
-	 * driver.findElement( By.xpath("//tbody[@role='rowgroup']/tr[" + r + "]/td[" +
-	 * specNoCol + "]")); WebElement versionCell = driver.findElement(
-	 * By.xpath("//tbody[@role='rowgroup']/tr[" + r + "]/td[" + versionCol + "]"));
-	 * ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].scrollIntoView({block:'center'});",
-	 * specCell); ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].scrollIntoView({block:'center'});",
-	 * versionCell); String specitemName = specCell.getText().trim(); String
-	 * versionItem = versionCell.getText().trim(); System.out.println("Expected: ["
-	 * + expItemName.trim() + "]"); System.out.println("Actual:   [" +
-	 * specitemName.trim() + "]"); System.out.println("Equal? " +
-	 * specitemName.equalsIgnoreCase(expItemName.trim()));// trim fixes space //
-	 * mismatch System.out.println("Expected Version: [" + version.trim() + "]");
-	 * System.out.println("Actual Version:   [" + versionItem.trim() + "]");
-	 * System.out.println("Version Equal? " +
-	 * versionItem.equalsIgnoreCase(version.trim())); if
-	 * (specitemName.equalsIgnoreCase(expItemName.trim())) { isFound = true;
-	 * System.out .println("Item Found In Actions → SpecNo: " + specitemName +
-	 * " , Version: " + versionItem);
-	 * 
-	 * WebElement editIcon = driver .findElement(By.xpath("//tbody/tr[" + r +
-	 * "]//span[contains(@class,'be-pencil')]")); ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].click();", editIcon);
-	 * 
-	 * // Wait for edit form to appear //
-	 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-	 * "//input[@formcontrolname='name']"))); return; } }
-	 * 
-	 * // Go to next page if not found if (!isFound && p < page_count.size()) {
-	 * WebElement nextPage = driver.findElement(
-	 * By.xpath("//span[@class='p-paginator-pages ng-star-inserted']/button[" + (p +
-	 * 1) + "]")); ((JavascriptExecutor)
-	 * driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
-	 * nextPage); nextPage.click(); Thread.sleep(3000); // small wait for new rows
-	 * to load } }
-	 * 
-	 * if (!isFound) { System.out.println("❌ Item not found: " + expItemName);
-	 * ScreenshotUtil.takeStepScreenshot("ItemNotFound_" + expItemName); } }
-	 */
+	/*--------------To Validate Item Actions like View, Edit, Approve------------------*/
+
+	public void validateIcons(List<WebElement> pageCountElements, String rowXpath,
+			String paginatorButtonPrefix, boolean expectView, boolean expectEdit, String... expectedValues)
+			throws Exception {
+
+		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		List<Integer> targetIndices = getDynamicColumnIndices();
+
+		for (int p = 1; p <= totalPages; p++) {
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
+
+			for (int r = 1; r <= rows.size(); r++) {
+				try {
+					boolean rowMatches = true;
+					for (int i = 0; i < targetIndices.size(); i++) {
+						WebElement cell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+						if (i == 0)
+							((JavascriptExecutor) driver)
+									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
+							rowMatches = false;
+							break;
+						}
+					}
+
+					if (rowMatches) {
+						log.info("✅ Item Found for Icon Validation: {} on Row {} of Page {}",
+								Arrays.toString(expectedValues), r, p);
+
+						// Check View Icon
+						boolean viewDisplayed = false;
+						try {
+							WebElement viewIcon = driver
+									.findElement(By.xpath(rowXpath + "[" + r + "]//i[contains(@class,'pi-eye')]"));
+							viewDisplayed = viewIcon.isDisplayed();
+						} catch (NoSuchElementException e) {
+						}
+
+						if (expectView && !viewDisplayed)
+							throw new RuntimeException("Expected View Icon to be displayed, but it was MISSING.");
+						if (!expectView && viewDisplayed)
+							throw new RuntimeException("Expected View Icon to NOT be displayed, but it was PRESENT.");
+
+						// Check Edit Icon
+						boolean editDisplayed = false;
+						try {
+							WebElement editIcon = driver
+									.findElement(By.xpath(rowXpath + "[" + r + "]//i[contains(@class,'pi-pencil')]"));
+							editDisplayed = editIcon.isDisplayed();
+						} catch (NoSuchElementException e) {
+						}
+
+						if (expectEdit && !editDisplayed)
+							throw new RuntimeException("Expected Edit Icon to be displayed, but it was MISSING.");
+						if (!expectEdit && editDisplayed)
+							throw new RuntimeException("Expected Edit Icon to NOT be displayed, but it was PRESENT.");
+
+						log.info(
+								"✓ Icons validated successfully. View Expected: {}, Actual: {}. Edit Expected: {}, Actual: {}.",
+								expectView, viewDisplayed, expectEdit, editDisplayed);
+						return;
+					}
+				} catch (Exception e) {
+				}
+			}
+		}
+		throw new RuntimeException("Item not found for icon validation: " + Arrays.toString(expectedValues));
+	}
+
+	public void validateActionMenuOptions(List<WebElement> pageCountElements, String rowXpath,
+			String paginatorButtonPrefix, String expectedOption, String... expectedValues) throws Exception {
+
+		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		List<Integer> targetIndices = getDynamicColumnIndices();
+
+		for (int p = 1; p <= totalPages; p++) {
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
+
+			for (int r = 1; r <= rows.size(); r++) {
+				try {
+					boolean rowMatches = true;
+					for (int i = 0; i < targetIndices.size(); i++) {
+						WebElement cell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+						if (i == 0)
+							((JavascriptExecutor) driver)
+									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
+							rowMatches = false;
+							break;
+						}
+					}
+
+					if (rowMatches) {
+						log.info("✅ Item Found for Action Validation: {} on Row {} of Page {}",
+								Arrays.toString(expectedValues), r, p);
+						WebElement actionBtn = driver.findElement(
+								By.xpath(rowXpath + "[" + r + "]//span[contains(@class,'pi-ellipsis-v')]"));
+						((JavascriptExecutor) driver).executeScript("arguments[0].click();", actionBtn);
+						Thread.sleep(1000);
+
+						WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+								"//li//span[normalize-space()='" + expectedOption + "'] | //button[normalize-space()='"
+										+ expectedOption + "']")));
+
+						if (!option.isDisplayed())
+							throw new RuntimeException("Action option '" + expectedOption + "' not displayed!");
+						log.info("✓ Action option '{}' is displayed.", expectedOption);
+						return; // Found and validated
+					}
+				} catch (Exception e) {
+				}
+			}
+		}
+		throw new RuntimeException("Item not found for action validation: " + Arrays.toString(expectedValues));
+	}
+
+	public String getItemStatus(List<WebElement> pageCountElements, String rowXpath,
+			String paginatorButtonPrefix, String... expectedValues) throws Exception {
+
+		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		List<Integer> targetIndices = getDynamicColumnIndices();
+
+		for (int p = 1; p <= totalPages; p++) {
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
+
+			for (int r = 1; r <= rows.size(); r++) {
+				try {
+					boolean rowMatches = true;
+					for (int i = 0; i < targetIndices.size(); i++) {
+						WebElement cell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+						if (i == 0)
+							((JavascriptExecutor) driver)
+									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
+							rowMatches = false;
+							break;
+						}
+					}
+
+					if (rowMatches) {
+						// Find the Status column index
+						List<WebElement> headerCells = driver.findElements(By.xpath("//thead//tr//th"));
+						int statusColumnIndex = -1;
+						for (int h = 0; h < headerCells.size(); h++) {
+							String headerText = headerCells.get(h).getText().trim();
+							if (headerText.equalsIgnoreCase("Status")
+									|| headerText.equalsIgnoreCase("Approval Status")) {
+								statusColumnIndex = h + 1; // XPath is 1-indexed
+								break;
+							}
+						}
+
+						if (statusColumnIndex == -1) {
+							throw new RuntimeException("Status column not found in table headers");
+						}
+
+						// Get the status value from the matched row
+						WebElement statusCell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + statusColumnIndex + "]"));
+						String status = statusCell.getText().trim();
+						log.info("✅ Found item: {} with Status: '{}'", Arrays.toString(expectedValues), status);
+						return status;
+					}
+				} catch (Exception e) {
+					// Continue searching
+				}
+			}
+		}
+		throw new RuntimeException("Item not found to retrieve status: " + Arrays.toString(expectedValues));
+	}
+
+	public void validateActionMenuStrict(List<WebElement> pageCountElements, String rowXpath,
+			String paginatorButtonPrefix, List<String> expectedActions, String... expectedItemValues) throws Exception {
+
+		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		List<Integer> targetIndices = getDynamicColumnIndices();
+
+		for (int p = 1; p <= totalPages; p++) {
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
+
+			for (int r = 1; r <= rows.size(); r++) {
+				try {
+					boolean rowMatches = true;
+					for (int i = 0; i < targetIndices.size(); i++) {
+						WebElement cell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+						if (i == 0)
+							((JavascriptExecutor) driver)
+									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						if (!cell.getText().trim().equalsIgnoreCase(expectedItemValues[i].trim())) {
+							rowMatches = false;
+							break;
+						}
+					}
+
+					if (rowMatches) {
+						log.info("✅ Item Found for Strict Action Validation: {} on Row {} of Page {}",
+								Arrays.toString(expectedItemValues), r, p);
+						WebElement actionBtn = driver.findElement(
+								By.xpath(rowXpath + "[" + r + "]//span[contains(@class,'pi-ellipsis-v')]"));
+						((JavascriptExecutor) driver).executeScript("arguments[0].click();", actionBtn);
+						Thread.sleep(1500); // Wait for animation
+
+						// Get all visible menu items
+						List<WebElement> menuItems = driver.findElements(By.xpath(
+								"//ul[@role='menu']//li//span | //div[contains(@class,'p-menu-overlay')]//li//span"));
+						// Fallback locator if p-menu structure varies, usually it's in a body overlay
+						if (menuItems.isEmpty())
+							menuItems = driver.findElements(By.xpath("//body//div//ul//li//a//span"));
+
+						List<String> actualActions = new ArrayList<>();
+						for (WebElement item : menuItems) {
+							if (item.isDisplayed() && !item.getText().trim().isEmpty()) {
+								actualActions.add(item.getText().trim());
+							}
+						}
+
+						// Close menu to be clean
+						((JavascriptExecutor) driver).executeScript("document.body.click()");
+
+						log.info("Actual Actions Found: {}", actualActions);
+						log.info("Expected Actions: {}", expectedActions);
+
+						// 1. Check for Unexpected
+						for (String actual : actualActions) {
+							if (!expectedActions.contains(actual)) {
+								throw new RuntimeException("Unexpected Action Found: '" + actual + "' (Expected only: "
+										+ expectedActions + ")");
+							}
+						}
+
+						// 2. Check for Missing
+						for (String expected : expectedActions) {
+							if (!actualActions.contains(expected)) {
+								throw new RuntimeException(
+										"Expected Action Missing: '" + expected + "' (Found: " + actualActions + ")");
+							}
+						}
+
+						log.info("✓ Strict Action Menu Validation Passed.");
+						return;
+					}
+				} catch (Exception e) {
+					// Handle StaleElement etc
+					if (e instanceof RuntimeException && e.getMessage().contains("Action"))
+						throw e; // Rethrow validation errors
+				}
+			}
+		}
+		throw new RuntimeException("Item not found for action validation: " + Arrays.toString(expectedItemValues));
+	}
+
+	/*---------------------To click on Actions--------------------*/
+
+	@FindBy(xpath = "//span[@class='p-paginator-pages ng-star-inserted']/button")
+	List<WebElement> page_count;
+
+	public void clickActions(String... expItemNames) throws Exception {
+		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
+				"//span[@class='p-paginator-pages ng-star-inserted']/button",
+				"//span[contains(@class,'pi-ellipsis-v')]", expItemNames);
+
+	}
+
+	public void clickActions(String commaSeparatedValues) throws Exception {
+		clickActions(splitAndTrim(commaSeparatedValues));
+	}
+
+	/*------------------To click on Edit------------------*/
+
+	public void clickEdit(String... expItemNames) throws Exception {
+		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
+				"//span[@class='p-paginator-pages ng-star-inserted']/button",
+				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-pencil')]", // Merged locators
+				expItemNames);
+	}
+
+	public void clickEdit(String commaSeparatedValues) throws Exception {
+		clickEdit(splitAndTrim(commaSeparatedValues));
+	}
+
+	@FindBy(xpath = "//li//span[normalize-space()='Update'] | //button[normalize-space()='Update']")
+	WebElement btn_update;
+
+	public void clickUpdate() throws Exception {
+		scrollAndClick(btn_update);
+
+	}
+
+	/*---------------To click On View--------------------*/
+
+	public void clickView(String... expItemNames) throws Exception {
+		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
+				"//span[@class='p-paginator-pages ng-star-inserted']/button",
+				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-eye')]", // Merged locators
+				expItemNames);
+	}
+
+	public void clickView(String commaSeparatedValues) throws Exception {
+		clickView(splitAndTrim(commaSeparatedValues));
+	}
+
+	/*-------------------------To click Approve---------------*/
+
 	@FindBy(xpath = "//li//span[normalize-space()='Approve'] | //button[normalize-space()='Approve']")
 	WebElement btn_approve;
 
 	public void clickApprove() {
-
+		wait.until(ExpectedConditions.visibilityOf(btn_approve));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", btn_approve);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn_approve);
 
 	}
+
+	/*----------------------To click On Return------------*/
 
 	@FindBy(xpath = "//li//span[normalize-space()='Return'] | //button[normalize-space()='Return']")
 	WebElement btn_return;
@@ -655,14 +851,120 @@ public class BasePage {
 
 	}
 
-	@FindBy(xpath = "//input[@formcontrolname='remarks']")
+	/*-----------------------Remarks Field---------------*/
+
+	@FindBy(xpath = "//input[@formcontrolname='remarks'] | //textarea[@formcontrolname='remarks']")
 	WebElement txt_remarks;
 
 	public void enterRemarks(String remarks) {
-		WebElement txt_remarks = driver
-				.findElement(By.xpath("//input[@formcontrolname='remarks'] | //textarea[@formcontrolname='remarks']"));
 		waitAndSendKeys(txt_remarks, remarks);
 
+	}
+
+	@FindBy(xpath = "//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button")
+	List<WebElement> pending_page_count;
+
+	@FindBy(xpath = "//div[@class='card table-data'][2]//span[@class='p-paginator-pages ng-star-inserted']/button")
+	List<WebElement> active_page_count;
+
+	public void clickActionsForPendig(String expItemName) throws Exception {
+		performTableAction(pending_page_count, "//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
+				"//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button",
+				expItemName, "//i[contains(@class,'pi-ellipsis-v')]");
+
+	}
+
+	public void clickActionsForActive(String expItemName) throws Exception {
+		performTableAction(active_page_count, "//div[@class='card table-data'][2]//tbody[@role='rowgroup']/tr",
+				"//div[@class='card table-data'][2]//span[@class='p-paginator-pages ng-star-inserted']/button",
+				expItemName, "//i[contains(@class,'pi-ellipsis-v')]");
+
+	}
+
+	public int getColumnIndexByHeader(String headerName) {
+		List<WebElement> headers = driver.findElements(By.xpath("//thead//th"));
+		for (int i = 0; i < headers.size(); i++) {
+			String headerText = headers.get(i).getText().trim();
+			if (headerText.equalsIgnoreCase(headerName)) {
+				return i + 1; // XPath index starts from 1
+			}
+		}
+		throw new RuntimeException("Column not found: " + headerName);
+	}
+
+	public String getRowTextByHeader(String targetHeader, String rowXpath, List<WebElement> pageCountElements,
+			String paginatorButtonPrefix, String... expectedValues) throws Exception {
+
+		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		List<Integer> identifierIndices = getDynamicColumnIndices();
+		int targetColIndex = getColumnIndexByHeader(targetHeader);
+
+		for (int p = 1; p <= totalPages; p++) {
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
+
+			for (int r = 1; r <= rows.size(); r++) {
+				try {
+					boolean rowMatches = true;
+					for (int i = 0; i < identifierIndices.size(); i++) {
+						WebElement cell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + identifierIndices.get(i) + "]"));
+						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
+							rowMatches = false;
+							break;
+						}
+					}
+
+					if (rowMatches) {
+						WebElement targetCell = driver
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetColIndex + "]"));
+						return targetCell.getText().trim();
+					}
+				} catch (Exception e) {
+				}
+			}
+
+			if (p < totalPages) {
+				driver.findElement(By.xpath(paginatorButtonPrefix + "[" + (p + 1) + "]")).click();
+				Thread.sleep(2000);
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * CONFIGURATION METHOD Call this at the start of your test to define how to
+	 * find rows. Example: department.setTableHeaders("Department Name"); Example 2:
+	 * department.setTableHeaders("Department Name", "Dept Code");
+	 */
+	public void setTableHeaders(String... headers) {
+		this.tableHeaders = headers;
+	}
+
+	/**
+	 * Overloaded method to set table headers using a single comma-separated string.
+	 * Useful for reading from properties files.
+	 */
+
+	public void clickEditForPending(String expItemName) throws Exception {
+		performTableAction(pending_page_count, "//div[@class='card table-data'][1]//tbody[@role='rowgroup']/tr",
+				"//div[@class='card table-data'][1]//span[@class='p-paginator-pages ng-star-inserted']/button",
+				expItemName, "//i[contains(@class,'pi-pencil')] | //span[contains(@class,'be-pencil')]");
+	}
+
+	/**
+	 * Generic helper to verify item existence and click action/edit.
+	 */
+	/**
+	 * Generic helper to verify item existence and click action/edit.
+	 */
+
+	/**
+	 * Legacy method support - Redirects to generic
+	 */
+	protected void performTableAction(List<WebElement> pageCountElements, String rowXpath, String paginatorButtonPrefix,
+			String itemName, String actionButtonSubPath) throws Exception {
+		performTableActionGeneric(pageCountElements, rowXpath, paginatorButtonPrefix, actionButtonSubPath, itemName);
 	}
 
 	@FindBy(xpath = "//button[normalize-space()='Submit']")
@@ -670,14 +972,6 @@ public class BasePage {
 
 	public void clickSubmit() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", button_submit);
-
-	}
-
-	public void clickUpdate() throws Exception {
-		WebElement updateButton = driver
-				.findElement(By.xpath("//li//span[normalize-space()='Update'] | //button[normalize-space()='Update']"));
-
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", updateButton);
 
 	}
 
@@ -828,11 +1122,11 @@ public class BasePage {
 	}
 
 	public void clickRelativeOption(WebElement parent, String tagName, String text) {
-
 		By locator = By.xpath(".//" + tagName + "[contains(normalize-space(),'" + text + "')]");
 		wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(parent, locator));
-		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-
+		WebElement element = parent.findElement(locator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+		element.click();
 	}
 
 	protected void clickVisibleElementByXpath(String xpath) {

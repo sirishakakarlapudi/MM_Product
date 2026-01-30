@@ -18,8 +18,11 @@ import javax.imageio.ImageIO;
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ScreenshotUtil {
+    private static final Logger log = LogManager.getLogger(ScreenshotUtil.class);
 
     // === Keep shared state as static ===
     private static XWPFDocument templateDoc;
@@ -44,12 +47,18 @@ public class ScreenshotUtil {
     private static String currentStepId = "4.1.1";
     private static int stepCounter = 0;
     private static int screenshotCount = 1;
+    private static boolean isEnabled = true; // Default to true
+
+    public static void setIsEnabled(boolean enabled) {
+        isEnabled = enabled;
+        log.info("📸 Screenshot capture is now: " + (enabled ? "ENABLED" : "DISABLED"));
+    }
 
     /**
      * Initializes the Script prefix (e.g., "4.1") and resets the step counter.
      */
     public static void initScript(String prefix) {
-        currentScriptId = prefix;
+        currentScriptId = prefix.trim();
         stepCounter = 0;
     }
 
@@ -61,7 +70,7 @@ public class ScreenshotUtil {
         stepCounter++;
         currentStepId = currentScriptId + "." + stepCounter;
         screenshotCount = 1;
-        System.out.println("📍 Current Step set to: " + currentStepId);
+        log.info("📍 Current Step set to: " + currentStepId);
     }
 
     /**
@@ -85,6 +94,8 @@ public class ScreenshotUtil {
      * Captures screenshot with automatic numbering: "XX for step No.Y.Y.Y"
      */
     public static void capture() throws Exception {
+        if (!isEnabled)
+            return;
         String label = String.format("%02d for step No.%s", screenshotCount++, currentStepId);
         takeStepScreenshot(label);
     }
@@ -93,6 +104,8 @@ public class ScreenshotUtil {
      * Captures screenshot with automatic numbering and a suffix (e.g., " - Page 1")
      */
     public static void capture(String suffix) throws Exception {
+        if (!isEnabled)
+            return;
         String label = String.format("%02d for step No.%s%s", screenshotCount++, currentStepId, suffix);
         takeStepScreenshot(label);
     }
@@ -136,7 +149,7 @@ public class ScreenshotUtil {
 
             XWPFHeader header = policy.getDefaultHeader();
             if (header == null) {
-                System.err.println("❌ No default header found in outputDoc.");
+                log.warn("❌ No default header found in outputDoc.");
                 return;
             }
 
@@ -163,13 +176,18 @@ public class ScreenshotUtil {
                 }
             }
         } catch (Exception e) {
-            System.err.println("❌ Exception while updating header: " + e.getMessage());
+            log.error("❌ Exception while updating header: " + e.getMessage());
         }
     }
 
     // === Capture Screenshot ===
     public static void takeStepScreenshot(String label) throws Exception {
-        // Thread.sleep(3000); // Optional wait
+        if (!isEnabled)
+            return;
+
+        // ⏳ Small delay to ensure UI is settled and loading is truly finished
+        Thread.sleep(1000);
+
         Robot robot = new Robot();
         Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
         BufferedImage image = robot.createScreenCapture(screen);
@@ -178,11 +196,15 @@ public class ScreenshotUtil {
         ImageIO.write(image, "png", baos);
         screenshots.add(new ScreenshotEntry(label, baos.toByteArray()));
         baos.close();
-        Thread.sleep(2000);
+
     }
 
     // === Save Final Document ===
     public static void insertScreenshotsAndAppendTemplate() throws Exception {
+        if (!isEnabled) {
+            log.info("⏭️ Screenshot generation skipped (DISABLED).");
+            return;
+        }
         // 1. Insert screenshots first
         for (ScreenshotEntry entry : screenshots) {
             XWPFParagraph para = outputDoc.createParagraph();
@@ -217,6 +239,6 @@ public class ScreenshotUtil {
         outputDoc.close();
         templateDoc.close();
 
-        System.out.println("✅ Document saved: " + outputPath);
+        log.info("✅ Document saved: " + outputPath);
     }
 }

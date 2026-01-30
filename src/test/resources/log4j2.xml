@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+  <Properties>
+    <Property name="basePath">./logs</Property>
+  </Properties>
+
+  <Appenders>
+    <!-- Console -->
+    <Console name="CONSOLE" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss} %-5level %c{1} - %msg%n"/>
+    </Console>
+
+    <!-- Rolling File -->
+    <RollingFile name="FILE"
+                 fileName="${basePath}/automation.log"
+                 filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %c{1} - %msg%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="5 MB"/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <!-- 🔹 Suppress all 3rd party logs (Selenium, Apache, etc.) -->
+    <Root level="WARN">
+      <AppenderRef ref="CONSOLE"/>
+      <AppenderRef ref="FILE"/>
+    </Root>
+
+    <!-- 🔹 Show only your project logs -->
+    <Logger name="testCasesForOQProjects" level="INFO" additivity="false">
+      <AppenderRef ref="CONSOLE"/>
+      <AppenderRef ref="FILE"/>
+    </Logger>
+    
+    <Logger name="pageObjects" level="INFO" additivity="false">
+      <AppenderRef ref="CONSOLE"/>
+      <AppenderRef ref="FILE"/>
+    </Logger>
+    
+    <Logger name="testBase" level="INFO" additivity="false">
+      <AppenderRef ref="CONSOLE"/>
+      <AppenderRef ref="FILE"/>
+    </Logger>
+
+    <Logger name="utilities" level="INFO" additivity="false">
+      <AppenderRef ref="CONSOLE"/>
+      <AppenderRef ref="FILE"/>
+    </Logger>
+
+  </Loggers>
+</Configuration>

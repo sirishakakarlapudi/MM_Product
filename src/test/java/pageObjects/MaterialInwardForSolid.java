@@ -729,7 +729,10 @@ public class MaterialInwardForSolid extends BasePage {
 			String actualInhouse = inhouseInput.getAttribute("value").trim();
 			if (actualInhouse.equalsIgnoreCase(inhouseBatch)) {
 				DataStorage.save("capturedInhouseBatch", actualInhouse);
-				WebElement btn = row.findElement(By.xpath(".//button[normalize-space()='Weight Verification']"));
+				// Supports both "Weight Verification" and "View" labels (View appears after
+				// batch completion)
+				WebElement btn = row.findElement(By.xpath(
+						".//button[contains(normalize-space(),'Weight Verification') or normalize-space()='View']"));
 				scrollAndClick(btn);
 				found = true;
 				break;
@@ -737,7 +740,7 @@ public class MaterialInwardForSolid extends BasePage {
 		}
 		if (!found) {
 			throw new RuntimeException(
-					"❌ Could not find weight verification button for Inhouse Batch: " + inhouseBatch);
+					"❌ Could not find weight verification/view button for Inhouse Batch: " + inhouseBatch);
 		}
 	}
 
@@ -998,28 +1001,55 @@ public class MaterialInwardForSolid extends BasePage {
 
 	/*-------------View/Weight Verification Buttons in Actions---------------------*/
 
-	@FindBy(xpath = "//span[normalize-space()='View Weight Verification' or normalize-space()='Weight Verification']")
-	WebElement button_unifiedWeightVerification;
+	@FindBy(xpath = "//span[normalize-space()='Weight Verification']")
+	WebElement button_weightVerification;
+
+	@FindBy(xpath = "//span[normalize-space()='View Weight Verification']")
+	WebElement button_viewWeightVerification;
+
+	public void clickWeightVerification() {
+		waitForElementandClick(button_weightVerification);
+	}
 
 	public void clickViewWeightVerification() {
-		scrollAndClick(button_unifiedWeightVerification);
+		waitForElementandClick(button_viewWeightVerification);
 	}
 
 	public boolean weightVerificationButtonisDisplayed() {
 		try {
-			return button_unifiedWeightVerification.isDisplayed();
+			return button_weightVerification.isDisplayed();
 		} catch (NoSuchElementException e) {
 			return false;
 		}
 	}
 
+	public boolean viewWeightVerificationButtonisDisplayed() {
+		try {
+			return button_viewWeightVerification.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	public String getInwardStatusFromActions() {
+		try {
+			// Search for status text in the current open Actions menu
+			WebElement menu = driver
+					.findElement(By.xpath("//div[contains(@class,'p-menu') or contains(@class,'p-tieredmenu')]"));
+			WebElement statusEl = menu.findElement(By.xpath(".//*[contains(text(),'Status')]"));
+			return statusEl.getText().replace("Status:", "").trim();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
 	/*-------------View Weighing Area Cleaning in Actions---------------------*/
 
-	@FindBy(xpath = "//span[normalize-space()='View Weighing Area Cleaning']")
+	@FindBy(xpath = "//span[normalize-space()='Weighing Area Cleaning view']")
 	WebElement button_viewweighingareacleaning;
 
 	public void clickViewWeighingAreaCleaning() {
-		scrollAndClick(button_viewweighingareacleaning);
+		waitForElementandClick(button_viewweighingareacleaning);
 	}
 
 	public boolean viewWeighingAreaCleaningButtonisDisplayed() {
@@ -1033,26 +1063,24 @@ public class MaterialInwardForSolid extends BasePage {
 	/**
 	 * Finds a row in a table by its text (e.g. Batch No) and clicks the View icon
 	 */
-	public void clickViewIconInRow(String matchText) {
-		String xpath = "//tr[td[contains(normalize-space(), '" + matchText + "')]]//i[contains(@class,'eye')] | "
-				+ "//tr[td[contains(normalize-space(), '" + matchText + "')]]//button[contains(@class,'view')] | "
-				+ "//tr[td[contains(normalize-space(), '" + matchText + "')]]//span[contains(@class,'eye')]";
-		WebElement eyeIcon = driver.findElement(By.xpath(xpath));
-		scrollAndClick(eyeIcon);
-	}
 
-	@FindBy(xpath = "//button[normalize-space()='Back']")
-	WebElement button_back;
-
-	public void clickBack() {
-		scrollAndClick(button_back);
-	}
-
-	@FindBy(xpath = "//div[contains(@class,'p-dialog-header')]//button[contains(@class,'p-dialog-header-close')] | //button[@aria-label='Close']")
-	WebElement button_closeModal;
-
-	public void clickCloseModal() {
-		scrollAndClick(button_closeModal);
+	public void clickViewIconInRow(String inhouseBatch) throws Exception {
+		wait.until(ExpectedConditions.visibilityOfAllElements(weightVerificationRows));
+		boolean found = false;
+		for (WebElement row : weightVerificationRows) {
+			WebElement inhouseInput = row.findElement(By.xpath(".//input[@formcontrolname='batchNo']"));
+			String actualInhouse = inhouseInput.getAttribute("value").trim();
+			if (actualInhouse.equalsIgnoreCase(inhouseBatch)) {
+				WebElement btn = row.findElement(By.xpath(".//button[normalize-space()='View']"));
+				scrollAndClick(btn);
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			throw new RuntimeException(
+					"❌ Could not find weight verification button for Inhouse Batch: " + inhouseBatch);
+		}
 	}
 
 	@FindBy(xpath = "//button[normalize-space()='Submit']")
@@ -1062,8 +1090,13 @@ public class MaterialInwardForSolid extends BasePage {
 		scrollAndClick(button_submitReturn);
 	}
 
-	public void clickWeightVerification() {
-		clickViewWeightVerification();
+	public String getInwardStatusFromTable(String tableSearchValues) throws Exception {
+		String[] values = tableSearchValues.split(",");
+		for (int i = 0; i < values.length; i++) {
+			values[i] = values[i].trim();
+		}
+		return getRowTextByHeader("Status", "//tbody[@role='rowgroup']/tr", page_count,
+				"//span[@class='p-paginator-pages ng-star-inserted']/button", values);
 	}
 
 }

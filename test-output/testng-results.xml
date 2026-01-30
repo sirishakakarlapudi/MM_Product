@@ -1,33 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="3" total="12" passed="9" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-24T16:43:20 IST" name="Default suite" finished-at="2026-01-24T16:44:30 IST" duration-ms="70221">
+  <suite started-at="2026-01-30T16:57:49 IST" name="Suite" finished-at="2026-01-30T17:00:23 IST" duration-ms="154280">
     <groups>
+      <group name="DB Back">
+        <method signature="Department_TC.Database_Backup()[pri:13, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Database_Backup" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- DB Back -->
+      <group name="Creation">
+        <method signature="Department_TC.Creation_Of_Department()[pri:5, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Creation_Of_Department" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- Creation -->
+      <group name="Logout">
+        <method signature="Department_TC.Logout()[pri:12, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Logout" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- Logout -->
+      <group name="setup">
+        <method signature="Department_TC.initialSetUp()[pri:1, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="initialSetUp" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- setup -->
+      <group name="DeptApprove">
+        <method signature="Department_TC.Department_Approve()[pri:11, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Department_Approve" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- DeptApprove -->
+      <group name="url">
+        <method signature="Department_TC.url()[pri:2, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="url" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- url -->
+      <group name="ClickView">
+        <method signature="Department_TC.Click_View()[pri:7, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Click_View" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- ClickView -->
+      <group name="moduleselect">
+        <method signature="Department_TC.moduleClick()[pri:4, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="moduleClick" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- moduleselect -->
+      <group name="userlogin">
+        <method signature="Department_TC.userLoginBeforeCreate()[pri:3, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="userLoginBeforeCreate" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- userlogin -->
     </groups>
-    <test started-at="2026-01-24T16:43:20 IST" name="Default test" finished-at="2026-01-24T16:44:30 IST" duration-ms="70221">
-      <class name="testCasesForOQProjects.Material_Inward_TC">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testCasesForOQProjects.Material_Inward_TC@e98770d]" started-at="2026-01-24T16:43:20 IST" name="setUp" finished-at="2026-01-24T16:43:24 IST" duration-ms="4517" status="PASS">
+    <test started-at="2026-01-30T16:57:49 IST" name="Test" finished-at="2026-01-30T17:00:23 IST" duration-ms="154280">
+      <class name="testCasesForOQProjects.Department_TC">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:57:49 IST" name="setUp" finished-at="2026-01-30T16:57:55 IST" duration-ms="6222" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[oqdepartment.properties]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="Step_4_1_1()[pri:1, instance:testCasesForOQProjects.Material_Inward_TC@e98770d]" started-at="2026-01-24T16:43:24 IST" name="Step_4_1_1" finished-at="2026-01-24T16:43:44 IST" duration-ms="19863" status="PASS">
+        <test-method signature="initialSetUp()[pri:1, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:57:55 IST" name="initialSetUp" finished-at="2026-01-30T16:58:08 IST" duration-ms="13526" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Step_4_1_1 -->
-        <test-method signature="Step_4_1_15()[pri:16, instance:testCasesForOQProjects.Material_Inward_TC@e98770d]" started-at="2026-01-24T16:43:44 IST" name="Step_4_1_15" finished-at="2026-01-24T16:44:24 IST" duration-ms="39953" status="PASS">
+        </test-method> <!-- initialSetUp -->
+        <test-method signature="url()[pri:2, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:09 IST" name="url" finished-at="2026-01-30T16:58:09 IST" duration-ms="97" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Step_4_1_15 -->
-        <test-method signature="Step_4_1_21()[pri:21, instance:testCasesForOQProjects.Material_Inward_TC@e98770d]" started-at="2026-01-24T16:44:24 IST" name="Step_4_1_21" finished-at="2026-01-24T16:44:29 IST" duration-ms="4650" status="PASS">
+        </test-method> <!-- url -->
+        <test-method signature="userLoginBeforeCreate()[pri:3, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:09 IST" name="userLoginBeforeCreate" finished-at="2026-01-30T16:58:16 IST" depends-on-methods="testCasesForOQProjects.Department_TC.url" duration-ms="7708" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Step_4_1_21 -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.Material_Inward_TC@e98770d]" started-at="2026-01-24T16:44:29 IST" name="tearDown" finished-at="2026-01-24T16:44:30 IST" duration-ms="1139" status="PASS">
+        </test-method> <!-- userLoginBeforeCreate -->
+        <test-method signature="moduleClick()[pri:4, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:16 IST" name="moduleClick" finished-at="2026-01-30T16:58:33 IST" depends-on-methods="testCasesForOQProjects.Department_TC.userLoginBeforeCreate" duration-ms="16540" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- moduleClick -->
+        <test-method signature="Creation_Of_Department()[pri:5, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:33 IST" name="Creation_Of_Department" finished-at="2026-01-30T16:59:09 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="36000" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Creation_Of_Department -->
+        <test-method signature="Click_View()[pri:7, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:59:09 IST" name="Click_View" finished-at="2026-01-30T16:59:49 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="39803" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Click_View -->
+        <test-method signature="Department_Approve()[pri:11, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:59:49 IST" name="Department_Approve" finished-at="2026-01-30T17:00:16 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="27353" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Department_Approve -->
+        <test-method signature="Logout()[pri:12, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T17:00:16 IST" name="Logout" finished-at="2026-01-30T17:00:19 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="2753" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Logout -->
+        <test-method signature="Database_Backup()[pri:13, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T17:00:19 IST" name="Database_Backup" finished-at="2026-01-30T17:00:23 IST" duration-ms="3834" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Database_Backup -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T17:00:23 IST" name="tearDown" finished-at="2026-01-30T17:00:23 IST" duration-ms="280" status="FAIL">
+          <exception class="java.io.FileNotFoundException">
+            <message>
+              <![CDATA[src\test\resources\MM Product Documents\Department\Department_OQ.docx (The system cannot find the path specified)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.io.FileNotFoundException: src\test\resources\MM Product Documents\Department\Department_OQ.docx (The system cannot find the path specified)
+at java.base/java.io.FileOutputStream.open0(Native Method)
+at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+at utilities.ScreenshotUtil.insertScreenshotsAndAppendTemplate(ScreenshotUtil.java:236)
+at testBase.BaseClass.tearDown(BaseClass.java:64)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestMethodWorker.invokeAfterClassConfigurations(TestMethodWorker.java:238)
+at org.testng.internal.invokers.TestMethodWorker.invokeAfterClassMethods(TestMethodWorker.java:223)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:137)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.io.FileNotFoundException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- testCasesForOQProjects.Material_Inward_TC -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- testCasesForOQProjects.Department_TC -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

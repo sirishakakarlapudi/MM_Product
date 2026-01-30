@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)">
+    <parameter name="configFile" value="oqdepartment.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.Department_TC">
+        <methods>
+          <include name="tearDown"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_Department"/>
+          <include name="Department_Approve"/>
+          <include name="initialSetUp"/>
+          <include name="url"/>
+          <include name="Click_View"/>
+          <include name="Database_Backup"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="Logout"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- testCasesForOQProjects.Department_TC -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

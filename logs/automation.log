@@ -1,0 +1,1977 @@
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 3 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 5 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 35 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 15 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:06:40 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse--1830134235\testng-customsuite.xml
+
+2026-01-28 19:06:40 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 13 ms.
+2026-01-28 19:06:45 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:06:45 INFO  Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/144.0.7559.109/win64/chromedriver-win64.zip
+2026-01-28 19:06:46 INFO  Downloader - Extracting driver from compressed file chromedriver-win64.zip
+2026-01-28 19:06:46 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:06:52 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:06:53 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:06:54 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:06:54 INFO  Department - Entered value: http://localhost:8080/login into: [[ChromeDriver: chrome on windows (3bdb90065a8d95ec31491f4c286a152d)] -> name: q]
+2026-01-28 19:07:15 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:09:08 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@79ca7bea: 148 ms
+2026-01-28 19:09:08 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@578c3fd9: 42 ms
+2026-01-28 19:09:08 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@935493d: 42 ms
+2026-01-28 19:09:08 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@4c4c7d6c: 20 ms
+2026-01-28 19:09:08 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@1ecf0ac6: 31 ms
+2026-01-28 19:09:08 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@458031da: 0 ms
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 2 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 11 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 26 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 11 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:09:23 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-924312145\testng-customsuite.xml
+
+2026-01-28 19:09:24 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 13 ms.
+2026-01-28 19:09:26 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:09:26 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:09:30 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:09:31 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:09:31 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:09:32 INFO  Department - Entered value: http://localhost:8080/login into: [[ChromeDriver: chrome on windows (ac50fb6c8a1a944e825377796e3a2b78)] -> name: q]
+2026-01-28 19:09:52 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:09:54 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-28 19:11:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@52d0f583: 140 ms
+2026-01-28 19:11:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@4525e9e8: 60 ms
+2026-01-28 19:11:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@4e424582: 104 ms
+2026-01-28 19:11:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@44592c39: 21 ms
+2026-01-28 19:11:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@2e590b: 46 ms
+2026-01-28 19:11:12 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@42ef042a: 0 ms
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 3 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 6 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 33 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 11 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:11:23 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse--2079236983\testng-customsuite.xml
+
+2026-01-28 19:11:23 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 11 ms.
+2026-01-28 19:11:25 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:11:26 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:11:28 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:11:28 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:11:29 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:11:30 INFO  Department - Entered value: http://localhost:8080/login into: [[ChromeDriver: chrome on windows (73015cba91c6c45a653253564ca8df83)] -> name: q]
+2026-01-28 19:11:50 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:11:50 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-28 19:13:42 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@267f9765: 137 ms
+2026-01-28 19:13:42 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@5e180aaf: 77 ms
+2026-01-28 19:13:43 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@70b2fa10: 45 ms
+2026-01-28 19:13:43 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@794eeaf8: 72 ms
+2026-01-28 19:13:43 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@35eee641: 90 ms
+2026-01-28 19:13:43 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@5729b410: 0 ms
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 3 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 5 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 28 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 8 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 10 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:15:29 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse--1828428318\testng-customsuite.xml
+
+2026-01-28 19:15:29 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 9 ms.
+2026-01-28 19:15:32 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:15:32 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:15:37 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:15:39 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:15:39 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:15:39 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-28 19:16:00 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:16:02 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-28 19:16:35 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@1e1237ab: 236 ms
+2026-01-28 19:16:35 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@34330f77: 134 ms
+2026-01-28 19:16:35 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@32256e68: 54 ms
+2026-01-28 19:16:35 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@7f97bc14: 67 ms
+2026-01-28 19:16:35 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@4b325930: 24 ms
+2026-01-28 19:16:35 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@267f9765: 0 ms
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 2 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 7 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 47 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 17 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:16:42 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse--1310632919\testng-customsuite.xml
+
+2026-01-28 19:16:42 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 7 ms.
+2026-01-28 19:16:45 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:16:45 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:16:47 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:16:49 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:16:49 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:16:49 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-28 19:17:10 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:17:10 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-28 19:17:10 INFO  Department_TC - Executing the flow with admin : null
+2026-01-28 19:17:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@498a612d: 121 ms
+2026-01-28 19:17:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@34330f77: 30 ms
+2026-01-28 19:17:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@32256e68: 27 ms
+2026-01-28 19:17:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@7f97bc14: 34 ms
+2026-01-28 19:17:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@4b325930: 22 ms
+2026-01-28 19:17:46 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@267f9765: 0 ms
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 3 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 4 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 24 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 9 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 9 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:19:51 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-445035964\testng-customsuite.xml
+
+2026-01-28 19:19:51 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 14 ms.
+2026-01-28 19:19:53 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:19:54 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:19:56 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:19:57 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:19:57 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:19:57 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-28 19:20:18 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:20:20 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-28 19:20:20 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-28 19:20:20 INFO  Department_TC - Executing the flow with admin : admin
+2026-01-28 19:20:20 INFO  Department - Entered value: admin
+2026-01-28 19:20:20 INFO  Department - Entered username: admin
+2026-01-28 19:20:20 INFO  Department - Entered value: admin
+2026-01-28 19:20:20 INFO  Department - Entered password: admin
+2026-01-28 19:20:21 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (bf92958a91cf598d41437b92c5984d13)] -> xpath: //button[@type='submit']]
+2026-01-28 19:20:21 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (bf92958a91cf598d41437b92c5984d13)] -> xpath: //button[@type='submit']]
+2026-01-28 19:20:21 INFO  Department - Clicked on Login button
+2026-01-28 19:20:23 INFO  Department - Toast Message captured: Login successful
+2026-01-28 19:20:23 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (bf92958a91cf598d41437b92c5984d13)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-28 19:20:35 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-28 19:22:28 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@52abed9d: 250 ms
+2026-01-28 19:22:28 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@7c588adc: 21 ms
+2026-01-28 19:22:28 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@6da54910: 38 ms
+2026-01-28 19:22:28 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@7ccd611e: 17 ms
+2026-01-28 19:22:28 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@512abf25: 39 ms
+2026-01-28 19:22:28 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@515ab3f2: 0 ms
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 4 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 4 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 25 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 4 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 21 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-28 19:24:37 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-991196036\testng-customsuite.xml
+
+2026-01-28 19:24:37 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 7 ms.
+2026-01-28 19:24:40 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-28 19:24:40 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-28 19:24:44 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-28 19:24:45 INFO  Department_TC - Waiting for search box to be visible
+2026-01-28 19:24:46 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-28 19:24:46 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-28 19:25:06 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-28 19:25:08 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-28 19:25:08 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-28 19:25:08 INFO  Department_TC - Executing the flow with admin : admin
+2026-01-28 19:25:08 INFO  Department - Entered value: admin
+2026-01-28 19:25:08 INFO  Department - Entered username: admin
+2026-01-28 19:25:09 INFO  Department - Entered value: admin
+2026-01-28 19:25:09 INFO  Department - Entered password: admin
+2026-01-28 19:25:09 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (dd7eac284dc9aaf2c30ae102edcb04b1)] -> xpath: //button[@type='submit']]
+2026-01-28 19:25:09 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (dd7eac284dc9aaf2c30ae102edcb04b1)] -> xpath: //button[@type='submit']]
+2026-01-28 19:25:09 INFO  Department - Clicked on Login button
+2026-01-28 19:25:11 INFO  Department - Toast Message captured: Login successful
+2026-01-28 19:25:12 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (dd7eac284dc9aaf2c30ae102edcb04b1)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-28 19:25:22 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-28 19:25:36 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (dd7eac284dc9aaf2c30ae102edcb04b1)] -> xpath: //span[normalize-space()='Create']]
+2026-01-28 19:25:46 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-28 19:26:07 INFO  Department - Entered value: OQ Department
+2026-01-28 19:26:07 INFO  Department - Entered value: Description-1
+2026-01-28 19:26:08 INFO  Department - Entered value: admin
+2026-01-28 19:26:08 INFO  Department - Entered password: admin
+2026-01-28 19:26:10 INFO  Department - Toast Message captured: Department created successfully
+2026-01-28 19:28:50 INFO  Department - Entered value: Department Approved
+2026-01-28 19:28:50 INFO  Department - Entered value: admin
+2026-01-28 19:28:51 INFO  Department - Entered password: admin
+2026-01-28 19:28:52 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-28 19:29:11 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@3e39f08c: 117 ms
+2026-01-28 19:29:11 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@15be68b: 29 ms
+2026-01-28 19:29:11 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@6dc2279c: 21 ms
+2026-01-28 19:29:11 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@59f3426f: 9 ms
+2026-01-28 19:29:11 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@2c668c2a: 11 ms
+2026-01-28 19:29:11 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@6efd0a6e: 0 ms
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 5 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:50 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 6 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 33 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 4 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 16 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:40:51 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse--1634754070\testng-customsuite.xml
+
+2026-01-29 11:40:51 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 11 ms.
+2026-01-29 11:40:57 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-29 11:40:58 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-29 11:41:02 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 11:41:03 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 11:41:04 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 11:41:04 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-29 11:41:25 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 11:41:26 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 11:41:26 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 11:41:26 INFO  Department_TC - Executing the flow with admin : admin
+2026-01-29 11:41:28 INFO  Department - Entered value: admin
+2026-01-29 11:41:28 INFO  Department - Entered username: admin
+2026-01-29 11:41:30 INFO  Department - Entered value: admin
+2026-01-29 11:41:31 INFO  Department - Entered password: admin
+2026-01-29 11:41:31 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (30c2c5a60a29aa92bc45700b1fd4c74d)] -> xpath: //button[@type='submit']]
+2026-01-29 11:41:31 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (30c2c5a60a29aa92bc45700b1fd4c74d)] -> xpath: //button[@type='submit']]
+2026-01-29 11:41:31 INFO  Department - Clicked on Login button
+2026-01-29 11:41:36 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (30c2c5a60a29aa92bc45700b1fd4c74d)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 11:41:47 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 11:42:01 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (30c2c5a60a29aa92bc45700b1fd4c74d)] -> xpath: //span[normalize-space()='Create']]
+2026-01-29 11:42:12 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-29 11:42:32 INFO  Department - Entered value: OQ Department1
+2026-01-29 11:42:33 INFO  Department - Entered value: Description-1
+2026-01-29 11:42:34 INFO  Department - Entered value: admin
+2026-01-29 11:42:34 INFO  Department - Entered password: admin
+2026-01-29 11:42:36 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 11:43:48 INFO  Department - Entered value: Department Approved
+2026-01-29 11:43:48 INFO  Department - Entered value: admin
+2026-01-29 11:43:48 INFO  Department - Entered password: admin
+2026-01-29 11:43:50 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 11:44:16 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@2acb1264: 135 ms
+2026-01-29 11:44:16 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@4eac65db: 49 ms
+2026-01-29 11:44:16 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@638977e0: 20 ms
+2026-01-29 11:44:16 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@436a563f: 17 ms
+2026-01-29 11:44:16 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@3caa4d85: 11 ms
+2026-01-29 11:44:16 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@356fa0d1: 1 ms
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 3 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 7 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 41 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:08 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 6 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 12 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:46:09 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse--407914065\testng-customsuite.xml
+
+2026-01-29 11:46:09 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 9 ms.
+2026-01-29 11:46:12 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-29 11:46:12 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-29 11:46:18 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 11:46:19 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 11:46:20 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 11:46:20 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-29 11:46:40 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 11:46:42 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 11:46:42 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 11:46:42 INFO  Department_TC - Executing the flow with admin : admin
+2026-01-29 11:46:43 INFO  Department - Entered value: admin
+2026-01-29 11:46:43 INFO  Department - Entered username: admin
+2026-01-29 11:46:43 INFO  Department - Entered value: admin
+2026-01-29 11:46:43 INFO  Department - Entered password: admin
+2026-01-29 11:46:43 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (db98c80fd481f1efb85a0a5ab3d7faa0)] -> xpath: //button[@type='submit']]
+2026-01-29 11:46:44 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (db98c80fd481f1efb85a0a5ab3d7faa0)] -> xpath: //button[@type='submit']]
+2026-01-29 11:46:44 INFO  Department - Clicked on Login button
+2026-01-29 11:46:45 INFO  Department - Toast Message captured: Login successful
+2026-01-29 11:46:46 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (db98c80fd481f1efb85a0a5ab3d7faa0)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 11:46:46 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (db98c80fd481f1efb85a0a5ab3d7faa0)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 11:47:01 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (db98c80fd481f1efb85a0a5ab3d7faa0)] -> xpath: //span[normalize-space()='Create']]
+2026-01-29 11:47:12 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-29 11:47:32 INFO  Department - Entered value: OQ Department2
+2026-01-29 11:47:33 INFO  Department - Entered value: Description-1
+2026-01-29 11:47:34 INFO  Department - Entered value: admin
+2026-01-29 11:47:34 INFO  Department - Entered password: admin
+2026-01-29 11:47:35 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 11:48:57 INFO  Department - Entered value: Department Returned
+2026-01-29 11:48:58 INFO  Department - Entered value: admin
+2026-01-29 11:48:58 INFO  Department - Entered password: admin
+2026-01-29 11:49:00 INFO  Department - Toast Message captured: Department returned successfully
+2026-01-29 11:49:39 INFO  Department - Entered value: admin
+2026-01-29 11:49:39 INFO  Department - Entered password: admin
+2026-01-29 11:49:41 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-29 11:49:50 INFO  Department - Entered value: Department Approved
+2026-01-29 11:49:51 INFO  Department - Entered value: admin
+2026-01-29 11:49:51 INFO  Department - Entered password: admin
+2026-01-29 11:49:52 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 11:50:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@4c000cc4: 459 ms
+2026-01-29 11:50:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@a240452: 2 ms
+2026-01-29 11:50:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@2986427e: 16 ms
+2026-01-29 11:50:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@309cf657: 8 ms
+2026-01-29 11:50:12 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@1b5af65b: 33 ms
+2026-01-29 11:50:12 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@2e0163cb: 0 ms
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:58 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 5 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 24 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 12 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 11:58:59 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-419195379\testng-customsuite.xml
+
+2026-01-29 11:58:59 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 12 ms.
+2026-01-29 11:59:01 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-29 11:59:01 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-29 11:59:07 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 11:59:08 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 11:59:09 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 11:59:09 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-29 11:59:21 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 11:59:23 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 11:59:23 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 11:59:23 INFO  Department_TC - Executing the flow with admin : admin
+2026-01-29 11:59:24 INFO  Department - Entered value: admin
+2026-01-29 11:59:24 INFO  Department - Entered username: admin
+2026-01-29 11:59:24 INFO  Department - Entered value: admin
+2026-01-29 11:59:24 INFO  Department - Entered password: admin
+2026-01-29 11:59:25 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (3bcf848c52b2243fdfbb87dd56a1d4da)] -> xpath: //button[@type='submit']]
+2026-01-29 11:59:25 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (3bcf848c52b2243fdfbb87dd56a1d4da)] -> xpath: //button[@type='submit']]
+2026-01-29 11:59:25 INFO  Department - Clicked on Login button
+2026-01-29 11:59:27 INFO  Department - Toast Message captured: Login successful
+2026-01-29 11:59:28 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (3bcf848c52b2243fdfbb87dd56a1d4da)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 11:59:28 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (3bcf848c52b2243fdfbb87dd56a1d4da)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 11:59:30 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 11:59:43 INFO  Department - ✅ Loading complete.
+2026-01-29 11:59:45 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (3bcf848c52b2243fdfbb87dd56a1d4da)] -> xpath: //span[normalize-space()='Create']]
+2026-01-29 11:59:55 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-29 12:00:06 INFO  Department - Entered value: OQ Department3
+2026-01-29 12:00:07 INFO  Department - Entered value: Description-1
+2026-01-29 12:00:10 INFO  Department - Entered value: admin
+2026-01-29 12:00:10 INFO  Department - Entered password: admin
+2026-01-29 12:00:13 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 12:00:14 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:00:29 INFO  Department - ✅ Loading complete.
+2026-01-29 12:00:50 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:01:03 INFO  Department - ✅ Loading complete.
+2026-01-29 12:01:20 INFO  Department - Entered value: Department Returned
+2026-01-29 12:01:22 INFO  Department - Entered value: admin
+2026-01-29 12:01:22 INFO  Department - Entered password: admin
+2026-01-29 12:01:25 INFO  Department - Toast Message captured: Department returned successfully
+2026-01-29 12:01:26 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:01:42 INFO  Department - ✅ Loading complete.
+2026-01-29 12:01:56 INFO  Department - Entered value: OQ-Department3
+2026-01-29 12:01:58 INFO  Department - Entered value: admin
+2026-01-29 12:01:58 INFO  Department - Entered password: admin
+2026-01-29 12:02:01 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-29 12:02:02 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:02:17 INFO  Department - ✅ Loading complete.
+2026-01-29 12:02:22 INFO  Department - Entered value: Department Approved
+2026-01-29 12:02:25 INFO  Department - Entered value: admin
+2026-01-29 12:02:25 INFO  Department - Entered password: admin
+2026-01-29 12:02:27 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 12:02:29 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:02:44 INFO  Department - ✅ Loading complete.
+2026-01-29 12:02:46 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 12:02:49 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@7d4da729: 88 ms
+2026-01-29 12:02:49 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@70f91ae3: 4 ms
+2026-01-29 12:02:49 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@b56d8a7: 21 ms
+2026-01-29 12:02:49 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@5e05a706: 7 ms
+2026-01-29 12:02:49 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@54737322: 6 ms
+2026-01-29 12:02:49 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@56da8847: 0 ms
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 2 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 5 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 44 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 10 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 15 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:09:32 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-1083008180\testng-customsuite.xml
+
+2026-01-29 12:09:32 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 26 ms.
+2026-01-29 12:09:36 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-29 12:09:36 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-29 12:09:39 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 12:09:41 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 12:09:42 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 12:09:43 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-29 12:09:55 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 12:09:59 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 12:09:59 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 12:09:59 INFO  Department_TC - Executing the flow with USER : admin
+2026-01-29 12:09:59 INFO  Department - Entered value: qa001
+2026-01-29 12:09:59 INFO  Department - Entered username: qa001
+2026-01-29 12:10:00 INFO  Department - Entered value: Admin@12
+2026-01-29 12:10:00 INFO  Department - Entered password: Admin@12
+2026-01-29 12:10:02 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //button[@type='submit']]
+2026-01-29 12:10:02 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //button[@type='submit']]
+2026-01-29 12:10:02 INFO  Department - Clicked on Login button
+2026-01-29 12:10:04 INFO  Department - Toast Message captured: Login successful
+2026-01-29 12:10:07 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:10:19 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:10:21 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:10:35 INFO  Department - ✅ Loading complete.
+2026-01-29 12:10:36 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //span[normalize-space()='Create']]
+2026-01-29 12:10:46 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-29 12:10:58 INFO  Department - Entered value: OQ Department4
+2026-01-29 12:10:59 INFO  Department - Entered value: Description-1
+2026-01-29 12:11:02 INFO  Department - Entered value: Admin@12
+2026-01-29 12:11:02 INFO  Department - Entered password: Admin@12
+2026-01-29 12:11:05 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 12:11:07 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:11:22 INFO  Department - ✅ Loading complete.
+2026-01-29 12:11:45 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:11:58 INFO  Department - ✅ Loading complete.
+2026-01-29 12:12:06 INFO  Department - Entered value: qa003
+2026-01-29 12:12:06 INFO  Department - Entered username: qa003
+2026-01-29 12:12:06 INFO  Department - Entered value: Admin@12
+2026-01-29 12:12:06 INFO  Department - Entered password: Admin@12
+2026-01-29 12:12:07 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //button[@type='submit']]
+2026-01-29 12:12:08 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //button[@type='submit']]
+2026-01-29 12:12:08 INFO  Department - Clicked on Login button
+2026-01-29 12:12:09 INFO  Department - Toast Message captured: Login successful
+2026-01-29 12:12:11 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:12:22 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:12:24 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:12:37 INFO  Department - ✅ Loading complete.
+2026-01-29 12:12:57 INFO  Department - Entered value: Department Returned
+2026-01-29 12:13:00 INFO  Department - Entered value: Admin@12
+2026-01-29 12:13:00 INFO  Department - Entered password: Admin@12
+2026-01-29 12:13:04 INFO  Department - Toast Message captured: Department returned successfully
+2026-01-29 12:13:05 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:13:20 INFO  Department - ✅ Loading complete.
+2026-01-29 12:14:08 INFO  Department - Entered value: qa003
+2026-01-29 12:14:08 INFO  Department - Entered username: qa003
+2026-01-29 12:14:08 INFO  Department - Entered value: Admin@12
+2026-01-29 12:14:09 INFO  Department - Entered password: Admin@12
+2026-01-29 12:14:10 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //button[@type='submit']]
+2026-01-29 12:14:10 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //button[@type='submit']]
+2026-01-29 12:14:10 INFO  Department - Clicked on Login button
+2026-01-29 12:14:12 INFO  Department - Toast Message captured: Login successful
+2026-01-29 12:14:14 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (18576c597f3daba0308deaf9a4b041f9)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:14:24 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:14:46 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 12:14:50 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@205f52ea: 231 ms
+2026-01-29 12:14:50 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@59278072: 93 ms
+2026-01-29 12:14:50 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@416d90f0: 60 ms
+2026-01-29 12:14:50 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@464d5365: 19 ms
+2026-01-29 12:14:50 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@5b4d9bda: 13 ms
+2026-01-29 12:14:50 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@467a2584: 0 ms
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 5 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 17 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 66 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 87 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 24 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 12:18:22 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-1280153383\testng-customsuite.xml
+
+2026-01-29 12:18:22 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 10 ms.
+2026-01-29 12:18:26 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-29 12:18:27 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-29 12:18:32 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 12:18:33 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 12:18:34 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 12:18:34 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-29 12:18:46 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 12:18:50 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 12:18:50 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 12:18:50 INFO  Department_TC - Executing the flow with USER : admin
+2026-01-29 12:18:51 INFO  Department - Entered value: qa001
+2026-01-29 12:18:51 INFO  Department - Entered username: qa001
+2026-01-29 12:18:52 INFO  Department - Entered value: Admin@12
+2026-01-29 12:18:52 INFO  Department - Entered password: Admin@12
+2026-01-29 12:18:53 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:18:54 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:18:54 INFO  Department - Clicked on Login button
+2026-01-29 12:18:56 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:19:08 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:19:10 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:19:23 INFO  Department - ✅ Loading complete.
+2026-01-29 12:19:24 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //span[normalize-space()='Create']]
+2026-01-29 12:19:35 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-29 12:19:47 INFO  Department - Entered value: OQ Department5
+2026-01-29 12:19:47 INFO  Department - Entered value: Description-5
+2026-01-29 12:19:51 INFO  Department - Entered value: Admin@12
+2026-01-29 12:19:51 INFO  Department - Entered password: Admin@12
+2026-01-29 12:19:54 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 12:19:55 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:20:11 INFO  Department - ✅ Loading complete.
+2026-01-29 12:20:34 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:20:47 INFO  Department - ✅ Loading complete.
+2026-01-29 12:20:54 INFO  Department - Entered value: qa003
+2026-01-29 12:20:54 INFO  Department - Entered username: qa003
+2026-01-29 12:20:54 INFO  Department - Entered value: Admin@12
+2026-01-29 12:20:54 INFO  Department - Entered password: Admin@12
+2026-01-29 12:20:56 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:20:56 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:20:56 INFO  Department - Clicked on Login button
+2026-01-29 12:20:58 INFO  Department - Toast Message captured: Login successful
+2026-01-29 12:20:59 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:21:10 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:21:12 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:21:25 INFO  Department - ✅ Loading complete.
+2026-01-29 12:21:46 INFO  Department - Entered value: Department Returned
+2026-01-29 12:21:49 INFO  Department - Entered value: Admin@12
+2026-01-29 12:21:49 INFO  Department - Entered password: Admin@12
+2026-01-29 12:21:52 INFO  Department - Toast Message captured: Department returned successfully
+2026-01-29 12:21:53 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:22:09 INFO  Department - ✅ Loading complete.
+2026-01-29 12:22:15 INFO  Department - Entered value: qa001
+2026-01-29 12:22:15 INFO  Department - Entered username: qa001
+2026-01-29 12:22:15 INFO  Department - Entered value: Admin@12
+2026-01-29 12:22:15 INFO  Department - Entered password: Admin@12
+2026-01-29 12:22:16 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:22:17 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:22:17 INFO  Department - Clicked on Login button
+2026-01-29 12:22:19 INFO  Department - Toast Message captured: Login successful
+2026-01-29 12:22:20 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:22:31 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:22:33 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:22:46 INFO  Department - ✅ Loading complete.
+2026-01-29 12:23:06 INFO  Department - Entered value: OQ-Department4
+2026-01-29 12:23:09 INFO  Department - Entered value: Admin@12
+2026-01-29 12:23:09 INFO  Department - Entered password: Admin@12
+2026-01-29 12:23:12 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-29 12:23:13 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:23:28 INFO  Department - ✅ Loading complete.
+2026-01-29 12:23:34 INFO  Department - Entered value: qa003
+2026-01-29 12:23:35 INFO  Department - Entered username: qa003
+2026-01-29 12:23:35 INFO  Department - Entered value: Admin@12
+2026-01-29 12:23:35 INFO  Department - Entered password: Admin@12
+2026-01-29 12:23:36 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:23:36 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //button[@type='submit']]
+2026-01-29 12:23:36 INFO  Department - Clicked on Login button
+2026-01-29 12:23:38 INFO  Department - Toast Message captured: Login successful
+2026-01-29 12:23:40 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (2b55dab133f219edd3d3b290eba8f3a2)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 12:23:51 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 12:23:53 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:24:06 INFO  Department - ✅ Loading complete.
+2026-01-29 12:24:17 INFO  Department - Entered value: Department Approved
+2026-01-29 12:24:20 INFO  Department - Entered value: Admin@12
+2026-01-29 12:24:20 INFO  Department - Entered password: Admin@12
+2026-01-29 12:24:23 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 12:24:24 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 12:24:39 INFO  Department - ✅ Loading complete.
+2026-01-29 12:24:41 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 12:24:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@556944cd: 140 ms
+2026-01-29 12:24:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@406decb2: 72 ms
+2026-01-29 12:24:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@51a69e8f: 39 ms
+2026-01-29 12:24:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@3ff3275b: 24 ms
+2026-01-29 12:24:46 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@7f20dfd5: 12 ms
+2026-01-29 12:24:46 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@15651402: 0 ms
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 4 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:56 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 5 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 70 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 21 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 13 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-01-29 13:48:57 INFO  Utils - [TestNG] Running:
+  C:\Users\HAVE A NICE DAY\AppData\Local\Temp\testng-eclipse-2007462312\testng-customsuite.xml
+
+2026-01-29 13:48:57 INFO  Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 19 ms.
+2026-01-29 13:49:00 INFO  WebDriverManager - Using chromedriver 144.0.7559.109 (resolved driver for Chrome 144)
+2026-01-29 13:49:00 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\HAVE A NICE DAY\.cache\selenium\chromedriver\win64\144.0.7559.109\chromedriver.exe
+2026-01-29 13:49:05 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 13:49:06 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 13:49:06 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 13:49:07 INFO  Department - Entered value: http://localhost:8080/login
+2026-01-29 13:49:18 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 13:49:21 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 13:49:21 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 13:49:21 INFO  Department_TC - Executing the flow with USER : admin
+2026-01-29 13:49:22 INFO  Department - Entered value: qa001
+2026-01-29 13:49:22 INFO  Department - Entered username: qa001
+2026-01-29 13:49:23 INFO  Department - Entered value: Admin@12
+2026-01-29 13:49:23 INFO  Department - Entered password: Admin@12
+2026-01-29 13:49:24 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:49:24 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:49:24 INFO  Department - Clicked on Login button
+2026-01-29 13:49:27 INFO  Department - Toast Message captured: Login successful
+2026-01-29 13:49:29 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 13:49:29 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 13:49:31 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:49:34 INFO  Department - ✅ Loading complete.
+2026-01-29 13:49:35 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //span[normalize-space()='Create']]
+2026-01-29 13:49:45 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //span[normalize-space()='Create']'
+2026-01-29 13:49:57 INFO  Department - Entered value: OQ Department6
+2026-01-29 13:49:57 INFO  Department - Entered value: Description-6
+2026-01-29 13:50:00 INFO  Department - Entered value: Admin@12
+2026-01-29 13:50:00 INFO  Department - Entered password: Admin@12
+2026-01-29 13:50:03 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 13:50:04 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:50:20 INFO  Department - ✅ Loading complete.
+2026-01-29 13:50:41 INFO  Department - Entered value: Description 6
+2026-01-29 13:50:43 INFO  Department - Entered value: Admin@12
+2026-01-29 13:50:43 INFO  Department - Entered password: Admin@12
+2026-01-29 13:50:46 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-29 13:50:47 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:51:03 INFO  Department - ✅ Loading complete.
+2026-01-29 13:51:08 INFO  Department - Entered value: qa003
+2026-01-29 13:51:08 INFO  Department - Entered username: qa003
+2026-01-29 13:51:08 INFO  Department - Entered value: Admin@12
+2026-01-29 13:51:08 INFO  Department - Entered password: Admin@12
+2026-01-29 13:51:10 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:51:10 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:51:10 INFO  Department - Clicked on Login button
+2026-01-29 13:51:11 INFO  Department - Toast Message captured: Login successful
+2026-01-29 13:51:13 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 13:51:23 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 13:51:24 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:51:38 INFO  Department - ✅ Loading complete.
+2026-01-29 13:51:57 INFO  Department - Entered value: Department Returned
+2026-01-29 13:52:00 INFO  Department - Entered value: Admin@12
+2026-01-29 13:52:00 INFO  Department - Entered password: Admin@12
+2026-01-29 13:52:03 INFO  Department - Toast Message captured: Department returned successfully
+2026-01-29 13:52:04 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:52:09 INFO  Department - ✅ Loading complete.
+2026-01-29 13:52:14 INFO  Department - Entered value: qa001
+2026-01-29 13:52:14 INFO  Department - Entered username: qa001
+2026-01-29 13:52:15 INFO  Department - Entered value: Admin@12
+2026-01-29 13:52:15 INFO  Department - Entered password: Admin@12
+2026-01-29 13:52:16 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:52:16 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:52:16 INFO  Department - Clicked on Login button
+2026-01-29 13:52:17 INFO  Department - Toast Message captured: Login successful
+2026-01-29 13:52:19 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 13:52:29 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 13:52:31 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:52:44 INFO  Department - ✅ Loading complete.
+2026-01-29 13:53:04 INFO  Department - Entered value: OQ-Department6
+2026-01-29 13:53:06 INFO  Department - Entered value: Admin@12
+2026-01-29 13:53:06 INFO  Department - Entered password: Admin@12
+2026-01-29 13:53:09 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-29 13:53:10 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:53:26 INFO  Department - ✅ Loading complete.
+2026-01-29 13:53:31 INFO  Department - Entered value: qa003
+2026-01-29 13:53:31 INFO  Department - Entered username: qa003
+2026-01-29 13:53:31 INFO  Department - Entered value: Admin@12
+2026-01-29 13:53:32 INFO  Department - Entered password: Admin@12
+2026-01-29 13:53:33 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:53:33 INFO  Department - Clicked on the element: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //button[@type='submit']]
+2026-01-29 13:53:33 INFO  Department - Clicked on Login button
+2026-01-29 13:53:34 INFO  Department - Toast Message captured: Login successful
+2026-01-29 13:53:36 INFO  Department - The element is visible: [[ChromeDriver: chrome on windows (6f78d8e22141568b9f8ce14d700924b6)] -> xpath: //h5[normalize-space()='MASTERS']]
+2026-01-29 13:53:46 INFO  Department - Clicked on the element: Proxy element for: DefaultElementLocator 'By.xpath: //h5[normalize-space()='MASTERS']'
+2026-01-29 13:53:48 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:54:01 INFO  Department - ✅ Loading complete.
+2026-01-29 13:54:11 INFO  Department - Entered value: Department Approved
+2026-01-29 13:54:13 INFO  Department - Entered value: Admin@12
+2026-01-29 13:54:13 INFO  Department - Entered password: Admin@12
+2026-01-29 13:54:16 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 13:54:17 INFO  Department - ⏳ Application is loading... waiting for spinner to disappear.
+2026-01-29 13:54:19 INFO  Department - ✅ Loading complete.
+2026-01-29 13:54:21 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 13:54:24 INFO  Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@2686a801: 62 ms
+2026-01-29 13:54:24 INFO  Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@5d24703e: 2 ms
+2026-01-29 13:54:24 INFO  Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@729d1428: 20 ms
+2026-01-29 13:54:24 INFO  Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@7ca7bddd: 5 ms
+2026-01-29 13:54:24 INFO  Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@69d2c460: 7 ms
+2026-01-29 13:54:24 INFO  Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@34a99d8: 1 ms
+2026-01-29 14:08:58 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 14:09:50 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 14:09:56 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 14:09:56 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 14:09:56 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 14:09:56 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 14:09:57 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 14:09:57 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 14:10:09 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 14:10:09 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 14:10:11 INFO  Department_TC - Navigating to a URL: App http://localhost:8080/login
+2026-01-29 14:10:11 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 14:10:11 INFO  Department_TC - Executing the flow with USER : admin
+2026-01-29 14:10:15 INFO  Department - Toast Message captured: Login successful
+2026-01-29 14:10:16 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 14:10:16 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 14:10:17 INFO  Department_TC - Clicked on Masters title
+2026-01-29 14:10:18 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 14:10:33 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 14:10:33 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 14:10:33 INFO  Department_TC - Clicked on Create button
+2026-01-29 14:10:44 INFO  Department_TC - --- Creating Department: OQ Department7 ---
+2026-01-29 14:10:44 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 14:10:45 INFO  Department_TC - Entered Name and Description
+2026-01-29 14:10:46 INFO  Department_TC - Clicked Submit
+2026-01-29 14:10:48 INFO  Department_TC - Entered authentication password
+2026-01-29 14:10:49 INFO  Department_TC - Clicked Authenticate
+2026-01-29 14:10:50 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 14:11:07 INFO  Department_TC - --- Clicking Actions for: OQ Department7 ---
+2026-01-29 14:11:07 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 14:11:13 INFO  Department_TC - Actions menu opened for OQ Department7
+2026-01-29 14:11:14 INFO  Department_TC - --- Viewing Department: OQ Department7 ---
+2026-01-29 14:11:14 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 14:11:14 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 14:11:14 INFO  Department_TC - --- Editing Department (After Creation): OQ Department7 ---
+2026-01-29 14:11:14 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 14:11:14 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 14:11:14 INFO  Department_TC - --- Switching User Post-Creation ---
+2026-01-29 14:11:14 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-29 14:11:15 INFO  Department_TC - Logged out previous user
+2026-01-29 14:11:17 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-29 14:11:17 INFO  Department_TC - Logging in as User 2: qa003
+2026-01-29 14:11:23 INFO  Department - Toast Message captured: Login successful
+2026-01-29 14:11:26 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-29 14:11:40 INFO  Department_TC - --- Returning and Re-Editing Department: OQ Department7 ---
+2026-01-29 14:11:40 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 14:11:40 INFO  Department_TC - --- Approving Department: OQ Department7 ---
+2026-01-29 14:11:40 INFO  Department_TC - --- Switching back to User 2 for Approval ---
+2026-01-29 14:11:40 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.11
+2026-01-29 14:11:42 INFO  Department_TC - Logged out current user
+2026-01-29 14:11:43 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.12
+2026-01-29 14:11:43 INFO  Department_TC - Logging in as User 2: qa003
+2026-01-29 14:11:49 INFO  Department - Toast Message captured: Login successful
+2026-01-29 14:11:52 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-29 14:12:06 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.13
+2026-01-29 14:12:12 INFO  Department_TC - Actions menu opened for OQ Department7
+2026-01-29 14:12:13 INFO  Department_TC - Clicked Approve button
+2026-01-29 14:12:15 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 14:12:16 INFO  Department_TC - Submitted Approval
+2026-01-29 14:12:17 INFO  Department_TC - Entered authentication password
+2026-01-29 14:12:18 INFO  Department_TC - Clicked Authenticate
+2026-01-29 14:12:20 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 14:12:37 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 14:12:37 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.14
+2026-01-29 14:12:38 INFO  Department_TC - Clicked logout button
+2026-01-29 14:12:38 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 14:12:39 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 14:12:40 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 14:53:01 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 14:53:09 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 14:53:09 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 14:53:09 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 14:53:09 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 14:53:10 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 14:53:11 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 14:53:23 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 14:53:23 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 14:53:25 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 14:53:25 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 14:53:25 INFO  Department_TC - Logging in as: qa001
+2026-01-29 14:53:42 WARN  Department - Toast appeared but text was not captured (it may have disappeared too quickly).
+2026-01-29 14:53:43 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 14:53:43 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 14:53:43 INFO  Department_TC - Clicked on Masters title
+2026-01-29 14:53:45 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 14:54:00 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 14:54:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 14:54:00 INFO  Department_TC - Clicked on Create button
+2026-01-29 14:54:11 INFO  Department_TC - --- Creating Department: OQ Department8 ---
+2026-01-29 14:54:11 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 14:54:11 INFO  Department_TC - Entered Name and Description
+2026-01-29 14:54:13 INFO  Department_TC - Clicked Submit
+2026-01-29 14:54:14 INFO  Department_TC - Entered authentication password
+2026-01-29 14:54:16 INFO  Department_TC - Clicked Authenticate
+2026-01-29 14:54:17 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 14:54:35 INFO  Department_TC - --- Clicking Actions for: OQ Department8 ---
+2026-01-29 14:54:35 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 14:54:41 INFO  Department_TC - Actions menu opened for OQ Department8
+2026-01-29 14:54:42 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 14:54:42 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 14:54:42 INFO  Department_TC - --- Switching User to: qa003 ---
+2026-01-29 14:54:42 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 14:54:44 INFO  Department_TC - Logged out previous user
+2026-01-29 14:54:45 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 14:54:45 INFO  Department_TC - Logging in as: qa003
+2026-01-29 14:54:51 INFO  Department - Toast Message captured: Login successful
+2026-01-29 14:54:55 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-29 14:55:10 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 14:55:10 INFO  Department_TC - --- Approving Department: OQ Department8 ---
+2026-01-29 14:55:10 INFO  Department_TC - Already logged in as qa003, skipping switch.
+2026-01-29 14:55:10 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-29 14:55:16 INFO  Department_TC - Actions menu opened for OQ Department8
+2026-01-29 14:55:17 INFO  Department_TC - Clicked Approve button
+2026-01-29 14:55:18 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 14:55:20 INFO  Department_TC - Submitted Approval
+2026-01-29 14:55:21 INFO  Department_TC - Entered authentication password
+2026-01-29 14:55:22 INFO  Department_TC - Clicked Authenticate
+2026-01-29 14:55:24 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 14:55:42 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 14:55:42 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-29 14:55:43 INFO  Department_TC - Clicked logout button
+2026-01-29 14:55:43 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 14:55:45 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 14:55:45 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 14:58:21 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 14:58:27 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 14:58:27 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 14:58:27 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 14:58:27 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 14:58:28 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 14:58:29 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 14:58:41 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 14:58:41 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 14:58:43 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 14:58:43 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 14:58:43 INFO  Department_TC - Logging in as: qa001
+2026-01-29 14:58:48 INFO  Department - Toast Message captured: Login successful
+2026-01-29 14:58:49 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 14:58:49 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 14:58:50 INFO  Department_TC - Clicked on Masters title
+2026-01-29 14:58:51 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 14:59:06 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 14:59:06 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 14:59:06 INFO  Department_TC - Clicked on Create button
+2026-01-29 14:59:17 INFO  Department_TC - --- Creating Department: OQ Department9 ---
+2026-01-29 14:59:17 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 14:59:18 INFO  Department_TC - Entered Name and Description
+2026-01-29 14:59:19 INFO  Department_TC - Clicked Submit
+2026-01-29 14:59:21 INFO  Department_TC - Entered authentication password
+2026-01-29 14:59:22 INFO  Department_TC - Clicked Authenticate
+2026-01-29 14:59:23 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 14:59:41 INFO  Department_TC - --- Clicking Actions for: OQ Department9 ---
+2026-01-29 14:59:41 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 14:59:47 INFO  Department_TC - Actions menu opened for OQ Department9
+2026-01-29 14:59:49 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 14:59:49 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 14:59:49 INFO  Department_TC - --- Switching User to: qa003 ---
+2026-01-29 14:59:49 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 14:59:50 INFO  Department_TC - Logged out previous user
+2026-01-29 14:59:51 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 14:59:51 INFO  Department_TC - Logging in as: qa003
+2026-01-29 14:59:57 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:00:00 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-29 15:00:15 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 15:00:15 INFO  Department_TC - --- Approving Department: OQ Department9 ---
+2026-01-29 15:00:15 INFO  Department_TC - Already logged in as qa003, skipping switch.
+2026-01-29 15:00:15 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-29 15:00:21 INFO  Department_TC - Actions menu opened for OQ Department9
+2026-01-29 15:00:23 INFO  Department_TC - Clicked Approve button
+2026-01-29 15:00:24 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 15:00:25 INFO  Department_TC - Submitted Approval
+2026-01-29 15:00:26 INFO  Department_TC - Entered authentication password
+2026-01-29 15:00:28 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:00:29 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 15:00:47 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 15:00:47 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-29 15:00:48 INFO  Department_TC - Clicked logout button
+2026-01-29 15:00:48 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 15:00:50 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 15:00:50 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 15:00:50 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod ---
+2026-01-29 15:00:50 INFO  DatabaseBackupUtil - Executing backup command for database: pc-akron-prod
+2026-01-29 15:00:50 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:00:51 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 15:07:22 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 15:07:29 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 15:07:29 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 15:07:30 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 15:07:30 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 15:07:31 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 15:07:31 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 15:07:43 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 15:07:43 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 15:07:47 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 15:07:47 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 15:07:47 INFO  Department_TC - Logging in as: admin
+2026-01-29 15:07:53 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:07:54 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 15:07:54 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 15:07:55 INFO  Department_TC - Clicked on Masters title
+2026-01-29 15:07:56 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 15:08:11 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 15:08:11 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 15:08:11 INFO  Department_TC - Clicked on Create button
+2026-01-29 15:08:23 INFO  Department_TC - --- Creating Department: OQ Department10 ---
+2026-01-29 15:08:23 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 15:08:23 INFO  Department_TC - Entered Name and Description
+2026-01-29 15:08:25 INFO  Department_TC - Clicked Submit
+2026-01-29 15:08:26 INFO  Department_TC - Entered authentication password
+2026-01-29 15:08:27 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:08:29 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 15:08:46 INFO  Department_TC - --- Clicking Actions for: OQ Department10 ---
+2026-01-29 15:08:46 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 15:08:56 INFO  Department_TC - Actions menu opened for OQ Department10
+2026-01-29 15:08:57 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 15:08:57 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 15:08:57 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-29 15:08:57 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 15:08:57 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 15:08:59 INFO  Department_TC - Actions menu opened for OQ Department10
+2026-01-29 15:09:10 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 15:09:10 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 15:09:12 INFO  Department_TC - Clicked logout button
+2026-01-29 15:09:12 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 15:09:13 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 15:09:13 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 15:09:13 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-01-29 15:09:13 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1
+2026-01-29 15:09:13 INFO  DatabaseBackupUtil - Executing backup command for database: pc-akron-prod
+2026-01-29 15:09:13 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:09:13 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-01-29 15:09:13 INFO  DatabaseBackupUtil - Executing backup command for database: masters-akron-prod
+2026-01-29 15:09:14 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:09:14 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-01-29 15:09:14 INFO  DatabaseBackupUtil - Executing backup command for database: mm-akron-prod
+2026-01-29 15:09:14 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:09:15 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 15:13:48 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 15:13:54 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 15:13:54 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 15:13:54 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 15:13:54 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 15:13:56 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 15:13:56 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 15:14:08 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 15:14:08 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 15:14:10 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 15:14:10 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 15:14:10 INFO  Department_TC - Logging in as: admin
+2026-01-29 15:14:14 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:14:15 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 15:14:15 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 15:14:15 INFO  Department_TC - Clicked on Masters title
+2026-01-29 15:14:17 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 15:14:31 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 15:14:31 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 15:14:31 INFO  Department_TC - Clicked on Create button
+2026-01-29 15:14:42 INFO  Department_TC - --- Creating Department: OQ Department11 ---
+2026-01-29 15:14:42 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 15:14:43 INFO  Department_TC - Entered Name and Description
+2026-01-29 15:14:44 INFO  Department_TC - Clicked Submit
+2026-01-29 15:14:46 INFO  Department_TC - Entered authentication password
+2026-01-29 15:14:47 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:14:48 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 15:15:06 INFO  Department_TC - --- Clicking Actions for: OQ Department11 ---
+2026-01-29 15:15:06 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 15:15:15 INFO  Department_TC - Actions menu opened for OQ Department11
+2026-01-29 15:15:17 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 15:15:17 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 15:15:17 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-29 15:15:17 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 15:15:17 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 15:15:19 INFO  Department_TC - Actions menu opened for OQ Department11
+2026-01-29 15:15:40 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 15:15:40 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 15:15:41 INFO  Department_TC - Clicked logout button
+2026-01-29 15:15:42 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 15:15:43 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 15:15:43 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 15:15:43 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-01-29 15:15:43 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 pc-akron-prod > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260129_151543.sql"]
+2026-01-29 15:15:43 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:15:43 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:15:43 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-01-29 15:15:43 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 masters-akron-prod > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260129_151543.sql"]
+2026-01-29 15:15:43 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:15:43 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:15:43 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-01-29 15:15:43 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 mm-akron-prod > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260129_151543.sql"]
+2026-01-29 15:15:43 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:15:43 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:15:44 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 15:17:07 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 15:17:12 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 15:17:12 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 15:17:12 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 15:17:12 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 15:17:14 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 15:17:14 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 15:17:26 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 15:17:26 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 15:17:28 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 15:17:28 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-29 15:17:28 INFO  Department_TC - Logging in as: qa001
+2026-01-29 15:17:31 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:17:33 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 15:17:33 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 15:17:33 INFO  Department_TC - Clicked on Masters title
+2026-01-29 15:17:34 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 15:17:49 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 15:17:49 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 15:17:49 INFO  Department_TC - Clicked on Create button
+2026-01-29 15:18:01 INFO  Department_TC - --- Creating Department: OQ Department12 ---
+2026-01-29 15:18:01 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 15:18:01 INFO  Department_TC - Entered Name and Description
+2026-01-29 15:18:03 INFO  Department_TC - Clicked Submit
+2026-01-29 15:18:04 INFO  Department_TC - Entered authentication password
+2026-01-29 15:18:05 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:18:07 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 15:18:24 INFO  Department_TC - --- Clicking Actions for: OQ Department12 ---
+2026-01-29 15:18:24 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 15:18:34 INFO  Department_TC - Actions menu opened for OQ Department12
+2026-01-29 15:18:35 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 15:18:35 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 15:18:35 INFO  Department_TC - --- Switching User to: qa003 ---
+2026-01-29 15:18:35 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 15:18:37 INFO  Department_TC - Logged out previous user
+2026-01-29 15:18:38 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 15:18:38 INFO  Department_TC - Logging in as: qa003
+2026-01-29 15:18:44 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:18:47 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-29 15:19:01 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 15:19:01 INFO  Department_TC - --- Approving Department: OQ Department12 ---
+2026-01-29 15:19:01 INFO  Department_TC - Already logged in as qa003, skipping switch.
+2026-01-29 15:19:01 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-29 15:19:11 INFO  Department_TC - Actions menu opened for OQ Department12
+2026-01-29 15:19:12 INFO  Department_TC - Clicked Approve button
+2026-01-29 15:19:13 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 15:19:14 INFO  Department_TC - Submitted Approval
+2026-01-29 15:19:16 INFO  Department_TC - Entered authentication password
+2026-01-29 15:19:17 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:19:18 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 15:19:36 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 15:19:36 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-29 15:19:38 INFO  Department_TC - Clicked logout button
+2026-01-29 15:19:38 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 15:19:39 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 15:19:39 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 15:19:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-01-29 15:19:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 pc-akron-prod > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260129_151939.sql"]
+2026-01-29 15:19:39 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:19:39 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:19:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-01-29 15:19:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 masters-akron-prod > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260129_151939.sql"]
+2026-01-29 15:19:39 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:19:39 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:19:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-01-29 15:19:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 mm-akron-prod > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260129_151939.sql"]
+2026-01-29 15:19:39 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:19:39 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:19:40 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 15:28:35 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 15:28:42 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 15:28:42 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 15:28:42 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 15:28:42 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 15:28:44 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 15:28:44 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 15:28:56 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 15:28:56 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 15:28:58 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 15:28:58 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 15:28:58 INFO  Department_TC - Logging in as: admin
+2026-01-29 15:29:02 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:29:03 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 15:29:03 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 15:29:04 INFO  Department_TC - Clicked on Masters title
+2026-01-29 15:29:05 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 15:29:20 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 15:29:20 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 15:29:20 INFO  Department_TC - Clicked on Create button
+2026-01-29 15:29:32 INFO  Department_TC - --- Creating Department: OQ Department13 ---
+2026-01-29 15:29:32 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 15:29:32 INFO  Department_TC - Entered Name and Description
+2026-01-29 15:29:34 INFO  Department_TC - Clicked Submit
+2026-01-29 15:29:35 INFO  Department_TC - Entered authentication password
+2026-01-29 15:29:36 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:29:37 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 15:29:55 INFO  Department_TC - --- Clicking Actions for: OQ Department13 ---
+2026-01-29 15:29:55 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 15:30:05 INFO  Department_TC - Actions menu opened for OQ Department13
+2026-01-29 15:30:08 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 15:30:08 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 15:30:08 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-29 15:30:08 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 15:30:08 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 15:30:10 INFO  Department_TC - Actions menu opened for OQ Department13
+2026-01-29 15:30:12 INFO  Department_TC - Clicked Approve button
+2026-01-29 15:30:13 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 15:30:14 INFO  Department_TC - Submitted Approval
+2026-01-29 15:30:15 INFO  Department_TC - Entered authentication password
+2026-01-29 15:30:17 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:30:18 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 15:30:36 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 15:30:36 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 15:30:37 INFO  Department_TC - Clicked logout button
+2026-01-29 15:30:37 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 15:30:39 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 15:30:39 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 mdpl_pc > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_153039.sql"]
+2026-01-29 15:30:39 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:30:39 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 mdpl_master > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_153039.sql"]
+2026-01-29 15:30:39 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:30:39 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-29 15:30:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& pg_dump -U postgres -h localhost -p 5432 mdpl_mm > "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_153039.sql"]
+2026-01-29 15:30:39 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-29 15:30:39 ERROR DatabaseBackupUtil - Command Error Output: 'pg_dump' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-01-29 15:30:40 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 15:50:15 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 15:50:20 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 15:50:20 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 15:50:20 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 15:50:20 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 15:50:22 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 15:50:22 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 15:50:34 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 15:50:34 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 15:50:37 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 15:50:37 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 15:50:37 INFO  Department_TC - Logging in as: admin
+2026-01-29 15:50:42 INFO  Department - Toast Message captured: Login successful
+2026-01-29 15:50:43 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 15:50:43 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 15:50:43 INFO  Department_TC - Clicked on Masters title
+2026-01-29 15:50:45 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 15:51:00 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 15:51:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 15:51:00 INFO  Department_TC - Clicked on Create button
+2026-01-29 15:51:11 INFO  Department_TC - --- Creating Department: OQ Department14 ---
+2026-01-29 15:51:11 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 15:51:12 INFO  Department_TC - Entered Name and Description
+2026-01-29 15:51:13 INFO  Department_TC - Clicked Submit
+2026-01-29 15:51:14 INFO  Department_TC - Entered authentication password
+2026-01-29 15:51:16 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:51:18 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 15:51:35 INFO  Department_TC - --- Clicking Actions for: OQ Department14 ---
+2026-01-29 15:51:35 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 15:51:45 INFO  Department_TC - Actions menu opened for OQ Department14
+2026-01-29 15:51:48 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 15:51:48 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 15:51:48 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-29 15:51:48 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 15:51:48 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 15:51:51 INFO  Department_TC - Actions menu opened for OQ Department14
+2026-01-29 15:51:52 INFO  Department_TC - Clicked Approve button
+2026-01-29 15:51:53 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 15:51:55 INFO  Department_TC - Submitted Approval
+2026-01-29 15:51:56 INFO  Department_TC - Entered authentication password
+2026-01-29 15:51:57 INFO  Department_TC - Clicked Authenticate
+2026-01-29 15:51:58 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 15:52:16 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 15:52:16 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 15:52:18 INFO  Department_TC - Clicked logout button
+2026-01-29 15:52:18 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 15:52:19 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 15:52:19 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 15:52:19 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-29 15:52:19 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1
+2026-01-29 15:52:19 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_155219.dump" mdpl_pc]
+2026-01-29 15:52:20 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_155219.dump
+2026-01-29 15:52:20 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-29 15:52:20 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_155220.dump" mdpl_master]
+2026-01-29 15:52:21 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_155220.dump
+2026-01-29 15:52:21 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-29 15:52:21 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_155221.dump" mdpl_mm]
+2026-01-29 15:52:23 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_155221.dump
+2026-01-29 15:52:24 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 16:38:43 WARN  TestNGContentHandler - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [D:\Automation\MM_Project\Material_Management_Product\testng.xml] otherwise TestNG may fail or not work as expected.
+2026-01-29 16:38:44 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 16:38:50 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 16:38:50 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 16:38:50 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 16:38:50 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 16:38:51 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 16:38:51 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 16:39:05 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 16:39:05 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 16:39:09 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 16:39:09 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 16:39:09 INFO  Department_TC - Logging in as: admin
+2026-01-29 16:39:25 WARN  Department - Toast appeared but text was not captured (it may have disappeared too quickly).
+2026-01-29 16:39:26 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 16:39:26 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 16:39:27 INFO  Department_TC - Clicked on Masters title
+2026-01-29 16:39:29 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 16:39:44 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 16:39:44 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 16:39:44 INFO  Department_TC - Clicked on Create button
+2026-01-29 16:39:55 INFO  Department_TC - --- Creating Department: OQ Department14 ---
+2026-01-29 16:39:55 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 16:39:56 INFO  Department_TC - Entered Name and Description
+2026-01-29 16:39:57 INFO  Department_TC - Clicked Submit
+2026-01-29 16:40:18 INFO  Department_TC - --- Clicking Actions for: OQ Department14 ---
+2026-01-29 16:40:18 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 16:40:39 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 16:40:39 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 16:40:39 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-29 16:40:39 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 16:40:39 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 16:40:59 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 16:40:59 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 16:41:00 INFO  Department_TC - Clicked logout button
+2026-01-29 16:41:00 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 16:41:01 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 16:41:01 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 16:41:01 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-29 16:41:01 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_164101.dump" mdpl_pc]
+2026-01-29 16:41:02 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_164101.dump
+2026-01-29 16:41:02 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-29 16:41:02 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_164102.dump" mdpl_master]
+2026-01-29 16:41:04 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_164102.dump
+2026-01-29 16:41:04 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-29 16:41:04 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_164104.dump" mdpl_mm]
+2026-01-29 16:41:07 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_164104.dump
+2026-01-29 16:41:08 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-29 16:45:02 INFO  Department_TC - --- Starting Department Test Case Setup ---
+2026-01-29 16:45:07 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-29 16:45:07 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-29 16:45:07 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-29 16:45:07 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-29 16:45:08 INFO  Department_TC - Waiting for search box to be visible
+2026-01-29 16:45:08 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-29 16:45:21 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-29 16:45:21 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-29 16:45:21 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-29 16:45:21 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-29 16:45:21 INFO  Department_TC - Logging in as: admin
+2026-01-29 16:45:38 WARN  Department - Toast appeared but text was not captured (it may have disappeared too quickly).
+2026-01-29 16:45:39 INFO  Department_TC - --- Clicking Module ---
+2026-01-29 16:45:39 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-29 16:45:40 INFO  Department_TC - Clicked on Masters title
+2026-01-29 16:45:41 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-29 16:45:56 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-29 16:45:56 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-29 16:45:56 INFO  Department_TC - Clicked on Create button
+2026-01-29 16:46:08 INFO  Department_TC - --- Creating Department: OQ Department15 ---
+2026-01-29 16:46:08 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-29 16:46:08 INFO  Department_TC - Entered Name and Description
+2026-01-29 16:46:10 INFO  Department_TC - Clicked Submit
+2026-01-29 16:46:11 INFO  Department_TC - Entered authentication password
+2026-01-29 16:46:12 INFO  Department_TC - Clicked Authenticate
+2026-01-29 16:46:14 INFO  Department - Toast Message captured: Department created successfully
+2026-01-29 16:46:31 INFO  Department_TC - --- Clicking Actions for: OQ Department15 ---
+2026-01-29 16:46:31 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-29 16:46:41 INFO  Department_TC - Actions menu opened for OQ Department15
+2026-01-29 16:46:45 INFO  Department_TC - View step skipped based on configuration
+2026-01-29 16:46:45 INFO  Department_TC - Edit After Create step skipped based on configuration
+2026-01-29 16:46:45 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-29 16:46:45 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-29 16:46:45 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-29 16:46:47 INFO  Department_TC - Actions menu opened for OQ Department15
+2026-01-29 16:46:48 INFO  Department_TC - Clicked Approve button
+2026-01-29 16:46:50 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-29 16:46:51 INFO  Department_TC - Submitted Approval
+2026-01-29 16:46:52 INFO  Department_TC - Entered authentication password
+2026-01-29 16:46:53 INFO  Department_TC - Clicked Authenticate
+2026-01-29 16:46:55 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-29 16:47:13 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-29 16:47:13 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-29 16:47:14 INFO  Department_TC - Clicked logout button
+2026-01-29 16:47:14 INFO  Department - Toast Message captured: Logout successfully
+2026-01-29 16:47:15 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-29 16:47:15 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-29 16:47:15 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-29 16:47:15 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_164715.dump" mdpl_pc]
+2026-01-29 16:47:16 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260129_164715.dump
+2026-01-29 16:47:16 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-29 16:47:16 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_164716.dump" mdpl_master]
+2026-01-29 16:47:17 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260129_164716.dump
+2026-01-29 16:47:17 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-29 16:47:17 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_164717.dump" mdpl_mm]
+2026-01-29 16:47:19 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260129_164717.dump
+2026-01-29 16:47:20 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-30 14:57:55 INFO  Department_TC - --- Starting Department Test Case Setup with config: department.properties ---
+2026-01-30 14:58:04 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-30 14:58:04 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-30 14:58:04 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-30 14:58:04 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-30 14:58:05 INFO  Department_TC - Waiting for search box to be visible
+2026-01-30 14:58:06 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-30 14:58:18 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-30 14:58:18 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-30 14:58:20 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-30 14:58:20 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-30 14:58:20 INFO  Department_TC - Logging in as: admin
+2026-01-30 14:58:27 INFO  Department - Toast Message captured: Login successful
+2026-01-30 14:58:28 INFO  Department_TC - --- Clicking Module ---
+2026-01-30 14:58:28 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-30 14:58:29 INFO  Department_TC - Clicked on Masters title
+2026-01-30 14:58:30 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-30 14:58:45 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-30 14:58:45 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-30 14:58:46 INFO  Department_TC - Clicked on Create button
+2026-01-30 14:58:57 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-30 14:58:57 INFO  Department_TC - --- Creating Department: OQ Department16 ---
+2026-01-30 14:58:57 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-30 14:58:57 INFO  Department_TC - Entered Name and Description
+2026-01-30 14:58:59 INFO  Department_TC - Clicked Submit
+2026-01-30 14:59:00 INFO  Department_TC - Entered authentication password
+2026-01-30 14:59:01 INFO  Department_TC - Clicked Authenticate
+2026-01-30 14:59:03 INFO  Department - Toast Message captured: Department created successfully
+2026-01-30 14:59:21 INFO  Department_TC - --- Clicking Actions for: OQ Department16 ---
+2026-01-30 14:59:21 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-30 14:59:31 INFO  Department_TC - Actions menu opened for OQ Department16
+2026-01-30 14:59:34 INFO  Department_TC - View step skipped based on configuration
+2026-01-30 14:59:34 INFO  Department_TC - --- Editing Department (After Creation): OQ Department16 ---
+2026-01-30 14:59:34 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-30 14:59:37 INFO  Department_TC - Edit screen opened
+2026-01-30 14:59:48 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-30 14:59:48 INFO  Department_TC - Updating Name to: OQ Department15
+2026-01-30 14:59:50 INFO  Department_TC - Clicked Update
+2026-01-30 15:00:00 INFO  Department_TC - User Login After Create skipped (Single user mode)
+2026-01-30 15:00:00 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-30 15:00:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-30 15:00:00 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-30 15:00:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.11
+2026-01-30 15:00:00 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-30 15:00:00 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-30 15:00:00 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_150000.dump" mdpl_pc]
+2026-01-30 15:00:01 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_150000.dump
+2026-01-30 15:00:01 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-30 15:00:01 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_150001.dump" mdpl_master]
+2026-01-30 15:00:04 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_150001.dump
+2026-01-30 15:00:04 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-30 15:00:04 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_150004.dump" mdpl_mm]
+2026-01-30 15:00:07 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_150004.dump
+2026-01-30 15:00:08 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-30 15:39:47 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-30 15:39:47 INFO  Department_TC - Navigating to Chrome URL: null
+2026-01-30 15:39:47 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-30 15:39:47 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-30 15:39:47 INFO  DatabaseBackupUtil - --- Starting Database Backup for: null (Script: null) ---
+2026-01-30 15:39:48 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\null
+2026-01-30 15:39:48 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\null\null_backup_20260130_153947.dump" null]
+2026-01-30 15:39:48 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-30 15:39:48 ERROR DatabaseBackupUtil - Command Error Output: pg_dump: error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "null" does not exist
+
+2026-01-30 15:39:48 INFO  DatabaseBackupUtil - --- Starting Database Backup for: null (Script: null) ---
+2026-01-30 15:39:48 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\null\null_backup_20260130_153948.dump" null]
+2026-01-30 15:39:48 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-30 15:39:48 ERROR DatabaseBackupUtil - Command Error Output: pg_dump: error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "null" does not exist
+
+2026-01-30 15:39:48 INFO  DatabaseBackupUtil - --- Starting Database Backup for: null (Script: null) ---
+2026-01-30 15:39:48 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\null\null_backup_20260130_153948.dump" null]
+2026-01-30 15:39:49 ERROR DatabaseBackupUtil - ❌ Database backup failed with exit code: 1
+2026-01-30 15:39:49 ERROR DatabaseBackupUtil - Command Error Output: pg_dump: error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "null" does not exist
+
+2026-01-30 15:44:07 INFO  Department_TC - --- Starting Department Test Case Setup with config: department.properties ---
+2026-01-30 15:44:18 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-30 15:44:18 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-30 15:44:18 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-30 15:44:18 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-30 15:44:19 INFO  Department_TC - Waiting for search box to be visible
+2026-01-30 15:44:20 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-30 15:44:32 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-30 15:44:32 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-30 15:44:36 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-30 15:44:36 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-30 15:44:36 INFO  Department_TC - Logging in as: admin
+2026-01-30 15:44:41 INFO  Department - Toast Message captured: Login successful
+2026-01-30 15:44:42 INFO  Department_TC - --- Clicking Module ---
+2026-01-30 15:44:42 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-30 15:44:42 INFO  Department_TC - Clicked on Masters title
+2026-01-30 15:44:44 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-30 15:44:59 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-30 15:44:59 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-30 15:44:59 INFO  Department_TC - Clicked on Create button
+2026-01-30 15:45:10 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-30 15:45:10 INFO  Department_TC - --- Creating Department: OQ Department17 ---
+2026-01-30 15:45:10 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-30 15:45:11 INFO  Department_TC - Entered Name and Description
+2026-01-30 15:45:12 INFO  Department_TC - Clicked Submit
+2026-01-30 15:45:14 INFO  Department_TC - Entered authentication password
+2026-01-30 15:45:15 INFO  Department_TC - Clicked Authenticate
+2026-01-30 15:45:17 INFO  Department - Toast Message captured: Department created successfully
+2026-01-30 15:45:34 INFO  Department_TC - --- Clicking Actions for: OQ Department17 ---
+2026-01-30 15:45:34 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-30 15:45:44 INFO  Department_TC - Actions menu opened for OQ Department17
+2026-01-30 15:45:48 INFO  Department_TC - View step skipped based on configuration
+2026-01-30 15:45:48 INFO  Department_TC - --- Editing Department (After Creation): OQ Department17 ---
+2026-01-30 15:45:48 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-30 15:45:51 INFO  Department_TC - Edit screen opened
+2026-01-30 15:46:02 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-30 15:46:02 INFO  Department_TC - Updating Name to: OQ Department15
+2026-01-30 15:46:03 INFO  Department_TC - Clicked Update
+2026-01-30 15:46:10 INFO  Department_TC - Department Return and Edit skipped based on configuration
+2026-01-30 15:46:10 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-30 15:46:10 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-30 15:46:10 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.11
+2026-01-30 15:46:10 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-30 15:46:10 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-30 15:46:10 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_154610.dump" mdpl_pc]
+2026-01-30 15:46:10 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_154610.dump
+2026-01-30 15:46:10 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-30 15:46:10 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_154610.dump" mdpl_master]
+2026-01-30 15:46:12 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_154610.dump
+2026-01-30 15:46:12 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-30 15:46:12 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_154612.dump" mdpl_mm]
+2026-01-30 15:46:17 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_154612.dump
+2026-01-30 15:46:18 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department.docx
+2026-01-30 15:46:39 INFO  Department_TC - --- Starting Department Test Case Setup with config: oqdepartment.properties ---
+2026-01-30 15:46:43 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-30 15:46:43 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-30 15:46:43 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.1
+2026-01-30 15:46:43 INFO  Department_TC - Navigating to Chrome URL: https://www.google.co.in/
+2026-01-30 15:46:45 INFO  Department_TC - Waiting for search box to be visible
+2026-01-30 15:46:45 INFO  Department_TC - Searching for Application URL: http://localhost:8080/login
+2026-01-30 15:46:57 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-30 15:46:57 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.2
+2026-01-30 15:46:57 INFO  Department_TC - Navigating to App URL: http://localhost:8080/login
+2026-01-30 15:46:57 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-30 15:46:57 INFO  Department_TC - Logging in as: admin
+2026-01-30 15:47:03 INFO  Department - Toast Message captured: Login successful
+2026-01-30 15:47:05 INFO  Department_TC - --- Clicking Module ---
+2026-01-30 15:47:05 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.3
+2026-01-30 15:47:05 INFO  Department_TC - Clicked on Masters title
+2026-01-30 15:47:06 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-30 15:47:21 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-30 15:47:21 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.4
+2026-01-30 15:47:21 INFO  Department_TC - Clicked on Create button
+2026-01-30 15:47:32 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.5
+2026-01-30 15:47:32 INFO  Department_TC - --- Creating Department: OQ Department_Test ---
+2026-01-30 15:47:32 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.6
+2026-01-30 15:47:33 INFO  Department_TC - Entered Name and Description
+2026-01-30 15:47:35 INFO  Department_TC - Clicked Submit
+2026-01-30 15:47:36 INFO  Department_TC - Entered authentication password
+2026-01-30 15:47:37 INFO  Department_TC - Clicked Authenticate
+2026-01-30 15:47:39 INFO  Department - Toast Message captured: Department created successfully
+2026-01-30 15:47:56 INFO  Department_TC - --- Viewing Department: OQ Department_Test ---
+2026-01-30 15:47:56 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.7
+2026-01-30 15:48:06 INFO  Department_TC - View screen opened
+2026-01-30 15:48:18 INFO  Department_TC - Clicked Back button
+2026-01-30 15:48:32 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.8
+2026-01-30 15:48:35 INFO  Department_TC - Actions menu opened for OQ Department_Test
+2026-01-30 15:48:36 INFO  Department_TC - Clicked Approve button
+2026-01-30 15:48:37 INFO  Department_TC - Entered Approve remarks: OQ Department Approved
+2026-01-30 15:48:39 INFO  Department_TC - Submitted Approval
+2026-01-30 15:48:40 INFO  Department_TC - Entered authentication password
+2026-01-30 15:48:41 INFO  Department_TC - Clicked Authenticate
+2026-01-30 15:48:43 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-30 15:49:00 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-30 15:49:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1_OQ.9
+2026-01-30 15:49:02 INFO  Department_TC - Clicked logout button
+2026-01-30 15:49:03 INFO  Department - Toast Message captured: Logout successfully
+2026-01-30 15:49:04 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-30 15:49:04 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-30 15:49:04 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1_OQ) ---
+2026-01-30 15:49:04 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ
+2026-01-30 15:49:04 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ\mdpl_pc_backup_20260130_154904.dump" mdpl_pc]
+2026-01-30 15:49:04 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ\mdpl_pc_backup_20260130_154904.dump
+2026-01-30 15:49:04 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1_OQ) ---
+2026-01-30 15:49:04 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ\mdpl_master_backup_20260130_154904.dump" mdpl_master]
+2026-01-30 15:49:05 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ\mdpl_master_backup_20260130_154904.dump
+2026-01-30 15:49:05 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1_OQ) ---
+2026-01-30 15:49:05 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ\mdpl_mm_backup_20260130_154905.dump" mdpl_mm]
+2026-01-30 15:49:07 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1_OQ\mdpl_mm_backup_20260130_154905.dump
+2026-01-30 15:49:08 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/Department_OQ.docx
+2026-01-30 16:46:30 INFO  Department_TC - --- Starting Department Test Case Setup with config: department.properties ---
+2026-01-30 16:46:30 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-01-30 16:46:33 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-01-30 16:46:33 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-30 16:46:33 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-01-30 16:46:34 INFO  Department_TC - Waiting for search box to be visible
+2026-01-30 16:46:35 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-01-30 16:46:45 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-30 16:46:45 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-30 16:46:48 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-01-30 16:46:48 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-01-30 16:46:48 INFO  Department_TC - Logging in as: qa001
+2026-01-30 16:47:04 WARN  Department - Toast appeared but text was not captured (it may have disappeared too quickly).
+2026-01-30 16:47:04 INFO  Department_TC - --- Clicking Module ---
+2026-01-30 16:47:04 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-30 16:47:04 INFO  Department_TC - Clicked on Masters title
+2026-01-30 16:47:05 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-30 16:47:20 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-30 16:47:20 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-30 16:47:20 INFO  Department_TC - Clicked on Create button
+2026-01-30 16:47:30 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-30 16:47:30 INFO  Department_TC - --- Creating Department: Final-Department ---
+2026-01-30 16:47:30 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-30 16:47:31 INFO  Department_TC - Entered Name and Description
+2026-01-30 16:47:31 INFO  Department_TC - Clicked Submit
+2026-01-30 16:47:32 INFO  Department_TC - Entered authentication password
+2026-01-30 16:47:32 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:47:33 INFO  Department - Toast Message captured: Department created successfully
+2026-01-30 16:47:50 INFO  Department_TC - --- Attempting to open Actions Menu for: Final-Department ---
+2026-01-30 16:47:50 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-30 16:47:50 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department]
+2026-01-30 16:47:50 INFO  Department - ➡️ Navigating to next page (Page 2)...
+2026-01-30 16:47:53 INFO  Department - 🔍 Scanning Page 2 of 3 for items: [Final-Department]
+2026-01-30 16:47:54 INFO  Department - ➡️ Navigating to next page (Page 3)...
+2026-01-30 16:47:57 INFO  Department - 🔍 Scanning Page 3 of 3 for items: [Final-Department]
+2026-01-30 16:47:58 INFO  Department - ✅ Item Found Matching: [Final-Department] on Row 10 of Page 3
+2026-01-30 16:48:00 INFO  Department_TC - Successfully opened Actions menu for Final-Department
+2026-01-30 16:48:00 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department]
+2026-01-30 16:48:00 INFO  Department - ✅ Item Found Matching: [Final-Department] on Row 10 of Page 1
+2026-01-30 16:48:02 INFO  Department_TC - --- Viewing Department: Final-Department ---
+2026-01-30 16:48:02 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-30 16:48:02 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department]
+2026-01-30 16:48:02 INFO  Department - ✅ Item Found Matching: [Final-Department] on Row 10 of Page 1
+2026-01-30 16:48:05 INFO  Department_TC - View screen opened
+2026-01-30 16:48:15 INFO  Department_TC - Clicked Back button
+2026-01-30 16:48:28 INFO  Department_TC - --- Editing Department (After Creation): Final-Department ---
+2026-01-30 16:48:28 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-30 16:48:28 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department]
+2026-01-30 16:48:29 INFO  Department - ✅ Item Found Matching: [Final-Department] on Row 10 of Page 1
+2026-01-30 16:48:31 INFO  Department_TC - Edit screen opened
+2026-01-30 16:48:41 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.10
+2026-01-30 16:48:41 INFO  Department_TC - Updating Name to: Final-Department-Edited
+2026-01-30 16:48:41 INFO  Department_TC - Updating Description to: Final Department Description
+2026-01-30 16:48:42 INFO  Department_TC - Clicked Update
+2026-01-30 16:48:42 INFO  Department_TC - Entered authentication password
+2026-01-30 16:48:42 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:48:44 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-30 16:49:00 INFO  Department_TC - --- Switching User to: qa003 ---
+2026-01-30 16:49:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.11
+2026-01-30 16:49:01 INFO  Department_TC - Logged out previous user
+2026-01-30 16:49:01 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.12
+2026-01-30 16:49:01 INFO  Department_TC - Logging in as: qa003
+2026-01-30 16:49:07 INFO  Department - Toast Message captured: Login successful
+2026-01-30 16:49:09 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-30 16:49:23 INFO  Department_TC - --- Initiating Return Flow for: Final-Department-Edited ---
+2026-01-30 16:49:23 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.13
+2026-01-30 16:49:23 INFO  Department_TC - Opening actions menu to access Approve/Return
+2026-01-30 16:49:23 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department-Edited]
+2026-01-30 16:49:23 INFO  Department - ➡️ Navigating to next page (Page 2)...
+2026-01-30 16:49:26 INFO  Department - 🔍 Scanning Page 2 of 3 for items: [Final-Department-Edited]
+2026-01-30 16:49:27 INFO  Department - ➡️ Navigating to next page (Page 3)...
+2026-01-30 16:49:30 INFO  Department - 🔍 Scanning Page 3 of 3 for items: [Final-Department-Edited]
+2026-01-30 16:49:31 INFO  Department - ✅ Item Found Matching: [Final-Department-Edited] on Row 10 of Page 3
+2026-01-30 16:49:33 INFO  Department_TC - Clicking Approve to trigger return dialog
+2026-01-30 16:49:43 INFO  Department_TC - Entered Return remarks: Department Returned
+2026-01-30 16:49:43 INFO  Department_TC - Clicked Return button
+2026-01-30 16:49:44 INFO  Department_TC - Entered authentication password
+2026-01-30 16:49:44 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:49:45 INFO  Department - Toast Message captured: Department returned successfully
+2026-01-30 16:50:02 INFO  Department_TC - --- Switching User to: qa001 ---
+2026-01-30 16:50:02 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.14
+2026-01-30 16:50:02 INFO  Department_TC - Logged out previous user
+2026-01-30 16:50:02 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.15
+2026-01-30 16:50:02 INFO  Department_TC - Logging in as: qa001
+2026-01-30 16:50:08 INFO  Department - Toast Message captured: Login successful
+2026-01-30 16:50:11 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-30 16:50:24 INFO  Department_TC - Opening Edit screen (After Return)
+2026-01-30 16:50:24 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.16
+2026-01-30 16:50:24 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department-Edited]
+2026-01-30 16:50:24 INFO  Department - ➡️ Navigating to next page (Page 2)...
+2026-01-30 16:50:28 INFO  Department - 🔍 Scanning Page 2 of 3 for items: [Final-Department-Edited]
+2026-01-30 16:50:28 INFO  Department - ➡️ Navigating to next page (Page 3)...
+2026-01-30 16:50:31 INFO  Department - 🔍 Scanning Page 3 of 3 for items: [Final-Department-Edited]
+2026-01-30 16:50:32 INFO  Department - ✅ Item Found Matching: [Final-Department-Edited] on Row 10 of Page 3
+2026-01-30 16:50:44 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.17
+2026-01-30 16:50:44 INFO  Department_TC - Updating Name to: Final-Department
+2026-01-30 16:50:45 INFO  Department_TC - Updating Description to: Final Department Description
+2026-01-30 16:50:46 INFO  Department_TC - Clicked Update
+2026-01-30 16:50:46 INFO  Department_TC - Entered authentication password
+2026-01-30 16:50:46 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:50:48 INFO  Department - Toast Message captured: Department updated successfully
+2026-01-30 16:51:05 INFO  Department_TC - --- Approving Department: Final-Department ---
+2026-01-30 16:51:05 INFO  Department_TC - --- Switching User to: qa003 ---
+2026-01-30 16:51:05 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.18
+2026-01-30 16:51:05 INFO  Department_TC - Logged out previous user
+2026-01-30 16:51:05 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.19
+2026-01-30 16:51:05 INFO  Department_TC - Logging in as: qa003
+2026-01-30 16:51:11 INFO  Department - Toast Message captured: Login successful
+2026-01-30 16:51:13 INFO  Department_TC - Navigated back to Master Module: Departments
+2026-01-30 16:51:27 INFO  Department_TC - --- Performing Final Approval for: Final-Department ---
+2026-01-30 16:51:27 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.20
+2026-01-30 16:51:27 INFO  Department_TC - Opening actions menu for approval
+2026-01-30 16:51:27 INFO  Department - 🔍 Scanning Page 1 of 3 for items: [Final-Department]
+2026-01-30 16:51:27 INFO  Department - ➡️ Navigating to next page (Page 2)...
+2026-01-30 16:51:30 INFO  Department - 🔍 Scanning Page 2 of 3 for items: [Final-Department]
+2026-01-30 16:51:31 INFO  Department - ➡️ Navigating to next page (Page 3)...
+2026-01-30 16:51:35 INFO  Department - 🔍 Scanning Page 3 of 3 for items: [Final-Department]
+2026-01-30 16:51:36 INFO  Department - ✅ Item Found Matching: [Final-Department] on Row 10 of Page 3
+2026-01-30 16:51:38 INFO  Department_TC - Clicking Approve button in the list
+2026-01-30 16:51:39 INFO  Department_TC - Entered Approve remarks: Department Approved
+2026-01-30 16:51:40 INFO  Department_TC - Submitted Approval
+2026-01-30 16:51:40 INFO  Department_TC - Entered authentication password
+2026-01-30 16:51:40 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:51:41 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-30 16:51:58 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-30 16:51:58 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.21
+2026-01-30 16:51:58 INFO  Department_TC - Clicked logout button
+2026-01-30 16:51:58 INFO  Department - Toast Message captured: Logout successfully
+2026-01-30 16:51:58 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-30 16:51:58 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-30 16:51:58 INFO  Department_TC - Backup folder name determined: 4.1
+2026-01-30 16:51:59 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-30 16:51:59 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1
+2026-01-30 16:51:59 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_165159.dump" mdpl_pc]
+2026-01-30 16:51:59 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_165159.dump
+2026-01-30 16:51:59 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-30 16:51:59 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_165159.dump" mdpl_master]
+2026-01-30 16:52:00 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_165159.dump
+2026-01-30 16:52:00 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-30 16:52:00 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_165200.dump" mdpl_mm]
+2026-01-30 16:52:02 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_165200.dump
+2026-01-30 16:52:02 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-01-30 16:55:34 INFO  Department_TC - --- Starting Department Test Case Setup with config: oqdepartment.properties ---
+2026-01-30 16:55:34 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-30 16:55:34 INFO  Department_TC - 📸 Processing screenshot template and headers...
+2026-01-30 16:57:49 INFO  Department_TC - --- Starting Department Test Case Setup with config: oqdepartment.properties ---
+2026-01-30 16:57:49 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-01-30 16:57:49 INFO  Department_TC - 📸 Processing screenshot template and headers...
+2026-01-30 16:57:55 INFO  Department_TC - Setup completed. Screenshots enabled: true
+2026-01-30 16:57:55 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-01-30 16:57:55 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-01-30 16:57:56 INFO  Department_TC - Waiting for search box to be visible
+2026-01-30 16:57:57 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-01-30 16:58:08 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-01-30 16:58:09 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-01-30 16:58:09 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-01-30 16:58:09 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-01-30 16:58:09 INFO  Department_TC - Logging in as: admin
+2026-01-30 16:58:15 INFO  Department - Toast Message captured: Login successful
+2026-01-30 16:58:16 INFO  Department_TC - --- Clicking Module ---
+2026-01-30 16:58:16 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-01-30 16:58:17 INFO  Department_TC - Clicked on Masters title
+2026-01-30 16:58:18 INFO  Department_TC - Clicked on Master Module: Departments
+2026-01-30 16:58:33 INFO  Department_TC - --- Navigating to Create Department Screen ---
+2026-01-30 16:58:33 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-01-30 16:58:33 INFO  Department_TC - Clicked on Create button
+2026-01-30 16:58:44 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-01-30 16:58:44 INFO  Department_TC - --- Creating Department: OQ Department_Test1 ---
+2026-01-30 16:58:44 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.6
+2026-01-30 16:58:45 INFO  Department_TC - Entered Name and Description
+2026-01-30 16:58:47 INFO  Department_TC - Clicked Submit
+2026-01-30 16:58:48 INFO  Department_TC - Entered authentication password
+2026-01-30 16:58:50 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:58:51 INFO  Department - Toast Message captured: Department created successfully
+2026-01-30 16:59:09 INFO  Department_TC - --- Viewing Department: OQ Department_Test1 ---
+2026-01-30 16:59:09 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.7
+2026-01-30 16:59:09 INFO  Department - 🔍 Scanning Page 1 of 4 for items: [OQ Department_Test1]
+2026-01-30 16:59:09 INFO  Department - ➡️ Navigating to next page (Page 2)...
+2026-01-30 16:59:13 INFO  Department - 🔍 Scanning Page 2 of 4 for items: [OQ Department_Test1]
+2026-01-30 16:59:13 INFO  Department - ➡️ Navigating to next page (Page 3)...
+2026-01-30 16:59:16 INFO  Department - 🔍 Scanning Page 3 of 4 for items: [OQ Department_Test1]
+2026-01-30 16:59:17 INFO  Department - ➡️ Navigating to next page (Page 4)...
+2026-01-30 16:59:20 INFO  Department - 🔍 Scanning Page 4 of 4 for items: [OQ Department_Test1]
+2026-01-30 16:59:20 INFO  Department - ✅ Item Found Matching: [OQ Department_Test1] on Row 1 of Page 4
+2026-01-30 16:59:23 INFO  Department_TC - View screen opened
+2026-01-30 16:59:34 INFO  Department_TC - Clicked Back button
+2026-01-30 16:59:49 INFO  Department_TC - --- Performing Final Approval for: OQ Department_Test1 ---
+2026-01-30 16:59:49 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.8
+2026-01-30 16:59:49 INFO  Department_TC - Opening actions menu for approval
+2026-01-30 16:59:49 INFO  Department - 🔍 Scanning Page 1 of 4 for items: [OQ Department_Test1]
+2026-01-30 16:59:49 INFO  Department - ✅ Item Found Matching: [OQ Department_Test1] on Row 1 of Page 1
+2026-01-30 16:59:52 INFO  Department_TC - Clicking Approve button in the list
+2026-01-30 16:59:54 INFO  Department_TC - Entered Approve remarks: OQ Department Approved
+2026-01-30 16:59:55 INFO  Department_TC - Submitted Approval
+2026-01-30 16:59:56 INFO  Department_TC - Entered authentication password
+2026-01-30 16:59:57 INFO  Department_TC - Clicked Authenticate
+2026-01-30 16:59:59 INFO  Department - Toast Message captured: Department approved successfully
+2026-01-30 17:00:16 INFO  Department_TC - --- Executing Final Logout ---
+2026-01-30 17:00:16 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.9
+2026-01-30 17:00:18 INFO  Department_TC - Clicked logout button
+2026-01-30 17:00:18 INFO  Department - Toast Message captured: Logout successfully
+2026-01-30 17:00:19 INFO  Department_TC - --- Department Test Case Execution Finished ---
+2026-01-30 17:00:19 INFO  Department_TC - --- Initiating Post-Test Database Backup ---
+2026-01-30 17:00:19 INFO  Department_TC - Backup folder name determined: 4.1
+2026-01-30 17:00:19 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_pc (Script: 4.1) ---
+2026-01-30 17:00:19 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_170019.dump" mdpl_pc]
+2026-01-30 17:00:19 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_pc_backup_20260130_170019.dump
+2026-01-30 17:00:19 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_master (Script: 4.1) ---
+2026-01-30 17:00:19 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_170019.dump" mdpl_master]
+2026-01-30 17:00:20 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_master_backup_20260130_170019.dump
+2026-01-30 17:00:20 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
+2026-01-30 17:00:20 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_170020.dump" mdpl_mm]
+2026-01-30 17:00:23 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_170020.dump

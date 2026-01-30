@@ -54,49 +54,61 @@ public class PDFUtil {
 
         // 3. Ensure the PDF viewer has focus to enable scrolling
         try {
-            // Move to the root element and click near the top-left to gain focus
-            WebElement root = driver.findElement(By.tagName("html"));
-            new Actions(driver).moveToElement(root, 10, 10).click().perform();
+            // Gain focus by clicking in the center of the window
+            int width = driver.manage().window().getSize().getWidth();
+            int height = driver.manage().window().getSize().getHeight();
+            new Actions(driver).moveByOffset(width / 2, height / 2).click().perform();
+            Thread.sleep(1000); // 1s for focus processing
         } catch (Exception e) {
-            System.out.println("⚠️ Mouse focus failed (MoveTargetOutOfBounds), attempting keyboard fallback...");
+            System.out.println("⚠️ Focus click failed, attempting basic body click...");
             try {
-                // Just try to send a key that might trigger focus
-                new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+                driver.findElement(By.tagName("body")).click();
             } catch (Exception ex) {
-                System.out.println("⚠️ Keyboard focus also failed.");
             }
         }
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // 4. Dynamic Scroll and Capture
-        long previousScroll = -1;
-        for (int i = 1; i <= 10; i++) {
+        System.out.println("📸 Starting PDF capture for: " + fileName);
+        long lastScrollPosition = -1;
+
+        for (int i = 1; i <= 15; i++) {
+            // Detect if we reached the bottom by checking scroll position change
+            long currentScroll = -1;
+            try {
+                currentScroll = ((Number) ((JavascriptExecutor) driver).executeScript(
+                        "return window.pageYOffset || document.documentElement.scrollTop || window.scrollY || document.scrollingElement.scrollTop || 0;"))
+                        .longValue();
+
+                System.out.println(">>> Page " + i + " | Scroll Position: " + currentScroll);
+
+                // If position hasn't changed since the last iteration, we are at the bottom.
+                // We check i > 1 to ensure we take at least one screenshot even if the scroll
+                // is 0.
+                if (i > 1 && currentScroll == lastScrollPosition) {
+                    System.out.println(">>> Reached end of PDF (No movement detected). Stopping.");
+                    break;
+                }
+                lastScrollPosition = currentScroll;
+            } catch (Exception e) {
+                System.out.println("ℹ️ Scroll detection failed, relying on max page count.");
+            }
+
+            // Capture current view
+            String suffix = " - Page " + i;
             if (stepLabel != null && !stepLabel.isEmpty()) {
-                ScreenshotUtil.takeStepScreenshot(stepLabel + " - Page " + i);
+                ScreenshotUtil.takeStepScreenshot(stepLabel + suffix);
             } else {
-                ScreenshotUtil.capture(" - Page " + i);
+                ScreenshotUtil.capture(suffix);
             }
 
-            // Send Space key to scroll down
-            new Actions(driver).sendKeys(Keys.SPACE).perform();
-            Thread.sleep(3000); // Wait for rendering
+            // Perform Page Down to advance document
+            new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
+            Thread.sleep(3000);
 
-            // Check current scroll position
-            long currentScroll = ((Number) ((JavascriptExecutor) driver).executeScript(
-                    "return window.pageYOffset || document.documentElement.scrollTop || 0;")).longValue();
-
-            // Break if bottom reached (scroll position stops changing)
-            if (currentScroll > 0 && currentScroll == previousScroll) {
-                break;
-            }
-
-            // Fallback: stop if we can't read scroll but have done several pages
-            if (currentScroll == 0 && i >= 4) {
-                break;
-            }
-
-            previousScroll = currentScroll;
+            System.out.println("✔️ Processed page " + i);
         }
+        System.out.println("✅ PDF capture sequence completed.");
 
         // 5. Cleanup: Close tab and return to parent
         driver.close();

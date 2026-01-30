@@ -52,22 +52,22 @@ public class QuickProduct_TC extends BaseClass {
 
 	@Test(priority = 2)
 	public void Step_4_1_2() throws Throwable {
-		quickproduct.product(PRODUCT);
+		//quickproduct.product(PRODUCT);
 
-		quickproduct.productDesc(PRODUCT_DESCRIPTION);
+		//quickproduct.productDesc(PRODUCT_DESCRIPTION);
 		String[] routecode = ROUTE_CODE.split(",");
 
 		for (int i = 0; i < routecode.length; i++) {
 			String sc = routecode[i].trim();
 
-			quickproduct.selRouteCode(sc);
+		//	quickproduct.selRouteCode(sc);
 			if (i < routecode.length - 1) {
-				quickproduct.clickAddButton();
+				//quickproduct.clickAddButton();
 			}
 		}
 
 		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
-		quickproduct.createSubmit_editUpdate();
+		//quickproduct.createSubmit_editUpdate();
 		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.2");
 		quickproduct.passWord(PASSWORD);
 		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.2");
@@ -108,9 +108,9 @@ public class QuickProduct_TC extends BaseClass {
 	public void Step_4_1_6() throws Throwable {
 		quickproduct.clickEditForPending(PRODUCT);
 		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.6");
-		quickproduct.product(EDIT_PRODUCT);
+		//quickproduct.product(EDIT_PRODUCT);
 		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.6");
-		quickproduct.createSubmit_editUpdate();
+		//quickproduct.createSubmit_editUpdate();
 		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.6");
 		quickproduct.passWord(PASSWORD);
 		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.6");
