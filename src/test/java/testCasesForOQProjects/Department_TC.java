@@ -6,22 +6,26 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import pageObjects.Department;
 import testBase.BaseClass;
 import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
+import utilities.SoftAssertionUtil;
+
 import org.testng.Assert;
 import org.openqa.selenium.WebElement;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Department_TC extends BaseClass {
 	Department dept;
 	String currentDeptName; // Track the current name (including edits)
 	String currentUsername; // Track the username of the currently logged-in user
 	String currentPassword; // Track the password of the currently logged-in user
-	SoftAssert sa;
+	SoftAssertionUtil sa;
 
 	@BeforeClass
 	@Parameters({ "configFile" })
@@ -44,7 +48,7 @@ public class Department_TC extends BaseClass {
 
 		browserOpen();
 		dept = new Department(driver);
-		sa = new SoftAssert();
+		sa = new SoftAssertionUtil();
 		dept.setTableHeaders(TABLE_HEADERS);
 		log.info("Setup completed. Screenshots enabled: {}", screenshotsEnabled);
 	}
@@ -76,7 +80,8 @@ public class Department_TC extends BaseClass {
 		log.info("--- Validating Application URL ---");
 
 		String currentUrl = driver.getCurrentUrl();
-		sa.assertEquals(currentUrl, APP_URL, "URL Mismatch! Expected: " + APP_URL + ", but found: " + currentUrl);
+		sa.assertEquals(currentUrl, APP_URL, "APP_URL",
+				"URL Mismatch! Expected: " + APP_URL + ", but found: " + currentUrl);
 
 		log.info("Application URL validation completed.");
 		sa.assertAll();
@@ -86,22 +91,100 @@ public class Department_TC extends BaseClass {
 	public void Login_Field_Validation() {
 		log.info("--- Validating Login Fields ---");
 
-		// 1. Validate Username Field
-		sa.assertTrue(dept.getUsernameField().isDisplayed(), "Username field is not displayed!");
-		String userPlaceholder = dept.getUsernameField().getDomAttribute("placeholder");
-		sa.assertEquals(userPlaceholder, "Username", "Username placeholder mismatch!");
+		// ================= EXPECTED FIELDS =================
+		Map<String, String> expectedFields = new LinkedHashMap<>();
+		expectedFields.put("Username", "Username");
+		expectedFields.put("Password", "Password"); // enable if needed later
 
-		// 2. Validate Password Field
-		sa.assertTrue(dept.getPasswordField().isDisplayed(), "Password field is not displayed!");
-		String passPlaceholder = dept.getPasswordField().getDomAttribute("placeholder");
-		sa.assertEquals(passPlaceholder, "Password", "Password placeholder mismatch!");
+		// ================= EXPECTED BUTTONS =================
+		List<String> expectedButtons = Arrays.asList("LOGIN");
 
-		// 3. Validate Login Button
-		sa.assertTrue(dept.getLoginButton().isDisplayed(), "Login button is not displayed!");
-		String btnText = dept.getLoginButton().getText().trim();
-		sa.assertEquals(btnText, "Login", "Login button text mismatch!");
+		// ================= ACTUAL UI DATA =================
+		List<String> actualFields = dept.getDisplayedFieldLabels();
+		List<String> actualButtons = dept.getDisplayedButtons();
+
+		actualFields.removeIf(f -> f == null || f.trim().isEmpty());
+		actualButtons.removeIf(b -> b == null || b.trim().isEmpty());
+
+		log.info("Actual Fields on UI  : " + actualFields);
+		log.info("Actual Buttons on UI : " + actualButtons);
+
+		List<String> expectedFieldNames = new ArrayList<>(expectedFields.keySet());
+
+		// ================= STRICT FIELD CONTRACT =================
+		boolean missingFields = actualFields.containsAll(expectedFieldNames);
+		boolean extraFields = expectedFieldNames.containsAll(actualFields);
+
+		sa.assertTrue(missingFields, "Fields contract: no fields missing",
+				"Missing field(s). Expected: " + expectedFieldNames + " Found: " + actualFields);
+
+		sa.assertTrue(extraFields, "Fields contract: no extra fields",
+				"Extra field(s) present. Expected only: " + expectedFieldNames + " Found: " + actualFields);
+
+		// ================= STRICT BUTTON CONTRACT =================
+		boolean missingButtons = actualButtons.containsAll(expectedButtons);
+		boolean extraButtons = expectedButtons.containsAll(actualButtons);
+
+		sa.assertTrue(missingButtons, "Buttons contract: no buttons missing",
+				"Missing button(s). Expected: " + expectedButtons + " Found: " + actualButtons);
+
+		sa.assertTrue(extraButtons, "Buttons contract: no extra buttons",
+				"Extra button(s) present. Expected only: " + expectedButtons + " Found: " + actualButtons);
+
+		// ================= FIELD EXISTENCE, PLACEHOLDER & EDITABLE =================
+
+		for (Map.Entry<String, String> entry : expectedFields.entrySet()) {
+
+			String fieldName = entry.getKey();
+			String expectedPlaceholder = entry.getValue();
+
+			log.info("Validating field: " + fieldName);
+
+			// Label must exist
+			sa.assertTrue(dept.isLabelDisplayed(fieldName), "Label Name", fieldName);
+
+			// Input must exist
+			WebElement input = dept.getInputFieldForLabel(fieldName);
+			sa.assertNotNull(input, "DOM Structure", fieldName);
+
+			// Input visible
+			sa.assertTrue(input.isDisplayed(), "Input", fieldName);
+
+			// Editable
+			sa.assertTrue(input.isEnabled(), "Enable ", fieldName);
+
+			// Placeholder validation
+			String actualPlaceholder = input.getDomAttribute("placeholder");
+			sa.assertNotNull(expectedPlaceholder, "Placeholder in DOM ", fieldName);
+			sa.assertEquals(actualPlaceholder, expectedPlaceholder, "Placeholder ", fieldName);
+
+			log.info("✅ Field validated: " + fieldName);
+		}
+
+		// ================= BUTTON STATE =================
+		for (String btnName : expectedButtons) {
+
+			log.info("✅ Validating Button: " + btnName);
+
+			WebElement btn = dept.getButtonByText(btnName);
+
+			sa.assertNotNull(btn, "Button ", btnName);
+			sa.assertTrue(btn.isDisplayed(), "Button", btnName);
+			sa.assertTrue(btn.isEnabled(), "Button Enable", btnName);
+
+			log.info("✅ Button validated: " + btnName);
+		}
+
+		log.info("Validating Company Logo");
+
+		sa.assertNotNull(dept.getMaithriLogoImage(), "MAITHRI logo In DOM" , "Login Page" );
+
+		sa.assertTrue(dept.getMaithriLogoImage().isDisplayed(), "MAITHRI logo ", "Login Page" );
+		
+		log.info("Company Logo Validation completed.");
 
 		log.info("Login field validation completed.");
+
 		try {
 			ScreenshotUtil.capture();
 		} catch (Exception e) {
@@ -112,7 +195,7 @@ public class Department_TC extends BaseClass {
 		sa.assertAll();
 	}
 
-	@Test(groups = { "userlogin" }, dependsOnMethods = "Login_Field_Validation", priority = 4)
+	@Test(groups = { "userlogin" }, priority = 4)
 	public void userLoginBeforeCreate() throws Throwable {
 		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
 		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
@@ -122,23 +205,67 @@ public class Department_TC extends BaseClass {
 		}
 	}
 
-	@Test(groups = { "modulevalidation" }, dependsOnMethods = "userLoginBeforeCreate", priority = 4)
-	public void Module_Selection_Validation() {
+	@Test(groups = { "allappvalidation" }, dependsOnMethods = "userLoginBeforeCreate", priority = 4)
+	public void All_Apps_Validation() {
 		log.info("--- Validating Module Selection Elements ---");
 
-		sa.assertTrue(dept.getMastersTitle().isDisplayed(), "Masters Module title is not displayed!");
-		sa.assertEquals(dept.getMastersTitle().getText().trim(), "MASTERS", "Module title text mismatch!");
-		log.info("Master validation completed.");
+		// ================= EXPECT APPS =================
+		Map<String, FieldDetails> expectedApps = new LinkedHashMap<>();
 
-		WebElement moduleElement = dept.getModuleElement(MASTER_MODULE);
-		sa.assertTrue(moduleElement.isDisplayed(), "Module '" + MASTER_MODULE + "' is not displayed!");
-		sa.assertEquals(moduleElement.getText().trim(), MASTER_MODULE, "Module text mismatch!");
+		expectedApps.put("MASTERS",
+				new FieldDetails("Central repository for managing core data", "/content/images/settings.png"));
+		expectedApps.put("MM (Material Management)", new FieldDetails(
+				"Manages Inventory, Vendors, Product Cycle, Time & Costing.", "/content/images/mmicon.png"));
+
+		for (Map.Entry<String, FieldDetails> entry : expectedApps.entrySet()) {
+
+			String key = entry.getKey();
+			FieldDetails data = entry.getValue();
+
+			WebElement card = dept.getCardByTitle(key);
+			sa.assertNotNull(card, "Card not found for ", key);
+
+			WebElement icon = dept.getIcon(key);
+			sa.assertTrue(icon.isDisplayed(), "Icon missing for ", key);
+			sa.assertTrue(icon.getAttribute("src").contains(data.getIconPath()), "Wrong icon for ", key);
+
+			WebElement desc = dept.getDescription(key);
+			sa.assertEquals(desc.getText().trim(), data.getDescription(), "Description mismatch for ", key);
+
+			log.info("✅ Home card validated: " + key);
+		}
+
+		// ================= ACTUAL UI DATA =================
+		List<String> actualApps = dept.getAllAppsDisplayed();
+
+		actualApps.removeIf(f -> f == null || f.trim().isEmpty());
+
+		log.info("Actual Fields on UI  : " + actualApps);
+		List<String> expectedAppsNames = new ArrayList<>(expectedApps.keySet());
+
+		// ================= STRICT FIELD CONTRACT =================
+		boolean missingApps = actualApps.containsAll(expectedAppsNames);
+		boolean extraApps = expectedAppsNames.containsAll(actualApps);
+
+		sa.assertTrue(missingApps, "Fields contract: no fields missing",
+				"Missing field(s). Expected: " + expectedAppsNames + " Found: " + actualApps);
+
+		sa.assertTrue(extraApps, "Fields contract: no extra fields",
+				"Extra field(s) present. Expected only: " + expectedAppsNames + " Found: " + actualApps);
 
 		log.info("Module validation completed.");
 		sa.assertAll();
 	}
+	
+	@Test(groups= {"breadcrumbsvalidationonhome"}, priority=4)
+	public void BreadCrumbs_Validation_On_Home() throws Throwable {
+		
+		dept.click_titleMasters();
 
-	@Test(groups = { "moduleselect" }, dependsOnMethods = "Module_Selection_Validation", priority = 4)
+		
+	}
+
+	@Test(groups = { "moduleselect" }, priority = 5)
 	public void moduleClick() throws Throwable {
 		log.info("--- Clicking Module ---");
 		ScreenshotUtil.nextStep();
@@ -151,41 +278,139 @@ public class Department_TC extends BaseClass {
 		ScreenshotUtil.capture();
 	}
 
-	@Test(groups = { "creationvalidation" }, dependsOnMethods = "moduleClick", priority = 5)
+	@Test(groups = { "creationvalidation" }, dependsOnMethods = "moduleClick", priority = 6)
 	public void Creation_Screen_Validation() throws Throwable {
+
 		log.info("--- Validating Department Creation Screen ---");
 
-		// 1. Validate Create Button on List Screen
-		WebElement createBtn = dept.waitForCreateButton();
-		sa.assertTrue(createBtn.isDisplayed(), "Create button is not displayed on list screen!");
-
-		// 2. Click Create to open the form
 		dept.Create();
-		log.info("Clicked Create button for validation");
 		dept.waitForLoading();
 
-		// 3. Validate Fields inside Creation Screen
-		sa.assertTrue(dept.getDeptNameField().isDisplayed(), "Department Name field is not displayed!");
-		sa.assertEquals(dept.getDeptNameField().getDomAttribute("placeholder"), "Enter Department Name",
-				"Dept Name placeholder mismatch!");
+		// ================= EXPECTED FIELDS =================
+		Map<String, String> expectedFields = new LinkedHashMap<>();
+		expectedFields.put("Department Name", "Department Name");
+		expectedFields.put("Description", "Description"); // enable if needed later
 
-		sa.assertTrue(dept.getDeptDescField().isDisplayed(), "Department Description field is not displayed!");
-		sa.assertEquals(dept.getDeptDescField().getDomAttribute("placeholder"), "Enter Department Description",
-				"Dept Desc placeholder mismatch!");
+		// ================= EXPECTED BUTTONS =================
+		List<String> expectedButtons = Arrays.asList("Submit", "Cancel");
 
-		// 4. Validate Buttons
-		sa.assertTrue(dept.getSubmitButton().isDisplayed(), "Submit button is not displayed!");
-		sa.assertTrue(dept.getCancelButton().isDisplayed(), "Cancel button is not displayed!");
+		// ================= FIELD EXISTENCE, PLACEHOLDER & EDITABLE =================
+		for (Map.Entry<String, String> entry : expectedFields.entrySet()) {
 
-		log.info("Creation screen validation completed.");
+			String fieldName = entry.getKey();
+			String expectedPlaceholder = entry.getValue();
 
-		// 5. Cancel to return to list for the next test method
+			log.info("Validating field: " + fieldName);
+
+			// Label must exist
+			sa.assertTrue(dept.isLabelDisplayed(fieldName), "Label Name", fieldName);
+
+			// Input must exist
+			WebElement input = dept.getInputFieldForLabel(fieldName);
+			sa.assertNotNull(input, "DOM Structure", fieldName);
+
+			// Input visible
+			sa.assertTrue(input.isDisplayed(), "Input", fieldName);
+
+			// Editable
+			sa.assertTrue(input.isEnabled(), "Enable ", fieldName);
+
+			// Placeholder validation
+			String actualPlaceholder = input.getDomAttribute("placeholder");
+			sa.assertNotNull(expectedButtons, "Button", fieldName);
+			sa.assertEquals(actualPlaceholder, expectedPlaceholder, "Placeholder ", fieldName);
+
+			log.info("✅ Field validated: " + fieldName);
+		}
+
+		// ================= ACTUAL UI DATA =================
+		List<String> actualFields = dept.getDisplayedFieldLabels();
+		List<String> actualButtons = dept.getDisplayedButtons();
+
+		actualFields.removeIf(f -> f == null || f.trim().isEmpty());
+		actualButtons.removeIf(b -> b == null || b.trim().isEmpty());
+
+		log.info("Actual Fields on UI  : " + actualFields);
+		log.info("Actual Buttons on UI : " + actualButtons);
+
+		List<String> expectedFieldNames = new ArrayList<>(expectedFields.keySet());
+
+		// ================= STRICT FIELD CONTRACT =================
+		boolean missingFields = actualFields.containsAll(expectedFieldNames);
+		boolean extraFields = expectedFieldNames.containsAll(actualFields);
+
+		sa.assertTrue(missingFields, "Fields contract: no fields missing",
+				"Missing field(s). Expected: " + expectedFieldNames + " Found: " + actualFields);
+
+		sa.assertTrue(extraFields, "Fields contract: no extra fields",
+				"Extra field(s) present. Expected only: " + expectedFieldNames + " Found: " + actualFields);
+
+		// ================= STRICT BUTTON CONTRACT =================
+		boolean missingButtons = actualButtons.containsAll(expectedButtons);
+		boolean extraButtons = expectedButtons.containsAll(actualButtons);
+
+		sa.assertTrue(missingButtons, "Buttons contract: no buttons missing",
+				"Missing button(s). Expected: " + expectedButtons + " Found: " + actualButtons);
+
+		sa.assertTrue(extraButtons, "Buttons contract: no extra buttons",
+				"Extra button(s) present. Expected only: " + expectedButtons + " Found: " + actualButtons);
+
+		// ================= BUTTON STATE =================
+		for (String btnName : expectedButtons) {
+
+			WebElement btn = dept.getButtonByText(btnName);
+
+			sa.assertNotNull(btn, "Button ", btnName);
+			sa.assertTrue(btn.isDisplayed(), "Button", btnName);
+			sa.assertTrue(btn.isEnabled(), "Button Enable", btnName);
+
+			log.info("✅ Button validated: " + btnName);
+		}
+
+		log.info("🎯 Creation Screen UI Contract validated successfully");
+
 		dept.getCancelButton().click();
-		log.info("Clicked Cancel to return to list");
 		dept.waitForLoading();
 
 		sa.assertAll();
 	}
+	
+	@Test(groups = { "breadcrumbsvalidationwwheninlistpage" }, dependsOnMethods = "moduleClick", priority = 6)
+	public void BreadCrumbs_Validation_In_ListPage() throws Throwable {
+		log.info("--- Validating Breadcrumbs in List Page ---");
+		ScreenshotUtil.nextStep();
+
+		List<String> expectedCrumbs = Arrays.asList("Home", MASTER_MODULE);
+		List<String> actualCrumbs = dept.getBreadcrumbsText();
+
+		log.info("Actual Breadcrumbs on UI  : " + actualCrumbs);
+
+		// ================= STRICT BREADCRUMBS CONTRACT =================
+		boolean missingCrumbs = actualCrumbs.containsAll(expectedCrumbs);
+		boolean extraCrumbs = expectedCrumbs.containsAll(actualCrumbs);
+
+		sa.assertTrue(missingCrumbs, "Breadcrumbs contract: no crumbs missing",
+				"Missing breadcrumb(s). Expected: " + expectedCrumbs + " Found: " + actualCrumbs);
+
+		sa.assertTrue(extraCrumbs, "Breadcrumbs contract: no extra crumbs",
+				"Extra breadcrumb(s) present. Expected only: " + expectedCrumbs + " Found: " + actualCrumbs);
+		
+		
+		//================== BREADCRUMBS CLICKABILITY =================
+	
+
+		log.info("🎯 Breadcrumbs in List Page validated successfully");
+
+		sa.assertAll();
+	
+		
+	}
+	
+	
+	
+	
+	
+	
 
 	@Test(groups = { "Creation" }, dependsOnMethods = "Creation_Screen_Validation", priority = 5)
 	public void Creation_Of_Department() throws Throwable {
@@ -209,6 +434,60 @@ public class Department_TC extends BaseClass {
 		String authToast = authenticate(currentPassword);
 		Assert.assertEquals(authToast, "Department Created Successfully", "Creation failed with message: " + authToast);
 	}
+	
+	
+	
+	@Test(groups = { "redstarsandmandaoryincreate" }, dependsOnMethods = "Creation_Of_Department", priority = 6)
+	
+	public void RedStars_And_Mandatory_Fields_Validation_In_Create() throws Throwable {
+		log.info("--- Validating Red Stars and Mandatory Fields in Create Department Screen ---");
+		ScreenshotUtil.nextStep();
+		dept.Create();
+		log.info("Clicked on Create button");
+		dept.waitForLoading();
+		ScreenshotUtil.capture();
+		 String fieldName = "Department Name";
+
+		// Validate Red Stars
+		sa.assertTrue(dept.isRedStarDisplayedForField(fieldName).isDisplayed(), "Red Star","Create Department");
+		sa.assertTrue(dept.isNoValueEnteredInField(fieldName), "No Value ", fieldName);
+		dept.getButtonByText("Submit").click();
+		sa.assertTrue(dept.getErrorMessage(fieldName).isDisplayed(), "Error message ", fieldName);
+
+		
+		
+		dept.deptName("Testing Red Star");
+		sa.assertTrue(dept.isGreenStarDisplayedForField(fieldName).isDisplayed(), "Green Star","Create Department");
+		sa.assertTrue(dept.isNoValueEnteredInField(fieldName), "No Value ", fieldName);
+		dept.getButtonByText("Submit").click();
+		
+		// Validate Mandatory Fields
+
+		
+	   
+		log.info("Validating mandatory field: " + fieldName);
+
+		// Leave field empty and submit
+		
+
+	
+	
+		
+
+
+		log.info("✅ Mandatory validation confirmed for: " + fieldName);
+
+
+		log.info("Red Stars and Mandatory Fields validation completed.");
+
+		dept.getCancelButton().click();
+		dept.waitForLoading();
+
+		sa.assertAll();
+	}
+	
+	
+	
 
 	@Test(groups = { "actionsvalidation" }, dependsOnMethods = "Creation_Of_Department", priority = 6)
 	public void ViewEdit_Icons_Validation() throws Throwable {
@@ -241,6 +520,27 @@ public class Department_TC extends BaseClass {
 		}
 	}
 
+	/*
+	 * @Test(groups = { "editvalidation" }, dependsOnMethods =
+	 * "Action_Menu_Validation", priority = 7) public void Edit_Page_Validation()
+	 * throws Throwable { log.info("--- Starting Edit Page Validation ---");
+	 * ScreenshotUtil.nextStep();
+	 * 
+	 * // Click Edit icon log.info("Clicking Edit icon for department: {}",
+	 * currentDeptName); dept.clickEdit(currentDeptName); dept.waitForLoading();
+	 * ScreenshotUtil.capture();
+	 * 
+	 * 
+	 * sa.assertTrue(dept.getDeptNameField().isDisplayed(),
+	 * "Department Name field is not displayed!");
+	 * sa.assertTrue(dept.getDeptDescField().isDisplayed(),
+	 * "Department Description field is not displayed!");
+	 * 
+	 * // Validate Edit Page dept.validateEditPage(DEPT_NAME, DEPT_DESC);
+	 * ScreenshotUtil.capture();
+	 * 
+	 * log.info("--- Edit Page Validation Completed ---"); }
+	 */
 	@Test(groups = { "ClickActions" }, dependsOnMethods = "Actions_Validation", priority = 6)
 	public void Click_Actions_After_Create() throws Throwable {
 		log.info("--- Attempting to open Actions Menu for: {} ---", currentDeptName);
@@ -409,8 +709,7 @@ public class Department_TC extends BaseClass {
 		log.info("--- Initiating Post-Test Database Backup ---");
 
 		// Fallback logic: Use config filename if script number is missing
-		String backupFolderName = (SCRIPT_NUMBER == null || SCRIPT_NUMBER.trim().isEmpty())
-				? CURRENT_CONFIG_NAME
+		String backupFolderName = (SCRIPT_NUMBER == null || SCRIPT_NUMBER.trim().isEmpty()) ? CURRENT_CONFIG_NAME
 				: SCRIPT_NUMBER;
 
 		log.info("Backup folder name determined: {}", backupFolderName);
@@ -469,4 +768,23 @@ public class Department_TC extends BaseClass {
 		ScreenshotUtil.capture();
 		return toast;
 	}
+
+	public class FieldDetails {
+		private String description;
+		private String iconPath;
+
+		public FieldDetails(String description, String iconPath) {
+			this.description = description;
+			this.iconPath = iconPath;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public String getIconPath() {
+			return iconPath;
+		}
+	}
+
 }

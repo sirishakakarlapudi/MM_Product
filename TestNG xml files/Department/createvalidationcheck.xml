@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <parameter name="configFile" value="multipleusers_department.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.Department_TC">
+        <methods>
+    
+          <include name="url"/>
+          <include name="Login_Field_Validation"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="Module_Selection_Validation"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Screen_Validation"/>
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1975,3 +1975,748 @@ operable program or batch file.
 2026-01-30 17:00:20 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mdpl_mm (Script: 4.1) ---
 2026-01-30 17:00:20 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_170020.dump" mdpl_mm]
 2026-01-30 17:00:23 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM_Project\Material_Management_Product\src\test\resources\DB_Backups\4.1\mdpl_mm_backup_20260130_170020.dump
+2026-02-02 12:22:27 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:22:28 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:22:34 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 12:22:34 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 12:22:34 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 12:22:35 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 12:22:35 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 12:22:46 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 12:22:46 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 12:22:49 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 12:22:50 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 12:22:50 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 12:23:09 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-02-02 12:23:09 INFO  Department_TC - Logging in as: qa001
+2026-02-02 12:23:10 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 12:24:42 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:24:42 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:24:45 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 12:24:45 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 12:24:45 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 12:24:46 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 12:24:46 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 12:24:56 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 12:24:56 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 12:24:56 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 12:24:56 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-02-02 12:24:56 INFO  Department_TC - Logging in as: qa001
+2026-02-02 12:25:14 WARN  Department - Toast appeared but text was not captured (it may have disappeared too quickly).
+2026-02-02 12:25:14 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 12:25:14 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 12:25:14 INFO  Department_TC - Clicked on Masters title
+2026-02-02 12:25:15 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 12:25:29 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 12:25:39 INFO  Department_TC - Validating field: Department Name
+2026-02-02 12:25:39 INFO  Department_TC - ✅ Field OK: Department Name
+2026-02-02 12:25:39 INFO  Department_TC - Validating field: Description
+2026-02-02 12:25:39 INFO  Department_TC - ✅ Field OK: Description
+2026-02-02 12:25:39 INFO  Department_TC - Validating button: Submit
+2026-02-02 12:25:39 INFO  Department_TC - ✅ Button OK: Submit
+2026-02-02 12:25:39 INFO  Department_TC - Validating button: Cancel
+2026-02-02 12:25:39 INFO  Department_TC - ✅ Button OK: Cancel
+2026-02-02 12:25:39 INFO  Department_TC - 🎯 Creation screen fully validated
+2026-02-02 12:25:53 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 12:26:45 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:26:45 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:26:48 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 12:26:48 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 12:26:48 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 12:26:49 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 12:26:50 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 12:27:00 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 12:27:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 12:27:00 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 12:27:00 INFO  Department_TC - Executing the flow with single/multiple : multiple
+2026-02-02 12:27:00 INFO  Department_TC - Logging in as: qa001
+2026-02-02 12:27:06 INFO  Department - Toast Message captured: qa001: is active in 0:0:0:0:0:0:0:1. Please log out from that browser and try logging in again.
+2026-02-02 12:27:06 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 12:27:06 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 12:27:13 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 12:28:01 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:28:01 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:28:04 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 12:28:04 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 12:28:04 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 12:28:06 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 12:28:06 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 12:28:16 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 12:28:16 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 12:28:16 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 12:28:16 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 12:28:16 INFO  Department_TC - Logging in as: admin
+2026-02-02 12:28:22 INFO  Department - Toast Message captured: Login successful
+2026-02-02 12:28:22 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 12:28:22 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 12:28:23 INFO  Department_TC - Clicked on Masters title
+2026-02-02 12:28:24 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 12:28:38 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 12:28:48 INFO  Department_TC - Validating field: Department Name
+2026-02-02 12:28:48 INFO  Department_TC - ✅ Field OK: Department Name
+2026-02-02 12:28:48 INFO  Department_TC - Validating button: Submit
+2026-02-02 12:28:48 INFO  Department_TC - ✅ Button OK: Submit
+2026-02-02 12:28:48 INFO  Department_TC - Validating button: Cancel
+2026-02-02 12:28:48 INFO  Department_TC - ✅ Button OK: Cancel
+2026-02-02 12:28:48 INFO  Department_TC - 🎯 Creation screen fully validated
+2026-02-02 12:29:02 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 12:35:21 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:35:21 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:35:23 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 12:35:23 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 12:35:23 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 12:35:25 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 12:35:25 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 12:35:36 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 12:35:36 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 12:35:37 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 12:35:37 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 12:35:37 INFO  Department_TC - Logging in as: admin
+2026-02-02 12:35:41 INFO  Department - Toast Message captured: Login successful
+2026-02-02 12:35:41 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 12:35:41 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 12:35:42 INFO  Department_TC - Clicked on Masters title
+2026-02-02 12:35:43 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 12:35:56 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 12:36:07 INFO  Department_TC - Validating field: Department Name
+2026-02-02 12:36:07 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 12:36:07 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 12:36:07 INFO  Department_TC - Actual Buttons on UI : [, Cancel, Submit]
+2026-02-02 12:36:07 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 12:36:07 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 12:36:07 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 12:36:21 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 12:42:48 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:42:48 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:42:51 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 12:42:51 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 12:42:51 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 12:42:52 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 12:42:52 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 12:43:03 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 12:43:03 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 12:43:03 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 12:43:03 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 12:43:03 INFO  Department_TC - Logging in as: admin
+2026-02-02 12:43:08 INFO  Department - Toast Message captured: Login successful
+2026-02-02 12:43:08 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 12:43:08 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 12:43:09 INFO  Department_TC - Clicked on Masters title
+2026-02-02 12:43:10 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 12:43:24 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 12:43:34 INFO  Department_TC - Validating field: Department Name
+2026-02-02 12:43:34 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 12:43:34 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 12:43:34 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 12:43:34 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 12:43:34 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 12:43:34 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 12:43:48 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 12:51:46 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:51:46 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:52:27 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:52:27 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 12:54:10 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 12:54:10 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 13:21:13 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 13:21:13 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 13:21:16 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 13:21:16 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 13:21:16 INFO  Department_TC - Navigating to Chrome URL: https:/www.google.co.in/
+2026-02-02 13:21:18 INFO  Department_TC - Waiting for search box to be visible
+2026-02-02 13:21:18 INFO  Department_TC - Searching for Application URL: http:/localhost:8080/login
+2026-02-02 13:21:28 INFO  Department_TC - Initial setup completed and screenshot captured
+2026-02-02 13:21:28 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 13:21:28 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 13:21:28 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 13:21:28 INFO  Department_TC - Logging in as: admin
+2026-02-02 13:21:35 INFO  Department - Toast Message captured: Login successful
+2026-02-02 13:21:35 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 13:21:35 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-02-02 13:21:37 INFO  Department_TC - Clicked on Masters title
+2026-02-02 13:21:38 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 13:21:51 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 13:22:02 INFO  Department_TC - Validating field: Department Name
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Label missing for field: Department Name
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Input box missing for field: Department Name
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Input not visible for: Department Name
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Input not editable for: Department Name
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Placeholder mismatch for: Department Name [Value: Department Name]
+2026-02-02 13:22:02 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 13:22:02 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 13:22:02 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Missing field(s). Expected: [Department Name] Found: [Department Name, Description]
+2026-02-02 13:22:02 ERROR SoftAssertionUtil - ❌ Assertion Failed: ❌ Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description]
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Button not found: Submit
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Button not visible: Submit
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Button not enabled: Submit
+2026-02-02 13:22:02 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Button not found: Cancel
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Button not visible: Cancel
+2026-02-02 13:22:02 INFO  SoftAssertionUtil - ✅ Assertion Passed: ❌ Button not enabled: Cancel
+2026-02-02 13:22:02 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 13:22:02 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 13:22:16 ERROR SoftAssertionUtil - ❌ UI CONTRACT VALIDATION FAILED
+2026-02-02 13:22:16 ERROR SoftAssertionUtil - The following asserts failed:
+	❌ Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description] expected [true] but found [false]
+2026-02-02 13:22:16 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 14:22:35 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 14:22:35 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 14:22:39 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 14:22:39 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 14:22:40 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 14:22:41 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 14:22:41 INFO  Department_TC - Logging in as: admin
+2026-02-02 14:22:43 INFO  Department - Toast Message captured: Login successful
+2026-02-02 14:22:43 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 14:22:43 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 14:22:44 INFO  Department_TC - Clicked on Masters title
+2026-02-02 14:22:45 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 14:22:59 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 14:23:09 INFO  Department_TC - Validating field: Department Name
+2026-02-02 14:23:09 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 14:23:09 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 14:23:09 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 14:23:09 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 14:23:09 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 14:23:09 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 14:23:09 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 14:23:10 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 14:23:10 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name] Found: [Department Name, Description]
+2026-02-02 14:23:10 ERROR SoftAssertionUtil - ❌ Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description]
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 14:23:10 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 14:23:10 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 14:23:10 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 14:23:10 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 14:23:23 ERROR SoftAssertionUtil - ❌ UI CONTRACT VALIDATION FAILED
+2026-02-02 14:23:23 ERROR SoftAssertionUtil - The following asserts failed:
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description] expected [true] but found [false]
+2026-02-02 14:23:23 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 14:35:23 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 14:35:23 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 14:35:26 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 14:35:26 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 14:35:28 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 14:35:28 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 14:35:28 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 14:35:28 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 14:35:28 ERROR SoftAssertionUtil - ❌ Fields contract: no fields missing missing for field: Missing field(s). Expected: [UserName, Password] Found: [Username, Password]
+2026-02-02 14:35:28 ERROR SoftAssertionUtil - ❌ Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [UserName, Password] Found: [Username, Password]
+2026-02-02 14:35:28 ERROR SoftAssertionUtil - ❌ Buttons contract: no buttons missing missing for field: Missing button(s). Expected: [Login] Found: [LOGIN]
+2026-02-02 14:35:28 ERROR SoftAssertionUtil - ❌ Buttons contract: no extra buttons missing for field: Extra button(s) present. Expected only: [Login] Found: [LOGIN]
+2026-02-02 14:35:28 INFO  Department_TC - Validating field: UserName
+2026-02-02 14:35:38 ERROR SoftAssertionUtil - ❌ Label Name missing for field: UserName
+2026-02-02 14:35:48 ERROR SoftAssertionUtil - ❌ DOM Structure missing for: UserName
+2026-02-02 14:35:48 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 14:35:48 INFO  Department_TC - Logging in as: admin
+2026-02-02 14:35:51 INFO  Department - Toast Message captured: Login successful
+2026-02-02 14:35:51 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 14:35:51 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 14:35:52 INFO  Department_TC - Clicked on Masters title
+2026-02-02 14:35:53 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 14:36:06 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 14:39:09 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 14:39:09 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 14:39:12 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 14:39:12 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 14:39:14 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 14:39:14 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 14:39:14 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 14:39:14 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 14:39:14 INFO  Department_TC - Validating field: Username
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Button exists for: Username
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 14:39:14 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 14:39:14 INFO  Department_TC - Validating field: Password
+2026-02-02 14:39:14 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 14:39:24 ERROR SoftAssertionUtil - ❌ DOM Structure missing for: Password
+2026-02-02 14:39:24 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 14:39:24 INFO  Department_TC - Logging in as: admin
+2026-02-02 14:39:27 INFO  Department - Toast Message captured: Login successful
+2026-02-02 14:39:27 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 14:39:27 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 14:39:28 INFO  Department_TC - Clicked on Masters title
+2026-02-02 14:39:29 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 14:39:43 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 14:49:22 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 14:49:22 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 14:49:25 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 14:49:25 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 14:49:26 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 14:49:26 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 14:49:27 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 14:49:27 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 14:49:27 INFO  Department_TC - Validating field: Username
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Place Holder in DOM  exists for: Username
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 14:49:27 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 14:49:27 INFO  Department_TC - Validating field: Password
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Password
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Input displayed for field: Password
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Password
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Place Holder in DOM  exists for: Password
+2026-02-02 14:49:27 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Password [Value: Password]
+2026-02-02 14:49:27 INFO  Department_TC - ✅ Field validated: Password
+2026-02-02 14:49:37 ERROR SoftAssertionUtil - ❌ Button  missing for: LOGIN
+2026-02-02 14:49:37 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 14:49:37 INFO  Department_TC - Logging in as: admin
+2026-02-02 14:49:40 INFO  Department - Toast Message captured: Login successful
+2026-02-02 14:49:40 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 14:49:40 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 14:49:41 INFO  Department_TC - Clicked on Masters title
+2026-02-02 14:49:42 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 14:49:56 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 14:50:06 INFO  Department_TC - Validating field: Department Name
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 14:50:06 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 14:50:06 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 14:50:06 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name] Found: [Department Name, Description]
+2026-02-02 14:50:06 ERROR SoftAssertionUtil - ❌ Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description]
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 14:50:06 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 14:50:06 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 14:50:06 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 14:50:06 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 14:50:20 ERROR SoftAssertionUtil - ❌ UI CONTRACT VALIDATION FAILED
+2026-02-02 14:50:20 ERROR SoftAssertionUtil - The following asserts failed:
+	Button  missing for: LOGIN expected object to not be null,
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description] expected [true] but found [false]
+2026-02-02 14:50:20 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 14:59:53 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 14:59:53 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 14:59:56 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 14:59:56 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 14:59:57 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 14:59:57 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 14:59:58 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 14:59:58 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 14:59:58 INFO  Department_TC - Validating field: Username
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Username
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 14:59:58 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 14:59:58 INFO  Department_TC - Validating field: Password
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Password
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Input displayed for field: Password
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Password
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Password
+2026-02-02 14:59:58 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Password [Value: Password]
+2026-02-02 14:59:58 INFO  Department_TC - ✅ Field validated: Password
+2026-02-02 15:00:08 ERROR SoftAssertionUtil - ❌ Button  missing for: LOGIN
+2026-02-02 15:00:08 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 15:00:08 INFO  Department_TC - Logging in as: admin
+2026-02-02 15:00:11 INFO  Department - Toast Message captured: Login successful
+2026-02-02 15:00:11 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 15:00:11 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 15:00:12 INFO  Department_TC - Clicked on Masters title
+2026-02-02 15:00:13 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 15:00:16 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 15:00:27 INFO  Department_TC - Validating field: Department Name
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 15:00:27 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 15:00:27 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 15:00:27 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name] Found: [Department Name, Description]
+2026-02-02 15:00:27 ERROR SoftAssertionUtil - ❌ Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description]
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 15:00:27 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 15:00:27 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 15:00:27 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 15:00:27 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 15:00:41 ERROR SoftAssertionUtil - The following asserts failed:
+	Button  missing for: LOGIN expected object to not be null,
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [Department Name] Found: [Department Name, Description] expected [true] but found [false]
+2026-02-02 15:00:41 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 15:07:20 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 15:07:20 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 15:07:23 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 15:07:23 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 15:07:25 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 15:07:25 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 15:07:25 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 15:07:25 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 15:07:25 INFO  Department_TC - Validating field: Username
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Username
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 15:07:25 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 15:07:25 INFO  Department_TC - Validating field: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Input displayed for field: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Password [Value: Password]
+2026-02-02 15:07:25 INFO  Department_TC - ✅ Field validated: Password
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Button  exists for: LOGIN
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Button displayed for field: LOGIN
+2026-02-02 15:07:25 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: LOGIN
+2026-02-02 15:07:25 INFO  Department_TC - ✅ Button validated: LOGIN
+2026-02-02 15:07:25 INFO  Department_TC - Login field validation completed.
+2026-02-02 15:07:26 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 15:07:26 INFO  Department_TC - Logging in as: admin
+2026-02-02 15:07:28 INFO  Department - Toast Message captured: Login successful
+2026-02-02 15:07:28 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 15:07:28 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 15:07:29 INFO  Department_TC - Clicked on Masters title
+2026-02-02 15:07:30 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 15:07:44 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 15:07:54 INFO  Department_TC - Validating field: Department Name
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 15:07:54 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 15:07:54 INFO  Department_TC - Validating field: Description
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Description
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Description
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Input displayed for field: Description
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Description
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button exists for: Description
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Description [Value: Description]
+2026-02-02 15:07:54 INFO  Department_TC - ✅ Field validated: Description
+2026-02-02 15:07:54 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 15:07:54 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 15:07:54 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 15:07:54 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 15:07:54 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 15:07:55 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 15:08:08 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 15:59:45 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 15:59:45 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 15:59:48 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 15:59:48 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 15:59:50 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 15:59:50 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 15:59:50 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 15:59:50 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 15:59:50 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 15:59:50 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 15:59:50 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 15:59:50 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 15:59:50 INFO  Department_TC - Validating field: Username
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Username
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 15:59:51 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 15:59:51 INFO  Department_TC - Validating field: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Input displayed for field: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Password [Value: Password]
+2026-02-02 15:59:51 INFO  Department_TC - ✅ Field validated: Password
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Button  exists for: LOGIN
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Button displayed for field: LOGIN
+2026-02-02 15:59:51 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: LOGIN
+2026-02-02 15:59:51 INFO  Department_TC - ✅ Button validated: LOGIN
+2026-02-02 15:59:51 INFO  Department_TC - Login field validation completed.
+2026-02-02 15:59:51 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 15:59:51 INFO  Department_TC - Logging in as: admin
+2026-02-02 15:59:53 INFO  Department - Toast Message captured: Login successful
+2026-02-02 15:59:53 INFO  Department_TC - --- Validating Module Selection Elements ---
+2026-02-02 15:59:54 INFO  SoftAssertionUtil - ✅ Card not found for  exists for: MASTERS
+2026-02-02 15:59:54 INFO  SoftAssertionUtil - ✅ Icon missing for  displayed for field: MASTERS
+2026-02-02 15:59:54 INFO  SoftAssertionUtil - ✅ Wrong icon for  displayed for field: MASTERS
+2026-02-02 15:59:54 INFO  SoftAssertionUtil - ✅ Description mismatch for  matched for: MASTERS [Value: Central repository for managing core data]
+2026-02-02 15:59:54 INFO  Department_TC - ✅ Home card validated: MASTERS
+2026-02-02 15:59:54 INFO  Department_TC - Actual Fields on UI  : [MASTERS, MM (Material Management)]
+2026-02-02 15:59:54 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: {MASTERS=testCasesForOQProjects.Department_TC$FieldDetails@2b2954e1} Found: [MASTERS, MM (Material Management)]
+2026-02-02 15:59:54 ERROR SoftAssertionUtil - ❌ Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: {MASTERS=testCasesForOQProjects.Department_TC$FieldDetails@2b2954e1} Found: [MASTERS, MM (Material Management)]
+2026-02-02 15:59:54 INFO  Department_TC - Module validation completed.
+2026-02-02 15:59:54 ERROR SoftAssertionUtil - The following asserts failed:
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: {MASTERS=testCasesForOQProjects.Department_TC$FieldDetails@2b2954e1} Found: [MASTERS, MM (Material Management)] expected [true] but found [false]
+2026-02-02 15:59:54 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 15:59:54 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 15:59:55 INFO  Department_TC - Clicked on Masters title
+2026-02-02 15:59:56 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 16:00:09 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 16:00:20 INFO  Department_TC - Validating field: Department Name
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 16:00:20 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 16:00:20 INFO  Department_TC - Validating field: Description
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Description
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Description
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Input displayed for field: Description
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Description
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button exists for: Description
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Description [Value: Description]
+2026-02-02 16:00:20 INFO  Department_TC - ✅ Field validated: Description
+2026-02-02 16:00:20 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 16:00:20 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 16:00:20 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 16:00:20 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 16:00:20 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 16:00:20 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 16:00:34 ERROR SoftAssertionUtil - The following asserts failed:
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: {MASTERS=testCasesForOQProjects.Department_TC$FieldDetails@2b2954e1} Found: [MASTERS, MM (Material Management)] expected [true] but found [false]
+2026-02-02 16:00:34 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 16:07:25 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 16:07:25 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 16:07:28 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 16:07:28 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 16:07:29 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 16:07:29 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 16:07:29 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 16:07:29 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 16:07:29 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 16:07:29 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 16:07:30 INFO  Department_TC - Validating field: Username
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Username
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 16:07:30 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 16:07:30 INFO  Department_TC - Validating field: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Input displayed for field: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Password [Value: Password]
+2026-02-02 16:07:30 INFO  Department_TC - ✅ Field validated: Password
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Button  exists for: LOGIN
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Button displayed for field: LOGIN
+2026-02-02 16:07:30 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: LOGIN
+2026-02-02 16:07:30 INFO  Department_TC - ✅ Button validated: LOGIN
+2026-02-02 16:07:30 INFO  Department_TC - Login field validation completed.
+2026-02-02 16:07:30 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 16:07:30 INFO  Department_TC - Logging in as: admin
+2026-02-02 16:07:33 INFO  Department - Toast Message captured: Login successful
+2026-02-02 16:07:33 INFO  Department_TC - --- Validating Module Selection Elements ---
+2026-02-02 16:07:33 INFO  SoftAssertionUtil - ✅ Card not found for  exists for: MASTERS
+2026-02-02 16:07:33 INFO  SoftAssertionUtil - ✅ Icon missing for  displayed for field: MASTERS
+2026-02-02 16:07:33 INFO  SoftAssertionUtil - ✅ Wrong icon for  displayed for field: MASTERS
+2026-02-02 16:07:33 INFO  SoftAssertionUtil - ✅ Description mismatch for  matched for: MASTERS [Value: Central repository for managing core data]
+2026-02-02 16:07:33 INFO  Department_TC - ✅ Home card validated: MASTERS
+2026-02-02 16:07:34 INFO  Department_TC - Actual Fields on UI  : [MASTERS, MM (Material Management)]
+2026-02-02 16:07:34 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [MASTERS] Found: [MASTERS, MM (Material Management)]
+2026-02-02 16:07:34 ERROR SoftAssertionUtil - ❌ Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [MASTERS] Found: [MASTERS, MM (Material Management)]
+2026-02-02 16:07:34 INFO  Department_TC - Module validation completed.
+2026-02-02 16:07:34 ERROR SoftAssertionUtil - The following asserts failed:
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [MASTERS] Found: [MASTERS, MM (Material Management)] expected [true] but found [false]
+2026-02-02 16:07:34 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 16:07:34 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 16:07:34 INFO  Department_TC - Clicked on Masters title
+2026-02-02 16:07:35 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 16:07:49 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 16:07:59 INFO  Department_TC - Validating field: Department Name
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 16:07:59 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 16:07:59 INFO  Department_TC - Validating field: Description
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Description
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Description
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Input displayed for field: Description
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Description
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button exists for: Description
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Description [Value: Description]
+2026-02-02 16:07:59 INFO  Department_TC - ✅ Field validated: Description
+2026-02-02 16:07:59 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 16:07:59 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 16:07:59 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 16:07:59 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 16:07:59 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 16:07:59 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 16:08:13 ERROR SoftAssertionUtil - The following asserts failed:
+	Fields contract: no extra fields missing for field: Extra field(s) present. Expected only: [MASTERS] Found: [MASTERS, MM (Material Management)] expected [true] but found [false]
+2026-02-02 16:08:13 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).
+2026-02-02 16:10:09 INFO  Department_TC - --- Starting Department Test Case Setup with config: multipleusers_department.properties ---
+2026-02-02 16:10:09 INFO  ScreenshotUtil - 📸 Screenshot capture is now: DISABLED
+2026-02-02 16:10:12 INFO  Department_TC - Setup completed. Screenshots enabled: false
+2026-02-02 16:10:12 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-02-02 16:10:14 INFO  Department_TC - Navigating to App URL: http:/localhost:8080/login
+2026-02-02 16:10:14 INFO  Department_TC - --- Validating Login Fields ---
+2026-02-02 16:10:14 INFO  Department_TC - Actual Fields on UI  : [Username, Password]
+2026-02-02 16:10:14 INFO  Department_TC - Actual Buttons on UI : [LOGIN]
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Username, Password] Found: [Username, Password]
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Username, Password] Found: [Username, Password]
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [LOGIN] Found: [LOGIN]
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [LOGIN] Found: [LOGIN]
+2026-02-02 16:10:14 INFO  Department_TC - Validating field: Username
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Username
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Username
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Input displayed for field: Username
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Username
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Username
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Username [Value: Username]
+2026-02-02 16:10:14 INFO  Department_TC - ✅ Field validated: Username
+2026-02-02 16:10:14 INFO  Department_TC - Validating field: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Input displayed for field: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Placeholder in DOM  exists for: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Password [Value: Password]
+2026-02-02 16:10:14 INFO  Department_TC - ✅ Field validated: Password
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Button  exists for: LOGIN
+2026-02-02 16:10:14 INFO  SoftAssertionUtil - ✅ Button displayed for field: LOGIN
+2026-02-02 16:10:15 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: LOGIN
+2026-02-02 16:10:15 INFO  Department_TC - ✅ Button validated: LOGIN
+2026-02-02 16:10:15 INFO  Department_TC - Login field validation completed.
+2026-02-02 16:10:15 INFO  Department_TC - Executing the flow with single/multiple : single
+2026-02-02 16:10:15 INFO  Department_TC - Logging in as: admin
+2026-02-02 16:10:17 INFO  Department - Toast Message captured: Login successful
+2026-02-02 16:10:17 INFO  Department_TC - --- Validating Module Selection Elements ---
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Card not found for  exists for: MASTERS
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Icon missing for  displayed for field: MASTERS
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Wrong icon for  displayed for field: MASTERS
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Description mismatch for  matched for: MASTERS [Value: Central repository for managing core data]
+2026-02-02 16:10:18 INFO  Department_TC - ✅ Home card validated: MASTERS
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Card not found for  exists for: MM (Material Management)
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Icon missing for  displayed for field: MM (Material Management)
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Wrong icon for  displayed for field: MM (Material Management)
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Description mismatch for  matched for: MM (Material Management) [Value: Manages Inventory, Vendors, Product Cycle, Time & Costing.]
+2026-02-02 16:10:18 INFO  Department_TC - ✅ Home card validated: MM (Material Management)
+2026-02-02 16:10:18 INFO  Department_TC - Actual Fields on UI  : [MASTERS, MM (Material Management)]
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [MASTERS, MM (Material Management)] Found: [MASTERS, MM (Material Management)]
+2026-02-02 16:10:18 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [MASTERS, MM (Material Management)] Found: [MASTERS, MM (Material Management)]
+2026-02-02 16:10:18 INFO  Department_TC - Module validation completed.
+2026-02-02 16:10:18 INFO  Department_TC - --- Clicking Module ---
+2026-02-02 16:10:18 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-02-02 16:10:18 INFO  Department_TC - Clicked on Masters title
+2026-02-02 16:10:19 INFO  Department_TC - Clicked on Master Module: Departments
+2026-02-02 16:10:33 INFO  Department_TC - --- Validating Department Creation Screen ---
+2026-02-02 16:10:44 INFO  Department_TC - Validating field: Department Name
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Department Name
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Department Name
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Input displayed for field: Department Name
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Department Name
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button exists for: Department Name
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Department Name [Value: Department Name]
+2026-02-02 16:10:44 INFO  Department_TC - ✅ Field validated: Department Name
+2026-02-02 16:10:44 INFO  Department_TC - Validating field: Description
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Label Name displayed for field: Description
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ DOM Structure exists for: Description
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Input displayed for field: Description
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Enable  displayed for field: Description
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button exists for: Description
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Placeholder  matched for: Description [Value: Description]
+2026-02-02 16:10:44 INFO  Department_TC - ✅ Field validated: Description
+2026-02-02 16:10:44 INFO  Department_TC - Actual Fields on UI  : [Department Name, Description]
+2026-02-02 16:10:44 INFO  Department_TC - Actual Buttons on UI : [Cancel, Submit]
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Fields contract: no fields missing displayed for field: Missing field(s). Expected: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Fields contract: no extra fields displayed for field: Extra field(s) present. Expected only: [Department Name, Description] Found: [Department Name, Description]
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Buttons contract: no buttons missing displayed for field: Missing button(s). Expected: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Buttons contract: no extra buttons displayed for field: Extra button(s) present. Expected only: [Submit, Cancel] Found: [Cancel, Submit]
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button  exists for: Submit
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button displayed for field: Submit
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Submit
+2026-02-02 16:10:44 INFO  Department_TC - ✅ Button validated: Submit
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button  exists for: Cancel
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button displayed for field: Cancel
+2026-02-02 16:10:44 INFO  SoftAssertionUtil - ✅ Button Enable displayed for field: Cancel
+2026-02-02 16:10:44 INFO  Department_TC - ✅ Button validated: Cancel
+2026-02-02 16:10:44 INFO  Department_TC - 🎯 Creation Screen UI Contract validated successfully
+2026-02-02 16:10:58 INFO  ScreenshotUtil - ⏭️ Screenshot generation skipped (DISABLED).

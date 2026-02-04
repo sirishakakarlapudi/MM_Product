@@ -28,7 +28,7 @@ public class BasePage {
 	WebDriver driver;
 	WebDriverWait wait;
 
-	private final Logger log = LogManager.getLogger(this.getClass());
+	protected final Logger log = LogManager.getLogger(this.getClass());
 	private String[] tableHeaders = null; // Default null implies "Legacy Mode" (Column 1)
 
 	public BasePage(WebDriver driver) {
@@ -37,7 +37,7 @@ public class BasePage {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	/*--------------------	Supporting Methods---------------------*/
+	/*--------------------	Helper Methods---------------------*/
 
 	protected void waitForElementandClick(WebElement element) {
 
@@ -47,6 +47,7 @@ public class BasePage {
 		log.debug("Clicked on the element: {}", element);
 	}
 
+	
 	public String waitForToast() {
 		String message = "";
 		try {
@@ -118,20 +119,9 @@ public class BasePage {
 		// Click using JS (safe for Angular)
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
-
-	/*---------------------Google chrome Search box------------------*/
-
-	@FindBy(name = "q")
-	WebElement searchbox;
-
-	public WebElement getSearchBox() {
-		return searchbox;
-	}
-
-	public void searchBox(String url) throws Exception {
-		waitAndSendKeys(searchbox, url);
-	}
-
+	
+	
+	
 	public void scrollAndClickWithPageDown(WebElement element) throws InterruptedException {
 
 		Actions actions = new Actions(driver);
@@ -159,6 +149,23 @@ public class BasePage {
 
 	}
 
+	
+	
+
+	/*---------------------Google chrome Search box------------------*/
+
+	@FindBy(name = "q")
+	WebElement searchbox;
+
+	public WebElement getSearchBox() {
+		return searchbox;
+	}
+
+	public void searchBox(String url) throws Exception {
+		waitAndSendKeys(searchbox, url);
+	}
+
+	
 	/*-------------------------Methods For UserName, Password, Login--------------------------*/
 
 	@FindBy(css = "input[autocomplete='username']")
@@ -189,19 +196,18 @@ public class BasePage {
 		log.debug("Clicked on Login button");
 	}
 
-	/*-------------------------Validations For UserName, Password, Login--------------------------*/
 
-	public WebElement getUsernameField() {
-		return txt_username;
-	}
+	
 
-	public WebElement getPasswordField() {
-		return txt_password;
+	/*-------------------Validation for Company Logo-------------------*/
+	
+	@FindBy(xpath = "content/images/maithri.png")
+	WebElement maithriLogoImage;
+	
+	public WebElement getMaithriLogoImage() {
+		return maithriLogoImage;
 	}
-
-	public WebElement getLoginButton() {
-		return btn_login;
-	}
+	
 
 	/*-----------------------------Apps Xpaths----------------------*/
 
@@ -228,6 +234,54 @@ public class BasePage {
 	public WebElement getMastersTitle() {
 		return title_masters;
 	}
+	
+	
+	@FindBy(xpath = "//div[@class='mt-auto']//h5")
+	List<WebElement> allapps_headings;
+
+	public List<String> getAllAppsDisplayed() {
+
+	    List<String> fields = new ArrayList<>();
+
+	    for (WebElement allapps : allapps_headings) {
+	        if (allapps.isDisplayed()) {
+	            String text = allapps.getText().trim();
+	            if (!text.isEmpty()) {
+	                fields.add(text);
+	            }
+	        }
+	    }
+	    return fields;
+	}
+	
+	
+	public WebElement getCardByTitle(String title) {
+	    return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/ancestor::div[contains(@class,'card')]"));
+	}
+
+	public WebElement getIcon(String title) {
+	    return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/ancestor::div[contains(@class,'card')]//img"));
+	}
+
+	public WebElement getDescription(String title) {
+	    return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/following-sibling::p"));
+	}
+
+	public class FieldDetails {
+	    private String description;
+	    private String iconPath;
+
+	    public FieldDetails(String description, String iconPath) {
+	        this.description = description;
+	        this.iconPath = iconPath;
+	    }
+
+	    public String getDescription() { return description; }
+	    public String getIconPath() { return iconPath; }
+	}
+
+	
+	
 
 	public WebElement getModuleElement(String moduleName) {
 		return driver.findElement(By.xpath("//a[normalize-space()='" + moduleName + "']"));
@@ -242,6 +296,54 @@ public class BasePage {
 
 	}
 
+	/*-----------------Validating BreadCrumbs------------------------*/
+	
+	@FindBy(css = "ul.breadcrumb li.breadcrumb-item")
+	List<WebElement> breadcrumbItems;
+	
+	public List<String> getBreadcrumbsText() {
+		List<String> breadcrumbs = new ArrayList<>();
+		for (WebElement item : breadcrumbItems) {
+			if (item.isDisplayed()) {
+				breadcrumbs.add(item.getText().trim());
+			}
+		}
+		return breadcrumbs;
+	}	
+	
+	
+	@FindBy(css = "ul.breadcrumb li.breadcrumb-item a")
+	List<WebElement> breadcrumbLinks;
+	
+	public List<String> getBreadcrumbLinks() {
+		List<String> links = new ArrayList<>();
+		for (WebElement item : breadcrumbLinks) {
+			if (item.isDisplayed()) {
+				links.add(item.getAttribute("href").trim());
+			}
+		}
+		return links;
+	}
+	
+	
+	@FindBy(css = "ul.breadcrumb li.breadcrumb-item i.be-chevron-right")
+	List<WebElement> breadcrumbArrows;
+
+	public List<WebElement> getBreadcrumbArrows() {
+		return breadcrumbArrows;
+	}
+	
+
+	@FindBy(css = "ul.breadcrumb li.breadcrumb-item span.be-home")
+	WebElement homeIcon;
+
+	public WebElement getHomeIcon() {
+		return homeIcon;
+	}
+	
+	
+	
+	
 	/*----------------Profile Drop Down-----------------------*/
 
 	@FindBy(xpath = "//button[@class='profile-btn']/i")
@@ -310,6 +412,50 @@ public class BasePage {
 	public WebElement getCancelButton() {
 		return click_cancel;
 	}
+	
+	
+	
+	
+	
+	/*------------Red Stars and Green Stars--------------------*/
+	
+	
+	public WebElement isRedStarDisplayedForField(String fieldname ) {
+		        return driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//span[@class='not-valid']"));
+		
+	}
+	
+	public WebElement isGreenStarDisplayedForField(String fieldname ) {
+        return driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//span[@class='valid']"));
+
+}
+	
+	
+	/*--------------------Error Messages----------------*/
+	
+	public WebElement getErrorMessage(String fieldname ) {
+        return driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//validation-message"));
+
+}
+		
+	/*---------Checking Whether Value is entered in Input field or not----------*/
+	
+	public boolean isNoValueEnteredInField(String fieldname ) {
+        WebElement element=driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//input[@placeholder='"+fieldname+"']"));
+        
+        String classes = element.getAttribute("class");
+
+        return classes.contains("ng-invalid");
+	}
+	
+	public boolean isValueEnteredInField(String fieldname ) {
+        WebElement element=driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//input[@placeholder='"+fieldname+"']"));
+        
+        String classes = element.getAttribute("class");
+
+        return classes.contains("invalid");
+	}
+	
 
 	public void toast() {
 		waitForToast();
@@ -515,6 +661,50 @@ public class BasePage {
 		}
 		return parts;
 	}
+	
+	
+	
+	
+	@FindBy(xpath = "//label")
+	List<WebElement> allLabels;
+
+	public List<String> getDisplayedFieldLabels() {
+
+	    List<String> fields = new ArrayList<>();
+
+	    for (WebElement label : allLabels) {
+	        if (label.isDisplayed()) {
+	            String text = label.getText().trim();
+	            if (!text.isEmpty()) {
+	                fields.add(text);
+	            }
+	        }
+	    }
+	    return fields;
+	}
+	
+	
+	
+	
+	
+	@FindBy(xpath = "//button")
+	List<WebElement> allButtons;
+
+	public List<String> getDisplayedButtons() {
+
+	    List<String> buttons = new ArrayList<>();
+
+	    for (WebElement btn : allButtons) {
+	        if (btn.isDisplayed()) {
+	            String text = btn.getText().trim();
+	            if (!text.isEmpty()) {
+	                buttons.add(text);
+	            }
+	        }
+	    }
+	    return buttons;
+	}
+
 
 	/*--------------To Validate Item Actions like View, Edit, Approve------------------*/
 

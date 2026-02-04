@@ -1,129 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="12" passed="9" failed="0" skipped="0">
+<testng-results ignored="12" total="18" passed="6" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-30T16:57:49 IST" name="Suite" finished-at="2026-01-30T17:00:23 IST" duration-ms="154280">
+  <suite started-at="2026-02-02T16:10:09 IST" name="Suite" finished-at="2026-02-02T16:10:58 IST" duration-ms="48930">
     <groups>
-      <group name="DB Back">
-        <method signature="Department_TC.Database_Backup()[pri:13, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Database_Backup" class="testCasesForOQProjects.Department_TC"/>
-      </group> <!-- DB Back -->
-      <group name="Creation">
-        <method signature="Department_TC.Creation_Of_Department()[pri:5, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Creation_Of_Department" class="testCasesForOQProjects.Department_TC"/>
-      </group> <!-- Creation -->
-      <group name="Logout">
-        <method signature="Department_TC.Logout()[pri:12, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Logout" class="testCasesForOQProjects.Department_TC"/>
-      </group> <!-- Logout -->
-      <group name="setup">
-        <method signature="Department_TC.initialSetUp()[pri:1, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="initialSetUp" class="testCasesForOQProjects.Department_TC"/>
-      </group> <!-- setup -->
-      <group name="DeptApprove">
-        <method signature="Department_TC.Department_Approve()[pri:11, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Department_Approve" class="testCasesForOQProjects.Department_TC"/>
-      </group> <!-- DeptApprove -->
+      <group name="modulevalidation">
+        <method signature="Department_TC.Module_Selection_Validation()[pri:4, instance:testCasesForOQProjects.Department_TC@7c56e013]" name="Module_Selection_Validation" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- modulevalidation -->
+      <group name="creationvalidation">
+        <method signature="Department_TC.Creation_Screen_Validation()[pri:6, instance:testCasesForOQProjects.Department_TC@7c56e013]" name="Creation_Screen_Validation" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- creationvalidation -->
+      <group name="loginvalidation">
+        <method signature="Department_TC.Login_Field_Validation()[pri:3, instance:testCasesForOQProjects.Department_TC@7c56e013]" name="Login_Field_Validation" class="testCasesForOQProjects.Department_TC"/>
+      </group> <!-- loginvalidation -->
       <group name="url">
-        <method signature="Department_TC.url()[pri:2, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="url" class="testCasesForOQProjects.Department_TC"/>
+        <method signature="Department_TC.url()[pri:2, instance:testCasesForOQProjects.Department_TC@7c56e013]" name="url" class="testCasesForOQProjects.Department_TC"/>
       </group> <!-- url -->
-      <group name="ClickView">
-        <method signature="Department_TC.Click_View()[pri:7, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="Click_View" class="testCasesForOQProjects.Department_TC"/>
-      </group> <!-- ClickView -->
       <group name="moduleselect">
-        <method signature="Department_TC.moduleClick()[pri:4, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="moduleClick" class="testCasesForOQProjects.Department_TC"/>
+        <method signature="Department_TC.moduleClick()[pri:5, instance:testCasesForOQProjects.Department_TC@7c56e013]" name="moduleClick" class="testCasesForOQProjects.Department_TC"/>
       </group> <!-- moduleselect -->
       <group name="userlogin">
-        <method signature="Department_TC.userLoginBeforeCreate()[pri:3, instance:testCasesForOQProjects.Department_TC@38f57b3d]" name="userLoginBeforeCreate" class="testCasesForOQProjects.Department_TC"/>
+        <method signature="Department_TC.userLoginBeforeCreate()[pri:4, instance:testCasesForOQProjects.Department_TC@7c56e013]" name="userLoginBeforeCreate" class="testCasesForOQProjects.Department_TC"/>
       </group> <!-- userlogin -->
     </groups>
-    <test started-at="2026-01-30T16:57:49 IST" name="Test" finished-at="2026-01-30T17:00:23 IST" duration-ms="154280">
+    <test started-at="2026-02-02T16:10:09 IST" name="Test" finished-at="2026-02-02T16:10:58 IST" duration-ms="48930">
       <class name="testCasesForOQProjects.Department_TC">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:57:49 IST" name="setUp" finished-at="2026-01-30T16:57:55 IST" duration-ms="6222" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:09 IST" name="setUp" finished-at="2026-02-02T16:10:12 IST" duration-ms="3093" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[oqdepartment.properties]]>
+                <![CDATA[multipleusers_department.properties]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="initialSetUp()[pri:1, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:57:55 IST" name="initialSetUp" finished-at="2026-01-30T16:58:08 IST" duration-ms="13526" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initialSetUp -->
-        <test-method signature="url()[pri:2, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:09 IST" name="url" finished-at="2026-01-30T16:58:09 IST" duration-ms="97" status="PASS">
+        <test-method signature="url()[pri:2, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:12 IST" name="url" finished-at="2026-02-02T16:10:14 IST" duration-ms="1425" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- url -->
-        <test-method signature="userLoginBeforeCreate()[pri:3, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:09 IST" name="userLoginBeforeCreate" finished-at="2026-01-30T16:58:16 IST" depends-on-methods="testCasesForOQProjects.Department_TC.url" duration-ms="7708" status="PASS">
+        <test-method signature="Login_Field_Validation()[pri:3, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:14 IST" name="Login_Field_Validation" finished-at="2026-02-02T16:10:15 IST" depends-on-methods="testCasesForOQProjects.Department_TC.url" duration-ms="602" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Login_Field_Validation -->
+        <test-method signature="userLoginBeforeCreate()[pri:4, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:15 IST" name="userLoginBeforeCreate" finished-at="2026-02-02T16:10:17 IST" duration-ms="2296" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userLoginBeforeCreate -->
-        <test-method signature="moduleClick()[pri:4, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:16 IST" name="moduleClick" finished-at="2026-01-30T16:58:33 IST" depends-on-methods="testCasesForOQProjects.Department_TC.userLoginBeforeCreate" duration-ms="16540" status="PASS">
+        <test-method signature="Module_Selection_Validation()[pri:4, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:17 IST" name="Module_Selection_Validation" finished-at="2026-02-02T16:10:18 IST" depends-on-methods="testCasesForOQProjects.Department_TC.userLoginBeforeCreate" duration-ms="1418" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Module_Selection_Validation -->
+        <test-method signature="moduleClick()[pri:5, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:18 IST" name="moduleClick" finished-at="2026-02-02T16:10:33 IST" duration-ms="15010" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- moduleClick -->
-        <test-method signature="Creation_Of_Department()[pri:5, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:58:33 IST" name="Creation_Of_Department" finished-at="2026-01-30T16:59:09 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="36000" status="PASS">
+        <test-method signature="Creation_Screen_Validation()[pri:6, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:33 IST" name="Creation_Screen_Validation" finished-at="2026-02-02T16:10:58 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="24700" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Creation_Of_Department -->
-        <test-method signature="Click_View()[pri:7, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:59:09 IST" name="Click_View" finished-at="2026-01-30T16:59:49 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="39803" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Click_View -->
-        <test-method signature="Department_Approve()[pri:11, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T16:59:49 IST" name="Department_Approve" finished-at="2026-01-30T17:00:16 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="27353" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Department_Approve -->
-        <test-method signature="Logout()[pri:12, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T17:00:16 IST" name="Logout" finished-at="2026-01-30T17:00:19 IST" depends-on-methods="testCasesForOQProjects.Department_TC.moduleClick" duration-ms="2753" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Logout -->
-        <test-method signature="Database_Backup()[pri:13, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T17:00:19 IST" name="Database_Backup" finished-at="2026-01-30T17:00:23 IST" duration-ms="3834" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Database_Backup -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.Department_TC@38f57b3d]" started-at="2026-01-30T17:00:23 IST" name="tearDown" finished-at="2026-01-30T17:00:23 IST" duration-ms="280" status="FAIL">
-          <exception class="java.io.FileNotFoundException">
-            <message>
-              <![CDATA[src\test\resources\MM Product Documents\Department\Department_OQ.docx (The system cannot find the path specified)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.io.FileNotFoundException: src\test\resources\MM Product Documents\Department\Department_OQ.docx (The system cannot find the path specified)
-at java.base/java.io.FileOutputStream.open0(Native Method)
-at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
-at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
-at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
-at utilities.ScreenshotUtil.insertScreenshotsAndAppendTemplate(ScreenshotUtil.java:236)
-at testBase.BaseClass.tearDown(BaseClass.java:64)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
-at org.testng.internal.invokers.TestMethodWorker.invokeAfterClassConfigurations(TestMethodWorker.java:238)
-at org.testng.internal.invokers.TestMethodWorker.invokeAfterClassMethods(TestMethodWorker.java:223)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:137)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.io.FileNotFoundException -->
+        </test-method> <!-- Creation_Screen_Validation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.Department_TC@7c56e013]" started-at="2026-02-02T16:10:58 IST" name="tearDown" finished-at="2026-02-02T16:10:58 IST" duration-ms="275" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

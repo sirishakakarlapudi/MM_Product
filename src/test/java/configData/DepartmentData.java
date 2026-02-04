@@ -11,7 +11,6 @@ public class DepartmentData {
 	public static String MASTER_DB_NAME;
 	public static String MM_DB_NAME;
 	public static String ACTIONSPERFORMEDBY;
-	public static String STATUS;
 	public static String USERNAME1;
 	public static String PASSWORD1;
 	public static String USERNAME2;
@@ -59,7 +58,6 @@ public class DepartmentData {
 		MM_DB_NAME = loginconfig.get("mm_DB_Name");
 
 		ACTIONSPERFORMEDBY = deptconfig.get("actions_PerformedBy");
-		STATUS = deptconfig.get("status");
 		USERNAME1 = deptconfig.get("username1");
 		PASSWORD1 = deptconfig.get("password1");
 		USERNAME2 = deptconfig.get("username2");
