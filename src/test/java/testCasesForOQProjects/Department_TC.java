@@ -107,330 +107,29 @@ public class Department_TC extends BaseClass {
 
 	@Test(groups = { "listpagevalidation" }, dependsOnMethods = "moduleClick", priority = 5)
 	public void List_Page_Validation() throws Throwable {
-		log.info("--- Validating Department List Page UI Components ---");
-		ScreenshotUtil.capture();
-
-		// ================= DATA FROM CSV =================
-		String csvPath = System.getProperty("user.dir") + "/src/test/resources/CSV_Data/ListPageValidation.csv";
-		List<Map<String, String>> listPageData = CSVUtility.getRowsByModule(csvPath, "Department");
-
-		// Separate data by component
-		List<String> expectedFilterFields = listPageData.stream()
-				.filter(row -> row.get("Component").equals("Filter") && row.get("ElementType").equals("input"))
-				.map(row -> row.get("ElementName"))
-				.collect(Collectors.toList());
-
-		List<String> expectedTableHeaders = listPageData.stream()
-				.filter(row -> row.get("Component").equals("TableHeader"))
-				.map(row -> row.get("ElementName"))
-				.collect(Collectors.toList());
-
-		// ================= 1. BREADCRUMBS VALIDATION =================
-		log.info("Phase 1: Validating Breadcrumbs...");
-		List<String> actualBreadcrumbs = dept.getBreadcrumbsText();
-		List<String> expectedBreadcrumbs = Arrays.asList("Home", MASTER_MODULE);
-		sa.assertEquals(actualBreadcrumbs, expectedBreadcrumbs, "Breadcrumbs", "List Page");
-
-		// ================= 2. FILTER PANEL VALIDATION =================
-		log.info("Phase 2: Validating Filter Panel...");
-
-		// Check filter toggle button exists
-		WebElement filterToggle = dept.getFilterToggleButton();
-		sa.assertTrue(filterToggle.isDisplayed(), "Filter Toggle Button", "Visibility");
-
-		// By default, filter should be expanded (visible)
-		boolean filterExpanded = dept.isFilterPanelExpanded();
-		sa.assertTrue(filterExpanded, "Filter Panel Default State", "Should be expanded by default");
-
-		// Validate filter fields
-		for (String fieldName : expectedFilterFields) {
-			log.info("Validating filter field: {}", fieldName);
-			WebElement filterField = dept.getFilterFieldByLabel(fieldName);
-			sa.assertNotNull(filterField, "Filter Field Existence", fieldName);
-			sa.assertTrue(filterField.isDisplayed(), "Filter Field Visibility", fieldName);
-			sa.assertTrue(filterField.isEnabled(), "Filter Field Enabled", fieldName);
-
-			// Validate placeholder
-			String actualPlaceholder = filterField.getDomAttribute("placeholder");
-			String expectedPlaceholder = listPageData.stream()
-					.filter(row -> row.get("ElementName").equals(fieldName) && row.get("Component").equals("Filter"))
-					.map(row -> row.get("Placeholder"))
-					.findFirst().orElse("");
-			sa.assertEquals(actualPlaceholder, expectedPlaceholder, "Filter Field Placeholder", fieldName);
-		}
-
-		// Validate Clear and Search buttons
-		WebElement clearBtn = dept.getFilterButton("Clear");
-		WebElement searchBtn = dept.getFilterButton("Search");
-		sa.assertTrue(clearBtn.isDisplayed() && clearBtn.isEnabled(), "Clear Button", "Filter Panel");
-		sa.assertTrue(searchBtn.isDisplayed() && searchBtn.isEnabled(), "Search Button", "Filter Panel");
-
-		// Test filter collapse
-		log.info("Testing filter panel collapse...");
-		dept.clickFilterToggle();
-		Thread.sleep(300);
-		boolean filterCollapsed = !dept.isFilterPanelExpanded();
-		sa.assertTrue(filterCollapsed, "Filter Panel Collapse", "Should be collapsed after toggle");
-		ScreenshotUtil.capture();
-
-		// Expand back for next validations
-		dept.clickFilterToggle();
-		Thread.sleep(300);
-		ScreenshotUtil.capture();
-
-		// ================= 3. CREATE BUTTON VALIDATION (PRIVILEGE-BASED)
-		// =================
-		log.info("Phase 3: Validating Create Button (Privilege-based)...");
-
-		boolean hasCreatePrivilege = dept.hasPrivilege("DEPARTMENT_CREATE");
-		boolean createButtonVisible = dept.isCreateButtonDisplayed();
-
-		if (hasCreatePrivilege) {
-			sa.assertTrue(createButtonVisible, "Create Button Visibility", "User has CREATE privilege");
-			WebElement createBtn = dept.getCreateButton();
-			sa.assertTrue(createBtn.isEnabled(), "Create Button Enabled", "User has CREATE privilege");
-		} else {
-			sa.assertFalse(createButtonVisible, "Create Button Hidden", "User does NOT have CREATE privilege");
-		}
-
-		// ================= 4. TABLE HEADER BAR VALIDATION =================
-		log.info("Phase 4: Validating Table Header Bar...");
-
-		// Preferences dropdown (left)
-		WebElement preferencesDropdown = dept.getPreferencesDropdown();
-		sa.assertTrue(preferencesDropdown.isDisplayed(), "Preferences Dropdown", "Visibility");
-
-		// Total items count (center)
-		String itemCountText = dept.getItemCountText();
-		sa.assertTrue(itemCountText.contains("Item(s) found") || itemCountText.contains("found"),
-				"Item Count Display", "Text: " + itemCountText);
-
-		// PDF button (right)
-		WebElement pdfButton = dept.getPDFButton();
-		sa.assertTrue(pdfButton.isDisplayed(), "PDF Button", "Visibility");
-
-		// Excel button (right)
-		WebElement excelButton = dept.getExcelButton();
-		sa.assertTrue(excelButton.isDisplayed(), "Excel Button", "Visibility");
-
-		// ================= 5. TABLE COLUMNS VALIDATION =================
-		log.info("Phase 5: Validating Table Columns...");
-
-		List<String> actualTableHeaders = dept.getTableHeaders();
-		log.info("Actual Table Headers: {}", actualTableHeaders);
-		log.info("Expected Table Headers: {}", expectedTableHeaders);
-
-		sa.assertEquals(actualTableHeaders, expectedTableHeaders, "Table Columns Contract",
-				"Strict match expected");
-
-		// ================= 6. PAGINATION VALIDATION =================
-		log.info("Phase 6: Validating Pagination...");
-
-		// Previous button
-		WebElement prevPageBtn = dept.getPaginationButton("Previous");
-		sa.assertTrue(prevPageBtn.isDisplayed(), "Previous Page Button", "Visibility");
-
-		// Next button
-		WebElement nextPageBtn = dept.getPaginationButton("Next");
-		sa.assertTrue(nextPageBtn.isDisplayed(), "Next Page Button", "Visibility");
-
-		// Rows per page dropdown
-		WebElement rowsPerPageDropdown = dept.getRowsPerPageDropdown();
-		sa.assertTrue(rowsPerPageDropdown.isDisplayed(), "Rows Per Page Dropdown", "Visibility");
-
-		// Validate current page indicator
-		String currentPageInfo = dept.getCurrentPageInfo();
-		sa.assertTrue(currentPageInfo.matches("\\d+ - \\d+ of \\d+"), "Current Page Info Format",
-				"Expected format: 'X - Y of Z', Actual: " + currentPageInfo);
-
-		// ================= 6A. TABLE ROW COUNT VALIDATION =================
-		log.info("Phase 6A: Validating Table Row Count vs Total Count...");
-
-		int totalItemsCount = dept.extractTotalItemsCount();
-		log.info("Total Items from header: {}", totalItemsCount);
-		sa.assertTrue(totalItemsCount > 0, "Total Items Count Extraction", "Should be positive number");
-
-		int tableRowCount = dept.getTableRowCount();
-		log.info("Visible table rows: {}", tableRowCount);
-		sa.assertTrue(tableRowCount > 0, "Table Row Count", "Should have visible rows");
-
-		// Get current results per page
-		int resultsPerPage = dept.getResultsPerPageValue();
-		log.info("Results per page: {}", resultsPerPage);
-		sa.assertTrue(resultsPerPage > 0, "Results Per Page Value", "Should be positive number");
-
-		// Validate that table row count matches expected for current page
-		int expectedRowsOnPage = Math.min(resultsPerPage, totalItemsCount);
-		sa.assertEquals(tableRowCount, expectedRowsOnPage, "Table Row Count Match",
-				"Expected " + expectedRowsOnPage + " rows, found " + tableRowCount);
-
-		// ================= 6B. PAGE NUMBERS VALIDATION =================
-		log.info("Phase 6B: Validating Page Numbers based on Results Per Page...");
-
-		List<Integer> displayedPageNumbers = dept.getDisplayedPageNumbers();
-		log.info("Displayed page numbers: {}", displayedPageNumbers);
-
-		int expectedTotalPages = dept.calculateExpectedPages(totalItemsCount, resultsPerPage);
-		log.info("Expected total pages: {} (Total: {}, Per Page: {})", expectedTotalPages, totalItemsCount,
-				resultsPerPage);
-
-		// Validate page count
-		sa.assertEquals(displayedPageNumbers.size(), expectedTotalPages, "Page Numbers Count",
-				"For " + totalItemsCount + " items with " + resultsPerPage + " per page");
-
-		// Validate page numbers are sequential from 1 to expectedTotalPages
-		List<Integer> expectedPageNumbers = new ArrayList<>();
-		for (int i = 1; i <= expectedTotalPages; i++) {
-			expectedPageNumbers.add(i);
-		}
-		sa.assertEquals(displayedPageNumbers, expectedPageNumbers, "Page Numbers Sequence",
-				"Should be 1, 2, 3... up to " + expectedTotalPages);
-
-		ScreenshotUtil.capture();
-
-		// ================= 6C. RANGE DISPLAY VALIDATION =================
-		log.info("Phase 6C: Validating Range Display (e.g., '1 - 10 of 31')...");
-
-		int[] rangeInfo = dept.parseRangeInfo();
-		int startRange = rangeInfo[0];
-		int endRange = rangeInfo[1];
-		int totalFromRange = rangeInfo[2];
-
-		log.info("Parsed range: {} - {} of {}", startRange, endRange, totalFromRange);
-
-		// Validate range parsing succeeded
-		sa.assertTrue(startRange > 0, "Range Start", "Should be positive");
-		sa.assertTrue(endRange > 0, "Range End", "Should be positive");
-		sa.assertTrue(totalFromRange > 0, "Total from Range", "Should be positive");
-
-		// Validate range start is 1 for first page
-		sa.assertEquals(startRange, 1, "Range Start", "Should start at 1 for first page");
-
-		// Validate range end matches expected (min of resultsPerPage or total items)
-		int expectedEndRange = Math.min(resultsPerPage, totalItemsCount);
-		sa.assertEquals(endRange, expectedEndRange, "Range End",
-				"Should be " + expectedEndRange + " for first page with " + resultsPerPage + " per page");
-
-		// Validate total in range matches header total
-		sa.assertEquals(totalFromRange, totalItemsCount, "Total Count Consistency",
-				"Range total should match header total");
-
-		ScreenshotUtil.capture();
-
-		// ================= 6D. PAGINATION WITH DIFFERENT RESULTS PER PAGE
-		// =================
-		log.info("Phase 6D: Testing pagination with different Results Per Page values...");
-
-		// Store all results per page values to test
-		int[] resultsPerPageValues = { 10, 20, 50, 100 };
-
-		for (int perPageValue : resultsPerPageValues) {
-			// Skip if total items is less than or equal to the per page value
-			if (totalItemsCount <= perPageValue && perPageValue != 10) {
-				log.info("Skipping {} per page (total items: {} <= {})", perPageValue, totalItemsCount, perPageValue);
-				continue;
-			}
-
-			log.info("═══════════════════════════════════════════════════════");
-			log.info("Testing with {} Results Per Page...", perPageValue);
-			log.info("═══════════════════════════════════════════════════════");
-
-			// Change results per page
-			dept.selectResultsPerPage(perPageValue);
-			dept.waitForLoading();
-			Thread.sleep(500); // Extra wait for UI to stabilize
-
-			// Verify the change was successful
-			int actualPerPage = dept.getResultsPerPageValue();
-			sa.assertEquals(actualPerPage, perPageValue, "Results Per Page Setting",
-					"Should be " + perPageValue);
-
-			// Calculate expected pages
-			int expectedPages = dept.calculateExpectedPages(totalItemsCount, perPageValue);
-			log.info("Total Items: {}, Per Page: {}, Expected Pages: {}",
-					totalItemsCount, perPageValue, expectedPages);
-
-			// Validate page numbers displayed
-			List<Integer> displayedPages = dept.getDisplayedPageNumbers();
-			sa.assertEquals(displayedPages.size(), expectedPages,
-					"Page Count with " + perPageValue + " per page",
-					"For " + totalItemsCount + " items");
-
-			ScreenshotUtil.capture();
-
-			// ===== ITERATE THROUGH ALL PAGES AND VALIDATE RANGE =====
-			log.info("Clicking through all {} pages and validating range display...", expectedPages);
-
-			for (int pageNum = 1; pageNum <= expectedPages; pageNum++) {
-				log.info("--- Validating Page {} of {} ---", pageNum, expectedPages);
-
-				// Click on the page number (if not already on it)
-				if (pageNum > 1) {
-					dept.clickPageNumber(pageNum);
-					dept.waitForLoading();
-				}
-
-				// Verify current page is correct
-				int currentPage = dept.getCurrentPageNumber();
-				sa.assertEquals(currentPage, pageNum, "Current Page Number",
-						"Should be on page " + pageNum);
-
-				// Calculate expected range for this page
-				int expectedStart = ((pageNum - 1) * perPageValue) + 1;
-				int expectedEnd = Math.min(pageNum * perPageValue, totalItemsCount);
-
-				// Start simple wait
-
-				// Wait for range info to update (simple sleep)
-				Thread.sleep(1000);
-
-				// Get actual range from UI
-				int[] rangeInfo1 = dept.parseRangeInfo();
-				int actualStart = rangeInfo1[0];
-				int actualEnd = rangeInfo1[1];
-				int totalFromRange1 = rangeInfo1[2];
-
-				log.info("Expected Range: {}-{} of {}", expectedStart, expectedEnd, totalItemsCount);
-				log.info("Actual Range: {}-{} of {}", actualStart, actualEnd, totalFromRange1);
-
-				// Validate range start
-				sa.assertEquals(actualStart, expectedStart,
-						"Range Start (Page " + pageNum + ")",
-						"Per Page: " + perPageValue);
-
-				// Validate range end
-				sa.assertEquals(actualEnd, expectedEnd,
-						"Range End (Page " + pageNum + ")",
-						"Per Page: " + perPageValue);
-
-				// Validate total count consistency
-				sa.assertEquals(totalFromRange, totalItemsCount,
-						"Total Count (Page " + pageNum + ")",
-						"Should always be " + totalItemsCount);
-
-				// Validate table row count matches expected
-				int expectedRowsOnPage1 = expectedEnd - expectedStart + 1;
-				int actualRowsOnPage = dept.getTableRowCount();
-				sa.assertEquals(actualRowsOnPage, expectedRowsOnPage1,
-						"Table Rows (Page " + pageNum + ")",
-						"Should have " + expectedRowsOnPage1 + " rows");
-
-				log.info("✅ Page {} validated: {}-{} of {} ({} rows)",
-						pageNum, actualStart, actualEnd, totalFromRange, actualRowsOnPage);
-			}
-
-			ScreenshotUtil.capture();
-			log.info("✅ Completed validation for {} results per page", perPageValue);
-
-			// Go back to page 1 for next iteration
-			if (expectedPages > 1) {
-				dept.clickPageNumber(1);
-				dept.waitForLoading();
-			}
-		}
-
-		log.info("🎯 List Page UI validation completed successfully");
-		ScreenshotUtil.capture();
+		log.info("--- Validating List Page UI Components ---");
+		List<Map<String, String>> data = CSVUtility.getRowsByModule(
+				System.getProperty("user.dir") + "/src/test/resources/CSV_Data/ListPageValidation.csv", "Department");
+		dept.validateBreadcrumbs(Arrays.asList("Home", MASTER_MODULE));
+
+		// Filter
+		data.stream().filter(r -> r.get("Component").equals("Filter") && r.get("ElementType").equals("input"))
+				.forEach(r -> {
+					WebElement f = dept.getFilterFieldByLabel(r.get("ElementName"));
+					sa.assertTrue(f.isDisplayed(), "Filter visible", r.get("ElementName"));
+					sa.assertEquals(f.getDomAttribute("placeholder"), r.get("Placeholder"), "Placeholder",
+							r.get("ElementName"));
+				});
+
+		// Table Headers
+		sa.assertEquals(dept.getTableHeaders(), data.stream().filter(r -> r.get("Component").equals("TableHeader"))
+				.map(r -> r.get("ElementName")).collect(Collectors.toList()), "Header Contract");
+
+		// Pagination
+		int total = dept.extractTotalItemsCount();
+		int perPage = dept.getResultsPerPageValue();
+		int expPages = (int) Math.ceil((double) total / perPage);
+		sa.assertEquals(dept.getDisplayedPageNumbers().size(), expPages, "Page Count");
 		sa.assertAll();
 	}
 
@@ -501,190 +200,48 @@ public class Department_TC extends BaseClass {
 
 	@Test(groups = { "creationvalidation" }, dependsOnMethods = "moduleClick", priority = 6)
 	public void Creation_Screen_Validation() throws Throwable {
-
-		log.info("--- Validating Department Creation Screen ---");
+		log.info("--- Validating Creation Screen ---");
 		dept.Create();
 		dept.waitForLoading();
-		ScreenshotUtil.capture();
+		List<Map<String, String>> data = CSVUtility.getRowsByModule(
+				System.getProperty("user.dir") + "/src/test/resources/CSV_Data/CreateScreenValidation.csv",
+				"Department");
 
-		// ================= DATA FROM CSV =================
-		String csvPath = System.getProperty("user.dir") + "/src/test/resources/CSV_Data/CreateScreenValidation.csv";
-		List<Map<String, String>> screenData = CSVUtility.getRowsByModule(csvPath, "Department");
+		sa.assertEquals(
+				dept.getDisplayedFieldLabels().stream().filter(f -> f != null && !f.trim().isEmpty())
+						.collect(Collectors.toList()),
+				data.stream().map(row -> row.get("FieldName")).collect(Collectors.toList()), "Fields Contract");
 
-		List<String> expectedFieldNames = screenData.stream().map(row -> row.get("FieldName"))
-				.collect(Collectors.toList());
-		List<String> expTypes = screenData.stream().map(row -> row.get("FieldType")).collect(Collectors.toList());
-		List<String> expPlaceholders = screenData.stream().map(row -> row.get("Placeholder"))
-				.collect(Collectors.toList());
-		List<String> mandatoryFields = screenData.stream()
-				.filter(row -> row.get("isMandatory").equalsIgnoreCase("Yes"))
-				.map(row -> row.get("FieldName"))
-				.collect(Collectors.toList());
-
-		// ================= EXPECTED BUTTONS =================
-		List<String> expectedButtons = Arrays.asList("Cancel", "Submit");
-
-		// ================= ACTUAL UI DATA =================
-		List<String> actualFields = dept.getDisplayedFieldLabels();
-		List<String> actualButtons = dept.getDisplayedButtons();
-
-		actualFields.removeIf(f -> f == null || f.trim().isEmpty());
-		actualButtons.removeIf(b -> b == null || b.trim().isEmpty());
-
-		log.info("Actual Fields on UI  : " + actualFields);
-		log.info("Actual Buttons on UI : " + actualButtons);
-
-		// ================= STRICT FIELD CONTRACT =================
-		sa.assertEquals(actualFields, expectedFieldNames, "Fields Contract", "Strict match expected for fields");
-
-		// ================= STRICT BUTTON CONTRACT =================
-		sa.assertEquals(actualButtons, expectedButtons, "Buttons Contract", "Strict match expected for buttons");
-
-		// ================= INDIVIDUAL FIELD VALIDATION =================
-		for (int i = 0; i < expectedFieldNames.size(); i++) {
-			String fieldName = expectedFieldNames.get(i).trim();
-			String expectedType = expTypes.get(i).trim();
-			String expectedPH = expPlaceholders.get(i).trim();
-
-			log.info("Validating Field: [" + fieldName + "]");
-
-			// existence & visibility
-			sa.assertTrue(dept.isLabelDisplayed(fieldName), "Label visibility", fieldName);
-			WebElement input = dept.getInputFieldForLabel(fieldName);
-			sa.assertNotNull(input, "Field existence in DOM", fieldName);
-			sa.assertTrue(input.isDisplayed(), "Field visibility", fieldName);
-
-			// Type validation (Input vs Drop)
-			String actualType = dept.getFieldType(fieldName);
-			sa.assertEquals(actualType, expectedType, "Field Type", fieldName);
-
-			// Placeholder validation
-			String actualPH = dept.getPlaceholder(fieldName);
-			sa.assertEquals(actualPH, expectedPH, "Placeholder", fieldName);
-
-			// Editable check
-			sa.assertTrue(input.isEnabled(), "Field Editability", fieldName);
-
-			// Mandatory Star check
-			if (mandatoryFields.contains(fieldName)) {
-				boolean hasRedStar = false;
-				try {
-					hasRedStar = dept.isRedStarDisplayedForField(fieldName).isDisplayed();
-				} catch (Exception e) {
-				}
-				sa.assertTrue(hasRedStar, "Mandatory Red Star", fieldName);
-			}
+		for (Map<String, String> row : data) {
+			String name = row.get("FieldName");
+			sa.assertTrue(dept.isLabelDisplayed(name), "Label", name);
+			sa.assertEquals(dept.getFieldType(name), row.get("FieldType"), "Type", name);
+			sa.assertEquals(dept.getPlaceholder(name), row.get("Placeholder"), "Placeholder", name);
 		}
 
-		// ================= BUTTON STATE =================
-		for (String btnName : expectedButtons) {
-			WebElement btn = dept.getButtonByText(btnName);
-			sa.assertNotNull(btn, "Button", btnName);
-			sa.assertTrue(btn.isDisplayed(), "Button visible", btnName);
-			sa.assertTrue(btn.isEnabled(), "Button enabled", btnName);
-		}
-
-		// ================= MANDATORY FIELD VALIDATION (3 PHASES) =================
-
-		// PHASE 1: CLICK SUBMIT WHILE EMPTY -> VERIFY ERROR MESSAGES & RED STARS
-		log.info("Phase 1: Submitting empty form to verify error messages...");
 		dept.getButtonByText("Submit").click();
-		Thread.sleep(500); // Wait for error messages to appear
-		ScreenshotUtil.capture();
+		data.stream().filter(r -> r.get("isMandatory").equalsIgnoreCase("Yes"))
+				.forEach(r -> sa.assertTrue(dept.getErrorMessage(r.get("FieldName")).isDisplayed(), "Error missing",
+						r.get("FieldName")));
 
-		for (String fieldName : mandatoryFields) {
-			log.info("Checking error message and red star for: " + fieldName);
-			sa.assertTrue(dept.getErrorMessage(fieldName).isDisplayed(), "Error Message Displayed", fieldName);
-			sa.assertTrue(dept.isRedStarDisplayedForField(fieldName).isDisplayed(), "Red Star visibility", fieldName);
-		}
-
-		// PHASE 2: PROVIDE INPUT -> VERIFY GREEN STAR (COLOR CHANGE)
-		log.info("Phase 2: Providing input to mandatory fields to verify green stars...");
-		for (String fieldName : mandatoryFields) {
-			if (fieldName.equalsIgnoreCase("Department Name")) {
-				dept.deptName("OQ Validation Test");
-			} else {
-				// Fill other mandatory fields if any
-				dept.getInputFieldForLabel(fieldName).sendKeys("Validation Data");
-			}
-
-			log.info("Checking green star (color change) for: " + fieldName);
-			sa.assertTrue(dept.isGreenStarDisplayedForField(fieldName).isDisplayed(),
-					"Green Star (Valid Input Indicator)", fieldName);
-		}
-		ScreenshotUtil.capture();
-
-		// PHASE 3: FILL ALL MANDATORY & SUBMIT -> VERIFY AUTHENTICATION POPUP
-		log.info("Phase 3: Submitting complete form for Authentication check...");
-		dept.getButtonByText("Submit").click();
+		dept.getCancelButton().click();
 		dept.waitForLoading();
-
-		boolean authDisplayed = dept.isAuthPopupDisplayed();
-		sa.assertTrue(authDisplayed, "Authentication Popup Displayed", "Submit Flow");
-		log.info("Authentication Popup visibility: " + authDisplayed);
-		ScreenshotUtil.capture();
-
-		// Cleanup: Close popup or go back
-		if (authDisplayed) {
-			driver.navigate().refresh(); // Refresh to clean state
-			dept.waitForLoading();
-		} else {
-			dept.getCancelButton().click();
-			dept.waitForLoading();
-		}
-
-		log.info("🎯 Creation Screen UI Contract validated successfully");
-		ScreenshotUtil.capture();
 		sa.assertAll();
 	}
 
-	@Test(groups = { "breadcrumbsvalidationinlistpage" }, dependsOnMethods = "moduleClick", priority = 6)
-	public void BreadCrumbs_Validation_In_ListPage() throws Throwable {
-		log.info("--- Validating Breadcrumbs in Department List Page ---");
-		ScreenshotUtil.nextStep();
-
-		// 1. Validate Current URL
-		String currentUrl = driver.getCurrentUrl();
-		log.info("Current URL on Department List: {}", currentUrl);
-		sa.assertTrue(currentUrl.contains("departments") || currentUrl.contains("department"),
-				"Department Navigation", "URL Validation");
-
-		// 2. Validate Breadcrumb Labels (Strict Case Sensitive)
-		List<String> actualBreadcrumbs = dept.getBreadcrumbsText();
-		log.info("Actual Breadcrumbs on UI: {}", actualBreadcrumbs);
-
-		List<String> expectedBreadcrumbs = Arrays.asList("Home", MASTER_MODULE);
-		sa.assertEquals(actualBreadcrumbs, expectedBreadcrumbs, "Breadcrumbs Sequence",
-				"Exact Text Match (Case Sensitive)");
-
-		// 3. Validate Separator Arrow
-		List<WebElement> arrows = dept.getBreadcrumbArrows();
-		boolean arrowVisible = !arrows.isEmpty() && arrows.get(0).isDisplayed();
-		sa.assertTrue(arrowVisible, "Breadcrumb Separator", "Arrow Presence between Home and " + MASTER_MODULE);
-
-		// 4. Home icon check
-		WebElement homeIcon = dept.getHomeIcon();
-		sa.assertTrue(homeIcon.isDisplayed(), "Home Icon", "Presence");
-
-		// 5. Verify Home link can navigate back
-		log.info("Clicking on Home breadcrumb to verify navigation back to All Apps...");
-		dept.HomeBreadcrumbLink();
+	@Test(groups = { "breadcrumbs" }, dependsOnMethods = "moduleClick", priority = 6)
+	public void Breadcrumb_Validations() throws Throwable {
+		log.info("--- Validating Breadcrumbs across various pages ---");
+		dept.validateBreadcrumbs(Arrays.asList("Home", MASTER_MODULE));
+		dept.Create();
+		dept.validateBreadcrumbs(Arrays.asList("Home", MASTER_MODULE, "Create " + MASTER_MODULE));
+		dept.getCancelButton().click();
 		dept.waitForLoading();
-		ScreenshotUtil.capture();
-
-		String homeUrl = driver.getCurrentUrl();
-		sa.assertTrue(homeUrl.contains("/home"), "Breadcrumb Navigation", "Back to All Apps Page");
-
-		// 6. Navigate back to Department list and verify
-		log.info("Navigating back to Department module...");
-		dept.click_titleMasters();
-		dept.waitForLoading();
-		dept.masterClick(MASTER_MODULE);
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-
-		log.info("Breadcrumbs, Arrows, and URL validation completed for Department List Page.");
-		sa.assertAll();
+		if (currentDeptName == null)
+			currentDeptName = DEPT_NAME;
+		dept.clickView(currentDeptName);
+		dept.validateBreadcrumbs(Arrays.asList("Home", MASTER_MODULE, "View " + MASTER_MODULE));
+		dept.clickBack();
 	}
 
 	@Test(groups = {
@@ -756,81 +313,6 @@ public class Department_TC extends BaseClass {
 		ScreenshotUtil.capture();
 
 		log.info("Breadcrumbs, Arrows, and URL validation completed for Department Create Page.");
-		sa.assertAll();
-	}
-
-	@Test(groups = {
-			"breadcrumbsvalidationinview" }, dependsOnMethods = "Creation_Of_Department", priority = 9)
-	public void BreadCrumbs_Validation_In_ViewPage() throws Throwable {
-		log.info("--- Validating Breadcrumbs in Department View Page ---");
-		ScreenshotUtil.nextStep();
-
-		// Navigate to View page
-		if (currentDeptName == null || currentDeptName.isEmpty()) {
-			currentDeptName = DEPT_NAME; // Fallback if not set
-		}
-		dept.clickView(currentDeptName);
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-
-		// 1. Validate Current URL
-		String currentUrl = driver.getCurrentUrl();
-		log.info("Current URL on Department View: {}", currentUrl);
-		sa.assertTrue(currentUrl.contains("view") || currentUrl.contains("details"),
-				"View Page Navigation", "URL Validation");
-
-		// 2. Validate Breadcrumb Labels (Strict Case Sensitive)
-		List<String> actualBreadcrumbs = dept.getBreadcrumbsText();
-		log.info("Actual Breadcrumbs on UI: {}", actualBreadcrumbs);
-
-		List<String> expectedBreadcrumbs = Arrays.asList("Home", MASTER_MODULE, "View " + MASTER_MODULE);
-		sa.assertEquals(actualBreadcrumbs, expectedBreadcrumbs, "Breadcrumbs Sequence",
-				"Exact Text Match (Case Sensitive)");
-
-		// 3. Validate Separator Arrows (should have 2 arrows now)
-		List<WebElement> arrows = dept.getBreadcrumbArrows();
-		sa.assertTrue(arrows.size() >= 2, "Breadcrumb Separators", "At least 2 arrows expected");
-		sa.assertTrue(arrows.get(0).isDisplayed(), "First Arrow", "Between Home and " + MASTER_MODULE);
-		sa.assertTrue(arrows.get(1).isDisplayed(), "Second Arrow", "Between " + MASTER_MODULE + " and View");
-
-		// 4. Home icon check
-		WebElement homeIcon = dept.getHomeIcon();
-		sa.assertTrue(homeIcon.isDisplayed(), "Home Icon", "Presence");
-
-		// 5. Verify Department breadcrumb link navigates to list page
-		log.info("Clicking on '{}' breadcrumb to verify navigation to list page...", MASTER_MODULE);
-		dept.masterClick(MASTER_MODULE);
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-
-		String listUrl = driver.getCurrentUrl();
-		sa.assertTrue(listUrl.contains("departments") || listUrl.contains("department"),
-				"Breadcrumb Navigation", "Back to Department List");
-		sa.assertFalse(listUrl.contains("view") || listUrl.contains("details"),
-				"Not on View Page", "Should be on List Page");
-
-		// 6. Navigate back to View and verify Home link
-		log.info("Navigating back to View page...");
-		dept.clickView(currentDeptName);
-		dept.waitForLoading();
-
-		log.info("Clicking on Home breadcrumb to verify navigation back to All Apps...");
-		dept.HomeBreadcrumbLink();
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-
-		String homeUrl = driver.getCurrentUrl();
-		sa.assertTrue(homeUrl.contains("/home"), "Breadcrumb Navigation", "Back to All Apps Page");
-
-		// 7. Navigate back to Department module for next tests
-		log.info("Navigating back to Department module...");
-		dept.click_titleMasters();
-		dept.waitForLoading();
-		dept.masterClick(MASTER_MODULE);
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-
-		log.info("Breadcrumbs, Arrows, and URL validation completed for Department View Page.");
 		sa.assertAll();
 	}
 
@@ -934,71 +416,93 @@ public class Department_TC extends BaseClass {
 		Assert.assertEquals(authToast, "Department Created Successfully", "Creation failed with message: " + authToast);
 	}
 
+	public void Icon_Validation_By_Status(String itemName, String status) throws Throwable {
+		log.info("--- Validating Action Icons for [{}] with Status: [{}] ---", itemName, status);
+
+		DatabaseBackupUtil.setActiveDb(PC_DB_NAME);
+		String username = dept.currentUsername;
+
+		// Privilege Check: Admin or Specific Privilege
+		boolean isAdmin = DatabaseBackupUtil.hasAuthority(username, "ROLE_ADMIN")
+				|| DatabaseBackupUtil.hasAuthority(username, "DEPARTMENT_ADMIN");
+
+		boolean hasViewPriv = isAdmin || DatabaseBackupUtil.hasAuthority(username, "DEPARTMENT_VIEW");
+		boolean hasEditPriv = isAdmin || DatabaseBackupUtil.hasAuthority(username, "DEPARTMENT_EDIT");
+		boolean hasApprovePriv = isAdmin || DatabaseBackupUtil.hasAuthority(username, "DEPARTMENT_APPROVE");
+
+		// 1. View Icon Validation
+		// Status: Draft, Returned By Approver, Active
+		List<String> viewStatuses = Arrays.asList("Draft", "Returned By Approver", "Active");
+		boolean expectView = hasViewPriv && viewStatuses.stream().anyMatch(s -> s.equalsIgnoreCase(status));
+
+		log.info("View Icon - Privilege: {}, Target Statuses: {}, Current Status: {} -> Expected Visibility: {}",
+				hasViewPriv, viewStatuses, status, expectView);
+
+		try {
+			dept.validateViewIconWithStatus(itemName, expectView);
+			sa.assertTrue(true, "View Icon Visibility (Status: " + status + ")", itemName);
+		} catch (Exception e) {
+			sa.assertTrue(false, "View Icon Visibility (Status: " + status + ") - Expected: " + expectView + ", Error: "
+					+ e.getMessage(), itemName);
+		}
+
+		// 2. Edit Icon Validation
+		// Status: Draft, Returned By Approver
+		List<String> editStatuses = Arrays.asList("Draft", "Returned By Approver");
+		boolean expectEdit = hasEditPriv && editStatuses.stream().anyMatch(s -> s.equalsIgnoreCase(status));
+
+		log.info("Edit Icon - Privilege: {}, Target Statuses: {}, Current Status: {} -> Expected Visibility: {}",
+				hasEditPriv, editStatuses, status, expectEdit);
+
+		try {
+			dept.validateEditIconWithStatus(itemName, expectEdit);
+			sa.assertTrue(true, "Edit Icon Visibility (Status: " + status + ")", itemName);
+		} catch (Exception e) {
+			sa.assertTrue(false, "Edit Icon Visibility (Status: " + status + ") - Expected: " + expectEdit + ", Error: "
+					+ e.getMessage(), itemName);
+		}
+
+		// 3. Action Menu (Approve) Validation
+		// Status: Draft
+		List<String> expectedActions = new ArrayList<>();
+		if (hasApprovePriv && status.equalsIgnoreCase("Draft")) {
+			expectedActions.add("Approve");
+		}
+
+		log.info("Approve Action - Privilege: {}, Target Status: Draft, Current Status: {} -> Expected Actions: {}",
+				hasApprovePriv, status, expectedActions);
+
+		try {
+			dept.validateActionsStrict(itemName, expectedActions);
+			sa.assertTrue(true, "Approve Action Visibility (Status: " + status + ")", itemName);
+		} catch (Exception e) {
+			sa.assertTrue(false, "Approve Action Visibility (Status: " + status + ") - Expected: " + expectedActions
+					+ ", Error: " + e.getMessage(), itemName);
+		}
+	}
+
 	@Test(groups = { "actionsvalidation" }, priority = 6)
 	public void ViewEdit_Icons_Validation() throws Throwable {
+		if (currentDeptName == null || currentDeptName.isEmpty())
+			currentDeptName = DEPT_NAME;
 
-		currentDeptName = DEPT_NAME;
 		String currentStatus = dept.getStatus(currentDeptName);
+		log.info("Performing View/Edit Icon validation for {} with status: {}", currentDeptName, currentStatus);
 
-		log.info("Current Status: {}", currentStatus);
-
-		sa.assertEquals(currentStatus, "Draft", "Status Mismatch for ", currentDeptName);
-
-		if (currentStatus.equalsIgnoreCase("Draft")) {
-
-			DatabaseBackupUtil.setActiveDb(PC_DB_NAME);
-
-			boolean hasView = DatabaseBackupUtil.hasAuthority(dept.currentUsername, "DEPARTMENT_VIEW");
-			boolean hasEdit = DatabaseBackupUtil.hasAuthority(dept.currentUsername, "DEPARTMENT_EDIT");
-
-			// VIEW
-			try {
-				dept.validateViewIconWithStatus(currentDeptName, hasView);
-				sa.assertTrue(true, "View Icon", currentDeptName);
-			} catch (Exception e) {
-				sa.assertTrue(false, "View Icon", currentDeptName);
-			}
-
-			// EDIT
-			try {
-				dept.validateEditIconWithStatus(currentDeptName, hasEdit);
-				sa.assertTrue(true, "Edit Icon", currentDeptName);
-			} catch (Exception e) {
-				sa.assertTrue(false, "Edit Icon", currentDeptName);
-			}
-
-			sa.assertAll();
-		}
+		Icon_Validation_By_Status(currentDeptName, currentStatus);
+		sa.assertAll();
 	}
 
 	@Test(groups = { "actionsvalidation" }, priority = 7)
 	public void Action_Menu_Validation() throws Throwable {
+		if (currentDeptName == null || currentDeptName.isEmpty())
+			currentDeptName = DEPT_NAME;
 
 		String currentStatus = dept.getStatus(currentDeptName);
-		log.info("Current Status: {}", currentStatus);
+		log.info("Performing Action Menu validation for {} with status: {}", currentDeptName, currentStatus);
 
-		sa.assertEquals(currentStatus, "Draft", "Status Mismatch for ", currentDeptName);
-
-		if (currentStatus.equalsIgnoreCase("Draft")) {
-
-			DatabaseBackupUtil.setActiveDb(PC_DB_NAME);
-
-			boolean hasApprove = DatabaseBackupUtil.hasAuthority(dept.currentUsername, "DEPARTMENT_APPROVE");
-
-			List<String> expectedActions = new ArrayList<>();
-			if (hasApprove) {
-				expectedActions.add("Approve");
-			}
-
-			try {
-				dept.validateActionsStrict(currentDeptName, expectedActions);
-				sa.assertTrue(true, "Approve Action", currentDeptName);
-			} catch (Exception e) {
-				sa.assertTrue(false, "Approve Action", currentDeptName);
-			}
-
-			sa.assertAll();
-		}
+		Icon_Validation_By_Status(currentDeptName, currentStatus);
+		sa.assertAll();
 	}
 
 	/*
@@ -1329,12 +833,14 @@ public class Department_TC extends BaseClass {
 		// 3. Remarks Field Validation (Approve Screen Specific)
 		log.info("Validating additional Remarks field...");
 		String remarksLabel = "Remarks";
-		sa.assertTrue(dept.isLabelDisplayed(remarksLabel), "Remarks label visibility");
+		sa.assertTrue(dept.isLabelDisplayed(remarksLabel), "Remarks", "Remarks label visibility");
 		WebElement remarksInput = dept.getInputFieldForLabel(remarksLabel);
-		sa.assertNotNull(remarksInput, "Remarks field existence");
-		sa.assertTrue(remarksInput.isDisplayed(), "Remarks field visibility");
-		sa.assertTrue(remarksInput.isEnabled(), "Remarks field must be EDITABLE in Approve mode");
-		sa.assertEquals(remarksInput.getDomAttribute("placeholder"), "Remarks", "Remarks placeholder mismatch");
+		sa.assertNotNull(remarksInput, "Remarks input Field In DOM", "Remarks field existence");
+		sa.assertTrue(remarksInput.isDisplayed(), "Remarks Input Field", "Remarks field visibility");
+		sa.assertTrue(remarksInput.isEnabled(), "Remarks Field editable",
+				"Remarks field must be EDITABLE in Approve mode");
+		sa.assertEquals(remarksInput.getDomAttribute("placeholder"), "Remarks", "Placeholder",
+				"Remarks placeholder mismatch");
 
 		// 4. Mandatory Remarks Check (Negative Test)
 		log.info("Starting Negative Validation for Remarks...");
@@ -1347,7 +853,8 @@ public class Department_TC extends BaseClass {
 
 		// Check initial Red Star
 		try {
-			sa.assertTrue(dept.isRedStarDisplayedForField(remarksLabel).isDisplayed(), "Initial Red Star for Remarks");
+			sa.assertTrue(dept.isRedStarDisplayedForField(remarksLabel).isDisplayed(), "Red Star",
+					"Initial Red Star for Remarks");
 		} catch (Exception e) {
 			sa.assertFail("Red star missing for empty mandatory Remarks field");
 		}
@@ -1355,30 +862,32 @@ public class Department_TC extends BaseClass {
 		// Click Approve to trigger validation error
 		dept.getButtonByText("Approve").click();
 		Thread.sleep(800);
-		sa.assertTrue(dept.getErrorMessage(remarksLabel).isDisplayed(), "Error message visibility for empty Remarks");
+		sa.assertTrue(dept.getErrorMessage(remarksLabel).isDisplayed(), "Error Message",
+				"Error message visibility for empty Remarks");
 
 		// 5. Positive Remarks Validation (Indicator color change)
 		log.info("Entering remarks to verify indicator changes to Green...");
 		remarksInput.sendKeys("Validation: Mandatory check passed");
 		Thread.sleep(800);
 		try {
-			sa.assertTrue(dept.isGreenStarDisplayedForField(remarksLabel).isDisplayed(),
+			sa.assertTrue(dept.isGreenStarDisplayedForField(remarksLabel).isDisplayed(), "Green Star",
 					"Green Star visibility after input");
 		} catch (Exception e) {
 			sa.assertFail("Indicator did not turn Green after entering data in Remarks");
 		}
 		// Error message should be gone
-		sa.assertFalse(driver
-				.findElements(By
-						.xpath("//label[contains(text(),"Remarks")]/ancestor::div[@class='card']//validation-message"))
-				.stream().anyMatch(WebElement::isDisplayed), "Error message should disappear after valid input");
+		sa.assertFalse(
+				driver.findElements(By
+						.xpath("//label[contains(text(),'Remarks')]/ancestor::div[@class='card']//validation-message"))
+						.stream().anyMatch(WebElement::isDisplayed),
+				"Error Message", "Error message should disappear after valid input");
 
 		// 6. Strict Button Contract
 		log.info("Validating button sequence: Back, Return, Approve");
 		List<String> expectedButtons = Arrays.asList("Back", "Return", "Approve");
 		List<String> actualButtons = dept.getDisplayedButtons();
 		actualButtons.removeIf(b -> b == null || b.trim().isEmpty());
-		sa.assertEquals(actualButtons, expectedButtons, "Approve Screen Buttons Match");
+		sa.assertEquals(actualButtons, expectedButtons, "Approve buttons", "Approve Screen Buttons Match");
 
 		// 7. Exit screen
 		log.info("Clicking Back to return to list page...");

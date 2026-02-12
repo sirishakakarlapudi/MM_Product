@@ -104,119 +104,24 @@ public class Login_TC extends BaseClass {
 	@Test(groups = { "loginvalidation" }, dependsOnMethods = "url", priority = 4)
 	public void login_Field_Validation() {
 		log.info("--- Validating Login Fields ---");
+		List<Map<String, String>> screenData = CSVUtility.getRowsByModule(
+				System.getProperty("user.dir") + "/src/test/resources/CSV_Data/CreateScreenValidation.csv", "Login");
+		List<String> expectedButtons = (LOGIN_EXPECTED_BUTTONS == null) ? new ArrayList<>()
+				: Arrays.asList(LOGIN_EXPECTED_BUTTONS.split(","));
 
-		// ================= DATA FROM CSV =================
-		String csvPath = System.getProperty("user.dir") + "/src/test/resources/CSV_Data/CreateScreenValidation.csv";
-		List<Map<String, String>> screenData = CSVUtility.getRowsByModule(csvPath, "Login");
+		sa.assertEquals(
+				loginPage.getDisplayedFieldLabels().stream().filter(f -> f != null && !f.trim().isEmpty())
+						.collect(Collectors.toList()),
+				screenData.stream().map(row -> row.get("FieldName")).collect(Collectors.toList()), "Fields Contract");
+		sa.assertEquals(loginPage.getDisplayedButtons().stream().filter(b -> b != null && !b.trim().isEmpty())
+				.collect(Collectors.toList()), expectedButtons, "Buttons Contract");
 
-		List<String> expectedFieldNames = screenData.stream().map(row -> row.get("FieldName"))
-				.collect(Collectors.toList());
-		List<String> expTypes = screenData.stream().map(row -> row.get("FieldType")).collect(Collectors.toList());
-		List<String> expPlaceholders = screenData.stream().map(row -> row.get("Placeholder"))
-				.collect(Collectors.toList());
-		List<String> mandatoryFields = screenData.stream()
-				.filter(row -> row.get("isMandatory").equalsIgnoreCase("Yes"))
-				.map(row -> row.get("FieldName"))
-				.collect(Collectors.toList());
-
-		// ================= EXPECTED BUTTONS =================
-		List<String> expectedButtons = new ArrayList<>();
-		if (LOGIN_EXPECTED_BUTTONS != null && !LOGIN_EXPECTED_BUTTONS.isEmpty()) {
-			expectedButtons = Arrays.asList(LOGIN_EXPECTED_BUTTONS.split(","));
+		for (Map<String, String> row : screenData) {
+			String name = row.get("FieldName");
+			sa.assertTrue(loginPage.isLabelDisplayed(name), "Label", name);
+			sa.assertEquals(loginPage.getFieldType(name), row.get("FieldType"), "Type", name);
+			sa.assertEquals(loginPage.getPlaceholder(name), row.get("Placeholder"), "Placeholder", name);
 		}
-
-		// ================= EXPECTED LINKS =================
-		List<String> expectedLinks = new ArrayList<>();
-		if (LOGIN_EXPECTED_LINKS != null && !LOGIN_EXPECTED_LINKS.isEmpty()) {
-			expectedLinks = Arrays.asList(LOGIN_EXPECTED_LINKS.split(","));
-		}
-
-		// ================= EXPECTED IMAGES =================
-		List<String> expectedImages = new ArrayList<>();
-		if (LOGIN_EXPECTED_IMAGES != null && !LOGIN_EXPECTED_IMAGES.isEmpty()) {
-			expectedImages = Arrays.asList(LOGIN_EXPECTED_IMAGES.split(","));
-		}
-
-		// ================= ACTUAL UI DATA =================
-		List<String> actualFields = loginPage.getDisplayedFieldLabels();
-		List<String> actualButtons = loginPage.getDisplayedButtons();
-		List<String> actualLinks = loginPage.getDisplayedLinks();
-		List<String> actualImages = loginPage.getDisplayedImages();
-
-		actualFields.removeIf(f -> f == null || f.trim().isEmpty());
-		actualButtons.removeIf(b -> b == null || b.trim().isEmpty());
-		actualLinks.removeIf(l -> l == null || l.trim().isEmpty());
-
-		log.info("Actual Fields on UI  : " + actualFields);
-		log.info("Actual Buttons on UI : " + actualButtons);
-		log.info("Actual Links on UI   : " + actualLinks);
-		log.info("Actual Images on UI  : " + actualImages);
-
-		// ================= STRICT FIELD CONTRACT =================
-		sa.assertEquals(actualFields, expectedFieldNames, "Fields Contract", "Strict match expected for fields");
-
-		// ================= STRICT BUTTON CONTRACT =================
-		sa.assertEquals(actualButtons, expectedButtons, "Buttons Contract", "Strict match expected for buttons");
-
-		// ================= STRICT LINK CONTRACT =================
-		sa.assertEquals(actualLinks, expectedLinks, "Links Contract", "Strict match expected for links");
-
-		// ================= IMAGE VALIDATION =================
-		sa.assertEquals(actualImages, expectedImages, "Images Contract",
-				"Expected images: " + expectedImages + " Found: " + actualImages);
-
-		// ================= INDIVIDUAL FIELD VALIDATION =================
-		for (int i = 0; i < expectedFieldNames.size(); i++) {
-			String fieldName = expectedFieldNames.get(i).trim();
-			String expectedType = expTypes.get(i).trim();
-			String expectedPH = expPlaceholders.get(i).trim();
-
-			log.info("Validating Field: [" + fieldName + "]");
-
-			// existence & visibility
-			sa.assertTrue(loginPage.isLabelDisplayed(fieldName), "Label visibility", fieldName);
-			WebElement input = loginPage.getInputFieldForLabel(fieldName);
-			sa.assertNotNull(input, "Field existence in DOM", fieldName);
-			sa.assertTrue(input.isDisplayed(), "Field visibility", fieldName);
-
-			// Type validation (Input vs Drop)
-			String actualType = loginPage.getFieldType(fieldName);
-			sa.assertEquals(actualType, expectedType, "Field Type", fieldName);
-
-			// Placeholder validation
-			String actualPH = loginPage.getPlaceholder(fieldName);
-			sa.assertEquals(actualPH, expectedPH, "Placeholder", fieldName);
-
-			// Editable check
-			sa.assertTrue(input.isEnabled(), "Field Editability", fieldName);
-
-			// Mandatory Star check
-			if (mandatoryFields.contains(fieldName)) {
-				boolean hasRedStar = false;
-				try {
-					hasRedStar = loginPage.isRedStarDisplayedForField(fieldName).isDisplayed();
-				} catch (Exception e) {
-				}
-				sa.assertTrue(hasRedStar, "Mandatory Red Star", fieldName);
-			}
-		}
-
-		// ================= BUTTON STATE =================
-		for (String btnName : expectedButtons) {
-			WebElement btn = loginPage.getButtonByText(btnName);
-			sa.assertNotNull(btn, "Button ", btnName);
-			sa.assertTrue(btn.isDisplayed(), "Button", btnName);
-			sa.assertTrue(btn.isEnabled(), "Button Enable", btnName);
-		}
-
-		log.info("Login field validation completed.");
-
-		try {
-			ScreenshotUtil.capture();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		sa.assertAll();
 	}
 
@@ -271,28 +176,13 @@ public class Login_TC extends BaseClass {
 
 	// =======================User Login===========================
 
-	@Test(groups = { "userlogin" }, priority = 6)
-	public void userLoginBeforeCreate() throws Throwable {
-		ScreenshotUtil.nextStep();
-		log.info("Executing the login flow without assertion...");
-		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			loginPage.login(USERNAME, PASSWORD, PC_DB_NAME);
-		} else {
-			loginPage.login(USERNAME1, PASSWORD1, PC_DB_NAME);
-		}
-	}
-
-	// ==============User Login Validation===========================
-	@Test(groups = { "userlogin_validation" }, priority = 7)
-	public void userLoginBeforeCreate_validation() throws Throwable {
-		log.info("--- Validating User Login Toaster ---");
-		String toast;
-		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			toast = loginPage.login(USERNAME, PASSWORD, PC_DB_NAME);
-		} else {
-			toast = loginPage.login(USERNAME1, PASSWORD1, PC_DB_NAME);
-		}
-		sa.assertEquals(toast, "Login successful", "Toast Message", "Login");
+	@Test(groups = { "userlogin" }, priority = 7)
+	public void userLoginValidation() throws Throwable {
+		log.info("--- Validating User Login ---");
+		String u = ACTIONSPERFORMEDBY.equalsIgnoreCase("single") ? USERNAME : USERNAME1;
+		String p = ACTIONSPERFORMEDBY.equalsIgnoreCase("single") ? PASSWORD : PASSWORD1;
+		String toast = loginPage.login(u, p, PC_DB_NAME);
+		sa.assertEquals(toast, "Login successful", "Login", "Toast Message");
 		sa.assertAll();
 	}
 

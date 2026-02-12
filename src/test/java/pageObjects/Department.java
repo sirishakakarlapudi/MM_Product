@@ -94,29 +94,24 @@ public class Department extends BasePage {
 		return images;
 	}
 
-	public void validateViewIconWithStatus(String deptName, boolean expectView) throws Exception {
-		validateViewIcon(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button", expectView, deptName);
+	public void validateViewIconWithStatus(String name, boolean exp) throws Exception {
+		validateIcon(exp, "pi-eye", name);
 	}
 
-	public void validateEditIconWithStatus(String deptName, boolean expectEdit) throws Exception {
-		validateEditIcon(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button", expectEdit, deptName);
+	public void validateEditIconWithStatus(String name, boolean exp) throws Exception {
+		validateIcon(exp, "pi-pencil", name);
 	}
 
-	public void validateApproveAction(String deptName) throws Exception {
-		validateActionMenuOptions(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button", "Approve", deptName);
+	public void validateActionsStrict(String name, List<String> expItems) throws Exception {
+		List<String> actual = (List<String>) scanTable("//tbody[@role='rowgroup']/tr",
+				"//span[@class='p-paginator-pages ng-star-inserted']/button", TableActionType.CHECK_MENU, "", false,
+				name);
+		if (!actual.containsAll(expItems) || !expItems.containsAll(actual))
+			throw new RuntimeException("Actions mismatch. Exp: " + expItems + ", Found: " + actual);
 	}
 
-	public void validateActionsStrict(String deptName, List<String> expectedActions) throws Exception {
-		validateActionMenuStrict(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button", expectedActions, deptName);
-	}
-
-	public String getStatus(String deptName) throws Exception {
-		return getItemStatus(page_count, "//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button", deptName);
+	public String getStatus(String name) throws Exception {
+		return super.getStatus(name);
 	}
 
 	// ================= LIST PAGE VALIDATION METHODS =================
@@ -460,66 +455,10 @@ public class Department extends BasePage {
 		}
 	}
 
-	/*
-	 * public void validateEditPage(String expectedName, String expectedDesc) throws
-	 * Exception {
-	 * 
-	 * // log.info("--- Validating Edit Department Page ---"); SoftAssertionUtil
-	 * softAssert = new SoftAssertionUtil();
-	 * 
-	 * // Validate field labels WebElement nameLabel = driver .findElement(By.
-	 * xpath("//label[contains(text(),'Department Name') or contains(text(),'Name')]"
-	 * )); WebElement descLabel = driver.findElement( By.
-	 * xpath("//label[contains(text(),'Department Description') or contains(text(),'Description')]"
-	 * ));
-	 * 
-	 * softAssert.assertTrue(nameLabel.isDisplayed(),
-	 * "Department Name label should be displayed on Edit page");
-	 * log.info("✓ Department Name label is displayed");
-	 * 
-	 * softAssert.assertTrue(descLabel.isDisplayed(),
-	 * "Department Description label should be displayed on Edit page");
-	 * log.info("✓ Department Description label is displayed");
-	 * 
-	 * // Validate buttons WebElement updateButton = driver .findElement(By.
-	 * xpath("//button[contains(text(),'Update') or contains(@class,'update')]"));
-	 * WebElement backButton = driver .findElement(By.
-	 * xpath("//button[contains(text(),'Back') or contains(text(),'Cancel')]"));
-	 * 
-	 * softAssert.assertTrue(updateButton.isDisplayed(),
-	 * "Update button should be displayed on Edit page");
-	 * log.info("✓ Update button is displayed");
-	 * 
-	 * softAssert.assertTrue(backButton.isDisplayed(),
-	 * "Back button should be displayed on Edit page");
-	 * log.info("✓ Back button is displayed");
-	 * 
-	 * // Validate fields are editable softAssert.assertTrue(dept_name.isEnabled(),
-	 * "Department Name field should be editable");
-	 * log.info("✓ Department Name field is editable");
-	 * 
-	 * softAssert.assertTrue(dept_desc.isEnabled(),
-	 * "Department Description field should be editable");
-	 * log.info("✓ Department Description field is editable");
-	 * 
-	 * // Validate pre-filled data String actualName =
-	 * dept_name.getAttribute("value"); String actualDesc =
-	 * dept_desc.getAttribute("value");
-	 * 
-	 * softAssert.assertEquals(actualName, expectedName,
-	 * "Department Name should match the original value");
-	 * log.info("✓ Department Name is pre-filled correctly: {}", actualName);
-	 * 
-	 * softAssert.assertEquals(actualDesc, expectedDesc,
-	 * "Department Description should match the original value");
-	 * log.info("✓ Department Description is pre-filled correctly: {}", actualDesc);
-	 * 
-	 * // Assert all validations softAssert.assertAll();
-	 * log.info("--- Edit Department Page Validation Completed Successfully ---"); }
-	 */
+	
 
-	public List<java.util.Map<String, String>> getUserActivityDetailsUI() {
-		List<java.util.Map<String, String>> uiDetails = new java.util.ArrayList<>();
+	public List<Map<String, String>> getUserActivityDetailsUI() {
+		List<Map<String, String>> uiDetails = new ArrayList<>();
 
 		try {
 			String headingXpath = "//*[normalize-space()='User Activity Details']";

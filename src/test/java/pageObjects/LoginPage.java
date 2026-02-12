@@ -2,6 +2,7 @@ package pageObjects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,10 +20,6 @@ public class LoginPage extends BasePage {
 	WebElement dropdwn_allApps;
 
 	public void click_allAppsdropdown() {
-		dropdwn_allApps.click();
-	}
-
-	public void click_allAppsdropdown(String screenshotname) {
 		dropdwn_allApps.click();
 	}
 
@@ -81,50 +78,18 @@ public class LoginPage extends BasePage {
 		logout.click();
 	}
 
-	public void logout(String screenshotname) {
-		Actions actions = new Actions(driver);
-		actions.moveToElement(logout).perform();
-		logout.click();
-	}
-
 	@FindBy(xpath = "//a")
 	List<WebElement> allLinks;
 
 	public List<String> getDisplayedLinks() {
-		List<String> links = new ArrayList<>();
-		for (WebElement link : allLinks) {
-			if (link.isDisplayed()) {
-				String text = link.getText().trim();
-				if (!text.isEmpty()) {
-					links.add(text);
-				}
-			}
-		}
-		return links;
+		return allLinks.stream().filter(WebElement::isDisplayed).map(e -> e.getText().trim()).filter(t -> !t.isEmpty())
+				.collect(Collectors.toList());
 	}
-
-	@FindBy(xpath = "//div[contains(@class,'sign-up')]//img")
-	List<WebElement> allImages;
 
 	public List<String> getDisplayedImages() {
-		List<String> images = new ArrayList<>();
-		for (WebElement img : allImages) {
-			if (img.isDisplayed()) {
-				String src = img.getAttribute("src");
-				if (src != null && !src.isEmpty()) {
-					String fileName = src.substring(src.lastIndexOf('/') + 1);
-					images.add(fileName);
-				}
-			}
-		}
-		return images;
-	}
-
-	@FindBy(xpath = "//ul[contains(@class,'breadcrumb')]//a[contains(@href,'/home')]")
-	WebElement homeBreadcrumbLink;
-
-	public void HomeBreadcrumbLink() {
-		scrollAndClick(homeBreadcrumbLink);
+		return allImages.stream().filter(WebElement::isDisplayed).map(e -> e.getAttribute("src"))
+				.filter(s -> s != null && !s.isEmpty()).map(s -> s.substring(s.lastIndexOf('/') + 1))
+				.collect(Collectors.toList());
 	}
 
 	@FindBy(xpath = "//h5[normalize-space()='MASTERS']")
@@ -190,15 +155,10 @@ public class LoginPage extends BasePage {
 		return list;
 	}
 
-	public void clickAppByTitle(String appTitle) {
-		try {
-			WebElement item = driver.findElement(By.xpath(
-					"//ul[contains(@class,'dropdown-product-list')]//div[contains(@class,'product-title')][translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='"
-							+ appTitle.toLowerCase() + "']"));
-			waitForElementandClick(item);
-		} catch (Exception e) {
-			log.error("Could not click app by title: " + appTitle + ". Error: " + e.getMessage());
-		}
+	public void clickAppByTitle(String title) {
+		jsClick(wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//ul[contains(@class,'dropdown-product-list')]//div[contains(@class,'product-title')][translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='"
+						+ title.toLowerCase() + "']"))));
 	}
 
 	// ================= USER ACCOUNT / PROFILE LOCATORS =================
@@ -262,38 +222,6 @@ public class LoginPage extends BasePage {
 
 	public String getPrivilegesValue() {
 		return profile_privileges.getAttribute("value");
-	}
-
-	// ================= BREADCRUMB METHODS =================
-
-	@FindBy(xpath = "//ul[contains(@class,'breadcrumb')]//li[contains(@class,'breadcrumb-item')]")
-	List<WebElement> breadcrumbItems;
-
-	public List<String> getBreadcrumbTexts() {
-		List<String> texts = new ArrayList<>();
-		for (WebElement item : breadcrumbItems) {
-			texts.add(item.getText().trim());
-		}
-		return texts;
-	}
-
-	// Alias for compatibility/typo handling in TC
-	public List<String> getBreadcrumbsText() {
-		return getBreadcrumbTexts();
-	}
-
-	@FindBy(xpath = "//ul[contains(@class,'breadcrumb')]//li//i[contains(@class,'be-chevron-right')]")
-	List<WebElement> breadcrumbArrows;
-
-	public List<WebElement> getBreadcrumbArrows() {
-		return breadcrumbArrows;
-	}
-
-	@FindBy(xpath = "//span[contains(@class,'be-home')]")
-	WebElement homeIcon;
-
-	public WebElement getHomeIcon() {
-		return homeIcon;
 	}
 
 	public String getFieldRequiredErrorMessage(String labelName) {

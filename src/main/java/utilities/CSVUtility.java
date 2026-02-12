@@ -96,4 +96,13 @@ public class CSVUtility {
         }
         return expectedActions;
     }
+
+    public static String[] splitAndTrim(String commaSeparated) {
+        if (commaSeparated == null || commaSeparated.isEmpty())
+            return new String[0];
+        String[] parts = commaSeparated.split(",");
+        for (int i = 0; i < parts.length; i++)
+            parts[i] = parts[i].trim();
+        return parts;
+    }
 }
