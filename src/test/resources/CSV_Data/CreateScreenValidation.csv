@@ -1,0 +1,10 @@
+Module,FieldName,FieldType,Placeholder,isMandatory
+Department,Department Name,input,Department Name,Yes
+Department,Description,input,Description,No
+Facility,Facility Name,input,Enter Facility Name,Yes
+Facility,Facility Type,drop,Select Type,Yes
+Facility,Location,input,Enter Location,No
+Security Group,Group Name,input,Enter Group Name,Yes
+Security Group,Permissions,drop,Select Permissions,Yes
+Login,Username,input,Username,Yes
+Login,Password,input,Password,Yes

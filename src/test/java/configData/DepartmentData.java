@@ -36,6 +36,11 @@ public class DepartmentData {
 	public static String EDIT_DEPT_DESC_AFTER_RETURN;
 	public static String APPROVE_REMARKS;
 	public static String CURRENT_CONFIG_NAME;
+	public static String SIDE_NAV_MODULE_MAPPING;
+	public static String EXPECTED_FIELD_NAMES;
+	public static String EXPECTED_FIELD_TYPES;
+	public static String EXPECTED_PLACEHOLDERS;
+	public static String MANDATORY_FIELDS;
 
 	public static void loadProperties(String fileName) {
 		// Ensure we handle potential null or empty fileName
@@ -56,6 +61,8 @@ public class DepartmentData {
 		PC_DB_NAME = loginconfig.get("pc_DB_Name");
 		MASTER_DB_NAME = loginconfig.get("master_DB_Name");
 		MM_DB_NAME = loginconfig.get("mm_DB_Name");
+
+		SIDE_NAV_MODULE_MAPPING = loginconfig.get("side_nav_module_mapping");
 
 		ACTIONSPERFORMEDBY = deptconfig.get("actions_PerformedBy");
 		USERNAME1 = deptconfig.get("username1");
@@ -82,5 +89,10 @@ public class DepartmentData {
 		EDIT_DEPT_NAME_AFTER_RETRUN = deptconfig.get("edit_Dept_Name_After_Return");
 		EDIT_DEPT_DESC_AFTER_RETURN = deptconfig.get("edit_Dept_Desc_After_Return");
 		APPROVE_REMARKS = deptconfig.get("approve_Remarks");
+
+		EXPECTED_FIELD_NAMES = deptconfig.get("expected_field_names");
+		EXPECTED_FIELD_TYPES = deptconfig.get("expected_field_types");
+		EXPECTED_PLACEHOLDERS = deptconfig.get("expected_placeholders");
+		MANDATORY_FIELDS = deptconfig.get("mandatory_fields");
 	}
 }

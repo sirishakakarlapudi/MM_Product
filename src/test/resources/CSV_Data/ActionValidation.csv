@@ -1,0 +1,15 @@
+Module,Status,View,Edit,Delete,Approve,Reject,Activate,Deactivate,Copy,Print
+Department,Draft,Yes,Yes,Yes,No,No,No,No,Yes,No
+Department,Pending Approval,Yes,No,No,Yes,Yes,No,No,No,Yes
+Department,Approved,Yes,No,No,No,No,Yes,No,Yes,Yes
+Department,Active,Yes,Yes,No,No,No,No,Yes,Yes,Yes
+Department,Inactive,Yes,No,No,No,No,Yes,No,No,Yes
+Department,Rejected,Yes,Yes,Yes,No,No,No,No,Yes,No
+Facility,Draft,Yes,Yes,Yes,No,No,No,No,Yes,No
+Facility,Pending Approval,Yes,No,No,Yes,Yes,No,No,No,Yes
+Facility,Approved,Yes,No,No,No,No,Yes,No,Yes,Yes
+Facility,Active,Yes,Yes,No,No,No,No,Yes,Yes,Yes
+Facility,Inactive,Yes,No,No,No,No,Yes,No,No,Yes
+SecurityGroup,Draft,Yes,Yes,Yes,No,No,No,No,No,No
+SecurityGroup,Active,Yes,Yes,No,No,No,No,Yes,No,Yes
+SecurityGroup,Inactive,Yes,No,No,No,No,Yes,No,No,Yes

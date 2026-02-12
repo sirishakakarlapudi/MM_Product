@@ -6,12 +6,9 @@
     <classes>
       <class name="testCasesForOQProjects.Department_TC">
         <methods>
+          <include name="View_Screen_Validation"/>
           <include name="tearDown"/>
-          <include name="moduleClick"/>
-          <include name="Module_Selection_Validation"/>
-          <include name="Creation_Screen_Validation"/>
           <include name="setUp"/>
-          <include name="userLoginBeforeCreate"/>
         </methods>
       </class> <!-- testCasesForOQProjects.Department_TC -->
     </classes>

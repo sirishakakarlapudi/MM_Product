@@ -186,7 +186,7 @@ public class ScreenshotUtil {
             return;
 
         // ⏳ Small delay to ensure UI is settled and loading is truly finished
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         Robot robot = new Robot();
         Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());

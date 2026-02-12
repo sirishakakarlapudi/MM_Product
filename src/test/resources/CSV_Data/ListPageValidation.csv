@@ -1,0 +1,18 @@
+Module,Component,ElementName,ElementType,Placeholder,isMandatory,isVisible
+Department,Filter,Department,input,Department,No,Yes
+Department,Filter,Clear,button,,No,Yes
+Department,Filter,Search,button,,No,Yes
+Department,TableHeader,Department Name,column,,No,Yes
+Department,TableHeader,Description,column,,No,Yes
+Department,TableHeader,Remarks,column,,No,Yes
+Department,TableHeader,Status,column,,No,Yes
+Department,TableHeader,Actions,column,,No,Yes
+Department,TopBar,Preferences,dropdown,,No,Yes
+Department,TopBar,PDF,button,,No,Yes
+Department,TopBar,Excel,button,,No,Yes
+Department,TopBar,Create,button,,No,Yes
+Department,Pagination,First,button,,No,Yes
+Department,Pagination,Previous,button,,No,Yes
+Department,Pagination,Next,button,,No,Yes
+Department,Pagination,Last,button,,No,Yes
+Department,Pagination,RowsPerPage,dropdown,,No,Yes

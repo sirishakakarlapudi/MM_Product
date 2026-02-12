@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<parameter name="configFile" value="oqlogin.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Login_TC">
+				<methods>
+					<include name="initialSetUp"/>
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="appsSelect" />
+					<include name="moduleSwitch" />
+					<include name="Profile" />
+					<include name="logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

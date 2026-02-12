@@ -22,6 +22,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
 
 public class BasePage {
@@ -47,7 +48,6 @@ public class BasePage {
 		log.debug("Clicked on the element: {}", element);
 	}
 
-	
 	public String waitForToast() {
 		String message = "";
 		try {
@@ -119,9 +119,7 @@ public class BasePage {
 		// Click using JS (safe for Angular)
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
-	
-	
-	
+
 	public void scrollAndClickWithPageDown(WebElement element) throws InterruptedException {
 
 		Actions actions = new Actions(driver);
@@ -149,9 +147,6 @@ public class BasePage {
 
 	}
 
-	
-	
-
 	/*---------------------Google chrome Search box------------------*/
 
 	@FindBy(name = "q")
@@ -165,7 +160,6 @@ public class BasePage {
 		waitAndSendKeys(searchbox, url);
 	}
 
-	
 	/*-------------------------Methods For UserName, Password, Login--------------------------*/
 
 	@FindBy(css = "input[autocomplete='username']")
@@ -187,6 +181,15 @@ public class BasePage {
 		log.debug("Entered username: {}", username);
 	}
 
+	public void clearLoginFields() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].value = '';", txt_username);
+		js.executeScript("arguments[0].value = '';", txt_password);
+		triggerInputAndChange(txt_username);
+		triggerInputAndChange(txt_password);
+		log.info("Cleared login fields");
+	}
+
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement btn_login;
 
@@ -196,18 +199,14 @@ public class BasePage {
 		log.debug("Clicked on Login button");
 	}
 
-
-	
-
 	/*-------------------Validation for Company Logo-------------------*/
-	
+
 	@FindBy(xpath = "content/images/maithri.png")
 	WebElement maithriLogoImage;
-	
+
 	public WebElement getMaithriLogoImage() {
 		return maithriLogoImage;
 	}
-	
 
 	/*-----------------------------Apps Xpaths----------------------*/
 
@@ -229,59 +228,341 @@ public class BasePage {
 
 	}
 
+	@FindBy(xpath = "//ul[contains(@class,'breadcrumb')]//a[contains(@href,'/home')]")
+	WebElement homeBreadcrumbLink;
+
+	public void HomeBreadcrumbLink() {
+		scrollAndClick(homeBreadcrumbLink);
+	}
 	/*-----------------------Masters and module Validation----------------------*/
 
 	public WebElement getMastersTitle() {
 		return title_masters;
 	}
-	
-	
+
 	@FindBy(xpath = "//div[@class='mt-auto']//h5")
 	List<WebElement> allapps_headings;
 
 	public List<String> getAllAppsDisplayed() {
 
-	    List<String> fields = new ArrayList<>();
+		List<String> fields = new ArrayList<>();
 
-	    for (WebElement allapps : allapps_headings) {
-	        if (allapps.isDisplayed()) {
-	            String text = allapps.getText().trim();
-	            if (!text.isEmpty()) {
-	                fields.add(text);
-	            }
-	        }
-	    }
-	    return fields;
+		for (WebElement allapps : allapps_headings) {
+			if (allapps.isDisplayed()) {
+				String text = allapps.getText().trim();
+				if (!text.isEmpty()) {
+					fields.add(text);
+				}
+			}
+		}
+		return fields;
 	}
-	
-	
+
 	public WebElement getCardByTitle(String title) {
-	    return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/ancestor::div[contains(@class,'card')]"));
+		return driver.findElement(
+				By.xpath("//h5[normalize-space()='" + title + "']/ancestor::div[contains(@class,'card')]"));
 	}
 
 	public WebElement getIcon(String title) {
-	    return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/ancestor::div[contains(@class,'card')]//img"));
+		return driver.findElement(
+				By.xpath("//h5[normalize-space()='" + title + "']/ancestor::div[contains(@class,'card')]//img"));
 	}
 
 	public WebElement getDescription(String title) {
-	    return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/following-sibling::p"));
+		return driver.findElement(By.xpath("//h5[normalize-space()='" + title + "']/following-sibling::p"));
 	}
 
-	public class FieldDetails {
-	    private String description;
-	    private String iconPath;
+	public String currentUsername;
+	public String currentPassword;
 
-	    public FieldDetails(String description, String iconPath) {
-	        this.description = description;
-	        this.iconPath = iconPath;
-	    }
+	public static class FieldDetails {
+		private String description;
+		private String iconPath;
 
-	    public String getDescription() { return description; }
-	    public String getIconPath() { return iconPath; }
+		public FieldDetails(String description, String iconPath) {
+			this.description = description;
+			this.iconPath = iconPath;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public String getIconPath() {
+			return iconPath;
+		}
 	}
 
-	
-	
+	public List<String> getExpectedAppsFromDB(String username, String mapping, String pcDbName) throws Exception {
+		log.info("Checking dynamic app visibility for user: {} with mapping: [{}]", username, mapping);
+		List<String> expectedApps = new ArrayList<>();
+		if (mapping == null || mapping.isEmpty()) {
+			log.warn("App module mapping is empty, returning empty list.");
+			return expectedApps;
+		}
+
+		// mapping format: MASTERS:USER_MANAGEMENT,DEPARTMENT;MM (Material
+		// Management):BILL_OF_MATERIAL,DASHBOARD
+		utilities.DatabaseBackupUtil.setActiveDb(pcDbName);
+
+		// Special Check: If user has ROLE_ADMIN, they see everything
+		if (utilities.DatabaseBackupUtil.hasAuthority(username, "ROLE_ADMIN")) {
+			log.info("User {} has ROLE_ADMIN privilege. Granting access to all mapped modules.", username);
+			String[] modules = mapping.split(";");
+			for (String module : modules) {
+				String moduleName = module.split(":")[0].trim();
+				expectedApps.add(moduleName);
+			}
+			return expectedApps;
+		}
+
+		String[] modules = mapping.split(";");
+		for (String module : modules) {
+			String[] parts = module.split(":");
+			if (parts.length < 2)
+				continue;
+
+			String moduleName = parts[0].trim();
+			String[] privilegePrefixes = parts[1].split(",");
+
+			for (String prefix : privilegePrefixes) {
+				String trimmedPrefix = prefix.trim();
+				if (trimmedPrefix.isEmpty())
+					continue;
+
+				String pattern = "%" + trimmedPrefix + "%";
+				if (utilities.DatabaseBackupUtil.hasAnyAuthorityLike(username, pattern)) {
+					expectedApps.add(moduleName);
+					log.info("✅ User {} has privilege matching [{}], so module [{}] should be displayed.", username,
+							trimmedPrefix, moduleName);
+					break; // Found one matching privilege for this module, move to next module
+				}
+			}
+		}
+		return expectedApps;
+	}
+
+	public List<String> getExpectedSideNavFromDB(String username, String mapping, String pcDbName) throws Exception {
+		log.info("Checking Side-Nav visibility for user: {} ", username);
+		List<String> expectedModules = new ArrayList<>();
+		if (mapping == null || mapping.isEmpty()) {
+			log.warn("Side-Nav mapping is empty, returning empty list.");
+			return expectedModules;
+		}
+
+		utilities.DatabaseBackupUtil.setActiveDb(pcDbName);
+
+		// If user has ROLE_ADMIN, they see everything including Dashboard
+		if (utilities.DatabaseBackupUtil.hasAuthority(username, "ROLE_ADMIN")) {
+			log.info("User {} has ROLE_ADMIN privilege. Granting access to all side-nav modules.", username);
+			expectedModules.add("Dashboard"); // Explicitly add Dashboard for admins
+			String[] modules = mapping.split(";");
+			for (String module : modules) {
+				String[] parts = module.split(":");
+				String mainModule = parts[0].trim();
+				if (!expectedModules.contains(mainModule)) {
+					expectedModules.add(mainModule);
+				}
+				if (parts.length > 2) { // Has submodules
+					String[] subMappings = parts[2].split(",");
+					for (String subMap : subMappings) {
+						String subName = subMap.split("\\|")[0].trim();
+						if (!expectedModules.contains(subName))
+							expectedModules.add(subName);
+					}
+				}
+			}
+			if (!expectedModules.contains("Audits")) {
+				expectedModules.add("Audits");
+			}
+			return expectedModules;
+		}
+
+		String[] modules = mapping.split(";");
+		for (String module : modules) {
+			String[] parts = module.split(":");
+			if (parts.length < 2)
+				continue;
+
+			String mainModule = parts[0].trim();
+			String[] mainPrivs = parts[1].split(",");
+
+			boolean mainVisible = false;
+			List<String> matchedMainPrivs = new ArrayList<>();
+			for (String priv : mainPrivs) {
+				if (utilities.DatabaseBackupUtil.hasAnyAuthorityLike(username, "%" + priv.trim() + "%")) {
+					mainVisible = true;
+					matchedMainPrivs.add(priv.trim());
+				}
+			}
+
+			List<String> visibleSubmodules = new ArrayList<>();
+			if (parts.length > 2) {
+				String[] subMappings = parts[2].split(",");
+				for (String subMap : subMappings) {
+					String[] subParts = subMap.split("\\|");
+					if (subParts.length < 2)
+						continue;
+					String subName = subParts[0].trim();
+					String[] subPrivs = subParts[1].split("&");
+
+					List<String> matchedSubPrivs = new ArrayList<>();
+					boolean subVisible = false;
+					for (String sp : subPrivs) {
+						if (utilities.DatabaseBackupUtil.hasAnyAuthorityLike(username, "%" + sp.trim() + "%")) {
+							subVisible = true;
+							matchedSubPrivs.add(sp.trim());
+						}
+					}
+					if (subVisible) {
+						visibleSubmodules.add(subName);
+						mainVisible = true;
+						log.info("Sub-Module '{}' authorized for user '{}' via privileges: {}", subName, username,
+								matchedSubPrivs);
+					}
+				}
+			}
+
+			if (mainVisible) {
+				if (!matchedMainPrivs.isEmpty()) {
+					log.info("Main-Module '{}' authorized for user '{}' via privileges: {}", mainModule, username,
+							matchedMainPrivs);
+				} else {
+					log.info("Main-Module '{}' authorized for user '{}' because at least one submodule is visible.",
+							mainModule, username);
+				}
+
+				if (!expectedModules.contains(mainModule))
+					expectedModules.add(mainModule);
+
+				for (String sub : visibleSubmodules) {
+					if (!expectedModules.contains(sub))
+						expectedModules.add(sub);
+				}
+			}
+		}
+
+		if (utilities.DatabaseBackupUtil.hasAnyAuthorityLike(username, "%MASTER_AUDIT%")) {
+			log.info("Module 'Audits' authorized for user '{}' via privilege: MASTER_AUDIT", username);
+			if (!expectedModules.contains("Audits")) {
+				expectedModules.add("Audits");
+			}
+		}
+
+		return expectedModules;
+	}
+
+	public List<String> getAllSideNavModulesDisplayed() {
+		List<String> modules = new ArrayList<>();
+		// Capturing text from both <a> and <span> to handle different module structures
+		// in accordion
+		List<WebElement> menuItems = driver
+				.findElements(By.xpath("//ul[@id='accordion']//li//*[self::a or self::span][normalize-space()!='']"));
+		for (WebElement item : menuItems) {
+			if (item.isDisplayed()) {
+				String text = item.getText().trim();
+				if (!text.isEmpty() && !modules.contains(text)) {
+					modules.add(text);
+				}
+			}
+		}
+		log.info("Actual Side-Nav modules visible on UI: {}", modules);
+		return modules;
+	}
+
+	public void expandSideNavModule(String moduleName) {
+		try {
+			log.info("Expanding Side-Nav module: {}", moduleName);
+			// Updated locator to support accordion structure with <a> tags
+			WebElement main = driver
+					.findElement(By.xpath("//ul[@id='accordion']//li[.//a[normalize-space()='" + moduleName
+							+ "']] | //aside//li[.//span[normalize-space()='" + moduleName
+							+ "']] | //nav//li[.//span[normalize-space()='" + moduleName + "']]"));
+
+			String classes = main.getAttribute("class");
+			if (!classes.contains("open") && !classes.contains("active") && !classes.contains("expanded")) {
+				// Click the link associated with the module name to toggle expansion
+				scrollAndClick(main.findElement(By.xpath(".//a[normalize-space()='" + moduleName + "']")));
+				waitForLoading();
+			}
+		} catch (Exception e) {
+			log.warn("Could not expand side-nav module: {}. (Maybe it has no sub-menu or locator mismatch)",
+					moduleName);
+		}
+	}
+
+	/*----------------Helper Methods Moved from TC----------------*/
+
+	public void delUserLoginFromDB(String username, String DbName) throws Exception {
+		DatabaseBackupUtil.setActiveDb(DbName);
+		DatabaseBackupUtil.executeUpdate(
+				"DELETE FROM user_session WHERE user_id = (SELECT id FROM sys_user WHERE login = ?)",
+				username);
+		log.info("Deleted login records for user: {} from DB", username);
+	}
+
+	public String getUserdetailsFromDB(String departmentname, String DbName) throws Exception {
+		DatabaseBackupUtil.setActiveDb(DbName);
+		String sql = "Select r.id, r.name, r.created_by, r.created_date, r.comments, s.name as status_name " +
+				"from request r " +
+				"join status s on r.status_id=s.id " +
+				"where r.name=(Select ps.id::text from product_store ps where name='" + departmentname + "') " +
+				"order by r.id asc";
+		return sql;
+	}
+
+	public String login(String username, String password, String dbname) throws Throwable {
+		delUserLoginFromDB(username, dbname);
+		log.info("Logging in as: {}", username);
+		userNameandPassword(username, password);
+		currentUsername = username;
+		currentPassword = password;
+		ScreenshotUtil.capture();
+		loginButton();
+		String toast = waitForToast();
+		ScreenshotUtil.capture();
+		return toast;
+	}
+
+	public void switchUser(String username, String password, String moduleName, String dbname) throws Throwable {
+		if (username.equalsIgnoreCase(currentUsername)) {
+			log.info("Already logged in as {}, skipping switch.", username);
+			return;
+		}
+
+		log.info("--- Switching User to: {} ---", username);
+		ScreenshotUtil.nextStep();
+		click_profileDropdown();
+		ScreenshotUtil.capture();
+		logout();
+		log.info("Logged out previous user");
+		ScreenshotUtil.capture();
+
+		ScreenshotUtil.nextStep();
+		login(username, password, dbname);
+		click_titleMasters();
+		ScreenshotUtil.capture();
+		masterClick(moduleName);
+		log.info("Navigated back to Master Module: {}", moduleName);
+		waitForLoading();
+		ScreenshotUtil.capture();
+	}
+
+	public String authenticate(String password) throws Throwable {
+		passWord(password);
+		log.info("Entered authentication password");
+		ScreenshotUtil.capture();
+		authenticateButton();
+		log.info("Clicked Authenticate");
+		String toast = waitForToast();
+		waitForLoading();
+		ScreenshotUtil.capture();
+		return toast;
+	}
+
+	/**
+	 * Helper method to login
+	 */
 
 	public WebElement getModuleElement(String moduleName) {
 		return driver.findElement(By.xpath("//a[normalize-space()='" + moduleName + "']"));
@@ -297,10 +578,10 @@ public class BasePage {
 	}
 
 	/*-----------------Validating BreadCrumbs------------------------*/
-	
+
 	@FindBy(css = "ul.breadcrumb li.breadcrumb-item")
 	List<WebElement> breadcrumbItems;
-	
+
 	public List<String> getBreadcrumbsText() {
 		List<String> breadcrumbs = new ArrayList<>();
 		for (WebElement item : breadcrumbItems) {
@@ -309,12 +590,11 @@ public class BasePage {
 			}
 		}
 		return breadcrumbs;
-	}	
-	
-	
+	}
+
 	@FindBy(css = "ul.breadcrumb li.breadcrumb-item a")
 	List<WebElement> breadcrumbLinks;
-	
+
 	public List<String> getBreadcrumbLinks() {
 		List<String> links = new ArrayList<>();
 		for (WebElement item : breadcrumbLinks) {
@@ -324,15 +604,13 @@ public class BasePage {
 		}
 		return links;
 	}
-	
-	
+
 	@FindBy(css = "ul.breadcrumb li.breadcrumb-item i.be-chevron-right")
 	List<WebElement> breadcrumbArrows;
 
 	public List<WebElement> getBreadcrumbArrows() {
 		return breadcrumbArrows;
 	}
-	
 
 	@FindBy(css = "ul.breadcrumb li.breadcrumb-item span.be-home")
 	WebElement homeIcon;
@@ -340,10 +618,7 @@ public class BasePage {
 	public WebElement getHomeIcon() {
 		return homeIcon;
 	}
-	
-	
-	
-	
+
 	/*----------------Profile Drop Down-----------------------*/
 
 	@FindBy(xpath = "//button[@class='profile-btn']/i")
@@ -412,50 +687,48 @@ public class BasePage {
 	public WebElement getCancelButton() {
 		return click_cancel;
 	}
-	
-	
-	
-	
-	
+
 	/*------------Red Stars and Green Stars--------------------*/
-	
-	
-	public WebElement isRedStarDisplayedForField(String fieldname ) {
-		        return driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//span[@class='not-valid']"));
-		
-	}
-	
-	public WebElement isGreenStarDisplayedForField(String fieldname ) {
-        return driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//span[@class='valid']"));
 
-}
-	
-	
+	public WebElement isRedStarDisplayedForField(String fieldname) {
+		return driver.findElement(By.xpath("//label[contains(text(),'" + fieldname
+				+ "')]/ancestor::div[@class='card']//span[contains(@class,'not-valid') or contains(@class,'required-star') or contains(@class,'star')]"));
+
+	}
+
+	public WebElement isGreenStarDisplayedForField(String fieldname) {
+		return driver.findElement(By.xpath("//label[contains(text(),'" + fieldname
+				+ "')]/ancestor::div[@class='card']//span[contains(@class,'valid') and not(contains(@class,'not-valid'))]"));
+
+	}
+
 	/*--------------------Error Messages----------------*/
-	
-	public WebElement getErrorMessage(String fieldname ) {
-        return driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//validation-message"));
 
-}
-		
+	public WebElement getErrorMessage(String fieldname) {
+		return driver.findElement(By.xpath(
+				"//label[contains(text(),'" + fieldname + "')]/ancestor::div[@class='card']//validation-message"));
+
+	}
+
 	/*---------Checking Whether Value is entered in Input field or not----------*/
-	
-	public boolean isNoValueEnteredInField(String fieldname ) {
-        WebElement element=driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//input[@placeholder='"+fieldname+"']"));
-        
-        String classes = element.getAttribute("class");
 
-        return classes.contains("ng-invalid");
-	}
-	
-	public boolean isValueEnteredInField(String fieldname ) {
-        WebElement element=driver.findElement(By.xpath("//label[contains(text(),'"+fieldname+"')]/ancestor::div[@class='card']//input[@placeholder='"+fieldname+"']"));
-        
-        String classes = element.getAttribute("class");
+	public boolean isNoValueEnteredInField(String fieldname) {
+		WebElement element = driver.findElement(By.xpath("//label[contains(text(),'" + fieldname
+				+ "')]/ancestor::div[@class='card']//input"));
 
-        return classes.contains("invalid");
+		String classes = element.getAttribute("class");
+
+		return classes.contains("ng-invalid");
 	}
-	
+
+	public boolean isValueEnteredInField(String fieldname) {
+		WebElement element = driver.findElement(By.xpath("//label[contains(text(),'" + fieldname
+				+ "')]/ancestor::div[@class='card']//input"));
+
+		String classes = element.getAttribute("class");
+
+		return classes.contains("invalid");
+	}
 
 	public void toast() {
 		waitForToast();
@@ -648,6 +921,7 @@ public class BasePage {
 		if (!isFound) {
 			log.error("❌ Item not found after scanning all {} pages: {}", totalPages, Arrays.toString(expectedValues));
 			ScreenshotUtil.takeStepScreenshot("ItemNotFound_" + Arrays.toString(expectedValues));
+			throw new RuntimeException("Item not found in table: " + Arrays.toString(expectedValues));
 		}
 	}
 
@@ -661,73 +935,143 @@ public class BasePage {
 		}
 		return parts;
 	}
-	
-	
-	
-	
+
 	@FindBy(xpath = "//label")
 	List<WebElement> allLabels;
 
 	public List<String> getDisplayedFieldLabels() {
 
-	    List<String> fields = new ArrayList<>();
+		List<String> fields = new ArrayList<>();
 
-	    for (WebElement label : allLabels) {
-	        if (label.isDisplayed()) {
-	            String text = label.getText().trim();
-	            if (!text.isEmpty()) {
-	                fields.add(text);
-	            }
-	        }
-	    }
-	    return fields;
+		for (WebElement label : allLabels) {
+			if (label.isDisplayed()) {
+				String text = label.getText().trim();
+				if (!text.isEmpty()) {
+					fields.add(text);
+				}
+			}
+		}
+		return fields;
 	}
-	
-	
-	
-	
-	
+
 	@FindBy(xpath = "//button")
 	List<WebElement> allButtons;
 
 	public List<String> getDisplayedButtons() {
 
-	    List<String> buttons = new ArrayList<>();
+		List<String> buttons = new ArrayList<>();
 
-	    for (WebElement btn : allButtons) {
-	        if (btn.isDisplayed()) {
-	            String text = btn.getText().trim();
-	            if (!text.isEmpty()) {
-	                buttons.add(text);
-	            }
-	        }
-	    }
-	    return buttons;
+		for (WebElement btn : allButtons) {
+			if (btn.isDisplayed()) {
+				String text = btn.getText().trim();
+				if (!text.isEmpty()) {
+					buttons.add(text);
+				}
+			}
+		}
+		return buttons;
 	}
 
+	public WebElement getButtonByText(String text) {
+		try {
+			String xpath = "//button[translate(normalize-space(.),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')='"
+					+ text.toUpperCase() + "']";
+			return driver.findElement(By.xpath(xpath));
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
+	public boolean isLabelDisplayed(String labelText) {
+		try {
+			return driver.findElement(
+					By.xpath("//label[normalize-space()='" + labelText + "']")).isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public WebElement getInputFieldForLabel(String labelText) {
+		String xpath = "//label[normalize-space()='" + labelText
+				+ "']/ancestor::div[contains(@class,'form-group')]//input";
+		try {
+			return driver.findElement(By.xpath(xpath));
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public String getFieldType(String labelText) {
+		WebElement element = getInputFieldForLabel(labelText);
+		if (element == null)
+			return "unknown";
+
+		String tagName = element.getTagName();
+		String className = element.getAttribute("class");
+
+		if (tagName.equalsIgnoreCase("input")) {
+			return "input";
+		} else if (tagName.equalsIgnoreCase("select") || className.contains("p-dropdown")
+				|| className.contains("dropdown")) {
+			return "drop";
+		}
+		return tagName;
+	}
+
+	public String getPlaceholder(String labelText) {
+		WebElement element = getInputFieldForLabel(labelText);
+		if (element == null)
+			return null;
+
+		// For standard inputs
+		String placeholder = element.getAttribute("placeholder");
+		if (placeholder == null || placeholder.isEmpty()) {
+			// For PrimeNG dropdowns, the placeholder might be in a different attribute or
+			// child
+			placeholder = element.getDomAttribute("placeholder");
+		}
+		return placeholder;
+	}
+
+	public boolean isAuthPopupDisplayed() {
+		try {
+			WebElement popup = driver.findElement(By.xpath(
+					"//div[contains(@class,'modal-content')]//h5[contains(text(),'Authenticate')] | //div[contains(@class,'p-dialog')]//span[contains(text(),'Authenticate')]"));
+			return popup.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
 	/*--------------To Validate Item Actions like View, Edit, Approve------------------*/
 
-	public void validateIcons(List<WebElement> pageCountElements, String rowXpath,
-			String paginatorButtonPrefix, boolean expectView, boolean expectEdit, String... expectedValues)
+	public void validateViewIcon(List<WebElement> pageCountElements, String rowXpath,
+			String paginatorButtonPrefix, boolean expectView, String... expectedValues)
 			throws Exception {
 
 		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
 		List<Integer> targetIndices = getDynamicColumnIndices();
 
+		boolean isFound = false;
+
 		for (int p = 1; p <= totalPages; p++) {
+
+			log.info("🔍 Scanning Page {} of {} for View Icon: {}", p, totalPages, Arrays.toString(expectedValues));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
 			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
 
 			for (int r = 1; r <= rows.size(); r++) {
 				try {
 					boolean rowMatches = true;
+
 					for (int i = 0; i < targetIndices.size(); i++) {
-						WebElement cell = driver
-								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
-						if (i == 0)
+						WebElement cell = driver.findElement(
+								By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+
+						if (i == 0) {
 							((JavascriptExecutor) driver)
 									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						}
+
 						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
 							rowMatches = false;
 							break;
@@ -735,47 +1079,128 @@ public class BasePage {
 					}
 
 					if (rowMatches) {
-						log.info("✅ Item Found for Icon Validation: {} on Row {} of Page {}",
-								Arrays.toString(expectedValues), r, p);
+						isFound = true;
+						log.info("✅ Item Found for View Icon Validation on Row {} of Page {}", r, p);
 
-						// Check View Icon
 						boolean viewDisplayed = false;
 						try {
-							WebElement viewIcon = driver
-									.findElement(By.xpath(rowXpath + "[" + r + "]//i[contains(@class,'pi-eye')]"));
+							WebElement viewIcon = driver.findElement(
+									By.xpath(rowXpath + "[" + r + "]//i[contains(@class,'pi-eye')]"));
 							viewDisplayed = viewIcon.isDisplayed();
 						} catch (NoSuchElementException e) {
+							viewDisplayed = false;
 						}
 
 						if (expectView && !viewDisplayed)
-							throw new RuntimeException("Expected View Icon to be displayed, but it was MISSING.");
+							throw new RuntimeException("❌ Expected View Icon to be displayed, but it was MISSING.");
 						if (!expectView && viewDisplayed)
-							throw new RuntimeException("Expected View Icon to NOT be displayed, but it was PRESENT.");
+							throw new RuntimeException("❌ Expected View Icon to NOT be displayed, but it was PRESENT.");
 
-						// Check Edit Icon
+						log.info("✓ View Icon validated successfully. Expected: {}, Actual: {}",
+								expectView, viewDisplayed);
+						return;
+					}
+
+				} catch (Exception e) {
+					if (e instanceof RuntimeException)
+						throw e; // propagate validation failures
+				}
+			}
+
+			// ⏩ Move to next page if not found
+			if (!isFound && p < totalPages) {
+				String nextBtnXpath = paginatorButtonPrefix + "[" + (p + 1) + "]";
+				log.info("➡️ Moving to Page {}", p + 1);
+
+				WebElement nextPage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nextBtnXpath)));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", nextPage);
+				nextPage.click();
+				Thread.sleep(3000);
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0);");
+			}
+		}
+
+		throw new RuntimeException("❌ Item not found for View Icon validation: " + Arrays.toString(expectedValues));
+	}
+
+	public void validateEditIcon(List<WebElement> pageCountElements, String rowXpath,
+			String paginatorButtonPrefix, boolean expectEdit, String... expectedValues)
+			throws Exception {
+
+		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		List<Integer> targetIndices = getDynamicColumnIndices();
+
+		boolean isFound = false;
+
+		for (int p = 1; p <= totalPages; p++) {
+
+			log.info("🔍 Scanning Page {} of {} for Edit Icon: {}", p, totalPages, Arrays.toString(expectedValues));
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
+
+			for (int r = 1; r <= rows.size(); r++) {
+				try {
+					boolean rowMatches = true;
+
+					for (int i = 0; i < targetIndices.size(); i++) {
+						WebElement cell = driver.findElement(
+								By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+
+						if (i == 0) {
+							((JavascriptExecutor) driver)
+									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						}
+
+						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
+							rowMatches = false;
+							break;
+						}
+					}
+
+					if (rowMatches) {
+						isFound = true;
+
+						log.info("✅ Item Found for Edit Icon Validation on Row {} of Page {}", r, p);
+
 						boolean editDisplayed = false;
 						try {
-							WebElement editIcon = driver
-									.findElement(By.xpath(rowXpath + "[" + r + "]//i[contains(@class,'pi-pencil')]"));
+							WebElement editIcon = driver.findElement(
+									By.xpath(rowXpath + "[" + r + "]//i[contains(@class,'pi-pencil')]"));
 							editDisplayed = editIcon.isDisplayed();
 						} catch (NoSuchElementException e) {
+							editDisplayed = false;
 						}
 
 						if (expectEdit && !editDisplayed)
-							throw new RuntimeException("Expected Edit Icon to be displayed, but it was MISSING.");
+							throw new RuntimeException("❌ Expected Edit Icon to be displayed, but it was MISSING.");
 						if (!expectEdit && editDisplayed)
-							throw new RuntimeException("Expected Edit Icon to NOT be displayed, but it was PRESENT.");
+							throw new RuntimeException("❌ Expected Edit Icon to NOT be displayed, but it was PRESENT.");
 
-						log.info(
-								"✓ Icons validated successfully. View Expected: {}, Actual: {}. Edit Expected: {}, Actual: {}.",
-								expectView, viewDisplayed, expectEdit, editDisplayed);
+						log.info("✓ Edit Icon validated successfully. Expected: {}, Actual: {}",
+								expectEdit, editDisplayed);
 						return;
 					}
+
 				} catch (Exception e) {
+					if (e instanceof RuntimeException)
+						throw e; // throw validation failures
 				}
 			}
+
+			// ⏩ Move to next page if not found
+			if (!isFound && p < totalPages) {
+				String nextBtnXpath = paginatorButtonPrefix + "[" + (p + 1) + "]";
+				log.info("➡️ Moving to Page {}", p + 1);
+
+				WebElement nextPage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nextBtnXpath)));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", nextPage);
+				nextPage.click();
+				Thread.sleep(3000);
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0);");
+			}
 		}
-		throw new RuntimeException("Item not found for icon validation: " + Arrays.toString(expectedValues));
+
+		throw new RuntimeException("❌ Item not found for Edit Icon validation: " + Arrays.toString(expectedValues));
 	}
 
 	public void validateActionMenuOptions(List<WebElement> pageCountElements, String rowXpath,
@@ -833,19 +1258,28 @@ public class BasePage {
 		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
 		List<Integer> targetIndices = getDynamicColumnIndices();
 
+		boolean isFound = false;
+
 		for (int p = 1; p <= totalPages; p++) {
+
+			log.info("🔍 Scanning Page {} of {} for Status of {}", p, totalPages, Arrays.toString(expectedValues));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
+
 			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
 
 			for (int r = 1; r <= rows.size(); r++) {
 				try {
 					boolean rowMatches = true;
+
 					for (int i = 0; i < targetIndices.size(); i++) {
-						WebElement cell = driver
-								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
-						if (i == 0)
+						WebElement cell = driver.findElement(
+								By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+
+						if (i == 0) {
 							((JavascriptExecutor) driver)
 									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						}
+
 						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
 							rowMatches = false;
 							break;
@@ -853,35 +1287,49 @@ public class BasePage {
 					}
 
 					if (rowMatches) {
-						// Find the Status column index
-						List<WebElement> headerCells = driver.findElements(By.xpath("//thead//tr//th"));
-						int statusColumnIndex = -1;
-						for (int h = 0; h < headerCells.size(); h++) {
-							String headerText = headerCells.get(h).getText().trim();
-							if (headerText.equalsIgnoreCase("Status")
-									|| headerText.equalsIgnoreCase("Approval Status")) {
-								statusColumnIndex = h + 1; // XPath is 1-indexed
+						isFound = true;
+
+						// Find Status column index
+						List<WebElement> headers = driver.findElements(By.xpath("//thead//tr//th"));
+						int statusCol = -1;
+
+						for (int h = 0; h < headers.size(); h++) {
+							if (headers.get(h).getText().trim().equalsIgnoreCase("Status")) {
+								statusCol = h + 1;
 								break;
 							}
 						}
 
-						if (statusColumnIndex == -1) {
-							throw new RuntimeException("Status column not found in table headers");
-						}
+						if (statusCol == -1)
+							throw new RuntimeException("Status column not found");
 
-						// Get the status value from the matched row
 						WebElement statusCell = driver
-								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + statusColumnIndex + "]"));
+								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + statusCol + "]"));
+
 						String status = statusCell.getText().trim();
-						log.info("✅ Found item: {} with Status: '{}'", Arrays.toString(expectedValues), status);
+						log.info("✅ Found {} with Status = {}", Arrays.toString(expectedValues), status);
 						return status;
 					}
+
 				} catch (Exception e) {
-					// Continue searching
+					// ignore row-level failures
 				}
 			}
+
+			// ⏩ Go to next page if not found
+			if (!isFound && p < totalPages) {
+				String nextBtnXpath = paginatorButtonPrefix + "[" + (p + 1) + "]";
+				log.info("➡️ Moving to page {}", p + 1);
+
+				WebElement nextPage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nextBtnXpath)));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", nextPage);
+				nextPage.click();
+				Thread.sleep(3000);
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0);");
+			}
 		}
-		throw new RuntimeException("Item not found to retrieve status: " + Arrays.toString(expectedValues));
+
+		throw new RuntimeException("❌ Item not found to fetch status: " + Arrays.toString(expectedValues));
 	}
 
 	public void validateActionMenuStrict(List<WebElement> pageCountElements, String rowXpath,
@@ -889,20 +1337,28 @@ public class BasePage {
 
 		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
 		List<Integer> targetIndices = getDynamicColumnIndices();
+		boolean isFound = false;
 
 		for (int p = 1; p <= totalPages; p++) {
+
+			log.info("🔍 Scanning Page {} of {} for Action Menu: {}", p, totalPages,
+					Arrays.toString(expectedItemValues));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(rowXpath)));
 			List<WebElement> rows = driver.findElements(By.xpath(rowXpath));
 
 			for (int r = 1; r <= rows.size(); r++) {
 				try {
 					boolean rowMatches = true;
+
 					for (int i = 0; i < targetIndices.size(); i++) {
-						WebElement cell = driver
-								.findElement(By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
-						if (i == 0)
+						WebElement cell = driver.findElement(
+								By.xpath(rowXpath + "[" + r + "]/td[" + targetIndices.get(i) + "]"));
+
+						if (i == 0) {
 							((JavascriptExecutor) driver)
 									.executeScript("arguments[0].scrollIntoView({block:'center'});", cell);
+						}
+
 						if (!cell.getText().trim().equalsIgnoreCase(expectedItemValues[i].trim())) {
 							rowMatches = false;
 							break;
@@ -910,19 +1366,20 @@ public class BasePage {
 					}
 
 					if (rowMatches) {
-						log.info("✅ Item Found for Strict Action Validation: {} on Row {} of Page {}",
-								Arrays.toString(expectedItemValues), r, p);
+						isFound = true;
+						log.info("✅ Item Found for Action Validation on Row {} of Page {}", r, p);
+
 						WebElement actionBtn = driver.findElement(
 								By.xpath(rowXpath + "[" + r + "]//span[contains(@class,'pi-ellipsis-v')]"));
 						((JavascriptExecutor) driver).executeScript("arguments[0].click();", actionBtn);
-						Thread.sleep(1500); // Wait for animation
+						Thread.sleep(1500);
 
-						// Get all visible menu items
 						List<WebElement> menuItems = driver.findElements(By.xpath(
 								"//ul[@role='menu']//li//span | //div[contains(@class,'p-menu-overlay')]//li//span"));
-						// Fallback locator if p-menu structure varies, usually it's in a body overlay
-						if (menuItems.isEmpty())
+
+						if (menuItems.isEmpty()) {
 							menuItems = driver.findElements(By.xpath("//body//div//ul//li//a//span"));
+						}
 
 						List<String> actualActions = new ArrayList<>();
 						for (WebElement item : menuItems) {
@@ -931,39 +1388,51 @@ public class BasePage {
 							}
 						}
 
-						// Close menu to be clean
 						((JavascriptExecutor) driver).executeScript("document.body.click()");
 
 						log.info("Actual Actions Found: {}", actualActions);
 						log.info("Expected Actions: {}", expectedActions);
 
-						// 1. Check for Unexpected
+						// Unexpected
 						for (String actual : actualActions) {
 							if (!expectedActions.contains(actual)) {
-								throw new RuntimeException("Unexpected Action Found: '" + actual + "' (Expected only: "
-										+ expectedActions + ")");
+								throw new RuntimeException("Unexpected Action Found: '" + actual +
+										"' (Expected only: " + expectedActions + ")");
 							}
 						}
 
-						// 2. Check for Missing
+						// Missing
 						for (String expected : expectedActions) {
 							if (!actualActions.contains(expected)) {
-								throw new RuntimeException(
-										"Expected Action Missing: '" + expected + "' (Found: " + actualActions + ")");
+								throw new RuntimeException("Expected Action Missing: '" + expected +
+										"' (Found: " + actualActions + ")");
 							}
 						}
 
 						log.info("✓ Strict Action Menu Validation Passed.");
 						return;
 					}
+
 				} catch (Exception e) {
-					// Handle StaleElement etc
-					if (e instanceof RuntimeException && e.getMessage().contains("Action"))
-						throw e; // Rethrow validation errors
+					if (e instanceof RuntimeException)
+						throw e;
 				}
 			}
+
+			// ⏩ Next Page
+			if (!isFound && p < totalPages) {
+				String nextBtnXpath = paginatorButtonPrefix + "[" + (p + 1) + "]";
+				log.info("➡️ Moving to Page {}", p + 1);
+
+				WebElement nextPage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nextBtnXpath)));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", nextPage);
+				nextPage.click();
+				Thread.sleep(3000);
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0);");
+			}
 		}
-		throw new RuntimeException("Item not found for action validation: " + Arrays.toString(expectedItemValues));
+
+		throw new RuntimeException("❌ Item not found for action validation: " + Arrays.toString(expectedItemValues));
 	}
 
 	/*---------------------To click on Actions--------------------*/
@@ -987,7 +1456,7 @@ public class BasePage {
 	public void clickEdit(String... expItemNames) throws Exception {
 		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
 				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-pencil')]", // Merged locators
+				"//*[contains(@class,'be-pencil') or contains(@class,'pi-pencil')]", // Fixed relative locator
 				expItemNames);
 	}
 
@@ -1008,7 +1477,7 @@ public class BasePage {
 	public void clickView(String... expItemNames) throws Exception {
 		performTableActionGeneric(page_count, "//tbody[@role='rowgroup']/tr",
 				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				"//span[contains(@class,'be-pencil')] | //i[contains(@class,'pi-eye')]", // Merged locators
+				"//*[contains(@class,'pi-eye')]", // Fixed: Only View icon, relative locator
 				expItemNames);
 	}
 
@@ -1351,4 +1820,12 @@ public class BasePage {
 		}
 	}
 
+	public String getElementText(String xpath) {
+		try {
+			WebElement element = driver.findElement(By.xpath(xpath));
+			return element.getText().trim();
+		} catch (Exception e) {
+			return "";
+		}
+	}
 }
