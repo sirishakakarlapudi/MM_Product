@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+ 						<!-- Login Test -->
+	<test thread-count="5" name="Login_Test">
+		<parameter name="configFile" value="oqlogin.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Login_TC">
+				<methods>
+					<include name="initialSetUp"/>
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="appsSelect" />
+					<include name="logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	 <!-- Department Test -->
+	 
+	 
+	 <test thread-count="5" name="Department_Test">
+    <parameter name="configFile" value="oqdepartment.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.Department_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_Department"/>
+          <include name="Click_Actions_After_Create"/>
+          <include name="Click_View"/>
+          <include name="Dept_Return_and_Edit"/>
+          <include name="Department_Approve"/>
+          <include name="Search_Filter"/>
+          <include name="Duplication_Check"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+  
+  			 <!-- Security Group Test -->
+  			 
+  			 <test thread-count="5" name="SecurityGroup_Test">
+    <parameter name="configFile" value="oqsecuritygroup.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.SecurityGroup_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_SecurityGroup"/>
+          <include name="Click_Actions_After_Create"/>
+          <include name="Click_View"/>
+          <include name="securitygroup_Return_and_Edit"/>
+          <include name="securitygroup_Approve"/>
+          <include name="securitygroup_Update"/>
+          <include name="securitygroup_Active_Approve"/>
+          <include name="SearchFilter"/>
+          <include name="Duplication_Check"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+  
+   <!-- User Management Test -->
+  <test thread-count="5" name="UserManagement_Test">
+    <parameter name="configFile" value="oqusermanagement.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.UserManagement_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_User"/>
+          <include name="Click_Actions_After_Create"/>
+          <include name="Click_View"/>
+          <include name="Click_Edit"/>
+          <include name="createUserWithBulkData"/>
+          <include name="Duplication_Check"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->

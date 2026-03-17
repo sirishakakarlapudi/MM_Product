@@ -14,29 +14,51 @@ public class CSVUtility {
      * Simplification: Uses a basic comma split.
      * Note: Avoid using commas INSIDE your cell values with this simple version.
      */
-    public static List<Map<String, String>> getRowsByModule(String filePath, String moduleName) {
+    public static List<Map<String, String>> getAllRows(String filePath) {
         List<Map<String, String>> data = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            // 1. Read the first line to get Headers
             String firstLine = br.readLine();
             if (firstLine == null)
                 return data;
             String[] headers = firstLine.split(",");
 
-            // 2. Read each data line
             String line;
             while ((line = br.readLine()) != null) {
-                // Split line by comma
+                String[] values = line.split(",");
+                Map<String, String> row = new HashMap<>();
+
+                for (int i = 0; i < headers.length; i++) {
+                    String cellValue = (i < values.length) ? values[i].trim() : "";
+                    cellValue = cellValue.replace("\"", "");
+                    row.put(headers[i].trim(), cellValue);
+                }
+                data.add(row);
+            }
+        } catch (Exception e) {
+            System.err.println("Error reading CSV: " + e.getMessage());
+        }
+        return data;
+    }
+
+    public static List<Map<String, String>> getRowsByModule(String filePath, String moduleName) {
+        List<Map<String, String>> data = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String firstLine = br.readLine();
+            if (firstLine == null)
+                return data;
+            String[] headers = firstLine.split(",");
+
+            String line;
+            while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
 
-                // 3. If the first column matches our module (e.g., "Department")
                 if (values.length > 0 && values[0].trim().equalsIgnoreCase(moduleName)) {
                     Map<String, String> row = new HashMap<>();
 
                     for (int i = 0; i < headers.length; i++) {
                         String cellValue = (i < values.length) ? values[i].trim() : "";
-                        // Remove quotes if present
                         cellValue = cellValue.replace("\"", "");
                         row.put(headers[i].trim(), cellValue);
                     }

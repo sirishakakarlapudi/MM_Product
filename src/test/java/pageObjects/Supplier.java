@@ -10,69 +10,80 @@ public class Supplier extends BasePage {
 
 	public Supplier(WebDriver driver) {
 		super(driver);
-	
-	}
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='supplierName']")
-	WebElement txt_suppliername;
-	
-	public void supplierName(String suppliername) {
-		txt_suppliername.clear();
-		waitAndSendKeys(txt_suppliername, suppliername);
-	}
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='address']")
-	WebElement txt_address;
-	
-	public void supplierAddress(String supplieraddress) {
-		txt_address.clear();
-		waitAndSendKeys(txt_address, supplieraddress);
-	}
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='state']")
-	WebElement txt_state;
 
-	public void supplierState(String supplierstate) {
-		txt_state.clear();
-		waitAndSendKeys(txt_state, supplierstate);
 	}
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='city']")
-	WebElement txt_city;
-	
-	public void supplierCity(String suppliercity) {
-		txt_city.clear();
-		waitAndSendKeys(txt_city, suppliercity);
+
+	/*
+	 * ========================================================================= [
+	 * LOCATORS ]
+	 * =========================================================================
+	 */
+
+	@FindBy(xpath = "//input[@formcontrolname='supplierName']")
+	protected WebElement supplier_name;
+
+	@FindBy(xpath = "//input[@formcontrolname='address']")
+	protected WebElement supplier_address;
+
+	@FindBy(xpath = "//input[@formcontrolname='state']")
+	protected WebElement supplier_state;
+
+	@FindBy(xpath = "//input[@formcontrolname='city']")
+	protected WebElement supplier_city;
+
+	@FindBy(xpath = "//input[@formcontrolname='pincode']")
+	protected WebElement supplier_pincode;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='regionId']//div/span")
+	protected WebElement supplier_region_drpdwn;
+
+	/*
+	 * ========================================================================= [
+	 * BASIC ACTIONS ]
+	 * =========================================================================
+	 */
+
+	public void supplierName(String name) {
+		if (name != null && !name.trim().isEmpty()) {
+			supplier_name.clear();
+			waitAndSendKeys(supplier_name, name);
+		}
 	}
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='pincode']")
-	WebElement txt_pincode;
-	
-	public void supplierPincode(String supplierpincode) {
-		txt_pincode.clear();
-		waitAndSendKeys(txt_pincode, supplierpincode);
+
+	public void supplierAddress(String address) {
+		if (address != null && !address.trim().isEmpty()) {
+			supplier_address.clear();
+			waitAndSendKeys(supplier_address, address);
+		}
 	}
-	
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='regionId']")
-	WebElement dropdwn_region;
-	
-	public void selSupplierRegion(String supplierregion) {
-	    waitForElementandClick(dropdwn_region);
-	    WebElement supplierregionXpath=  
-	        wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//div[normalize-space()='"+supplierregion+"']")));
-	    supplierregionXpath.click();
+
+	public void supplierState(String state) {
+		if (state != null && !state.trim().isEmpty()) {
+			supplier_state.clear();
+			waitAndSendKeys(supplier_state, state);
+		}
 	}
-	
+
+	public void supplierCity(String city) {
+		if (city != null && !city.trim().isEmpty()) {
+			supplier_city.clear();
+			waitAndSendKeys(supplier_city, city);
+		}
+	}
+
+	public void supplierPincode(String pincode) {
+		if (pincode != null && !pincode.trim().isEmpty()) {
+			supplier_pincode.clear();
+			waitAndSendKeys(supplier_pincode, pincode);
+		}
+	}
+
+	public void selSupplierRegion(String region) {
+		waitForElementandClick(supplier_region_drpdwn);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='regionId']//li[normalize-space()='" + region
+						+ "']")));
+		option.click();
+	}
 
 }

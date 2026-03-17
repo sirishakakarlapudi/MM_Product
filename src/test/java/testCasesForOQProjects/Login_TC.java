@@ -1,5 +1,7 @@
 package testCasesForOQProjects;
 
+
+
 import static configData.LoginPageData.*;
 
 import java.util.ArrayList;
@@ -15,10 +17,8 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.model.ScreenCapture;
-
 import pageObjects.LoginPage;
-import pageObjects.BasePage.FieldDetails;
+
 import testBase.BaseClass;
 import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
@@ -48,6 +48,7 @@ public class Login_TC extends BaseClass {
 			log.info("📸 Processing screenshot template and headers...");
 			ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
 			ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+			ScreenshotUtil.updateHeaderCellText(ACTUALDOCUEMNTNO, EXPECTEDDOCUEMNTNO);
 			ScreenshotUtil.initScript(SCRIPT_NUMBER);
 		}
 
@@ -69,8 +70,6 @@ public class Login_TC extends BaseClass {
 		Assert.assertTrue(loginPage.getSearchBox().isDisplayed(), "Search box is not visible!");
 		log.info("Searching for Application URL: {}", APP_URL);
 		loginPage.searchBox(APP_URL);
-		loginPage.waitForLoading();
-		ScreenshotUtil.capture();
 		log.info("Initial setup completed and screenshot captured");
 	}
 
@@ -78,7 +77,6 @@ public class Login_TC extends BaseClass {
 
 	@Test(groups = { "url" }, priority = 2)
 	public void url() throws Throwable {
-		ScreenshotUtil.nextStep();
 		driver.navigate().to(APP_URL);
 		ScreenshotUtil.capture();
 		log.info("Navigating to App URL: {}", APP_URL);
@@ -92,8 +90,7 @@ public class Login_TC extends BaseClass {
 		driver.navigate().to(APP_URL);
 
 		String currentUrl = driver.getCurrentUrl();
-		sa.assertEquals(currentUrl, APP_URL, "APP_URL",
-				"URL Mismatch! Expected: " + APP_URL + ", but found: " + currentUrl);
+		sa.assertEquals(currentUrl, APP_URL, "APP_URL",currentUrl);
 
 		log.info("Application URL validation completed.");
 		sa.assertAll();
@@ -104,17 +101,15 @@ public class Login_TC extends BaseClass {
 	@Test(groups = { "loginvalidation" }, dependsOnMethods = "url", priority = 4)
 	public void login_Field_Validation() {
 		log.info("--- Validating Login Fields ---");
-		List<Map<String, String>> screenData = CSVUtility.getRowsByModule(
-				System.getProperty("user.dir") + "/src/test/resources/CSV_Data/CreateScreenValidation.csv", "Login");
+		List<Map<String, String>> screenData = CSVUtility.getRowsByModule(CSV_PATH, CSV_MODULE_NAME);
 		List<String> expectedButtons = (LOGIN_EXPECTED_BUTTONS == null) ? new ArrayList<>()
 				: Arrays.asList(LOGIN_EXPECTED_BUTTONS.split(","));
 
 		sa.assertEquals(
-				loginPage.getDisplayedFieldLabels().stream().filter(f -> f != null && !f.trim().isEmpty())
-						.collect(Collectors.toList()),
-				screenData.stream().map(row -> row.get("FieldName")).collect(Collectors.toList()), "Fields Contract");
-		sa.assertEquals(loginPage.getDisplayedButtons().stream().filter(b -> b != null && !b.trim().isEmpty())
-				.collect(Collectors.toList()), expectedButtons, "Buttons Contract");
+				loginPage.getDisplayedFieldLabels(),
+				screenData.stream().map(row -> row.get("FieldName")).collect(Collectors.toList()), "Field",
+				"Fields Contract");
+		sa.assertEquals(loginPage.getDisplayedButtons(), expectedButtons, "Buttons", "Buttons Contract");
 
 		for (Map<String, String> row : screenData) {
 			String name = row.get("FieldName");
@@ -147,7 +142,8 @@ public class Login_TC extends BaseClass {
 			log.info("Testing Login with: [User: '{}', Pass: '{}']", user, pass);
 			loginPage.clearLoginFields();
 
-			String toast = loginPage.login(user, pass, PC_DB_NAME);
+			loginPage.login(user, pass, PC_DB_NAME);
+			String toast = loginPage.waitForToast();
 			log.info("Captured Toast: {}", toast);
 
 			if (user.isEmpty() || pass.isEmpty()) {
@@ -173,6 +169,20 @@ public class Login_TC extends BaseClass {
 		log.info("Negative login validation completed.");
 		sa.assertAll();
 	}
+	
+	
+	@Test(groups = { "userlogin" }, priority = 4)
+	public void userLoginBeforeCreate() throws Throwable {
+		// Clear existing user session from DB to prevent login issues
+		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
+		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
+			loginPage.login(USERNAME, PASSWORD, PC_DB_NAME);
+		} else {
+			loginPage.login(USERNAME1, PASSWORD1, PC_DB_NAME);
+		}
+	}
+
+	
 
 	// =======================User Login===========================
 
@@ -181,7 +191,8 @@ public class Login_TC extends BaseClass {
 		log.info("--- Validating User Login ---");
 		String u = ACTIONSPERFORMEDBY.equalsIgnoreCase("single") ? USERNAME : USERNAME1;
 		String p = ACTIONSPERFORMEDBY.equalsIgnoreCase("single") ? PASSWORD : PASSWORD1;
-		String toast = loginPage.login(u, p, PC_DB_NAME);
+		loginPage.login(u, p, PC_DB_NAME);
+		String toast = loginPage.waitForToast();
 		sa.assertEquals(toast, "Login successful", "Login", "Toast Message");
 		sa.assertAll();
 	}
@@ -194,6 +205,21 @@ public class Login_TC extends BaseClass {
 		ScreenshotUtil.nextStep();
 		loginPage.click_titleMasters();
 		log.info("Clicked on Masters title");
+		
+	}
+	
+	
+	
+	@Test(groups = { "moduleselect" }, priority = 5)
+	public void moduleClick() throws Throwable {
+		log.info("--- Clicking Module ---");
+		ScreenshotUtil.nextStep();
+		loginPage.click_titleMasters();
+		log.info("Clicked on Masters title");
+		ScreenshotUtil.capture();
+		loginPage.masterClick(MASTER_MODULE);
+		log.info("Clicked on Master Module: {}", MASTER_MODULE);
+		loginPage.waitForLoading();
 		ScreenshotUtil.capture();
 	}
 
@@ -201,57 +227,66 @@ public class Login_TC extends BaseClass {
 
 	@Test(groups = { "allappvalidation" }, priority = 8)
 	public void all_Apps_Validation() throws Throwable {
-		log.info("--- Validating Module Selection Elements Based on DB Privileges ---");
 
-		// 1. Get dynamically expected apps from DB
-		List<String> expectedModuleNames = loginPage.getExpectedAppsFromModQuery(loginPage.currentUsername,
-				MASTER_DB_NAME);
-		log.info("Dynamically determined expected modules: {}", expectedModuleNames);
+	    log.info("--- Validating Module Selection Elements Based on DB Privileges ---");
 
-		// 2. Define metadata for all possible modules (to check icons/desc if they
-		// appear)
-		Map<String, FieldDetails> appMetadata = new LinkedHashMap<>();
-		appMetadata.put("MASTERS",
-				new FieldDetails("Central repository for managing core data", "/content/images/settings.png"));
-		appMetadata.put("MM (Material Management)", new FieldDetails(
-				"Manages Inventory, Vendors, Product Cycle, Time & Costing.", "/content/images/mmicon.png"));
+	    // 1. Get dynamically expected apps from DB
+	    List<String> expectedModuleNames =
+	            loginPage.getExpectedAppsFromModQuery(loginPage.currentUsername, MASTER_DB_NAME);
 
-		// 3. Validate each expected module on UI
-		for (String moduleName : expectedModuleNames) {
-			FieldDetails data = appMetadata.get(moduleName);
-			if (data == null) {
-				log.warn("No metadata found for module: {}. Validation may be partial.", moduleName);
-				continue;
-			}
+	    log.info("Dynamically determined expected modules: {}", expectedModuleNames);
 
-			WebElement card = loginPage.getCardByTitle(moduleName);
-			sa.assertNotNull(card, "Module Card", moduleName);
+	    // 2. Validate each expected module on UI using ENUM
+	    for (String moduleName : expectedModuleNames) {
 
-			WebElement icon = loginPage.getIcon(moduleName);
-			sa.assertTrue(icon.isDisplayed(), "Module Icon", moduleName);
-			sa.assertTrue(icon.getAttribute("src").contains(data.getIconPath()), "Icon Path", moduleName);
+	    	AllAppPage module;
+	        try {
+	            module = AllAppPage.fromModuleName(moduleName);
+	        } catch (IllegalArgumentException e) {
+	            log.warn("No enum mapping found for module: {}. Skipping metadata validation.", moduleName);
+	            continue;
+	        }
 
-			WebElement desc = loginPage.getDescription(moduleName);
-			sa.assertEquals(desc.getText().trim(), data.getDescription(), "Module Description", moduleName);
+	        WebElement card = loginPage.getCardByTitle(moduleName);
+	        sa.assertNotNull(card, "Module Card", moduleName);
 
-			log.info("✅ Home card validated: " + moduleName);
-		}
+	        WebElement icon = loginPage.getIcon(moduleName);
+	        sa.assertTrue(icon.isDisplayed(), "Module Icon", moduleName);
+	        sa.assertTrue(icon.getAttribute("src").contains(module.getIconPath()),
+	                "Icon Path",
+	                moduleName
+	        );
 
-		// 4. Strict check: Compare full UI list vs DB expected list
-		List<String> actualApps = loginPage.getAllAppsDisplayed();
-		actualApps.removeIf(f -> f == null || f.trim().isEmpty());
-		log.info("Actual modules on UI: {}", actualApps);
+	        WebElement desc = loginPage.getDescription(moduleName);
+	        sa.assertEquals(
+	                desc.getText().trim(),
+	                module.getDescription(),
+	                "Module Description",
+	                moduleName
+	        );
 
-		sa.assertEquals(actualApps.size(), expectedModuleNames.size(), "Module Count", "Apps on UI");
-		sa.assertTrue(actualApps.containsAll(expectedModuleNames), "Module Presence", "All Expected Apps");
-		sa.assertTrue(expectedModuleNames.containsAll(actualApps), "Module Restriction", "No Extra Apps");
+	        log.info("✅ Home card validated: {}", moduleName);
+	    }
 
-		log.info("Module validation successfully completed.");
-		sa.assertAll();
+	    // 3. Strict check: Compare full UI list vs DB expected list
+	    List<String> actualApps = loginPage.getAllAppsDisplayed();
+	    actualApps.removeIf(f -> f == null || f.trim().isEmpty());
+
+	    log.info("Actual modules on UI: {}", actualApps);
+
+	    sa.assertEquals(actualApps.size(), expectedModuleNames.size(), "Module Count", "Apps on UI");
+	    sa.assertTrue(actualApps.containsAll(expectedModuleNames), "Module Presence", "All Expected Apps");
+	    sa.assertTrue(expectedModuleNames.containsAll(actualApps), "Module Restriction", "No Extra Apps");
+
+	    log.info("Module validation successfully completed.");
+	    sa.assertAll();
 	}
 
-	// ====================Validation of Breadcrumbs and URL after clicking on
-	// Masters====================
+	
+	
+	// ===============Validation of Breadcrumbs and URL after clicking on Masters====================
+	
+	
 	@Test(groups = { "breadcrumbsvalidationonhome" }, priority = 10)
 	public void breadCrumbs_Validation_On_Home() throws Throwable {
 		log.info("--- Validating Breadcrumbs and URL After Clicking Masters ---");
@@ -297,8 +332,7 @@ public class Login_TC extends BaseClass {
 		sa.assertAll();
 	}
 
-	// ==========Validation of Side-Navigation Modules Based on DB
-	// Privileges==========
+	// ==========Validation of Side-Navigation Modules Based on DB Privileges==========
 
 	@Test(groups = { "sidenavvalidation" }, dependsOnMethods = "appsSelect", priority = 11)
 	public void SideNav_Validation() throws Throwable {
@@ -386,64 +420,75 @@ public class Login_TC extends BaseClass {
 	// ============Validation of Header Dropdown for App Switching==============
 	@Test(groups = { "headerdropdownvalidation" }, priority = 13)
 	public void header_App_Dropdown_Validation() throws Throwable {
-		log.info("--- Validating Header Application Dropdown ---");
 
-		// 1. Verify currently selected app in header
-		String selectedTitle = loginPage.getSelectedAppTitle();
-		String selectedIcon = loginPage.getSelectedAppIconSrc();
+	    log.info("--- Validating Header Application Dropdown ---");
 
-		log.info("Header Selected App: {} [Icon: {}]", selectedTitle, selectedIcon);
-		// The active title is 'MASTER' but DB might say 'MASTERS'
-		sa.assertTrue(selectedTitle.equalsIgnoreCase("MASTER") || selectedTitle.equalsIgnoreCase("MASTERS"),
-				"Header Title", "Validation");
+	    // 1. Verify currently selected app in header
+	    String selectedTitle = loginPage.getSelectedAppTitle();
+	    String selectedIcon = loginPage.getSelectedAppIconSrc();
 
-		// 2. Click dropdown to see all apps
-		loginPage.click_allAppsdropdown();
-		Thread.sleep(500); // Wait for dropdown animation
-		loginPage.waitForLoading();
+	    log.info("Header Selected App: {} [Icon: {}]", selectedTitle, selectedIcon);
 
-		// 3. Get expected apps from DB for comparison
-		List<String> expectedModuleNames = loginPage.getExpectedAppsFromModQuery(loginPage.currentUsername,
-				MASTER_DB_NAME);
+	    AppHeader selectedModule = AppHeader.fromModuleName(selectedTitle);
+	    sa.assertNotNull(selectedModule, "Selected Header App", selectedTitle);
 
-		// 4. Define metadata for validation (Title, Description, Icon) - matching DB
-		// naming
-		Map<String, FieldDetails> appMetadata = new LinkedHashMap<>();
-		appMetadata.put("MASTERS", new FieldDetails("Masters creation of all..", "qmsicon.png"));
-		appMetadata.put("MM (Material Management)",
-				new FieldDetails("Manages Inventory, Vendors, Pro...", "mmicon.png"));
+	    // 2. Open dropdown
+	    loginPage.click_allAppsdropdown();
+	    loginPage.waitForLoading();
 
-		// 5. Get actual apps from UI dropdown
-		List<LoginPage.AppDropdownDetails> actualDropdownApps = loginPage.getAppDropdownDetails();
-		log.info("Actual Apps in Header Dropdown: {}", actualDropdownApps);
+	    // 3. Expected apps from DB
+	    List<String> expectedModuleNames =
+	            loginPage.getExpectedAppsFromModQuery(loginPage.currentUsername, MASTER_DB_NAME);
 
-		// 6. Validate presence and details
-		for (String expectedName : expectedModuleNames) {
-			// Find matching app in dropdown by partial/starts-with (handles MASTERS vs
-			// MASTER)
-			LoginPage.AppDropdownDetails actualApp = actualDropdownApps.stream()
-					.filter(a -> expectedName.toUpperCase().startsWith(a.title.toUpperCase())
-							|| a.title.toUpperCase().startsWith(expectedName.toUpperCase().split(" ")[0]))
-					.findFirst().orElse(null);
+	    // 4. Actual dropdown apps from UI
+	    List<LoginPage.AppDropdownDetails> actualDropdownApps =
+	            loginPage.getAppDropdownDetails();
 
-			sa.assertNotNull(actualApp, "App Dropdown Presence", expectedName);
+	    log.info("Actual Apps in Header Dropdown: {}", actualDropdownApps);
 
-			if (actualApp != null) {
-				FieldDetails meta = appMetadata.get(expectedName);
-				if (meta != null) {
-					sa.assertEquals(actualApp.description, meta.getDescription(), "App Description", expectedName);
-					sa.assertTrue(actualApp.iconSrc.contains(meta.getIconPath()), "App Icon Path", expectedName);
-				}
-			}
-		}
+	    // 5. Validate each expected module
+	    for (String expectedName : expectedModuleNames) {
 
-		// 7. Strict count check
-		sa.assertEquals(actualDropdownApps.size(), expectedModuleNames.size(), "Dropdown App Count", "Exact match");
+	    	AppHeader expectedModule = AppHeader.fromModuleName(expectedName);
 
-		log.info("Header application dropdown validation completed.");
-		loginPage.click_allAppsdropdown();
-		sa.assertAll();
+	        LoginPage.AppDropdownDetails actualApp =
+	                actualDropdownApps.stream()
+	                        .filter(a ->
+	                        AppHeader.fromModuleName(a.title) == expectedModule)
+	                        .findFirst()
+	                        .orElse(null);
+
+	        sa.assertNotNull(actualApp, "App Dropdown Presence", expectedName);
+
+	        if (actualApp != null) {
+	            sa.assertEquals(
+	                    actualApp.description,
+	                    expectedModule.getDescription(),
+	                    "App Description",
+	                    expectedName
+	            );
+
+	            sa.assertTrue(
+	                    actualApp.iconSrc.contains(expectedModule.getIconPath()),
+	                    "App Icon Path",
+	                    expectedName
+	            );
+	        }
+	    }
+
+	    // 6. Strict count check
+	    sa.assertEquals(
+	            actualDropdownApps.size(),
+	            expectedModuleNames.size(),
+	            "Dropdown App Count",
+	            "Exact match"
+	    );
+
+	    log.info("Header application dropdown validation completed.");
+	    loginPage.click_allAppsdropdown();
+	    sa.assertAll();
 	}
+
 	// ===============Validation of App Switcher Confirmation Popup==========
 
 	@Test(groups = { "switcherconfirmation" }, priority = 14)
@@ -506,8 +551,7 @@ public class Login_TC extends BaseClass {
 
 	}
 
-	// ====================Validation of User Profile Page and its
-	// fields====================
+	// ====================Validation of User Profile Page and its fields====================
 	@Test(groups = { "profilevalidation" }, priority = 16)
 	public void Profile_Validation() throws Throwable {
 		log.info("--- Validating User Profile Page ---");
@@ -579,15 +623,18 @@ public class Login_TC extends BaseClass {
 	}
 
 	// =============Logout===========================
-	@Test(groups = { "Logout" }, dependsOnMethods = "appsSelect", priority = 17)
+	@Test(groups = { "Logout" }, priority = 17)
 	public void logout() throws Throwable {
 		log.info("--- Executing Final Logout ---");
 		ScreenshotUtil.nextStep();
 		loginPage.click_profileDropdown();
 		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
 		loginPage.logout();
 		log.info("Clicked logout button");
 		loginPage.waitForToast();
+		ScreenshotUtil.capture();
+		loginPage.waitForLoading();
 		ScreenshotUtil.capture();
 		log.info("--- Department Test Case Execution Finished ---");
 	}

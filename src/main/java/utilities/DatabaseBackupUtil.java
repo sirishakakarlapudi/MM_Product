@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
@@ -100,7 +102,7 @@ public class DatabaseBackupUtil {
         return connection;
     }
 
-    public static boolean hasAuthority(String username, String authority) throws Exception {
+    public static boolean hasAuthority(String username, String... authorities) throws Exception {
         Connection con = getConnection();
         String sql = "SELECT COUNT(*) " +
                 "FROM sys_user_authority " +
@@ -109,7 +111,9 @@ public class DatabaseBackupUtil {
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, username);
-            ps.setString(2, authority);
+            for (int i = 0; i < authorities.length; i++) {
+                ps.setString(i + 2, authorities[i]);
+            }
 
             try (ResultSet rs = ps.executeQuery()) {
                 rs.next();
@@ -168,7 +172,7 @@ public class DatabaseBackupUtil {
         return results;
     }
 
-    public static List<java.util.Map<String, String>> getRowsFromDB(String sql, String... params) throws Exception {
+    public static List<Map<String, String>> getRowsFromDB(String sql, String... params) throws Exception {
         Connection con = getConnection();
         List<java.util.Map<String, String>> results = new ArrayList<>();
         try (PreparedStatement ps = con.prepareStatement(sql)) {

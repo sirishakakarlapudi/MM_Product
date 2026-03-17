@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageObjects.SecurityGroup;
 import utilities.DataProviders;
 import utilities.departmentData;
-import utilities.securitygroupData;
+import utilities.securitygroupBulkData;
 
 public class SecurityGroup_Bulk extends BaseClassBulk {
 	SecurityGroup securitygroup;
@@ -41,8 +41,8 @@ public class SecurityGroup_Bulk extends BaseClassBulk {
 
 	}
 
-	@Test(priority = 5, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true)
-	public void createSecurityGroupWithBulkData(securitygroupData sgdata) throws Throwable {
+	@Test(priority = 5, dataProvider = "SecurityGroupFullOQData", dataProviderClass = DataProviders.class, singleThreaded = true)
+	public void createSecurityGroupWithBulkData(securitygroupBulkData sgdata) throws Throwable {
 		String sgname = sgdata.getSgName();
 		String sgdesc = sgdata.getSgDesc();
 		String module = sgdata.getModule();
@@ -68,7 +68,7 @@ public class SecurityGroup_Bulk extends BaseClassBulk {
 	
 
 	@Test(priority = 6, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true)
-	public void BeforeApproveeditDepartment(securitygroupData sgdata) throws Exception {
+	public void BeforeApproveeditDepartment(securitygroupBulkData sgdata) throws Exception {
 		String sgname = sgdata.getSgName();
 		String beforeappeditsgname = sgdata.get_BeforeAppEditSgName();
 		String beforeappeditsgdesc = sgdata.get_BeforeAppEditSgDesc();
@@ -108,7 +108,7 @@ System.out.println("Editing Security Group: " + sgname);
 	
 	
 	@Test(priority = 7, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true)
-	public void approveOrReturnDepartment(securitygroupData sgdata) throws Exception {
+	public void approveOrReturnDepartment(securitygroupBulkData sgdata) throws Exception {
 		
 		String approvals = sgdata.getApprovals();
 		String sgname = sgdata.getSgName();
@@ -154,7 +154,7 @@ System.out.println("Editing Security Group: " + sgname);
 	}
 	
 	@Test(priority = 8, dataProvider = "SecurityGroupFullData", dataProviderClass =DataProviders.class, singleThreaded = true) 
-	  public void editDepartment(securitygroupData sgdata)throws Exception { 
+	  public void editDepartment(securitygroupBulkData sgdata)throws Exception { 
 		String sgname = sgdata.getSgName();
 		String editsgname = sgdata.getEditSgName();
 		String editsgdesc = sgdata.getEditSgDesc();
@@ -196,8 +196,8 @@ System.out.println("Editing Security Group: " + sgname);
 	
 	
 	
-	 @Test(priority = 9, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true) 
-	  public void finalApprovalDepartment(securitygroupData sgdata) throws Exception { 
+	 @Test(priority = 9, dataProvider = "SecurityGroupOQData", dataProviderClass = DataProviders.class, singleThreaded = true) 
+	  public void finalApprovalDepartment(securitygroupBulkData sgdata) throws Exception { 
 		 String sgname = sgdata.getSgName();
 			String editsgname = sgdata.getEditSgName();
 			 String approvals= sgdata.getApprovals();
@@ -230,7 +230,7 @@ System.out.println("Editing Security Group: " + sgname);
 	 
 	 @Test(priority = 10, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true)
 	 
-	 public void updatePrivilegesAfterActive(securitygroupData sgdata) throws Throwable {
+	 public void updatePrivilegesAfterActive(securitygroupBulkData sgdata) throws Throwable {
 		 String sgname = sgdata.getSgName();
             String updateprivileges = sgdata.getUpdatePrivileges();
              String updateapprovals= sgdata.getUpdateApprovals();
@@ -261,7 +261,7 @@ System.out.println("Editing Security Group: " + sgname);
 	 }
 	 
       @Test(priority = 11, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true)
-      public void editafterUpdatePrivileges(securitygroupData sgdata) throws Exception {
+      public void editafterUpdatePrivileges(securitygroupBulkData sgdata) throws Exception {
     	              String sgname = sgdata.getSgName();
     	              String afterupdateeditprivileges = sgdata.getAfterUpdateEditPrivileges();
                       String editsgname = sgdata.getEditSgName();
@@ -288,7 +288,7 @@ System.out.println("Editing Security Group: " + sgname);
       
       
       @Test(priority = 12, dataProvider = "SecurityGroupFullData", dataProviderClass = DataProviders.class, singleThreaded = true)
-      public void approveOrReturnUpdatedPrivileges(securitygroupData sgdata) throws Exception {
+      public void approveOrReturnUpdatedPrivileges(securitygroupBulkData sgdata) throws Exception {
     	      	  String sgname = sgdata.getSgName();
     	      	       	          String updateapprovals= sgdata.getUpdateApprovals();
                     String editsgname = sgdata.getEditSgName();

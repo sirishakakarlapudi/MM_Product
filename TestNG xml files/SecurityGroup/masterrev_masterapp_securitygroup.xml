@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <parameter name="configFile" value="masterrev_masterapp.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.SecurityGroup_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="createSecurityGroupWithBulkData"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

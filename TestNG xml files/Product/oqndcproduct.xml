@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Combined NDC and Product Suite" preserve-order="true">
+
+	<test thread-count="5" name="NDC Test Part">
+		<parameter name="configFile" value="oqndc.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.NDC_TC">
+				<methods>
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Click_Actions" />
+					
+					<!-- Inactive Flow-->
+					<include name="Click_Inactive_1" />
+					<include name="ndc_Inactive_Review_Reject" />
+					<include name="Click_Inactive_2" />
+					<include name="ndc_Inactive_Review_1" />
+					<include name="ndc_Inactive_Approve_Reject" />
+					<include name="Click_Inactive_3" />
+					<include name="ndc_Inactive_Review_2" />
+					<include name="ndc_Inactive_Approve" />
+					
+					<!-- Active Flow-->
+					<include name="Click_Active_1" />
+					<include name="ndc_Active_Review_Reject" />
+					<include name="Click_Active_2" />
+					<include name="ndc_Active_Review_1" />
+					<include name="ndc_Active_Approve_Reject" />
+					<include name="Click_Active_3" />
+					<include name="ndc_Active_Review_2" />
+					<include name="ndc_Active_Approve" />
+					
+					<include name="Logout" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test thread-count="5" name="Product Test Part">
+		<parameter name="configFile" value="akronproduct.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.AkronProduct_TC">
+				<methods>
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Click_Actions_1" />
+					
+					<!-- Inactive Flow-->
+					<include name="Click_Inactive_1" />
+					<include name="Product_Inactive_Review_Reject" />
+					<include name="Click_Inactive_2" />
+					<include name="Product_Inactive_Review_1" />
+					<include name="Product_Inactive_Approve_Reject" />
+					<include name="Click_Inactive_3" />
+					<include name="Product_Inactive_Review_2" />
+					<include name="Product_Inactive_Approve" />
+					
+					<!-- Active Flow-->
+					<include name="Click_Active_1" />
+					<include name="Product_Active_Review_Reject" />
+					<include name="Click_Active_2" />
+					<include name="Product_Active_Review_1" />
+					<include name="Product_Active_Approve_Reject" />
+					<include name="Click_Active_3" />
+					<include name="Product_Active_Review_2" />
+					<include name="Product_Active_Approve" />
+					
+					<include name="Logout" />
+					<include name="Database_Backup" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

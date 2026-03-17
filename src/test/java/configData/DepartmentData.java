@@ -3,6 +3,7 @@ package configData;
 import utilities.ConfigLoader;
 
 public class DepartmentData {
+	public static String CURRENT_CONFIG_NAME;
 	public static String CHROME_URL;
 	public static String APP_URL;
 	public static String USERNAME;
@@ -17,6 +18,8 @@ public class DepartmentData {
 	public static String PASSWORD2;
 	public static String ACTUALHEADER;
 	public static String EXPECTEDHEADER;
+	public static String ACTUALDOCUEMNTNO;
+	public static String EXPECTEDDOCUEMNTNO;
 	public static String TEMPLATE_PATH;
 	public static String OUTPUT_PATH;
 	public static String SCRIPT_NUMBER;
@@ -35,7 +38,7 @@ public class DepartmentData {
 	public static String EDIT_DEPT_NAME_AFTER_RETRUN;
 	public static String EDIT_DEPT_DESC_AFTER_RETURN;
 	public static String APPROVE_REMARKS;
-	public static String CURRENT_CONFIG_NAME;
+	public static String DUPLICATE_DEPARTMENT_NAME;
 	public static String SIDE_NAV_MODULE_MAPPING;
 	public static String EXPECTED_FIELD_NAMES;
 	public static String EXPECTED_FIELD_TYPES;
@@ -61,7 +64,6 @@ public class DepartmentData {
 		PC_DB_NAME = loginconfig.get("pc_DB_Name");
 		MASTER_DB_NAME = loginconfig.get("master_DB_Name");
 		MM_DB_NAME = loginconfig.get("mm_DB_Name");
-
 		SIDE_NAV_MODULE_MAPPING = loginconfig.get("side_nav_module_mapping");
 
 		ACTIONSPERFORMEDBY = deptconfig.get("actions_PerformedBy");
@@ -71,6 +73,8 @@ public class DepartmentData {
 		PASSWORD2 = deptconfig.get("password2");
 		ACTUALHEADER = deptconfig.get("actualHeader");
 		EXPECTEDHEADER = deptconfig.get("expectedHeader");
+		ACTUALDOCUEMNTNO = deptconfig.get("actualDocumentNo");
+		EXPECTEDDOCUEMNTNO = deptconfig.get("expectedDocumentNo");
 		TEMPLATE_PATH = deptconfig.get("templatePath");
 		OUTPUT_PATH = deptconfig.get("outputPath");
 		SCRIPT_NUMBER = deptconfig.get("script_Number");
@@ -89,6 +93,7 @@ public class DepartmentData {
 		EDIT_DEPT_NAME_AFTER_RETRUN = deptconfig.get("edit_Dept_Name_After_Return");
 		EDIT_DEPT_DESC_AFTER_RETURN = deptconfig.get("edit_Dept_Desc_After_Return");
 		APPROVE_REMARKS = deptconfig.get("approve_Remarks");
+		DUPLICATE_DEPARTMENT_NAME = deptconfig.get("duplicate_Department_Name");
 
 		EXPECTED_FIELD_NAMES = deptconfig.get("expected_field_names");
 		EXPECTED_FIELD_TYPES = deptconfig.get("expected_field_types");

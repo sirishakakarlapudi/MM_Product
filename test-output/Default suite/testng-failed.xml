@@ -3,18 +3,21 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testCasesForOQProjects.Department_TC">
+      <class name="testCasesForOQProjects.UserManagement_TC">
         <methods>
+          <include name="createUserWithBulkData" invocation-numbers="0 1"/>
           <include name="tearDown"/>
-          <include name="Edit_After_Create"/>
           <include name="moduleClick"/>
-          <include name="Department_Approve"/>
-          <include name="url"/>
-          <include name="setUp"/>
-          <include name="userLoginBeforeCreate"/>
+          <include name="Creation_Of_User"/>
           <include name="Logout"/>
+          <include name="Duplication_Check"/>
+          <include name="Click_Actions_After_Create"/>
+          <include name="Click_Edit"/>
+          <include name="Click_View"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- testCasesForOQProjects.Department_TC -->
+      </class> <!-- testCasesForOQProjects.UserManagement_TC -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

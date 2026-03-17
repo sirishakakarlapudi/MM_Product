@@ -9,11 +9,9 @@
         <methods>
     
           <include name="url"/>
-          <include name="Login_Field_Validation"/>
           <include name="userLoginBeforeCreate"/>
-          <include name="Module_Selection_Validation"/>
           <include name="moduleClick"/>
-          <include name="Creation_Screen_Validation"/>
+          <include name="Edit_Screen_Validation"/>
           
         </methods>
       </class>

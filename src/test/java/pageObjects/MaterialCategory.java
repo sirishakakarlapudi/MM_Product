@@ -10,40 +10,50 @@ public class MaterialCategory extends BasePage {
 
 	public MaterialCategory(WebDriver driver) {
 		super(driver);
-		
 	}
-	
-	@FindBy(xpath="//input[@formcontrolname='name']")
-	WebElement txt_materialcategory;
-	
-	public void materialCategoryName(String materialcategory) {
-		txt_materialcategory.clear();
-		waitAndSendKeys(txt_materialcategory, materialcategory);
-	}
-	
-	
-	
-	
+
+	/*
+	 * ========================================================================= [
+	 * LOCATORS ]
+	 * =========================================================================
+	 */
+
+	@FindBy(xpath = "//input[@formcontrolname='name']")
+	protected WebElement material_category_name;
+
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='sampledContainers']")
-	WebElement dropdwn_samplingplan;
+	protected WebElement dropdwn_samplingplan;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='weightedContainers']")
+	protected WebElement dropdwn_weightverificationplan;
+
+	/*
+	 * ========================================================================= [
+	 * BASIC ACTIONS ]
+	 * =========================================================================
+	 */
+
+	public void materialCategoryName(String name) {
+		if (name != null && !name.trim().isEmpty()) {
+			material_category_name.clear();
+			waitAndSendKeys(material_category_name, name);
+		}
+	}
 
 	public void selSamplingPlan(String samplingplan) {
 		waitForElementandClick(dropdwn_samplingplan);
-		WebElement samplingplanXpath =        wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//ng-multiselect-dropdown[@formcontrolname='sampledContainers']//li[normalize-space()='"+samplingplan+"']")));
-		samplingplanXpath.click();
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='sampledContainers']//li[normalize-space()='"
+						+ samplingplan + "']")));
+		option.click();
 	}
-	
-	
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='weightedContainers']")
-	WebElement dropdwn_weightverificationplan;
+
 	public void selWeightVerificationPlan(String weightverificationplan) {
 		waitForElementandClick(dropdwn_weightverificationplan);
-		WebElement weightverificationplanXpath =        wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//ng-multiselect-dropdown[@formcontrolname='weightedContainers']//li[normalize-space()='"+weightverificationplan+"']")));
-		weightverificationplanXpath.click();
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='weightedContainers']//li[normalize-space()='"
+						+ weightverificationplan + "']")));
+		option.click();
 	}
 
 }

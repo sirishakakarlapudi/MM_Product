@@ -10,69 +10,79 @@ public class Manufacturer extends BasePage {
 
 	public Manufacturer(WebDriver driver) {
 		super(driver);
-	
 	}
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='supplierName']")
-	WebElement txt_manufacturename;
-	
-	public void manufacturerName(String manufacturename) {
-		txt_manufacturename.clear();
-		waitAndSendKeys(txt_manufacturename, manufacturename);
-	}
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='address']")
-	WebElement txt_address;
-	
-	public void manufactureAddress(String manufactureaddress) {
-		txt_address.clear();
-		waitAndSendKeys(txt_address, manufactureaddress);
-	}
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='state']")
-	WebElement txt_state;
 
-	public void manufactureState(String manufacturestate) {
-		txt_state.clear();
-		waitAndSendKeys(txt_state, manufacturestate);
+	/*
+	 * ========================================================================= [
+	 * LOCATORS ]
+	 * =========================================================================
+	 */
+
+	@FindBy(xpath = "//input[@formcontrolname='supplierName']")
+	protected WebElement manufacturer_name;
+
+	@FindBy(xpath = "//input[@formcontrolname='address']")
+	protected WebElement manufacturer_address;
+
+	@FindBy(xpath = "//input[@formcontrolname='state']")
+	protected WebElement manufacturer_state;
+
+	@FindBy(xpath = "//input[@formcontrolname='city']")
+	protected WebElement manufacturer_city;
+
+	@FindBy(xpath = "//input[@formcontrolname='pincode']")
+	protected WebElement manufacturer_pincode;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='regionId']//div/span")
+	protected WebElement manufacturer_region_drpdwn;
+
+	/*
+	 * ========================================================================= [
+	 * BASIC ACTIONS ]
+	 * =========================================================================
+	 */
+
+	public void manufacturerName(String name) {
+		if (name != null && !name.trim().isEmpty()) {
+			manufacturer_name.clear();
+			waitAndSendKeys(manufacturer_name, name);
+		}
 	}
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='city']")
-	WebElement txt_city;
-	
-	public void manufactureCity(String manufacturecity) {
-		txt_city.clear();
-		waitAndSendKeys(txt_city, manufacturecity);
+
+	public void manufacturerAddress(String address) {
+		if (address != null && !address.trim().isEmpty()) {
+			manufacturer_address.clear();
+			waitAndSendKeys(manufacturer_address, address);
+		}
 	}
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='pincode']")
-	WebElement txt_pincode;
-	
-	public void manufacturePincode(String manufacturepincode) {
-		txt_pincode.clear();
-		waitAndSendKeys(txt_pincode, manufacturepincode);
+
+	public void manufacturerState(String state) {
+		if (state != null && !state.trim().isEmpty()) {
+			manufacturer_state.clear();
+			waitAndSendKeys(manufacturer_state, state);
+		}
 	}
-	
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='regionId']")
-	WebElement dropdwn_region;
-	
-	public void selManufactureRegion(String manufactureregion) {
-	    waitForElementandClick(dropdwn_region);
-	    WebElement manufactureregionXpath=  
-	        wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//div[normalize-space()='"+manufactureregion+"']")));
-	    manufactureregionXpath.click();
+
+	public void manufacturerCity(String city) {
+		if (city != null && !city.trim().isEmpty()) {
+			manufacturer_city.clear();
+			waitAndSendKeys(manufacturer_city, city);
+		}
 	}
-	
+
+	public void manufacturerPincode(String pincode) {
+		if (pincode != null && !pincode.trim().isEmpty()) {
+			manufacturer_pincode.clear();
+			waitAndSendKeys(manufacturer_pincode, pincode);
+		}
+	}
+
+	public void selManufacturerRegion(String region) {
+		waitForElementandClick(manufacturer_region_drpdwn);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='regionId']//li[normalize-space()='" + region
+						+ "']")));
+		option.click();
+	}
 
 }

@@ -2,6 +2,10 @@
 package testCasesForOQProjects;
 
 import static configData.ChecklistData.*;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -75,7 +79,7 @@ public class Checklist_TC extends BaseClass {
 		// Robust State Check: Determine if the current (latest) row is already a
 		// container (Checked)
 		boolean isContainerActive = false;
-		java.util.List<org.openqa.selenium.WebElement> checkboxes = driver
+		List<WebElement> checkboxes = driver
 				.findElements(org.openqa.selenium.By.xpath("//input[@formcontrolname='isSub']"));
 
 		if (!checkboxes.isEmpty()) {

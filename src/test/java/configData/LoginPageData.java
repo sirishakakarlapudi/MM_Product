@@ -6,6 +6,8 @@ public class LoginPageData {
 
 	public static String CHROME_URL;
 	public static String APP_URL;
+	public static String CSV_PATH;
+	public static String CSV_MODULE_NAME;
 	public static String USERNAME;
 	public static String PASSWORD;
 	public static String PC_DB_NAME;
@@ -14,9 +16,12 @@ public class LoginPageData {
 	public static String ACTIONSPERFORMEDBY;
 	public static String USERNAME1;
 	public static String PASSWORD1;
+	public static String MASTER_MODULE;
 
 	public static String ACTUALHEADER;
 	public static String EXPECTEDHEADER;
+	public static String ACTUALDOCUEMNTNO;
+	public static String EXPECTEDDOCUEMNTNO;
 	public static String TEMPLATE_PATH;
 	public static String OUTPUT_PATH;
 	public static String SCRIPT_NUMBER;
@@ -43,6 +48,8 @@ public class LoginPageData {
 
 		CHROME_URL = loginconfig.get("chrome.url");
 		APP_URL = loginconfig.get("app.url");
+		CSV_PATH = loginconfig.get("csv_Path");
+		CSV_MODULE_NAME = loginconfig.get("csv_Module_Name");
 		USERNAME = loginconfig.get("username");
 		PASSWORD = loginconfig.get("password");
 		PC_DB_NAME = loginconfig.get("pc_DB_Name");
@@ -53,9 +60,12 @@ public class LoginPageData {
 		SIDE_NAV_MODULE_MAPPING = loginconfig.get("side_nav_module_mapping");
 		USERNAME1 = loginconfig.get("username1");
 		PASSWORD1 = loginconfig.get("password1");
+		MASTER_MODULE = loginconfig.get("master_Module");
 
 		ACTUALHEADER = loginconfig.get("actualHeader");
 		EXPECTEDHEADER = loginconfig.get("expectedHeader");
+		ACTUALDOCUEMNTNO = loginconfig.get("actualDocumentNo");
+		EXPECTEDDOCUEMNTNO = loginconfig.get("expectedDocumentNo");
 		TEMPLATE_PATH = loginconfig.get("templatePath");
 		OUTPUT_PATH = loginconfig.get("outputPath");
 		SCRIPT_NUMBER = loginconfig.get("script_Number");

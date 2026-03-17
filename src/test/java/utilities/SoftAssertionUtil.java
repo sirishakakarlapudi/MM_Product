@@ -63,23 +63,30 @@ public class SoftAssertionUtil {
             log.error("❌❌❌ ASSERTION FAILURES DETECTED ❌❌❌");
             log.error("═══════════════════════════════════════════════════════");
 
-            // Print the full error message
+            // Split and clean the error message
             String errorMessage = e.getMessage();
             if (errorMessage != null && !errorMessage.isEmpty()) {
-                // Split by newlines and print each line separately for better readability
-                String[] errorLines = errorMessage.split("\n");
+                String[] rawErrors = errorMessage.split("The following asserts failed:");
+                String actualErrors = rawErrors.length > 1 ? rawErrors[1] : errorMessage;
+
+                String[] errorLines = actualErrors.split("\t");
+                int failureCount = 0;
                 for (String line : errorLines) {
-                    log.error(line);
+                    if (line.trim().isEmpty())
+                        continue;
+                    failureCount++;
+                    log.error("Failure {}: {}", failureCount, line.trim());
                 }
             }
 
             log.error("═══════════════════════════════════════════════════════");
 
-            // Also print to System.out and System.err for Eclipse console visibility
-            System.err.println("\n❌❌❌ ASSERTION FAILURES DETECTED ❌❌❌");
-            System.err.println("═══════════════════════════════════════════════════════");
+            // Also print to System.err for console visibility (interleaving fixed by using
+            // unified log first)
+            String header = "❌❌❌ " + errorMessage.split("\n")[0] + " ❌❌❌";
+            log.error(header);
+            System.err.println("\n" + header);
             System.err.println(errorMessage);
-            System.err.println("═══════════════════════════════════════════════════════\n");
 
             throw e; // Re-throw so TestNG still marks test as FAIL
         }

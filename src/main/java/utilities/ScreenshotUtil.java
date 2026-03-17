@@ -28,6 +28,7 @@ public class ScreenshotUtil {
     private static XWPFDocument templateDoc;
     private static XWPFDocument outputDoc;
     private static String outputPath;
+    private static boolean freezeNextStep = false;
 
     private static class ScreenshotEntry {
         String label;
@@ -49,6 +50,10 @@ public class ScreenshotUtil {
     private static int screenshotCount = 1;
     private static boolean isEnabled = true; // Default to true
 
+    public static boolean isEnabled() {
+        return isEnabled;
+    }
+
     public static void setIsEnabled(boolean enabled) {
         isEnabled = enabled;
         log.info("📸 Screenshot capture is now: " + (enabled ? "ENABLED" : "DISABLED"));
@@ -58,8 +63,32 @@ public class ScreenshotUtil {
      * Initializes the Script prefix (e.g., "4.1") and resets the step counter.
      */
     public static void initScript(String prefix) {
+        if (prefix == null) {
+            log.warn("⚠️ ScreenshotUtil.initScript: prefix is null! Using default: " + currentScriptId);
+            return;
+        }
         currentScriptId = prefix.trim();
+
+        // 🟢 Only reset stepCounter if it's the very first part of a document (no
+        // screenshots yet)
+        if (screenshots.isEmpty()) {
+            stepCounter = 0;
+            log.info("📊 Script initialized: " + currentScriptId + " (Step counter reset to 0)");
+        } else {
+            log.info("📊 Script continued: " + currentScriptId + " (Step counter remains at " + stepCounter + ")");
+        }
+    }
+
+    /**
+     * Completely resets all static state (for use between separate test runs if
+     * needed)
+     */
+    public static void reset() {
+        screenshots.clear();
         stepCounter = 0;
+        screenshotCount = 1;
+        freezeNextStep = false;
+        log.info("♻️ ScreenshotUtil state has been fully reset.");
     }
 
     /**
@@ -67,6 +96,11 @@ public class ScreenshotUtil {
      * and resets the screenshot counter to 01.
      */
     public static void nextStep() {
+
+        if (freezeNextStep) {
+            return; // Step numbering is frozen
+        }
+
         stepCounter++;
         currentStepId = currentScriptId + "." + stepCounter;
         screenshotCount = 1;
@@ -108,6 +142,14 @@ public class ScreenshotUtil {
             return;
         String label = String.format("%02d for step No.%s%s", screenshotCount++, currentStepId, suffix);
         takeStepScreenshot(label);
+    }
+
+    public static void freezeStepNumbering() {
+        freezeNextStep = true;
+    }
+
+    public static void resumeStepNumbering() {
+        freezeNextStep = false;
     }
 
     /**
@@ -215,7 +257,8 @@ public class ScreenshotUtil {
             run.setText("Screenshot - " + entry.label);
 
             ByteArrayInputStream bais = new ByteArrayInputStream(entry.imageBytes);
-            run.addPicture(bais, Document.PICTURE_TYPE_PNG, entry.label + ".png", Units.toEMU(650), Units.toEMU(360));
+            run.addPicture(bais, XWPFDocument.PICTURE_TYPE_PNG, entry.label + ".png", Units.toEMU(650),
+                    Units.toEMU(360));
             bais.close();
         }
 

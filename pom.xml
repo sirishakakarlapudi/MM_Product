@@ -94,6 +94,11 @@
   <artifactId>log4j-slf4j2-impl</artifactId> <!-- ✅ use this for SLF4J 2.0 -->
   <version>2.24.3</version>
 </dependency>
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.7.5</version>
+	</dependency>
 	
 	
 	

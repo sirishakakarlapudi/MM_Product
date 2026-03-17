@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+
+  <test thread-count="5" name="Test">
+    <parameter name="configFile" value="oqakronquickproduct.properties"/>
+    <classes>
+      <class name="testCasesForOQProjects.AkronQuickProduct_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_Product"/>
+          <include name="Click_Actions_For_Review"/>
+          <include name="Click_View"/>
+          <include name="product_Review_Return_and_Edit"/>
+          <include name="productReview"/>
+          <include name="product_Approve_Return_and_Edit_and_Review"/>
+          <include name="productApprove"/>
+          <include name="Duplication_Check"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

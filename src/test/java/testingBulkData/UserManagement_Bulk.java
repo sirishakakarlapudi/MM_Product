@@ -61,8 +61,8 @@ public class UserManagement_Bulk extends BaseClassBulk {
 		userManagement.Create();
 		userManagement.waitForSubmit();
 
-		userManagement.enterEmployeeID(empid);
-		userManagement.enterEmployeeName(empname);
+		userManagement.employeeID(empid);
+		userManagement.employeeName(empname);
 		if (email != null && !email.trim().isEmpty()) {
 			userManagement.email(email);
 		}
@@ -70,7 +70,7 @@ public class UserManagement_Bulk extends BaseClassBulk {
 			userManagement.mobileNumber(mobilenumber);
 		}
 
-		userManagement.empUserName(username);
+		userManagement.userName(username);
 		userManagement.temporaryPassword(temppassword);
 		userManagement.deptSelect(department);
 		userManagement.designation(designation);
@@ -104,17 +104,16 @@ public class UserManagement_Bulk extends BaseClassBulk {
 		String editmodule1 = userdata.getEditModule1();
 		String editmodule2 = userdata.getEditModule2();
 		String editadd = userdata.getEditAdd();
-		
 
 		if (editempname != null && !editempname.trim().isEmpty() || editemail != null && !editemail.trim().isEmpty()
 				|| editmobilenumber != null && !editmobilenumber.trim().isEmpty()
 				|| editdesignation != null && !editdesignation.trim().isEmpty()
 				|| editdepartment != null && !editdepartment.trim().isEmpty()) {
-		
+
 			userManagement.clickEdit(empid);
 			userManagement.waitForSubmit();
 			if (editempname != null && !editempname.trim().isEmpty()) {
-				userManagement.enterEmployeeName(editempname);
+				userManagement.employeeName(editempname);
 			}
 			if (editemail != null && !editemail.trim().isEmpty()) {
 				userManagement.email(editemail);
@@ -134,7 +133,6 @@ public class UserManagement_Bulk extends BaseClassBulk {
 			userManagement.authenticateButton();
 			userManagement.toast();
 			userManagement.waitForPageButton();
-			
 
 		}
 		if (editsecuritygroupname1 != null && !editsecuritygroupname1.trim().isEmpty()
@@ -145,7 +143,7 @@ public class UserManagement_Bulk extends BaseClassBulk {
 			if (editsecuritygroupname1 != null && !editsecuritygroupname1.trim().isEmpty()) {
 				userManagement.sgNameSelect(editmodule1, editsecuritygroupname1);
 			}
-			
+
 			if (editadd != null && !editadd.trim().isEmpty()) {
 				userManagement.clickAdd();
 				userManagement.waitForLoading();
@@ -153,9 +151,10 @@ public class UserManagement_Bulk extends BaseClassBulk {
 				userManagement.sgNameSelect(editsecuritygroupname2);
 				userManagement.waitForLoading();
 			}
-			
+
 			if (editsecuritygroupname2 != null && !editsecuritygroupname2.trim().isEmpty() && editadd == null) {
-                userManagement.sgNameSelect(editmodule2, editsecuritygroupname2);}
+				userManagement.sgNameSelect(editmodule2, editsecuritygroupname2);
+			}
 			userManagement.waitForLoading();
 			userManagement.createSubmit_editUpdate();
 			userManagement.waitForLoading();

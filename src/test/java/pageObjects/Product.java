@@ -14,9 +14,8 @@ public class Product extends BasePage {
 		super(driver);
 
 	}
-	
-	
-	@FindBy (xpath= "//input[@formcontrolname='productName']")
+
+	@FindBy(xpath = "//input[@formcontrolname='productName']")
 	WebElement txt_product;
 
 	public void product(String product) {
@@ -25,34 +24,25 @@ public class Product extends BasePage {
 
 	}
 
-	
-	@FindBy (xpath= "//input[@formcontrolname='productDescription']")
+	@FindBy(xpath = "//input[@formcontrolname='productDescription']")
 	WebElement txt_productdesc;
-
-
 
 	public void productDesc(String productdesc) {
 		txt_productdesc.clear();
 		waitAndSendKeys(txt_productdesc, productdesc);
 
 	}
-	
-	
-	@FindBy (xpath= "//ng-multiselect-dropdown[@formcontrolname='routeCode']//div/span")
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='routeCode']//div/span")
 	List<WebElement> dropdwn_routeCode;
 
 	public void selRouteCode(String routecode) throws Exception {
 		WebElement latestRouteCode = dropdwn_routeCode.get(dropdwn_routeCode.size() - 1);
 		latestRouteCode.click();
-		WebElement routeCodeXpath = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ng-multiselect-dropdown[@formcontrolname='routeCode']//div[contains(@class,'dropdown-list') and not(@hidden)]//li//div[normalize-space()='" + routecode + "']")));
+		WebElement routeCodeXpath = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//ng-multiselect-dropdown[@formcontrolname='routeCode']//div[contains(@class,'dropdown-list') and not(@hidden)]//li//div[normalize-space()='"
+						+ routecode + "']")));
 		routeCodeXpath.click();
 	}
-	
-	
-	@FindBy (xpath="//button[normalize-space()='Add']")
-	WebElement clickAddButton;
 
-	public void clickAddButton() {
-		waitForElementandClick(clickAddButton);
-	}
 }

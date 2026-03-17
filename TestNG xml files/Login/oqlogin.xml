@@ -11,8 +11,6 @@
 					<include name="url" />
 					<include name="userLoginBeforeCreate" />
 					<include name="appsSelect" />
-					<include name="moduleSwitch" />
-					<include name="Profile" />
 					<include name="logout" />
 					<include name="Database_Backup" />
 

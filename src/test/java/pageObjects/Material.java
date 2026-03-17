@@ -9,238 +9,240 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Material extends BasePage {
+
 	public Material(WebDriver driver) {
 		super(driver);
 	}
-	
-	@FindBy(xpath="//input[@formcontrolname='materialName']")
-	WebElement txt_materialname;
 
-	public void materialName(String materialname) {
-		txt_materialname.clear();
-		waitAndSendKeys(txt_materialname, materialname);
+	/*
+	 * ========================================================================= [
+	 * LOCATORS ]
+	 * =========================================================================
+	 */
+
+	@FindBy(xpath = "//input[@formcontrolname='materialName']")
+	protected WebElement material_name;
+
+	@FindBy(xpath = "//input[@formcontrolname='materialCode']")
+	protected WebElement material_code;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='materialCategory']")
+	protected WebElement drpdwn_material_category;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='typeOfMaterial']")
+	protected WebElement drpdwn_type_of_material;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='uomId']")
+	protected WebElement drpdwn_uom;
+
+	@FindBy(xpath = "//input[@formcontrolname='storageCondition']")
+	protected WebElement material_storage_condition;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='storageLocation']")
+	protected WebElement drpdwn_storage_location;
+
+	// Checkboxes for various activities
+	@FindBy(xpath = "//p-checkbox[@inputid='isSamplingRequired1']")
+	protected WebElement chk_sampling_required_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isSamplingRequired2']")
+	protected WebElement chk_sampling_required_no;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isDesCheckBox1']")
+	protected WebElement chk_dispensing_required_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isDesCheckBox2']")
+	protected WebElement chk_dispensing_required_no;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isSampleCheckBox1']")
+	protected WebElement chk_mixed_analysis_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isSampleCheckBox2']")
+	protected WebElement chk_mixed_analysis_no;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isWeightCheckBox1']")
+	protected WebElement chk_weight_verification_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isWeightCheckBox2']")
+	protected WebElement chk_weight_verification_no;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isReceivingCheckBox1']")
+	protected WebElement chk_receiving_bay_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isReceivingCheckBox2']")
+	protected WebElement chk_receiving_bay_no;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isCleaningCheckBox1']")
+	protected WebElement chk_cleaning_agent_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='isCleaningCheckBox2']")
+	protected WebElement chk_cleaning_agent_no;
+
+	@FindBy(xpath = "//p-autocomplete[@formcontrolname='supplierName']//div//div/span")
+	protected WebElement supplier_name_input;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='ismanufacturerCheckBox1']")
+	protected WebElement chk_manufacturer_yes;
+
+	@FindBy(xpath = "//p-checkbox[@inputid='ismanufacturerCheckBox2']")
+	protected WebElement chk_manufacturer_no;
+
+	@FindBy(xpath = "//p-autocomplete[@formcontrolname='manufactureName']//div//div/span")
+	protected WebElement manufacturer_name_input;
+
+	@FindBy(xpath = "//button[normalize-space()='Save Details']")
+	protected WebElement btn_save_details;
+
+	@FindBy(xpath = "//button[normalize-space()='Yes']")
+	protected WebElement btn_dialog_yes;
+
+	@FindBy(xpath = "//button[normalize-space()='No']")
+	protected WebElement btn_dialog_no;
+
+	@FindBy(xpath = "//p-autocomplete[@formcontrolname='supplierName']//chevrondownicon")
+	protected WebElement supplier_arrow;
+
+	@FindBy(xpath = "//p-autocomplete[@formcontrolname='manufactureName']//chevrondownicon")
+	protected WebElement manufacturer_arrow;
+
+	/*
+	 * ========================================================================= [
+	 * BASIC ACTIONS ]
+	 * =========================================================================
+	 */
+
+	public void materialName(String name) {
+		if (name != null) {
+			material_name.clear();
+			waitAndSendKeys(material_name, name);
+		}
 	}
-	
-	
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='materialCode']")
-	WebElement txt_materialcode;
 
-	public void materialCode(String materialcode) {
-		txt_materialcode.clear();
-		waitAndSendKeys(txt_materialcode, materialcode);
+	public void materialCode(String code) {
+		if (code != null) {
+			material_code.clear();
+			waitAndSendKeys(material_code, code);
+		}
 	}
 
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='materialCategory']")
-	WebElement dropdwn_materialcategory;
-
-	public void selMaterialCategory(String materialcategory) {
-		waitForElementandClick(dropdwn_materialcategory);
-		WebElement samplingplanXpath =        wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//ng-multiselect-dropdown[@formcontrolname='materialCategory']//li[normalize-space()='"+materialcategory+"']")));
-		samplingplanXpath.click();
+	public void selMaterialCategory(String category) {
+		waitForElementandClick(drpdwn_material_category);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='materialCategory']//li[normalize-space()='"
+						+ category + "']")));
+		option.click();
 	}
-	
-	
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='typeOfMaterial']")
-	WebElement dropdwn_typeofmaterial;
 
-	public void selTypeOfMaterial(String typeofmaterial) {
-		waitForElementandClick(dropdwn_typeofmaterial);
-		WebElement typeofmaterialXpath = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//ng-multiselect-dropdown[@formcontrolname='typeOfMaterial']//li[normalize-space()='"
-						+ typeofmaterial + "']")));
-		typeofmaterialXpath.click();
+	public void selTypeOfMaterial(String type) {
+		waitForElementandClick(drpdwn_type_of_material);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='typeOfMaterial']//li[normalize-space()='" + type
+						+ "']")));
+		option.click();
 	}
-	
-	
-	
-	
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='uomId']")
-	WebElement dropdwn_uom;
 
 	public void selUOM(String uom) {
-		waitForElementandClick(dropdwn_uom);
-		WebElement uomXpath = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//ng-multiselect-dropdown[@formcontrolname='uomId']//div[normalize-space()='" + uom + "']")));
-		uomXpath.click();
+		waitForElementandClick(drpdwn_uom);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='uomId']//li[normalize-space()='" + uom + "']")));
+		option.click();
 	}
-	
-	@FindBy(xpath="//input[@formcontrolname='storageCondition']")
-	WebElement txt_storagecondition;
 
-	public void storageCondition(String storagecondition) {
-		txt_storagecondition.clear();
-		waitAndSendKeys(txt_storagecondition, storagecondition);
+	public void storageCondition(String condition) {
+		if (condition != null) {
+			material_storage_condition.clear();
+			waitAndSendKeys(material_storage_condition, condition);
+		}
 	}
-	
-	
-	
-	@FindBy(xpath="//ng-multiselect-dropdown[@formcontrolname='storageLocation']")
-	WebElement dropdwn_storagelocation;
 
-	public void selStorageLocation(String storagelocation) {
-		waitForElementandClick(dropdwn_storagelocation);
-		WebElement storagelocationXpath = wait.until(ExpectedConditions.elementToBeClickable(
+	public void selStorageLocation(String location) {
+		waitForElementandClick(drpdwn_storage_location);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//ng-multiselect-dropdown[@formcontrolname='storageLocation']//li[normalize-space()='"
-						+ storagelocation + "']")));
-		storagelocationXpath.click();
+						+ location + "']")));
+		option.click();
 	}
-	
-	
-	@FindBy(xpath="//p-checkbox[@inputid='isSamplingRequired1']")
-	WebElement chk_samplingactivity_yes;
-	
-	@FindBy(xpath="//p-checkbox[@inputid='isSamplingRequired2']")
-	WebElement chk_samplingactivity_no;
-	
-	public void checksamplingActivity(String samplingactivity) {
-		if (samplingactivity.equalsIgnoreCase("Yes")) {
-			waitForElementandClick(chk_samplingactivity_yes);
+
+	public void setSamplingActivity(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_sampling_required_yes);
 		} else {
-			waitForElementandClick(chk_samplingactivity_no);
+			waitForElementandClick(chk_sampling_required_no);
 		}
 	}
-	
-	
-	@FindBy(xpath="//p-checkbox[@inputid='isDesCheckBox1']")
-	WebElement chk_dispensingactivity_yes;
-	
-	@FindBy(xpath="//p-checkbox[@inputid='isDesCheckBox2']")
-	WebElement chk_dispensingactivity_no;
-	
-	public void checkdispensingActivity(String dispensingactivity) {
-        if (dispensingactivity.equalsIgnoreCase("Yes")) {
-            waitForElementandClick(chk_dispensingactivity_yes);
-        } else {
-            waitForElementandClick(chk_dispensingactivity_no);
-        }
+
+	public void setDispensingActivity(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_dispensing_required_yes);
+		} else {
+			waitForElementandClick(chk_dispensing_required_no);
+		}
 	}
-        
-        
-        
-        @FindBy(xpath="//p-checkbox[@inputid='isSampleCheckBox1']")
-        WebElement chk_mixedanalysis_yes;
-        
-        @FindBy(xpath="//p-checkbox[@inputid='isSampleCheckBox2']")
-        WebElement chk_mixedanalysis_no;
-        
-		public void checkmixedAnalysis(String mixedanalysis) {
-			if (mixedanalysis.equalsIgnoreCase("Yes")) {
-				waitForElementandClick(chk_mixedanalysis_yes);
-			} else {
-				waitForElementandClick(chk_mixedanalysis_no);
-			}
-		}
-		
-		
-		@FindBy(xpath="//p-checkbox[@inputid='isWeightCheckBox1']")
-		WebElement chk_weightverification_yes;
-		@FindBy(xpath="//p-checkbox[@inputid='isWeightCheckBox2']")
-		WebElement chk_weightverification_no;
 
-		public void checkweightVerification(String weightverification) {
-			if (weightverification.equalsIgnoreCase("Yes")) {
-				waitForElementandClick(chk_weightverification_yes);
-			} else {
-				waitForElementandClick(chk_weightverification_no);
-			}
+	public void setMixedAnalysis(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_mixed_analysis_yes);
+		} else {
+			waitForElementandClick(chk_mixed_analysis_no);
 		}
-		
-		
-		@FindBy(xpath="//p-checkbox[@inputid='isReceivingCheckBox1']")
-		WebElement chk_receivingbay_yes;
-		@FindBy(xpath="//p-checkbox[@inputid='isReceivingCheckBox2']")
-		WebElement chk_receivingbay_no;
-
-		public void checkreceivingBay(String receivingbay) {
-			if (receivingbay.equalsIgnoreCase("Yes")) {
-				waitForElementandClick(chk_receivingbay_yes);
-			} else {
-				waitForElementandClick(chk_receivingbay_no);
-			}
-		}
-		
-		@FindBy(xpath="//p-checkbox[@inputid='isCleaningCheckBox1']")
-		WebElement chk_cleaningagent_yes;
-		@FindBy(xpath="//p-checkbox[@inputid='isCleaningCheckBox2']")
-		WebElement chk_cleaningagent_no;
-		
-		public void checkcleaningAgent(String cleaningagent) {
-            if (cleaningagent.equalsIgnoreCase("Yes")) {
-                waitForElementandClick(chk_cleaningagent_yes);
-            } else {
-                waitForElementandClick(chk_cleaningagent_no);
-            }
-            
-		}
-		
-		@FindBy(xpath="//p-autocomplete[@formcontrolname='supplierName']//chevrondownicon[@class='p-element p-icon-wrapper ng-star-inserted']")
-		List<WebElement> dropdwn_supplier;
-
-		public void selSupplier(String supplier) {
-			waitForElementandClick(dropdwn_supplier.get(0));
-			WebElement supplierXpath = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-					"//p-autocomplete[@formcontrolname='supplierName']//li[normalize-space()='" + supplier + "']")));
-			supplierXpath.click();
-		}
-		
-		@FindBy(xpath="//p-checkbox[@inputid='ismanufacturerCheckBox1']")
-		WebElement chk_manufacturer_yes;
-		@FindBy(xpath="//p-checkbox[@inputid='ismanufacturerCheckBox2']")
-		WebElement chk_manufacturer_no;
-
-		public void checkManufacturerYes() {
-			
-				waitForElementandClick(chk_manufacturer_yes);
-		}
-		public void checkManufacturerNo() {
-				waitForElementandClick(chk_manufacturer_no);
-			}
-		
-		
-		@FindBy(xpath="//p-autocomplete[@formcontrolname='manufactureName']//chevrondownicon[@class='p-element p-icon-wrapper ng-star-inserted']")
-		List<WebElement> dropdwn_manufacturer;
-
-		public void selManufacturer(String manufacturer) {
-			waitForElementandClick(dropdwn_manufacturer.get(0));
-			WebElement manufacturerXpath = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//p-autocomplete[@formcontrolname='manufactureName']//li[normalize-space()='"
-							+ manufacturer + "']")));
-			manufacturerXpath.click();
-		}
-		
-		@FindBy(xpath="//button[normalize-space()='Save Details']")
-		WebElement btn_savedetails;
-		public void clickSaveDetails() {
-			btn_savedetails.click();
-		}
-		
-		
-		@FindBy(xpath="//button[normalize-space()='Yes']")
-		WebElement btn_addmanufacturerYes;
-		public void btnManufacturerYes() {
-			btn_addmanufacturerYes.click();
-			
-		}
-		
-		@FindBy(xpath="//button[normalize-space()='No']")
-		WebElement btn_addmanufacturerNo;
-		public void btnManufacturerNo() {
-			btn_addmanufacturerNo.click();
-			
-		}
-		
-		
 	}
-	
-	
-	
 
+	public void setWeightVerification(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_weight_verification_yes);
+		} else {
+			waitForElementandClick(chk_weight_verification_no);
+		}
+	}
+
+	public void setReceivingBay(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_receiving_bay_yes);
+		} else {
+			waitForElementandClick(chk_receiving_bay_no);
+		}
+	}
+
+	public void setCleaningAgent(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_cleaning_agent_yes);
+		} else {
+			waitForElementandClick(chk_cleaning_agent_no);
+		}
+	}
+
+	public void selSupplier(String name) {
+		waitForElementandClick(supplier_arrow);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//p-autocomplete[@formcontrolname='supplierName']//li[normalize-space()='" + name + "']")));
+		option.click();
+	}
+
+	public void setManufacturerRequired(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(chk_manufacturer_yes);
+		} else {
+			waitForElementandClick(chk_manufacturer_no);
+		}
+	}
+
+	public void selManufacturer(String name) {
+		waitForElementandClick(manufacturer_arrow);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath(
+						"//p-autocomplete[@formcontrolname='manufactureName']//li[normalize-space()='" + name + "']")));
+		option.click();
+	}
+
+	public void clickSaveDetails() {
+		waitForElementandClick(btn_save_details);
+	}
+
+	public void confirmDialog(String value) {
+		if ("Yes".equalsIgnoreCase(value)) {
+			waitForElementandClick(btn_dialog_yes);
+		} else {
+			waitForElementandClick(btn_dialog_no);
+		}
+	}
+}

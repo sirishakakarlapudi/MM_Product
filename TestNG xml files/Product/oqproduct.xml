@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite" preserve-order="true">
+
+	<test thread-count="5" name="Test">
+		<parameter name="configFile" value="akronproduct.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.AkronProduct_TC">
+				<methods>
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Click_Actions_1" />
+					
+					<!-- Add NDC-->
+					
+					<include name="Click_Add_NDC" />
+					<include name="Click_Actions_2" />
+					<include name="Click_View" />
+					<include name="Click_Review_Return_And_Edit_For_Add_NDC" />
+					<include name="Click_Review_For_ADD_NDC_1" />
+					<include name="Click_Approve_Return_And_Edit_And_Review_For_Add_NDC" />
+					<include name="Click_Review_For_ADD_NDC_2" />
+					<include name="Click_Approve_For_Add_NDC" />
+					
+					<!-- Inactive Flow-->
+					
+					<!-- Iteration 1 -->
+					<include name="Click_Actions_1" />
+					<include name="Click_Inactive_1" />
+					<include name="Click_Actions_2" />
+					<include name="Product_Inactive_Review_Reject" />
+					
+					<!-- Iteration 2 -->
+					<include name="Click_Inactive_2" />
+					<include name="Product_Inactive_Review_1" />
+					<include name="Product_Inactive_Approve_Reject" />
+					
+					<!-- Iteration 3 -->
+					<include name="Click_Inactive_3" />
+					<include name="Product_Inactive_Review_2" />
+					<include name="Product_Inactive_Approve" />
+					
+					<!-- Active Flow-->
+					
+					<!-- Iteration 1 -->
+					<include name="Click_Actions_1" />
+					<include name="Click_Active_1" />
+					<include name="Product_Active_Review_Reject" />
+					
+					<!-- Iteration 2 -->
+					<include name="Click_Active_2" />
+					<include name="Product_Active_Review_1" />
+					<include name="Product_Active_Approve_Reject" />
+					
+					<!-- Iteration 3 -->
+					<include name="Click_Active_3" />
+					<include name="Product_Active_Review_2" />
+					<include name="Product_Active_Approve" />
+					
+					<include name="Logout" />
+					<include name="Database_Backup" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>
