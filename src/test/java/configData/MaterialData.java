@@ -59,6 +59,12 @@ public class MaterialData {
     public static String APPROVE_RETURN_REMARKS;
     public static String REVIEW_REMARKS;
     public static String APPROVE_REMARKS;
+    
+    
+    public static String MATERIAL_UPDATE_AFTER_APPROVE;
+    public static String UPDATE_SUPPLIER;
+    public static String UPDATE_MANUFACTURER;
+   
 
     public static String CURRENT_CONFIG_NAME;
 
@@ -126,6 +132,12 @@ public class MaterialData {
         EDIT_MATERIAL_IN_APPROVE_RETURN = materialconfig.get("editmaterial_Approve_Return");
         APPROVE_RETURN_REMARKS = materialconfig.get("approve_Return_Remarks");
         APPROVE_REMARKS = materialconfig.get("approveRemarks");
+        
+        MATERIAL_UPDATE_AFTER_APPROVE = materialconfig.get("material_Update_After_Approve");
+        UPDATE_SUPPLIER = materialconfig.get("updateSupplier");
+        UPDATE_MANUFACTURER = materialconfig.get("updateManufacturer");
+        
+
 
     }
 }

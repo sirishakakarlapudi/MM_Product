@@ -1,7 +1,7 @@
 
 package testCasesForOQProjects;
-
 import static configData.CustomerData.*;
+
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -13,6 +13,7 @@ import testBase.BaseClass;
 import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
 import utilities.SoftAssertionUtil;
+
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -74,7 +75,7 @@ public class Customer_TC extends BaseClass {
 		log.info("Navigating to App URL: {}", APP_URL);
 	}
 
-	@Test(groups = { "userlogin" }, priority = 3)
+	@Test(groups = { "userlogin" })
 	public void userLoginBeforeCreate() throws Throwable {
 		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
 		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
@@ -148,15 +149,17 @@ public class Customer_TC extends BaseClass {
 		customer.clickActions(currentCustomerName);
 		log.info("Successfully opened Actions menu for {}", currentCustomerName);
 		ScreenshotUtil.capture();
+		
 
 	}
+	
 
 	@Test(groups = { "ClickView" })
 	public void Click_View() throws Throwable {
 		if (CUSTOMER_VIEW_ACTION.equalsIgnoreCase("yes")) {
 			log.info("--- Viewing Customer: {} ---", currentCustomerName);
 			ScreenshotUtil.nextStep();
-			customer.clickView(currentCustomerName);
+			customer.clickPendingView(currentCustomerName);
 			log.info("View screen opened");
 			customer.waitForLoading();
 			ScreenshotUtil.capture();
@@ -174,54 +177,12 @@ public class Customer_TC extends BaseClass {
 
 		if (CUSTOMER_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME2, PASSWORD2);
 			log.info("--- Initiating Review Return Flow for: {} ---", currentCustomerName);
-			log.info("Opening actions menu to access Review/Return");
-			customer.clickActions(currentCustomerName);
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Review to trigger return dialog");
-			customer.clickReview();
-			customer.waitForLoading();
-			ScreenshotUtil.capture();
-			customer.enterRemarks(REVIEW_RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", REVIEW_RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			customer.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			customer.authenticate(customer.currentPassword);
-			String returnToast = customer.waitForToast();
-			customer.waitForLoading();
-			sa.assertEquals(returnToast, "Customer returned successfully", "Returned toaster message",
-					returnToast);
-			sa.assertAll();
-
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE);
-			}
-
-			// This part will now execute for BOTH single and multiple users
-
-			log.info("Opening Edit screen (After Review Return)");
-			ScreenshotUtil.nextStep();
-			customer.clickEdit(currentCustomerName);
-			customer.waitForLoading();
-			ScreenshotUtil.capture();
-			if (EDIT_CUSTOMER_IN_REVIEW_RETURN != null && !EDIT_CUSTOMER_IN_REVIEW_RETURN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_CUSTOMER_IN_REVIEW_RETURN);
-				customer.customerName(EDIT_CUSTOMER_IN_REVIEW_RETURN);
-				currentCustomerName = EDIT_CUSTOMER_IN_REVIEW_RETURN;
-			}
-
-			customer.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			customer.authenticate(customer.currentPassword);
-			String editToast = customer.waitForToast();
-			customer.waitForLoading();
-			sa.assertEquals(editToast, "Customer updated successfully", "Updated toaster messege", editToast);
+			performReturnReview(REVIEW_RETURN_REMARKS);
+			
+			switchUserIfMulti(USERNAME1, PASSWORD1);
+			performEdit(EDIT_CUSTOMER_IN_REVIEW_RETURN);
 			sa.assertAll();
 
 		} else {
@@ -232,28 +193,9 @@ public class Customer_TC extends BaseClass {
 	@Test(groups = { "customerReview" })
 	public void customerReview() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			customer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME2, PASSWORD2);
 		log.info("--- Initiating Review Flow for: {} ---", currentCustomerName);
-		log.info("Opening actions menu to access Review/Return");
-		customer.clickActions(currentCustomerName);
-		ScreenshotUtil.capture();
-		ScreenshotUtil.nextStep();
-		log.info("Clicking Review to trigger return dialog");
-		customer.clickReview();
-		customer.waitForLoading();
-		ScreenshotUtil.capture();
-		customer.enterRemarks(REVIEW_REMARKS);
-		log.info("Entered Review remarks: {}", REVIEW_REMARKS);
-		ScreenshotUtil.capture();
-		customer.clickReview();
-		log.info("Clicked Review button");
-		ScreenshotUtil.capture();
-		customer.authenticate(customer.currentPassword);
-		String reviewToast = customer.waitForToast();
-		customer.waitForLoading();
-		sa.assertEquals(reviewToast, "Customer reviewed successfully", "Review toaster message", reviewToast);
+		performReview(REVIEW_REMARKS);
 		sa.assertAll();
 
 	}
@@ -263,57 +205,25 @@ public class Customer_TC extends BaseClass {
 
 		if (CUSTOMER_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE);
-			}
+			
+			switchUserIfMulti(USERNAME3, PASSWORD3);
 			log.info("--- Initiating Approve Return Flow for: {} ---", currentCustomerName);
-			log.info("Opening actions menu to access Approve/Return");
-			ScreenshotUtil.nextStep();
-			customer.clickActions(currentCustomerName);
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Approve to trigger return dialog");
-			customer.clickApprove();
-			customer.waitForLoading();
-			ScreenshotUtil.capture();
-			customer.enterRemarks(APPROVE_RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", APPROVE_RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			customer.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			customer.authenticate(customer.currentPassword);
-			String returnToast = customer.waitForToast();
-			customer.waitForLoading();
-			sa.assertEquals(returnToast, "Customer returned successfully", "Returned toaster message",
-					returnToast);
-			sa.assertAll();
-
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE);
-			}
-
-			// This part will now execute for BOTH single and multiple users
-
+			performReturnApprove(APPROVE_RETURN_REMARKS);
+			
+			switchUserIfMulti(USERNAME1, PASSWORD1);
 			log.info("Opening Edit screen (After Return)");
+			performEdit(EDIT_CUSTOMER_IN_APPROVE_RETURN);
+			ScreenshotUtil.freezeStepNumbering();
+			
+			
 
-			customer.clickEdit(currentCustomerName);
-			customer.waitForLoading();
-			ScreenshotUtil.capture();
-
-			if (EDIT_CUSTOMER_IN_APPROVE_RETURN != null && !EDIT_CUSTOMER_IN_APPROVE_RETURN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_CUSTOMER_IN_APPROVE_RETURN);
-				customer.customerName(EDIT_CUSTOMER_IN_APPROVE_RETURN);
-				currentCustomerName = EDIT_CUSTOMER_IN_APPROVE_RETURN;
-			}
-
-			customer.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			customer.authenticate(customer.currentPassword);
-			String editToast = customer.waitForToast();
-			customer.waitForLoading();
-			sa.assertEquals(editToast, "Customer updated successfully", "Updated toaster messege", editToast);
+			switchUserIfMulti(USERNAME2, PASSWORD2);
+			log.info("--- Initiating Review Flow for: {} ---", currentCustomerName);
+			performReview(REVIEW_REMARKS);
+			ScreenshotUtil.resumeStepNumbering();
+			sa.assertAll();
+			
+			
 
 		} else {
 			log.info("Customer Approve Return and Edit and Review skipped based on configuration");
@@ -339,7 +249,7 @@ public class Customer_TC extends BaseClass {
 		customer.enterRemarks(APPROVE_REMARKS);
 		log.info("Entered Approve remarks: {}", APPROVE_REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickApprove();
+		customer.clickSubmit();
 		log.info("Submitted Approval");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
@@ -354,26 +264,24 @@ public class Customer_TC extends BaseClass {
 	public void Click_Inactive() throws Throwable {
 		inactiveIterationCount++;
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			log.info("--- Inactivating Customer: {} ---", currentCustomerName);
-			customer.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME1, PASSWORD1);
 		log.info("--- Performing Inactive for: {} ---", currentCustomerName);
 
 		customer.waitForLoading();
-		if (inactiveIterationCount == 1) {
-			ScreenshotUtil.nextStep();
-		}
 		log.info("Opening actions menu for Inactive");
 		customer.clickActions(currentCustomerName);
 		ScreenshotUtil.capture();
+		
+		  if (inactiveIterationCount == 1) { 
+			  ScreenshotUtil.nextStep(); }
+		 
 		log.info("Clicking Inactive button in the list");
 		customer.clickInactive();
 		ScreenshotUtil.capture();
 		customer.enterRemarks(INACTIVE_REMARKS);
 		log.info("Entered Inactive remarks: {}", INACTIVE_REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickInactive();
+		customer.clickSubmit();
 		log.info("Inactive requested");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
@@ -390,23 +298,21 @@ public class Customer_TC extends BaseClass {
 
 		if (CUSTOMER_INACTIVE_REJECT_IN_REVIEW_ACTION.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME2, PASSWORD2);
 			log.info("--- Initiating Inactive Reject In Review Flow for: {} ---", currentCustomerName);
 			log.info("Opening actions menu to access InActive Review/Reject");
 			customer.clickActions(currentCustomerName);
 			ScreenshotUtil.capture();
 			ScreenshotUtil.nextStep();
-			log.info("Clicking Review to trigger return dialog");
-			customer.clickInactiveReview();
+			log.info("Clicking Reject to trigger reject pop up");
+			customer.clickReject();
 			customer.waitForLoading();
 			ScreenshotUtil.capture();
 			customer.enterRemarks(INACTIVE_REVIEW_REJECT_REMARKS);
 			log.info("Entered Inactive Review Reject remarks: {}", INACTIVE_REVIEW_REJECT_REMARKS);
 			ScreenshotUtil.capture();
-			customer.clickReject();
-			log.info("Clicked Reject button");
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
 			ScreenshotUtil.capture();
 			customer.authenticate(customer.currentPassword);
 			String rejectToast = customer.waitForToast();
@@ -421,23 +327,21 @@ public class Customer_TC extends BaseClass {
 	@Test(groups = { "Customer_Inactive_Review" })
 	public void customer_Inactive_Review() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			customer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME2, PASSWORD2);
 		log.info("--- Initiating Inactive Review Flow for: {} ---", currentCustomerName);
 		log.info("Opening actions menu to access Inactive Review/Reject");
 
 		customer.clickActions(currentCustomerName);
 		ScreenshotUtil.capture();
-		log.info("Clicking Review to trigger return dialog");
+		log.info("Clicking Review to trigger Review popup");
 		customer.clickInactiveReview();
 		customer.waitForLoading();
 		ScreenshotUtil.capture();
 		customer.enterRemarks(INACTIVE_REVIEW__REMARKS);
 		log.info("Entered Inactive Review remarks: {}", INACTIVE_REVIEW_REJECT_REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickInactiveReview();
-		log.info("Clicked Review button");
+		customer.clickSubmit();
+		log.info("Clicked Submit button");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
 		String reviewToast = customer.waitForToast();
@@ -453,23 +357,21 @@ public class Customer_TC extends BaseClass {
 
 		if (CUSTOMER_INACTIVE_REJECT_IN_APPROVE_ACTION.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME3, PASSWORD3);
 			log.info("--- Initiating Inactive Reject In Approve Flow for: {} ---", currentCustomerName);
 			log.info("Opening actions menu to access Inactive Approve/Reject");
 			ScreenshotUtil.freezeStepNumbering();
 			customer.clickActions(currentCustomerName);
 			ScreenshotUtil.capture();
-			log.info("Clicking Approve to trigger return dialog");
-			customer.clickInactiveApprove();
+			log.info("Clicking reject to trigger reject pop up");
+			customer.clickReject();
 			customer.waitForLoading();
 			ScreenshotUtil.capture();
 			customer.enterRemarks(INACTIVE_APPROVE_REJECT_REMARKS);
 			log.info("Entered Inactive Approve Reject remarks: {}", INACTIVE_APPROVE_REJECT_REMARKS);
 			ScreenshotUtil.capture();
-			customer.clickReject();
-			log.info("Clicked Reject button");
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
 			ScreenshotUtil.capture();
 			customer.authenticate(customer.currentPassword);
 			String rejectToast = customer.waitForToast();
@@ -484,40 +386,35 @@ public class Customer_TC extends BaseClass {
 	@Test(groups = { "Customer_Inactive_Approve" })
 	public void customer_Inactive_Approve() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			customer.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME3, PASSWORD3);
 		log.info("--- Initiating Inactive Approve Flow for: {} ---", currentCustomerName);
 		log.info("Opening actions menu to access Inactive Approve/Reject");
 		customer.clickActions(currentCustomerName);
 		ScreenshotUtil.capture();
-		log.info("Clicking Approve to trigger return dialog");
+		log.info("Clicking Approve to trigger approve pop up");
 		customer.clickInactiveApprove();
 		customer.waitForLoading();
 		ScreenshotUtil.capture();
 		customer.enterRemarks(INACTIVE_APPROVE_REMARKS);
 		log.info("Entered Inactive Approve remarks: {}", INACTIVE_APPROVE_REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickInactiveApprove();
-		log.info("Clicked Approve button");
+		customer.clickSubmit();
+		log.info("Clicked Submit button");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
 		String approveToast = customer.waitForToast();
 		customer.waitForLoading();
 		sa.assertEquals(approveToast, "Customer Inactivated successfully", "Inactivated toaster message",
 				approveToast);
+		ScreenshotUtil.resumeStepNumbering();
 		sa.assertAll();
 
 	}
 
 	@Test(groups = { "ClickActive" })
 	public void Click_Active() throws Throwable {
-		activeIterationCount++;
-		ScreenshotUtil.resumeStepNumbering();
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			log.info("--- Activating Customer: {} ---", currentCustomerName);
-			customer.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		activeIterationCount++;	
+		switchUserIfMulti(USERNAME1, PASSWORD1);
 		log.info("--- Performing Active for: {} ---", currentCustomerName);
 
 		customer.waitForLoading();
@@ -525,15 +422,16 @@ public class Customer_TC extends BaseClass {
 		customer.clickActions(currentCustomerName);
 		ScreenshotUtil.capture();
 		log.info("Clicking Active button in the list");
-		if (activeIterationCount == 1) {
-			ScreenshotUtil.nextStep();
-		}
+		
+		  if (activeIterationCount == 1) { 
+			  ScreenshotUtil.nextStep(); }
+		 
 		customer.clickActive();
 		ScreenshotUtil.capture();
 		customer.enterRemarks(ACTIVE_REMARKS);
 		log.info("Entered Active remarks: {}", ACTIVE_REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickActive();
+		customer.clickSubmit();
 		log.info("Active requested");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
@@ -550,23 +448,21 @@ public class Customer_TC extends BaseClass {
 
 		if (CUSTOMER_ACTIVE_REJECT_IN_REVIEW_ACTION.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME2, PASSWORD2);
 			log.info("--- Initiating Active Reject In Review Flow for: {} ---", currentCustomerName);
 			log.info("Opening actions menu to access Active Review/Reject");
 			customer.clickActions(currentCustomerName);
 			ScreenshotUtil.capture();
 			ScreenshotUtil.nextStep();
-			log.info("Clicking Review to trigger return dialog");
-			customer.clickActiveReview();
+			log.info("Clicking Return to trigger return pop up");
+			customer.clickReject();
 			customer.waitForLoading();
 			ScreenshotUtil.capture();
 			customer.enterRemarks(ACTIVE_REVIEW_REJECT_REMARKS);
 			log.info("Entered Inactive Review Reject remarks: {}", ACTIVE_REVIEW_REJECT_REMARKS);
 			ScreenshotUtil.capture();
-			customer.clickReject();
-			log.info("Clicked Reject button");
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
 			ScreenshotUtil.capture();
 			customer.authenticate(customer.currentPassword);
 			String rejectToast = customer.waitForToast();
@@ -581,22 +477,20 @@ public class Customer_TC extends BaseClass {
 	@Test(groups = { "Customer_Active_Review" })
 	public void customer_Active_Review() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			customer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME2, PASSWORD2);
 		log.info("--- Initiating Active Review Flow for: {} ---", currentCustomerName);
 		log.info("Opening actions menu to access InActive Review/Reject");
 		customer.clickActions(currentCustomerName);
 		ScreenshotUtil.capture();
-		log.info("Clicking Review to trigger return dialog");
+		log.info("Clicking Review to trigger Review pop up");
 		customer.clickActiveReview();
 		customer.waitForLoading();
 		ScreenshotUtil.capture();
 		customer.enterRemarks(ACTIVE_REVIEW__REMARKS);
 		log.info("Entered Active Review remarks: {}", ACTIVE_REVIEW__REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickActiveReview();
-		log.info("Clicked Review button");
+		customer.clickSubmit();
+		log.info("Clicked Submit button");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
 		String reviewToast = customer.waitForToast();
@@ -612,23 +506,21 @@ public class Customer_TC extends BaseClass {
 
 		if (CUSTOMER_ACTIVE_REJECT_IN_APPROVE_ACTION.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				customer.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME3, PASSWORD3);
 			log.info("--- Initiating Active Reject In Approve Flow for: {} ---", currentCustomerName);
 			log.info("Opening actions menu to access Active Approve/Reject");
 			ScreenshotUtil.freezeStepNumbering();
 			customer.clickActions(currentCustomerName);
 			ScreenshotUtil.capture();
-			log.info("Clicking Approve to trigger return dialog");
-			customer.clickActiveApprove();
+			log.info("Clicking Reject to trigger reject pop up");
+			customer.clickReject();
 			customer.waitForLoading();
 			ScreenshotUtil.capture();
 			customer.enterRemarks(ACTIVE_APPROVE_REJECT_REMARKS);
 			log.info("Entered Active Approve Reject remarks: {}", ACTIVE_APPROVE_REJECT_REMARKS);
 			ScreenshotUtil.capture();
-			customer.clickReject();
-			log.info("Clicked Reject button");
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
 			ScreenshotUtil.capture();
 			customer.authenticate(customer.currentPassword);
 			String rejectToast = customer.waitForToast();
@@ -643,20 +535,18 @@ public class Customer_TC extends BaseClass {
 	@Test(groups = { "Customer_Active_Approve" })
 	public void customer_Active_Approve() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			customer.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME3, PASSWORD3);
 		log.info("--- Initiating Active Approve Flow for: {} ---", currentCustomerName);
 		customer.clickActions(currentCustomerName);
 		ScreenshotUtil.capture();
-		log.info("Clicking Approve to trigger return dialog");
+		log.info("Clicking Approve to trigger approve pop up");
 		customer.clickActiveApprove();
 		customer.waitForLoading();
 		ScreenshotUtil.capture();
 		customer.enterRemarks(ACTIVE_APPROVE_REMARKS);
 		log.info("Entered Active Approve remarks: {}", ACTIVE_APPROVE_REMARKS);
 		ScreenshotUtil.capture();
-		customer.clickActiveApprove();
+		customer.clickSubmit();
 		log.info("Clicked Approve button");
 		ScreenshotUtil.capture();
 		customer.authenticate(customer.currentPassword);
@@ -696,6 +586,109 @@ public class Customer_TC extends BaseClass {
 		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
 		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
 	}
+	
+	
+	
+	// --- HELPER METHODS ---
+
+	
+		private void performReview(String remarks) throws Throwable {
+			
+			
+			log.info("Opening actions menu to access Review/Return");
+			customer.clickActions(currentCustomerName);
+			ScreenshotUtil.capture();
+			ScreenshotUtil.nextStep();
+			log.info("Clicking Review to trigger Review pop up");
+			customer.clickReview();
+			customer.waitForLoading();
+			ScreenshotUtil.capture();
+			customer.enterRemarks(REVIEW_REMARKS);
+			log.info("Entered Review remarks: {}", REVIEW_REMARKS);
+			ScreenshotUtil.capture();
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
+			ScreenshotUtil.capture();
+			customer.authenticate(customer.currentPassword);
+			String reviewToast = customer.waitForToast();
+			customer.waitForLoading();
+			sa.assertEquals(reviewToast, "Customer reviewed successfully", "Review toaster message", reviewToast);
+			
+		}
+
+		private void performEdit(String updateName) throws Throwable {
+			log.info("Opening Edit screen (After Review Return)");
+			ScreenshotUtil.nextStep();
+			customer.clickEdit(currentCustomerName);
+			customer.waitForLoading();
+			ScreenshotUtil.capture();
+			if (updateName != null && !updateName.trim().isEmpty()) {
+				log.info("Updating Name to: {}", updateName);
+				customer.customerName(updateName);
+				currentCustomerName = updateName;
+			}
+
+			customer.clickUpdate();
+			log.info("Clicked Update");
+			ScreenshotUtil.capture();
+			customer.authenticate(customer.currentPassword);
+			String editToast = customer.waitForToast();
+			customer.waitForLoading();
+			sa.assertEquals(editToast, "Customer updated successfully", "Updated toaster messege", editToast);
+			
+		}
+
+		private void performReturnReview(String remarks) throws Throwable {
+			log.info("Opening actions menu to access Review/Return");
+			customer.clickActions(currentCustomerName);
+			ScreenshotUtil.nextStep();
+			log.info("Clicking Return to trigger return pop up");
+			customer.clickReturn();
+			customer.waitForLoading();
+			ScreenshotUtil.capture();
+			customer.enterRemarks(REVIEW_RETURN_REMARKS);
+			log.info("Entered Return remarks: {}", REVIEW_RETURN_REMARKS);
+			ScreenshotUtil.capture();
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
+			ScreenshotUtil.capture();
+			customer.authenticate(customer.currentPassword);
+			String returnToast = customer.waitForToast();
+			customer.waitForLoading();
+			sa.assertEquals(returnToast, "Customer returned successfully", "Returned toaster message",
+					returnToast);
+		}
+
+		private void performReturnApprove(String remarks) throws Throwable {
+			log.info("Opening actions menu to access Approve/Return");
+			customer.clickActions(currentCustomerName);
+			ScreenshotUtil.capture();
+			ScreenshotUtil.nextStep();
+			log.info("Clicking Return to trigger return pop up");
+			customer.clickReturn();
+			customer.waitForLoading();
+			ScreenshotUtil.capture();
+			customer.enterRemarks(APPROVE_RETURN_REMARKS);
+			log.info("Entered Return remarks: {}", APPROVE_RETURN_REMARKS);
+			ScreenshotUtil.capture();
+			customer.clickSubmit();
+			log.info("Clicked Submit button");
+			ScreenshotUtil.capture();
+			customer.authenticate(customer.currentPassword);
+			String returnToast = customer.waitForToast();
+			customer.waitForLoading();
+			sa.assertEquals(returnToast, "Customer returned successfully", "Returned toaster message",
+					returnToast);
+			
+		}
+		
+		
+		private void switchUserIfMulti(String username, String password) throws Throwable {
+			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
+				customer.switchUser(username, password, PC_DB_NAME, MASTER_MODULE);
+			}
+		}
+
 
 	@Test(groups = { "ClickInactiveRep" })
 	public void Click_Inactive_1() throws Throwable {
@@ -746,5 +739,9 @@ public class Customer_TC extends BaseClass {
 	public void customer_Active_Review_2() throws Throwable {
 		customer_Active_Review();
 	}
+	
+	
+	
+	
 
 }

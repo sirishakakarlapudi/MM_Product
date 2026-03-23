@@ -1,7 +1,6 @@
 package testCasesForOQProjects;
 
 import static configData.DepartmentData.*;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;

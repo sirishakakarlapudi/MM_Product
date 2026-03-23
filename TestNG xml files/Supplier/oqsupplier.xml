@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+
+	<test thread-count="5" name="Test">
+		<parameter name="configFile" value="oqsupplier.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Supplier_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Supplier" />
+					<include name="Click_Actions1" />
+					<include name="Click_View" />
+					<include name="Click_Actions2" />
+					<include name="supplier_Review_Return_and_Edit" />
+					<include name="supplierReview" />
+					<include name="supplier_Approve_Return_and_Edit_and_Review" />
+					<include name="supplierApprove" />
+
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

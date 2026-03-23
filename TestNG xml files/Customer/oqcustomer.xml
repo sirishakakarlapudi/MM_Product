@@ -3,65 +3,65 @@
 
 <suite name="Suite">
 
-  <test thread-count="5" name="Test">
-    <parameter name="configFile" value="oqcustomer.properties"/>
-    <classes>
-      <class name="testCasesForOQProjects.AkronQuickProduct_TC">
-        <methods>
-        
-          <include name="url"/>
-          <include name="userLoginBeforeCreate"/>
-          <include name="moduleClick"/>
-          <include name="Creation_Of_Customer"/>
-          <include name="Click_Actions_For_Review"/>
-          <include name="Click_View"/>
-          <include name="customer_Review_Return_and_Edit"/>
-          <include name="customerReview"/>
-          <include name="customer_Approve_Return_and_Edit_and_Review"/>
-          <include name="customerApprove"/>
-          
-          
-          
-          <!-- Iteration 1 -->
+	<test thread-count="5" name="Test">
+		<parameter name="configFile" value="oqcustomer.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Customer_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Customer" />
+					<include name="Click_Actions_For_Review" />
+					<include name="Click_View" />
+					<include name="customer_Review_Return_and_Edit" />
+					<include name="customerReview" />
+					<include name="customer_Approve_Return_and_Edit_and_Review" />
+					<include name="customerApprove" />
+
+
+
+					<!-- Iteration 1 -->
 					<include name="Click_Actions_1" />
 					<include name="Click_Inactive_1" />
 					<include name="Click_Actions_2" />
 					<include name="customer_Inactive_Review_Reject" />
-					
+
 					<!-- Iteration 2 -->
 					<include name="Click_Inactive_2" />
 					<include name="customer_Inactive_Review_1" />
 					<include name="customer_Inactive_Approve_Reject" />
-					
+
 					<!-- Iteration 3 -->
 					<include name="Click_Inactive_3" />
-					<include name="customer_Inactive_Review_1" />
+					<include name="customer_Inactive_Review_2" />
 					<include name="customer_Inactive_Approve" />
-					
-					<!-- Active Flow-->
-					
+
+					<!-- Active Flow -->
+
 					<!-- Iteration 1 -->
 					<include name="Click_Actions_1" />
 					<include name="Click_Active_1" />
 					<include name="customer_Active_Review_Reject" />
-					
+
 					<!-- Iteration 2 -->
 					<include name="Click_Active_2" />
 					<include name="customer_Active_Review_1" />
 					<include name="customer_Active_Approve_Reject" />
-					
+
 					<!-- Iteration 3 -->
 					<include name="Click_Active_3" />
 					<include name="customer_Active_Review_2" />
 					<include name="customer_Active_Approve" />
-          
-          
-          <include name="Duplication_Check"/>
-          <include name="Logout"/>
- 		  <include name="Database_Backup"/>	
-          
-        </methods>
-      </class>
-    </classes>
-  </test> <!-- Test -->
+
+
+				
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

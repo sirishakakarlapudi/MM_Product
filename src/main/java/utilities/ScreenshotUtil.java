@@ -152,6 +152,14 @@ public class ScreenshotUtil {
         freezeNextStep = false;
     }
 
+    public static void freezeCapture() {
+        setIsEnabled(false);
+    }
+
+    public static void resumeCapture() {
+        setIsEnabled(true);
+    }
+
     /**
      * Manual label override if absolutely necessary
      */

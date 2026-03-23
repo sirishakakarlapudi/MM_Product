@@ -28,6 +28,9 @@ public class Material extends BasePage {
 
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='materialCategory']")
 	protected WebElement drpdwn_material_category;
+	
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='materialNameOrCode']")
+	protected WebElement drpdwn_material_name_code;
 
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='typeOfMaterial']")
 	protected WebElement drpdwn_type_of_material;
@@ -56,6 +59,12 @@ public class Material extends BasePage {
 
 	@FindBy(xpath = "//p-checkbox[@inputid='isSampleCheckBox1']")
 	protected WebElement chk_mixed_analysis_yes;
+	
+	@FindBy(xpath= "//label[normalize-space()='Mixed Analysis']")
+	protected WebElement mixed_analysis_label;
+	
+	@FindBy(xpath= "//label[normalize-space()='Receiving Bay']")
+	protected WebElement receiving_bay_label;
 
 	@FindBy(xpath = "//p-checkbox[@inputid='isSampleCheckBox2']")
 	protected WebElement chk_mixed_analysis_no;
@@ -133,6 +142,14 @@ public class Material extends BasePage {
 		option.click();
 	}
 
+	public void selMaterialName_selMaterialCode(String name_code) {
+		waitForElementandClick(drpdwn_material_name_code);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='materialNameOrCode']//li[normalize-space()='"
+						+ name_code + "']")));
+		option.click();
+	}
+	
 	public void selTypeOfMaterial(String type) {
 		waitForElementandClick(drpdwn_type_of_material);
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
@@ -152,6 +169,13 @@ public class Material extends BasePage {
 		if (condition != null) {
 			material_storage_condition.clear();
 			waitAndSendKeys(material_storage_condition, condition);
+		}
+	}
+	public boolean isStorageConditionDisplayed() {
+		try {
+			return material_storage_condition.isDisplayed();
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
@@ -186,6 +210,13 @@ public class Material extends BasePage {
 			waitForElementandClick(chk_mixed_analysis_no);
 		}
 	}
+	public boolean isMixedAnalysisIsDisplayed() {
+		try {
+			return mixed_analysis_label.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	public void setWeightVerification(String value) {
 		if ("Yes".equalsIgnoreCase(value)) {
@@ -203,6 +234,16 @@ public class Material extends BasePage {
 		}
 	}
 
+	
+	
+	public boolean isReceivingBayIsDisplayed() {
+		try {
+			return receiving_bay_label.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	public void setCleaningAgent(String value) {
 		if ("Yes".equalsIgnoreCase(value)) {
 			waitForElementandClick(chk_cleaning_agent_yes);
@@ -213,6 +254,7 @@ public class Material extends BasePage {
 
 	public void selSupplier(String name) {
 		waitForElementandClick(supplier_arrow);
+		waitForLoading();
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//p-autocomplete[@formcontrolname='supplierName']//li[normalize-space()='" + name + "']")));
 		option.click();
@@ -228,6 +270,7 @@ public class Material extends BasePage {
 
 	public void selManufacturer(String name) {
 		waitForElementandClick(manufacturer_arrow);
+		waitForLoading();
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath(
 						"//p-autocomplete[@formcontrolname='manufactureName']//li[normalize-space()='" + name + "']")));

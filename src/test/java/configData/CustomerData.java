@@ -31,7 +31,6 @@ public class CustomerData {
 	public static String TABLE_SEARCH_VALUES;
 
 	public static String MASTER_MODULE;
-	public static String SUB_MASTER_MODULE;
 	public static String CUSTOMER_NAME;
 	public static String CITY;
 	public static String CUSTOMER_CODE;
@@ -101,7 +100,6 @@ public class CustomerData {
 		PASSWORD3 = customerconfig.get("password3");
 
 		MASTER_MODULE = customerconfig.get("master_Module");
-		SUB_MASTER_MODULE = customerconfig.get("sub_Master_Module");
 
 		CUSTOMER_NAME = customerconfig.get("customerName");
 		CITY = customerconfig.get("city");

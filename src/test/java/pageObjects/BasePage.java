@@ -107,7 +107,7 @@ public class BasePage extends HelperMethods {
 	@FindBy(xpath = "//li//span[normalize-space()='Review'] | //button[normalize-space()='Review']")
 	protected WebElement reviewButton;
 
-	@FindBy(xpath = "//li//span[normalize-space()='Inactive'] | //button[normalize-space()='Inactive']")
+	@FindBy(xpath = "//li//span[normalize-space()='Inactive'] | //button[normalize-space()='Inactive'] | //li//span[normalize-space()='In Active']")
 	protected WebElement inactiveButton;
 
 	@FindBy(xpath = "//li//span[normalize-space()='Active'] | //button[normalize-space()='Active']")
@@ -118,7 +118,7 @@ public class BasePage extends HelperMethods {
 
 	
 
-	@FindBy(xpath = "//button[normalize-space()='Reject']")
+	@FindBy(xpath = "//li//span[normalize-space()='Reject'] | //button[normalize-space()='Reject']")
 	protected WebElement rejectButton;
 
 	@FindBy(xpath = "//button[normalize-space()='Add'] | //span[normalize-space()='Add']")
@@ -149,9 +149,11 @@ public class BasePage extends HelperMethods {
 	protected WebElement filterContentBlock;
 
 	String rowXapth = "//tbody[@role='rowgroup']/tr";
-	String pendingrowXapth = "(//div[@class='card table-data'])[1]//tbody[@role='rowgroup']";
-	String activerowXapth = "(//div[@class='card table-data'])[2]//tbody[@role='rowgroup']";
+	String pendingrowXapth = "(//div[@class='card table-data'])[1]//tbody[@role='rowgroup']/tr";
+	String activerowXapth = "(//div[@class='card table-data'])[2]//tbody[@role='rowgroup']/tr";
 	String paginatorButtonPrefix = "//span[@class='p-paginator-pages ng-star-inserted']/button";
+	String pendingPaginatorButtonPrefix = "(//div[@class='card table-data'])[1]//span[@class='p-paginator-pages ng-star-inserted']/button";
+	String activePaginatorButtonPrefix = "(//div[@class='card table-data'])[2]//span[@class='p-paginator-pages ng-star-inserted']/button";
 	String viewIconXpath = "//*[contains(@class,'pi-eye')]";
 	String editIconXpath = "//*[contains(@class,'be-pencil') or contains(@class,'pi-pencil')]";
 	String actionsIconXpath = "//span[contains(@class,'pi-ellipsis-v')]";
@@ -347,11 +349,11 @@ public class BasePage extends HelperMethods {
 		performTableActionGeneric(pageCountElements, rowXapth, paginatorButtonPrefix, viewIconXpath, expItemNames);
 	}
 	public void clickPendingView(String... expItemNames) throws Exception {
-		performTableActionGeneric(pageCountElements, pendingrowXapth, paginatorButtonPrefix, viewIconXpath, expItemNames);
+		performTableActionGeneric(pageCountElements, pendingrowXapth, pendingPaginatorButtonPrefix, viewIconXpath, expItemNames);
 	}
 	
 	public void clickActiveView(String... expItemNames) throws Exception {
-		performTableActionGeneric(pageCountElements, activerowXapth, paginatorButtonPrefix, viewIconXpath, expItemNames);
+		performTableActionGeneric(pageCountElements, activerowXapth, activePaginatorButtonPrefix, viewIconXpath, expItemNames);
 	}
 	public void clickEdit(String... expItemNames) throws Exception {
 		performTableActionGeneric(pageCountElements, rowXapth, paginatorButtonPrefix, editIconXpath, expItemNames);
@@ -364,6 +366,7 @@ public class BasePage extends HelperMethods {
 	public void clickApprove() {
 		clickVisibleMenuByText("Approve");
 	}
+	
 
 	public void clickReview() {
 		clickVisibleMenuByText("Review");
@@ -392,6 +395,7 @@ public class BasePage extends HelperMethods {
 			boolean clicked = false;
 			for (WebElement el : elements) {
 				if (el.isDisplayed()) {
+					clickWithArrow(el);
 					jsClick(el);
 					log.info("Clicked visible menu item: {}", text);
 					clicked = true;
@@ -447,14 +451,7 @@ public class BasePage extends HelperMethods {
 	
 
 	public void clickReject() {
-		try {
-			WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(rejectButton));
-			jsScrollToElement(btn);
-			clickWithArrow(btn);
-			jsClick(btn);
-		} catch (Exception e) {
-			log.error("Reject button not found/clickable");
-		}
+		clickVisibleMenuByText("Reject");
 	}
 
 	public void clickAddButton() {

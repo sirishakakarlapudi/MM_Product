@@ -373,7 +373,8 @@ public class HelperMethods {
 
 	protected void performTableActionGeneric(List<WebElement> pageCountElements, String rowXpath,
 			String paginatorButtonPrefix, String actionButtonSubPath, String... expectedValues) throws Exception {
-		int totalPages = (pageCountElements.size() == 0) ? 1 : pageCountElements.size();
+		int totalPages = driver.findElements(By.xpath(paginatorButtonPrefix)).size();
+		if (totalPages == 0) totalPages = 1;
 		List<Integer> targetIndices = getDynamicColumnIndices();
 
 		for (int p = 1; p <= totalPages; p++) {

@@ -2,6 +2,7 @@ package testCasesForOQProjects;
 
 import static configData.MaterialCategoryData.*;
 
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -71,7 +72,7 @@ public class MaterialCategory_TC extends BaseClass {
 		log.info("Navigating to App URL: {}", APP_URL);
 	}
 
-	@Test(groups = { "userlogin" }, priority = 3)
+	@Test(groups = { "userlogin" })
 	public void userLoginBeforeCreate() throws Throwable {
 		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
 		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
@@ -84,10 +85,12 @@ public class MaterialCategory_TC extends BaseClass {
 	@Test(groups = { "moduleselect" })
 	public void moduleClick() throws Throwable {
 		log.info("--- Clicking Module ---");
+		ScreenshotUtil.nextStep();
 		category.click_titleMasters();
 		log.info("Clicked on Masters title");
 		ScreenshotUtil.capture();
 		category.waitForLoading();
+		ScreenshotUtil.nextStep();
 		category.masterClick(MASTER_MODULE);
 		log.info("Clicked on Master Module: {}", MASTER_MODULE);
 		category.waitForLoading();
@@ -101,6 +104,7 @@ public class MaterialCategory_TC extends BaseClass {
 	@Test(groups = { "Creation" })
 	public void Creation_Of_Material_Category() throws Throwable {
 		log.info("--- Navigating to Create Material Category Screen ---");
+		ScreenshotUtil.nextStep();
 		category.Create();
 		log.info("Clicked on Create button");
 		category.waitForLoading();
@@ -120,25 +124,23 @@ public class MaterialCategory_TC extends BaseClass {
 		String authToast = category.waitForToast();
 		category.waitForLoading();
 		ScreenshotUtil.capture();
-		sa.assertEquals(authToast, "Material category created successfully", "Created Toaster message",
+		sa.assertEquals(authToast, "Material Category created successfully", "Created Toaster message",
 				"Creation failed with message: " + authToast);
-		ScreenshotUtil.nextStep();
-		ScreenshotUtil.capture();
 		sa.assertAll();
 
 	}
 
 	@Test(groups = { "ClickActions" })
-	public void Click_Actions_For_Review() throws Throwable {
+	public void Click_Actions() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			category.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
 		log.info("--- Attempting to open Actions Menu for: {} ---", currentCategoryName);
-		ScreenshotUtil.nextStep();
 		category.clickActions(currentCategoryName);
 		log.info("Successfully opened Actions menu for {}", currentCategoryName);
 		ScreenshotUtil.capture();
+		ScreenshotUtil.freezeCapture();
+		category.clickActions(currentCategoryName);
+		ScreenshotUtil.resumeCapture();
+
 
 	}
 
@@ -165,56 +167,15 @@ public class MaterialCategory_TC extends BaseClass {
 
 		if (MATERIAL_CATEGORY_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				category.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME2, PASSWORD2);
 			log.info("--- Initiating Review Return Flow for: {} ---", currentCategoryName);
-			log.info("Opening actions menu to access Review/Return");
-			category.clickActions(currentCategoryName);
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Review to trigger return dialog");
-			category.clickReview();
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			category.enterRemarks(REVIEW_RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", REVIEW_RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			category.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String returnToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(returnToast, "Material category returned successfully", "Returned toaster message",
-					returnToast);
-			sa.assertAll();
-
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				category.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
-
+			performReturnReview(REVIEW_RETURN_REMARKS);
+			
+			switchUserIfMulti(USERNAME1, PASSWORD1);
 			log.info("Opening Edit screen (After Review Return)");
-
-			category.clickEdit(currentCategoryName);
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			if (EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN != null
-					&& !EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN);
-				category.materialCategoryName(EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN);
-				currentCategoryName = EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN;
-			}
-
-			category.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String editToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(editToast, "Material category updated successfully", "Updated toaster messege", editToast);
+			performEdit(EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN);
 			sa.assertAll();
-
+			
 		} else {
 			log.info("Material Category Review Return and Edit skipped based on configuration");
 		}
@@ -223,27 +184,9 @@ public class MaterialCategory_TC extends BaseClass {
 	@Test(groups = { "categoryReview" })
 	public void materialCategoryReview() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			category.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME2, PASSWORD2);
 		log.info("--- Initiating Review Flow for: {} ---", currentCategoryName);
-		log.info("Opening actions menu to access Review/Return");
-		category.clickActions(currentCategoryName);
-		ScreenshotUtil.capture();
-		log.info("Clicking Review to trigger return dialog");
-		category.clickReview();
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-		category.enterRemarks(REVIEW_REMARKS);
-		log.info("Entered Review remarks: {}", REVIEW_REMARKS);
-		ScreenshotUtil.capture();
-		category.clickReview();
-		log.info("Clicked Review button");
-		ScreenshotUtil.capture();
-		category.authenticate(category.currentPassword);
-		String reviewToast = category.waitForToast();
-		category.waitForLoading();
-		sa.assertEquals(reviewToast, "Material category reviewed successfully", "Review toaster message", reviewToast);
+		performReview(REVIEW_REMARKS);
 		sa.assertAll();
 
 	}
@@ -253,56 +196,18 @@ public class MaterialCategory_TC extends BaseClass {
 
 		if (MATERIAL_CATEGORY_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				category.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME3, PASSWORD3);
 			log.info("--- Initiating Approve Return Flow for: {} ---", currentCategoryName);
-			log.info("Opening actions menu to access Approve/Return");
-			ScreenshotUtil.nextStep();
-			category.clickActions(currentCategoryName);
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Approve to trigger return dialog");
-			category.clickApprove();
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			category.enterRemarks(APPROVE_RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", APPROVE_RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			category.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String returnToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(returnToast, "Material category returned successfully", "Returned toaster message",
-					returnToast);
-			sa.assertAll();
+			performReturnApprove(APPROVE_RETURN_REMARKS);
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				category.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
-
+			switchUserIfMulti(USERNAME1, PASSWORD1);
 			log.info("Opening Edit screen (After Return)");
-
-			category.clickEdit(currentCategoryName);
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-
-			if (EDIT_MATERIAL_CATEGORY_IN_APPROVE_RETURN != null
-					&& !EDIT_MATERIAL_CATEGORY_IN_APPROVE_RETURN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_MATERIAL_CATEGORY_IN_APPROVE_RETURN);
-				category.materialCategoryName(EDIT_MATERIAL_CATEGORY_IN_APPROVE_RETURN);
-				currentCategoryName = EDIT_MATERIAL_CATEGORY_IN_APPROVE_RETURN;
-			}
-
-			category.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String editToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(editToast, "Material category updated successfully", "Updated toaster messege", editToast);
+			performEdit(MATERIAL_CATEGORY_RETURN_ACTION_IN_APPROVE);
+			
+			switchUserIfMulti(USERNAME2, PASSWORD2);
+			log.info("--- Initiating Review Flow for: {} ---", currentCategoryName);
+			performReview(REVIEW_REMARKS);
+			
 			sa.assertAll();
 
 		} else {
@@ -335,7 +240,7 @@ public class MaterialCategory_TC extends BaseClass {
 		category.authenticate(category.currentPassword);
 		String approveToast = category.waitForToast();
 		category.waitForLoading();
-		sa.assertEquals(approveToast, "Material category approved successfully", "Approved toaster messege",
+		sa.assertEquals(approveToast, "Material Category approved successfully", "Approved toaster messege",
 				approveToast);
 		sa.assertAll();
 
@@ -344,7 +249,6 @@ public class MaterialCategory_TC extends BaseClass {
 	@Test(groups = { "Logout" })
 	public void Logout() throws Throwable {
 		log.info("--- Executing Final Logout ---");
-		ScreenshotUtil.nextStep();
 		category.logout();
 		log.info("Clicked logout button");
 		category.waitForToast();
@@ -365,6 +269,126 @@ public class MaterialCategory_TC extends BaseClass {
 		DatabaseBackupUtil.backupPostgres(backupFolderName, PC_DB_NAME, "postgres", "root", "localhost", "5432");
 		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
 		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
+	}
+	
+	
+	
+	
+	// --- HELPER METHODS ---
+
+	
+		private void performReview(String remarks) throws Throwable {
+			log.info("Opening actions menu to access Review/Return");
+			category.clickActions(currentCategoryName);
+			ScreenshotUtil.capture();
+			log.info("Clicking Review to trigger return dialog");
+			category.clickReview();
+			category.waitForLoading();
+			ScreenshotUtil.capture();
+			category.enterRemarks(remarks);
+			log.info("Entered Review remarks: {}", remarks);
+			ScreenshotUtil.capture();
+			category.clickReview();
+			log.info("Clicked Review button");
+			ScreenshotUtil.capture();
+			category.authenticate(category.currentPassword);
+			String reviewToast = category.waitForToast();
+			category.waitForLoading();
+			sa.assertEquals(reviewToast, "Material Category reviewed successfully", "Review toaster message", reviewToast);
+			
+		}
+
+		private void performEdit(String updateName) throws Throwable {
+			log.info("Opening Edit screen");
+			category.clickEdit(currentCategoryName);
+			category.waitForLoading();
+			ScreenshotUtil.capture();
+
+			if (updateName != null
+					&& !updateName.trim().isEmpty()) {
+				log.info("Updating Name to: {}", updateName);
+				category.materialCategoryName(updateName);
+				currentCategoryName = updateName;
+			}
+
+			category.clickUpdate();
+			log.info("Clicked Update");
+			ScreenshotUtil.capture();
+			category.authenticate(category.currentPassword);
+			String editToast = category.waitForToast();
+			category.waitForLoading();
+			sa.assertEquals(editToast, "Material Category updated successfully", "Updated toaster messege", editToast);
+			
+		}
+
+		private void performReturnReview(String remarks) throws Throwable {
+			log.info("Opening actions menu to access Review/Return");
+			category.clickActions(currentCategoryName);
+			ScreenshotUtil.capture();
+			ScreenshotUtil.nextStep();
+			log.info("Clicking Review to trigger return dialog");
+			category.clickReview();
+			category.waitForLoading();
+			ScreenshotUtil.capture();
+			category.enterRemarks(remarks);
+			log.info("Entered Return remarks: {}", remarks);
+			ScreenshotUtil.capture();
+			category.clickReturn();
+			log.info("Clicked Return button");
+			ScreenshotUtil.capture();
+			category.authenticate(category.currentPassword);
+			String returnToast = category.waitForToast();
+			category.waitForLoading();
+			sa.assertEquals(returnToast, "Material Category returned successfully", "Returned toaster message", returnToast);
+			
+		}
+
+		private void performReturnApprove(String remarks) throws Throwable {
+			log.info("Opening actions menu to access Approve/Return");
+			category.clickActions(currentCategoryName);
+			ScreenshotUtil.capture();
+			ScreenshotUtil.nextStep();
+			log.info("Clicking Approve to trigger return dialog");
+			category.clickApprove();
+			category.waitForLoading();
+			ScreenshotUtil.capture();
+			category.enterRemarks(remarks);
+			log.info("Entered Return remarks: {}", remarks);
+			ScreenshotUtil.capture();
+			category.clickReturn();
+			log.info("Clicked Return button");
+			ScreenshotUtil.capture();
+			category.authenticate(category.currentPassword);
+			String returnToast = category.waitForToast();
+			category.waitForLoading();
+			sa.assertEquals(returnToast, "Material Category returned successfully", "Returned toaster message", returnToast);
+			
+		}
+		
+		
+		private void switchUserIfMulti(String username, String password) throws Throwable {
+			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
+				category.switchUser(username, password, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
+			}
+		}
+
+	
+	@Test(groups = { "ClickActionRep" })
+	public void Click_Actions_1() throws Throwable {
+		
+		switchUserIfMulti(USERNAME1, PASSWORD1);
+		
+		Click_Actions();	
+		}
+	
+	
+	
+	@Test(groups = { "ClickActionRep" })
+	public void Click_Actions_2() throws Throwable {
+		
+		switchUserIfMulti(USERNAME2, PASSWORD2);
+		
+		Click_Actions();	
 	}
 
 }

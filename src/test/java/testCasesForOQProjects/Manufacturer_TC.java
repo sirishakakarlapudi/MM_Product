@@ -2,6 +2,7 @@ package testCasesForOQProjects;
 
 import static configData.ManufacturerData.*;
 
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -71,7 +72,7 @@ public class Manufacturer_TC extends BaseClass {
 		log.info("Navigating to App URL: {}", APP_URL);
 	}
 
-	@Test(groups = { "userlogin" }, priority = 3)
+	@Test(groups = { "userlogin" })
 	public void userLoginBeforeCreate() throws Throwable {
 		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
 		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
@@ -123,7 +124,7 @@ public class Manufacturer_TC extends BaseClass {
 		String authToast = manufacturer.waitForToast();
 		manufacturer.waitForLoading();
 		ScreenshotUtil.capture();
-		sa.assertEquals(authToast, "Supplier created successfully", "Created Toaster message",
+		sa.assertEquals(authToast, "Manufacturer created successfully", "Created Toaster message",
 				"Creation failed with message: " + authToast);
 		ScreenshotUtil.nextStep();
 		ScreenshotUtil.capture();
@@ -132,7 +133,7 @@ public class Manufacturer_TC extends BaseClass {
 	}
 
 	@Test(groups = { "ClickActions" })
-	public void Click_Actions_For_Review() throws Throwable {
+	public void Click_Actions() throws Throwable {
 
 		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
 			manufacturer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
@@ -142,6 +143,9 @@ public class Manufacturer_TC extends BaseClass {
 		manufacturer.clickActions(currentManufacturerName);
 		log.info("Successfully opened Actions menu for {}", currentManufacturerName);
 		ScreenshotUtil.capture();
+		ScreenshotUtil.freezeCapture();
+		manufacturer.clickActions(currentManufacturerName);
+		ScreenshotUtil.resumeCapture();
 
 	}
 
@@ -168,53 +172,13 @@ public class Manufacturer_TC extends BaseClass {
 
 		if (MANUFACTURER_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				manufacturer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME2, PASSWORD2);
 			log.info("--- Initiating Review Return Flow for: {} ---", currentManufacturerName);
-			log.info("Opening actions menu to access Review/Return");
-			manufacturer.clickActions(currentManufacturerName);
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Review to trigger return dialog");
-			manufacturer.clickReview();
-			manufacturer.waitForLoading();
-			ScreenshotUtil.capture();
-			manufacturer.enterRemarks(REVIEW_RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", REVIEW_RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			manufacturer.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			manufacturer.authenticate(manufacturer.currentPassword);
-			String returnToast = manufacturer.waitForToast();
-			manufacturer.waitForLoading();
-			sa.assertEquals(returnToast, "Supplier returned successfully", "Returned toaster message",
-					returnToast);
-			sa.assertAll();
+			performReturnReview(REVIEW_RETURN_REMARKS);
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				manufacturer.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
-
+			switchUserIfMulti(USERNAME1, PASSWORD1);
 			log.info("Opening Edit screen (After Review Return)");
-
-			manufacturer.clickEdit(currentManufacturerName);
-			manufacturer.waitForLoading();
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			if (EDIT_MANUFACTURER_IN_REVIEW_RETURN != null && !EDIT_MANUFACTURER_IN_REVIEW_RETURN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_MANUFACTURER_IN_REVIEW_RETURN);
-				manufacturer.manufacturerName(EDIT_MANUFACTURER_IN_REVIEW_RETURN);
-				currentManufacturerName = EDIT_MANUFACTURER_IN_REVIEW_RETURN;
-			}
-
-			manufacturer.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			manufacturer.authenticate(manufacturer.currentPassword);
-			String editToast = manufacturer.waitForToast();
-			manufacturer.waitForLoading();
-			sa.assertEquals(editToast, "Supplier updated successfully", "Updated toaster messege", editToast);
+			performEdit(EDIT_MANUFACTURER_IN_REVIEW_RETURN);
 			sa.assertAll();
 
 		} else {
@@ -225,27 +189,9 @@ public class Manufacturer_TC extends BaseClass {
 	@Test(groups = { "manufacturerReview" })
 	public void manufacturerReview() throws Throwable {
 
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			manufacturer.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
+		switchUserIfMulti(USERNAME2, PASSWORD2);
 		log.info("--- Initiating Review Flow for: {} ---", currentManufacturerName);
-		log.info("Opening actions menu to access Review/Return");
-		manufacturer.clickActions(currentManufacturerName);
-		ScreenshotUtil.capture();
-		log.info("Clicking Review to trigger return dialog");
-		manufacturer.clickReview();
-		manufacturer.waitForLoading();
-		ScreenshotUtil.capture();
-		manufacturer.enterRemarks(REVIEW_REMARKS);
-		log.info("Entered Review remarks: {}", REVIEW_REMARKS);
-		ScreenshotUtil.capture();
-		manufacturer.clickReview();
-		log.info("Clicked Review button");
-		ScreenshotUtil.capture();
-		manufacturer.authenticate(manufacturer.currentPassword);
-		String reviewToast = manufacturer.waitForToast();
-		manufacturer.waitForLoading();
-		sa.assertEquals(reviewToast, "Supplier reviewed successfully", "Review toaster message", reviewToast);
+		performReview(REVIEW_REMARKS);
 		sa.assertAll();
 
 	}
@@ -255,55 +201,18 @@ public class Manufacturer_TC extends BaseClass {
 
 		if (MANUFACTURER_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				manufacturer.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
+			switchUserIfMulti(USERNAME3, PASSWORD3);
 			log.info("--- Initiating Approve Return Flow for: {} ---", currentManufacturerName);
-			log.info("Opening actions menu to access Approve/Return");
-			ScreenshotUtil.nextStep();
-			manufacturer.clickActions(currentManufacturerName);
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Approve to trigger return dialog");
-			manufacturer.clickApprove();
-			manufacturer.waitForLoading();
-			ScreenshotUtil.capture();
-			manufacturer.enterRemarks(APPROVE_RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", APPROVE_RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			manufacturer.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			manufacturer.authenticate(manufacturer.currentPassword);
-			String returnToast = manufacturer.waitForToast();
-			manufacturer.waitForLoading();
-			sa.assertEquals(returnToast, "Supplier returned successfully", "Returned toaster message",
-					returnToast);
-			sa.assertAll();
+			performReturnApprove(APPROVE_RETURN_REMARKS);
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				manufacturer.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
-
+			switchUserIfMulti(USERNAME1, PASSWORD1);
 			log.info("Opening Edit screen (After Return)");
+			performEdit(EDIT_MANUFACTURER_IN_APPROVE_RETURN);
 
-			manufacturer.clickEdit(currentManufacturerName);
-			manufacturer.waitForLoading();
-			ScreenshotUtil.capture();
+			switchUserIfMulti(USERNAME2, PASSWORD2);
+			log.info("--- Initiating Review Flow for: {} ---", currentManufacturerName);
+			performReview(REVIEW_REMARKS);
 
-			if (EDIT_MANUFACTURER_IN_APPROVE_RETURN != null && !EDIT_MANUFACTURER_IN_APPROVE_RETURN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_MANUFACTURER_IN_APPROVE_RETURN);
-				manufacturer.manufacturerName(EDIT_MANUFACTURER_IN_APPROVE_RETURN);
-				currentManufacturerName = EDIT_MANUFACTURER_IN_APPROVE_RETURN;
-			}
-
-			manufacturer.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			manufacturer.authenticate(manufacturer.currentPassword);
-			String editToast = manufacturer.waitForToast();
-			manufacturer.waitForLoading();
-			sa.assertEquals(editToast, "Supplier updated successfully", "Updated toaster messege", editToast);
 			sa.assertAll();
 
 		} else {
@@ -327,6 +236,7 @@ public class Manufacturer_TC extends BaseClass {
 		log.info("Clicking Approve button in the list");
 		manufacturer.clickApprove();
 		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
 		manufacturer.enterRemarks(APPROVE_REMARKS);
 		log.info("Entered Approve remarks: {}", APPROVE_REMARKS);
 		ScreenshotUtil.capture();
@@ -336,7 +246,7 @@ public class Manufacturer_TC extends BaseClass {
 		manufacturer.authenticate(manufacturer.currentPassword);
 		String approveToast = manufacturer.waitForToast();
 		manufacturer.waitForLoading();
-		sa.assertEquals(approveToast, "Supplier approved successfully", "Approved toaster messege", approveToast);
+		sa.assertEquals(approveToast, "Manufacturer approved successfully", "Approved toaster messege", approveToast);
 		sa.assertAll();
 
 	}
@@ -344,7 +254,6 @@ public class Manufacturer_TC extends BaseClass {
 	@Test(groups = { "Logout" })
 	public void Logout() throws Throwable {
 		log.info("--- Executing Final Logout ---");
-		ScreenshotUtil.nextStep();
 		manufacturer.logout();
 		log.info("Clicked logout button");
 		manufacturer.waitForToast();
@@ -365,6 +274,119 @@ public class Manufacturer_TC extends BaseClass {
 		DatabaseBackupUtil.backupPostgres(backupFolderName, PC_DB_NAME, "postgres", "root", "localhost", "5432");
 		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
 		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
+	}
+	// --- HELPER METHODS ---
+
+	@Test(groups = { "ClickActionRep" })
+	public void Click_Actions_1() throws Throwable {
+
+		switchUserIfMulti(USERNAME1, PASSWORD1);
+
+		Click_Actions();
+	}
+
+	@Test(groups = { "ClickActionRep" })
+	public void Click_Actions_2() throws Throwable {
+
+		switchUserIfMulti(USERNAME2, PASSWORD2);
+
+		Click_Actions();
+	}
+
+	private void performReview(String remarks) throws Throwable {
+		log.info("Opening actions menu to access Review/Return");
+		manufacturer.clickActions(currentManufacturerName);
+		ScreenshotUtil.capture();
+		log.info("Clicking Review to trigger return dialog");
+		manufacturer.clickReview();
+		manufacturer.waitForLoading();
+		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
+		manufacturer.enterRemarks(remarks);
+		log.info("Entered Review remarks: {}", remarks);
+		ScreenshotUtil.capture();
+		manufacturer.clickReview();
+		log.info("Clicked Review button");
+		ScreenshotUtil.capture();
+		manufacturer.authenticate(manufacturer.currentPassword);
+		String reviewToast = manufacturer.waitForToast();
+		manufacturer.waitForLoading();
+		sa.assertEquals(reviewToast, "Manufacturer reviewed successfully", "Review toaster message", reviewToast);
+
+	}
+
+	private void performEdit(String updateName) throws Throwable {
+		log.info("Opening Edit screen");
+		manufacturer.clickEdit(currentManufacturerName);
+		manufacturer.waitForLoading();
+		ScreenshotUtil.capture();
+
+		if (updateName != null && !updateName.trim().isEmpty()) {
+			log.info("Updating Name to: {}", updateName);
+			manufacturer.manufacturerName(updateName);
+			currentManufacturerName = updateName;
+		}
+
+		manufacturer.clickUpdate();
+		log.info("Clicked Update");
+		ScreenshotUtil.capture();
+		manufacturer.authenticate(manufacturer.currentPassword);
+		String editToast = manufacturer.waitForToast();
+		manufacturer.waitForLoading();
+		sa.assertEquals(editToast, "Manufacturer updated successfully", "Updated toaster messege", editToast);
+
+	}
+
+	private void performReturnReview(String remarks) throws Throwable {
+		log.info("Opening actions menu to access Review/Return");
+		manufacturer.clickActions(currentManufacturerName);
+		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
+		log.info("Clicking Review to trigger return dialog");
+		manufacturer.clickReview();
+		manufacturer.waitForLoading();
+		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
+		manufacturer.enterRemarks(remarks);
+		log.info("Entered Return remarks: {}", remarks);
+		ScreenshotUtil.capture();
+		manufacturer.clickReturn();
+		log.info("Clicked Return button");
+		ScreenshotUtil.capture();
+		manufacturer.authenticate(manufacturer.currentPassword);
+		String returnToast = manufacturer.waitForToast();
+		manufacturer.waitForLoading();
+		sa.assertEquals(returnToast, "Manufacturer returned successfully", "Returned toaster message", returnToast);
+
+	}
+
+	private void performReturnApprove(String remarks) throws Throwable {
+		log.info("Opening actions menu to access Approve/Return");
+		manufacturer.clickActions(currentManufacturerName);
+		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
+		log.info("Clicking Approve to trigger return dialog");
+		manufacturer.clickApprove();
+		manufacturer.waitForLoading();
+		ScreenshotUtil.capture();
+		ScreenshotUtil.nextStep();
+		manufacturer.enterRemarks(remarks);
+		log.info("Entered Return remarks: {}", remarks);
+		ScreenshotUtil.capture();
+		manufacturer.clickReturn();
+		log.info("Clicked Return button");
+		ScreenshotUtil.capture();
+		manufacturer.authenticate(manufacturer.currentPassword);
+		String returnToast = manufacturer.waitForToast();
+		manufacturer.waitForLoading();
+		sa.assertEquals(returnToast, "Manufacturer returned successfully", "Returned toaster message", returnToast);
+
+	}
+
+	private void switchUserIfMulti(String username, String password) throws Throwable {
+		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
+			manufacturer.switchUser(username, password, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
+		}
 	}
 
 }
