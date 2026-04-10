@@ -20,7 +20,7 @@
 					<include name="supplierReview" />
 					<include name="supplier_Approve_Return_and_Edit_and_Review" />
 					<include name="supplierApprove" />
-
+					<include name="checkStatus" />
 					<include name="Logout" />
 					<include name="Database_Backup" />
 

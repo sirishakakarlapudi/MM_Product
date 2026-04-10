@@ -10,99 +10,119 @@ public class Equipment extends BasePage {
 
 	public Equipment(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
-	
 
-	@FindBy(xpath="//input[@formcontrolname='name']")
-	WebElement txt_equipmentname;
-	
-	
+	/*
+	 * ========================================================================= [
+	 * LOCATORS ]
+	 * =========================================================================
+	 */
+
+	@FindBy(xpath = "//input[@formcontrolname='name']")
+	protected WebElement equipment_name;
+
+	@FindBy(xpath = "//input[@formcontrolname='balanceId']")
+	protected WebElement equipment_id;
+
+	@FindBy(xpath = "//p-autocomplete[@formcontrolname='equipmentTypeId']//chevrondownicon")
+	protected WebElement equipment_type_drpdwn;
+
+	@FindBy(xpath = "//input[@formcontrolname='maxCapacityRange']")
+	protected WebElement equipment_capacity_in_kg;
+
+	@FindBy(xpath = "//input[@formcontrolname='minOperationalRange']")
+	protected WebElement equipment_operational_range_min;
+
+	@FindBy(xpath = "//input[@formcontrolname='maxOperationalRange']")
+	protected WebElement equipment_operational_range_max;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='department']//div/span")
+	protected WebElement equipment_department_drpdwn;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='facilityId']//div/span")
+	protected WebElement equipment_facility_drpdwn;
+
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='childFacility']//div/span")
+	protected WebElement equipment_weighing_balance_facility_drpdwn;
+
+	/*
+	 * ========================================================================= [
+	 * BASIC ACTIONS ]
+	 * =========================================================================
+	 */
+
 	public void equipmentName(String equipmentname) {
-		txt_equipmentname.clear();
-		waitAndSendKeys(txt_equipmentname, equipmentname);
+		if (equipmentname != null && !equipmentname.trim().isEmpty()) {
+			equipment_name.clear();
+			waitAndSendKeys(equipment_name, equipmentname);
+		}
 	}
-	
-	@FindBy(xpath="//input[@formcontrolname='balanceId']")
-	WebElement txt_equipmentid;
-	
-	
+
 	public void equipmentId(String equipmentid) {
-		txt_equipmentid.clear();
-		waitAndSendKeys(txt_equipmentid, equipmentid);
+		if (equipmentid != null && !equipmentid.trim().isEmpty()) {
+			equipment_id.clear();
+			waitAndSendKeys(equipment_id, equipmentid);
+		}
 	}
-	
-	
-	@FindBy (xpath= "//ng-multiselect-dropdown[@formcontrolname='equipmentTypeId']//div/span")
-	WebElement dropdwn_equipmenttype;
+
 	public void selEquipmentType(String euipmenttype) {
-		waitForElementandClick(dropdwn_equipmenttype);
-		WebElement equipmentTypeXpath = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//ng-multiselect-dropdown[@formcontrolname='equipmentTypeId']//li[normalize-space()='"
-						+ euipmenttype + "']")));
-		equipmentTypeXpath.click();
+		if (euipmenttype != null && !euipmenttype.trim().isEmpty()) {
+			waitForElementandClick(equipment_type_drpdwn);
+			WebElement equipmentTypeXpath = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//li[normalize-space()='" + euipmenttype + "']")));
+			equipmentTypeXpath.click();
+		}
 	}
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='maxCapacityRange']")
-	WebElement txt_capacityinkg;
-	
-	
+
 	public void capacityInKg(String capacity) {
-		txt_capacityinkg.clear();
-		waitAndSendKeys(txt_capacityinkg, capacity);
+		if (capacity != null && !capacity.trim().isEmpty()) {
+			equipment_capacity_in_kg.clear();
+			waitAndSendKeys(equipment_capacity_in_kg, capacity);
+		}
 	}
-	
-	
-	@FindBy(xpath="//input[@formcontrolname='minOperationalRange']")
-	WebElement txt_operationalrangemin;
-	
-	
+
 	public void operationalRangeMin(String operationalrangemin) {
-		txt_operationalrangemin.clear();
-		waitAndSendKeys(txt_operationalrangemin, operationalrangemin);
+		if (operationalrangemin != null && !operationalrangemin.trim().isEmpty()) {
+			equipment_operational_range_min.clear();
+			waitAndSendKeys(equipment_operational_range_min, operationalrangemin);
+		}
 	}
-	
-	@FindBy(xpath="//input[@formcontrolname='maxOperationalRange']")
-	WebElement txt_operationalrangemax;
-	
-	
+
 	public void operationalRangeMax(String operationalrangemax) {
-		txt_operationalrangemax.clear();
-		waitAndSendKeys(txt_operationalrangemax, operationalrangemax);
+		if (operationalrangemax != null && !operationalrangemax.trim().isEmpty()) {
+			equipment_operational_range_max.clear();
+			waitAndSendKeys(equipment_operational_range_max, operationalrangemax);
+		}
 	}
-	
-	
-	@FindBy (xpath= "//ng-multiselect-dropdown[@formcontrolname='department']//div/span")
-	WebElement dropdwn_department;
+
 	public void selDepartment(String department) {
-		waitForElementandClick(dropdwn_department);
-		WebElement departmentXpath = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//ng-multiselect-dropdown[@formcontrolname='department']//li[normalize-space()='"
-						+ department + "']")));
-		departmentXpath.click();
+		if (department != null && !department.trim().isEmpty()) {
+			waitForElementandClick(equipment_department_drpdwn);
+			WebElement departmentXpath = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//ng-multiselect-dropdown[@formcontrolname='department']//li[normalize-space()='"
+							+ department + "']")));
+			departmentXpath.click();
+		}
 	}
-	
-	
-	@FindBy (xpath= "//ng-multiselect-dropdown[@formcontrolname='facilityId']//div/span")
-	WebElement dropdwn_facility;
+
 	public void selFacility(String facility) {
-		waitForElementandClick(dropdwn_facility);
-		WebElement facilityXpath = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//ng-multiselect-dropdown[@formcontrolname='facilityId']//li[normalize-space()='"
-						+ facility + "']")));
-		facilityXpath.click();
+		if (facility != null && !facility.trim().isEmpty()) {
+			waitForElementandClick(equipment_facility_drpdwn);
+			WebElement facilityXpath = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//ng-multiselect-dropdown[@formcontrolname='facilityId']//li[normalize-space()='"
+							+ facility + "']")));
+			facilityXpath.click();
+		}
 	}
-	
-	@FindBy (xpath= "//ng-multiselect-dropdown[@formcontrolname='childFacility']//div/span")
-	WebElement dropdwn_weighingbalancefacility;
+
 	public void selWeighingBalanceFacility(String weighingbalancefacility) {
-		waitForElementandClick(dropdwn_weighingbalancefacility);
-		WebElement weighingBalanceFacilityXpath = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//ng-multiselect-dropdown[@formcontrolname='childFacility']//li[normalize-space()='"
-						+ weighingbalancefacility + "']")));
-		weighingBalanceFacilityXpath.click();
+		if (weighingbalancefacility != null && !weighingbalancefacility.trim().isEmpty()) {
+			waitForElementandClick(equipment_weighing_balance_facility_drpdwn);
+			WebElement weighingBalanceFacilityXpath = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//ng-multiselect-dropdown[@formcontrolname='childFacility']//li[normalize-space()='"
+							+ weighingbalancefacility + "']")));
+			weighingBalanceFacilityXpath.click();
+		}
 	}
-	
-	
+
 }

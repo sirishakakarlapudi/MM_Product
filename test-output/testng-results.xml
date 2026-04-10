@@ -1,388 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="17" passed="8" failed="5" skipped="0">
+<testng-results ignored="2" total="15" passed="13" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-21T15:28:12 IST" name="Suite" finished-at="2026-03-21T15:43:20 IST" duration-ms="908882">
+  <suite started-at="2026-04-10T12:58:51 IST" name="Suite" finished-at="2026-04-10T13:07:17 IST" duration-ms="505283">
     <groups>
       <group name="DB Back">
-        <method signature="Material_TC.Database_Backup()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="Database_Backup" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="OQBaseModule_TC.Database_Backup()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Database_Backup" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- DB Back -->
-      <group name="materialApproveReturn_materialEdit_materialReview">
-        <method signature="Material_TC.material_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="material_Approve_Return_and_Edit_and_Review" class="testCasesForOQProjects.Material_TC"/>
-      </group> <!-- materialApproveReturn_materialEdit_materialReview -->
-      <group name="materialApprove">
-        <method signature="Material_TC.materialApprove()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="materialApprove" class="testCasesForOQProjects.Material_TC"/>
-      </group> <!-- materialApprove -->
+      <group name="productApproveReturn_productEdit_productReview">
+        <method signature="AkronQuickProduct_TC.product_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="product_Approve_Return_and_Edit_and_Review" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+      </group> <!-- productApproveReturn_productEdit_productReview -->
+      <group name="ClickActions">
+        <method signature="AkronQuickProduct_TC.Click_Actions2()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Click_Actions2" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+      </group> <!-- ClickActions -->
       <group name="Creation">
-        <method signature="Material_TC.Creation_Of_Material()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="Creation_Of_Material" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="AkronQuickProduct_TC.Creation_Of_Product()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Creation_Of_Product" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
       </group> <!-- Creation -->
-      <group name="materialReview">
-        <method signature="Material_TC.materialReview()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="materialReview" class="testCasesForOQProjects.Material_TC"/>
-      </group> <!-- materialReview -->
       <group name="Logout">
-        <method signature="Material_TC.Logout()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="Logout" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="OQBaseModule_TC.Logout()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Logout" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- Logout -->
-      <group name="vendorDetails">
-        <method signature="Material_TC.vendorDetails()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="vendorDetails" class="testCasesForOQProjects.Material_TC"/>
-      </group> <!-- vendorDetails -->
-      <group name="materialReviewReturn_materialEdit">
-        <method signature="Material_TC.material_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="material_Review_Return_and_Edit" class="testCasesForOQProjects.Material_TC"/>
-      </group> <!-- materialReviewReturn_materialEdit -->
-      <group name="materialUpdate">
-        <method signature="Material_TC.materialUpdate()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="materialUpdate" class="testCasesForOQProjects.Material_TC"/>
-      </group> <!-- materialUpdate -->
+      <group name="duplicationcheck">
+        <method signature="AkronQuickProduct_TC.Duplication_Check()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Duplication_Check" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+      </group> <!-- duplicationcheck -->
+      <group name="productReviewReturn_productEdit">
+        <method signature="AkronQuickProduct_TC.product_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="product_Review_Return_and_Edit" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+      </group> <!-- productReviewReturn_productEdit -->
+      <group name="productReview">
+        <method signature="AkronQuickProduct_TC.productReview()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="productReview" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+      </group> <!-- productReview -->
       <group name="url">
-        <method signature="Material_TC.url()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="url" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="OQBaseModule_TC.url()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="url" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- url -->
       <group name="userlogin">
-        <method signature="Material_TC.userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="userLoginBeforeCreate" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="OQBaseModule_TC.userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="userLoginBeforeCreate" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- userlogin -->
       <group name="moduleselect">
-        <method signature="Material_TC.moduleClick()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="moduleClick" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="OQBaseModule_TC.moduleClick()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="moduleClick" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- moduleselect -->
       <group name="ClickView">
-        <method signature="Material_TC.Click_View()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" name="Click_View" class="testCasesForOQProjects.Material_TC"/>
+        <method signature="OQBaseModule_TC.Click_View()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Click_View" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- ClickView -->
+      <group name="productApprove">
+        <method signature="AkronQuickProduct_TC.productApprove()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="productApprove" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+      </group> <!-- productApprove -->
     </groups>
-    <test started-at="2026-03-21T15:28:12 IST" name="Test" finished-at="2026-03-21T15:43:20 IST" duration-ms="908882">
-      <class name="testCasesForOQProjects.Material_TC">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:12 IST" name="setUp" finished-at="2026-03-21T15:28:15 IST" duration-ms="3187" status="PASS">
+    <test started-at="2026-04-10T12:58:51 IST" name="Test" finished-at="2026-04-10T13:07:17 IST" duration-ms="505283">
+      <class name="testCasesForOQProjects.AkronQuickProduct_TC">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:51 IST" name="setUp" finished-at="2026-04-10T12:58:54 IST" duration-ms="2842" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[oqakronmaterial.properties]]>
+                <![CDATA[oqakronquickproduct.properties]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:15 IST" name="initSoftAssert" finished-at="2026-03-21T15:28:15 IST" duration-ms="8" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:54 IST" name="initSoftAssert" finished-at="2026-04-10T12:58:54 IST" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="url()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:15 IST" name="url" finished-at="2026-03-21T15:28:16 IST" duration-ms="938" status="PASS">
+        <test-method signature="url()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:54 IST" name="url" finished-at="2026-04-10T12:58:55 IST" duration-ms="1020" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- url -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:16 IST" name="initSoftAssert" finished-at="2026-03-21T15:28:16 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initSoftAssert -->
-        <test-method signature="userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:16 IST" name="userLoginBeforeCreate" finished-at="2026-03-21T15:28:23 IST" duration-ms="7150" status="PASS">
+        <test-method signature="userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:55 IST" name="userLoginBeforeCreate" finished-at="2026-04-10T12:59:02 IST" duration-ms="6621" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userLoginBeforeCreate -->
-        <test-method signature="moduleClick()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:23 IST" name="moduleClick" finished-at="2026-03-21T15:28:42 IST" duration-ms="19559" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:55 IST" name="initSoftAssert" finished-at="2026-04-10T12:58:55 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSoftAssert -->
+        <test-method signature="moduleClick()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:02 IST" name="moduleClick" finished-at="2026-04-10T12:59:10 IST" duration-ms="8702" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- moduleClick -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:23 IST" name="initSoftAssert" finished-at="2026-03-21T15:28:23 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:02 IST" name="initSoftAssert" finished-at="2026-04-10T12:59:02 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="Creation_Of_Material()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:42 IST" name="Creation_Of_Material" finished-at="2026-03-21T15:30:21 IST" duration-ms="98033" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[The following asserts failed:
-Created Toaster message mismatch for: Creation failed with message: Material created succesfully expected [Material created successfully] but found [Material created succesfully]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-Created Toaster message mismatch for: Creation failed with message: Material created succesfully expected [Material created successfully] but found [Material created succesfully]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
-at utilities.SoftAssertionUtil.assertAll(SoftAssertionUtil.java:59)
-at testCasesForOQProjects.Material_TC.Creation_Of_Material(Material_TC.java:169)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="Creation_Of_Product()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:10 IST" name="Creation_Of_Product" finished-at="2026-04-10T12:59:51 IST" duration-ms="40132" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Creation_Of_Material -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:28:42 IST" name="initSoftAssert" finished-at="2026-03-21T15:28:42 IST" duration-ms="0" status="PASS">
+        </test-method> <!-- Creation_Of_Product -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:10 IST" name="initSoftAssert" finished-at="2026-04-10T12:59:10 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:30:21 IST" name="initSoftAssert" finished-at="2026-03-21T15:30:21 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:51 IST" name="initSoftAssert" finished-at="2026-04-10T12:59:51 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="Click_View()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:30:21 IST" name="Click_View" finished-at="2026-03-21T15:30:40 IST" duration-ms="19047" status="PASS">
+        <test-method signature="Click_Actions2()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:51 IST" name="Click_Actions2" finished-at="2026-04-10T13:00:19 IST" duration-ms="28218" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Click_Actions2 -->
+        <test-method signature="Click_View()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:19 IST" name="Click_View" finished-at="2026-04-10T13:00:26 IST" duration-ms="7404" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Click_View -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:30:40 IST" name="initSoftAssert" finished-at="2026-03-21T15:30:40 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:19 IST" name="initSoftAssert" finished-at="2026-04-10T13:00:19 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="material_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:30:40 IST" name="material_Review_Return_and_Edit" finished-at="2026-03-21T15:32:40 IST" duration-ms="120171" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[The following asserts failed:
-Updated toaster messege mismatch for: Material updated succesfully expected [Material updated successfully] but found [Material updated succesfully]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-Updated toaster messege mismatch for: Material updated succesfully expected [Material updated successfully] but found [Material updated succesfully]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
-at utilities.SoftAssertionUtil.assertAll(SoftAssertionUtil.java:59)
-at testCasesForOQProjects.Material_TC.material_Review_Return_and_Edit(Material_TC.java:215)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="product_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:26 IST" name="product_Review_Return_and_Edit" finished-at="2026-04-10T13:01:42 IST" duration-ms="76057" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- material_Review_Return_and_Edit -->
-        <test-method signature="materialReview()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:32:40 IST" name="materialReview" finished-at="2026-03-21T15:33:54 IST" duration-ms="74029" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- materialReview -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:32:40 IST" name="initSoftAssert" finished-at="2026-03-21T15:32:40 IST" duration-ms="0" status="PASS">
+        </test-method> <!-- product_Review_Return_and_Edit -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:26 IST" name="initSoftAssert" finished-at="2026-04-10T13:00:26 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:33:54 IST" name="initSoftAssert" finished-at="2026-03-21T15:33:54 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:01:42 IST" name="initSoftAssert" finished-at="2026-04-10T13:01:42 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="material_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:33:54 IST" name="material_Approve_Return_and_Edit_and_Review" finished-at="2026-03-21T15:37:27 IST" duration-ms="213115" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[The following asserts failed:
-Updated toaster messege mismatch for: Material updated succesfully expected [Material updated successfully] but found [Material updated succesfully]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-Updated toaster messege mismatch for: Material updated succesfully expected [Material updated successfully] but found [Material updated succesfully]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
-at utilities.SoftAssertionUtil.assertAll(SoftAssertionUtil.java:59)
-at testCasesForOQProjects.Material_TC.material_Approve_Return_and_Edit_and_Review(Material_TC.java:250)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="productReview()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:01:42 IST" name="productReview" finished-at="2026-04-10T13:02:33 IST" duration-ms="50365" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- material_Approve_Return_and_Edit_and_Review -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:37:27 IST" name="initSoftAssert" finished-at="2026-03-21T15:37:27 IST" duration-ms="1" status="PASS">
+        </test-method> <!-- productReview -->
+        <test-method signature="product_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:02:33 IST" name="product_Approve_Return_and_Edit_and_Review" finished-at="2026-04-10T13:05:31 IST" duration-ms="178042" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- product_Approve_Return_and_Edit_and_Review -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:02:33 IST" name="initSoftAssert" finished-at="2026-04-10T13:02:33 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="materialApprove()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:37:27 IST" name="materialApprove" finished-at="2026-03-21T15:38:28 IST" duration-ms="61319" status="PASS">
+        <test-method signature="productApprove()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:05:31 IST" name="productApprove" finished-at="2026-04-10T13:06:21 IST" duration-ms="50101" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- materialApprove -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:38:28 IST" name="initSoftAssert" finished-at="2026-03-21T15:38:28 IST" duration-ms="7" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initSoftAssert -->
-        <test-method signature="materialUpdate()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:38:28 IST" name="materialUpdate" finished-at="2026-03-21T15:42:18 IST" duration-ms="229305" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[The following asserts failed:
-Updated toaster messege mismatch for: Material updated succesfully expected [Material updated successfully] but found [Material updated succesfully],
-Review toaster message mismatch for: Material Update Request reviewed scuccessfully expected [Material reviewed successfully] but found [Material Update Request reviewed scuccessfully],
-Approved toaster messege mismatch for: Material Update Request approved scuccessfully expected [Material approved successfully] but found [Material Update Request approved scuccessfully]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-Updated toaster messege mismatch for: Material updated succesfully expected [Material updated successfully] but found [Material updated succesfully],
-Review toaster message mismatch for: Material Update Request reviewed scuccessfully expected [Material reviewed successfully] but found [Material Update Request reviewed scuccessfully],
-Approved toaster messege mismatch for: Material Update Request approved scuccessfully expected [Material approved successfully] but found [Material Update Request approved scuccessfully]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
-at utilities.SoftAssertionUtil.assertAll(SoftAssertionUtil.java:59)
-at testCasesForOQProjects.Material_TC.materialUpdate(Material_TC.java:285)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- materialUpdate -->
-        <test-method signature="vendorDetails()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:42:18 IST" name="vendorDetails" finished-at="2026-03-21T15:43:08 IST" duration-ms="50017" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.xpath: //ng-multiselect-dropdown[@formcontrolname='materialNameOrCode']//li[normalize-space()='yes'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.32.0', revision: 'd17c8aa950'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 146.0.7680.80, chrome: {chromedriverVersion: 146.0.7680.153 (85fd829a1b2..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53824}, goog:processID: 21196, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53824/devtoo..., se:cdpVersion: 146.0.7680.80, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 733c709a878658098db3aec17d79503f]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //ng-multiselect-dropdown[@formcontrolname='materialNameOrCode']//li[normalize-space()='yes'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.32.0', revision: 'd17c8aa950'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 146.0.7680.80, chrome: {chromedriverVersion: 146.0.7680.153 (85fd829a1b2..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53824}, goog:processID: 21196, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53824/devtoo..., se:cdpVersion: 146.0.7680.80, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 733c709a878658098db3aec17d79503f
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at pageObjects.Material.selMaterialName_selMaterialCode(Material.java:147)
-at testCasesForOQProjects.Material_TC.vendorDetails(Material_TC.java:307)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- vendorDetails -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:42:18 IST" name="initSoftAssert" finished-at="2026-03-21T15:42:18 IST" duration-ms="0" status="PASS">
+        </test-method> <!-- productApprove -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:05:31 IST" name="initSoftAssert" finished-at="2026-04-10T13:05:31 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="Logout()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:43:08 IST" name="Logout" finished-at="2026-03-21T15:43:12 IST" duration-ms="4561" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:06:21 IST" name="initSoftAssert" finished-at="2026-04-10T13:06:21 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSoftAssert -->
+        <test-method signature="Duplication_Check()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:06:21 IST" name="Duplication_Check" finished-at="2026-04-10T13:07:04 IST" duration-ms="42651" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Duplication_Check -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:04 IST" name="initSoftAssert" finished-at="2026-04-10T13:07:04 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSoftAssert -->
+        <test-method signature="Logout()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:04 IST" name="Logout" finished-at="2026-04-10T13:07:08 IST" duration-ms="4717" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Logout -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:43:08 IST" name="initSoftAssert" finished-at="2026-03-21T15:43:08 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initSoftAssert -->
-        <test-method signature="Database_Backup()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:43:12 IST" name="Database_Backup" finished-at="2026-03-21T15:43:14 IST" duration-ms="1963" status="PASS">
+        <test-method signature="Database_Backup()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:08 IST" name="Database_Backup" finished-at="2026-04-10T13:07:11 IST" duration-ms="2776" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Database_Backup -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:43:12 IST" name="initSoftAssert" finished-at="2026-03-21T15:43:12 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:08 IST" name="initSoftAssert" finished-at="2026-04-10T13:07:08 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.Material_TC@75cd8043]" started-at="2026-03-21T15:43:14 IST" name="tearDown" finished-at="2026-03-21T15:43:20 IST" duration-ms="6311" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:11 IST" name="tearDown" finished-at="2026-04-10T13:07:17 IST" duration-ms="5498" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- testCasesForOQProjects.Material_TC -->
+      </class> <!-- testCasesForOQProjects.AkronQuickProduct_TC -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

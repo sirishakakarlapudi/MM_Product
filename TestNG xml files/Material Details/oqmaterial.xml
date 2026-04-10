@@ -13,7 +13,7 @@
 					<include name="userLoginBeforeCreate" />
 					<include name="moduleClick" />
 					<include name="Creation_Of_Material" />
-					<include name="Click_Actions_2" />
+					<include name="Click_Actions2" />
 					<include name="Click_View" />
 					<include name="material_Review_Return_and_Edit"/>
 					<include name="materialReview" />

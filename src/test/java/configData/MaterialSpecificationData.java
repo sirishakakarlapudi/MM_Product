@@ -3,22 +3,125 @@ package configData;
 import utilities.ConfigLoader;
 
 public class MaterialSpecificationData {
-	 private static final ConfigLoader loginconfig = new ConfigLoader("login.properties");
-	 private static final ConfigLoader materialspecificationconfig = new ConfigLoader("materialspecification.properties");
-    public static final String USERNAME = loginconfig.get("username");
-    public static final String PASSWORD = loginconfig.get("password");
-    public static final String APP_URL  = loginconfig.get("app.url");
-    public static final String ACTUALHEADER  = materialspecificationconfig.get("actualHeader");
-    public static final String EXPECTEDHEADER  = materialspecificationconfig.get("expectedHeader");
-    public static final String TEMPLATE_PATH  = materialspecificationconfig.get("templatePath");
-    public static final String OUTPUT_PATH = materialspecificationconfig.get("outputPath");
-    public static final String MASTER_MODULE = materialspecificationconfig.get("masterModule");
-    public static final String MASTER_SUB_MODULE = materialspecificationconfig.get("masterSubModule");
-    public static final String MATERIAL_CODE = materialspecificationconfig.get("materialCode");
-    public static final String SPECIFICATION_NUMBER = materialspecificationconfig.get("specificationNumber");
-    public static final String REQUEST_TYPE = materialspecificationconfig.get("requestType");
-    public static final String EDIT_SPECIFICATION_NUMBER = materialspecificationconfig.get("editspecificationNumber");
-  
+
+    public static String CHROME_URL;
+    public static String APP_URL;
+    public static String USERNAME;
+    public static String PASSWORD;
+    public static String PC_DB_NAME;
+    public static String MASTER_DB_NAME;
+    public static String MM_DB_NAME;
+    public static String ACTIONSPERFORMEDBY;
+
+    public static String USERNAME1;
+    public static String PASSWORD1;
+    public static String USERNAME2;
+    public static String PASSWORD2;
+    public static String USERNAME3;
+    public static String PASSWORD3;
+
+    public static String ACTUALHEADER;
+    public static String EXPECTEDHEADER;
+    public static String ACTUALDOCUMENTNO;
+    public static String EXPECTEDDOCUMENTNO;
+    public static String TEMPLATE_PATH;
+    public static String OUTPUT_PATH;
+    public static String SCRIPT_NUMBER;
+    public static String TAKE_SCREENSHOTS;
+    public static String TABLE_HEADERS;
+
+    public static String MASTER_MODULE;
+    public static String SUB_MASTER_MODULE;
+
+    // Creation Fields
+    public static String MATERIAL_CODE;
+    public static String SPECIFICATION_NUMBER;
+    public static String REQUEST_TYPE;
+
+    // Edit Fields
+    public static String EDIT_SPECIFICATION_NUMBER_IN_REVIEW_RETURN;
+    public static String EDIT_SPECIFICATION_NUMBER_IN_APPROVE_RETURN;
+
+    // Workflow Flags (yes/no)
+    public static String MATERIALSPEC_VIEW_ACTION;
+    public static String MATERIALSPEC_RETURN_ACTION_IN_REVIEW;
+    public static String MATERIALSPEC_RETURN_ACTION_IN_APPROVE;
     
 
+    // Remarks
+    public static String REVIEW_RETURN_REMARKS;
+    public static String REVIEW_REMARKS;
+    public static String APPROVE_RETURN_REMARKS;
+    public static String APPROVE_REMARKS;
+
+    // DB Config
+    public static String CURRENT_CONFIG_NAME;
+    
+    
+    //Update Spec Details
+    public static String UPDATE_NAME_OF_THE_TEST;
+    public static String UPDATE_SPECIFICATION;
+    public static String UPDATE_VALIDATION;
+    public static String MATERIALSPEC_UPDATE_AFTER_APPROVE;
+
+    public static void loadProperties(String fileName) {
+        if (fileName == null || fileName.isEmpty()) {
+            fileName = "oqmaterialspecification.properties";
+        }
+
+        CURRENT_CONFIG_NAME = fileName.split("\\.")[0];
+
+        ConfigLoader loginconfig = new ConfigLoader("login.properties");
+        ConfigLoader config = new ConfigLoader(fileName);
+
+        CHROME_URL = loginconfig.get("chrome.url");
+        APP_URL = loginconfig.get("app.url");
+        USERNAME = loginconfig.get("username");
+        PASSWORD = loginconfig.get("password");
+        PC_DB_NAME = loginconfig.get("pc_DB_Name");
+        MASTER_DB_NAME = loginconfig.get("master_DB_Name");
+        MM_DB_NAME = loginconfig.get("mm_DB_Name");
+        ACTIONSPERFORMEDBY = config.get("actions_PerformedBy");
+
+        ACTUALHEADER = config.get("actualHeader");
+        EXPECTEDHEADER = config.get("expectedHeader");
+        ACTUALDOCUMENTNO = config.get("actualDocumentNo");
+        EXPECTEDDOCUMENTNO = config.get("expectedDocumentNo");
+        TEMPLATE_PATH = config.get("templatePath");
+        OUTPUT_PATH = config.get("outputPath");
+        SCRIPT_NUMBER = config.get("script_Number");
+        TAKE_SCREENSHOTS = config.get("take_Screenshots");
+        TABLE_HEADERS = config.get("table_Headers");
+
+        USERNAME1 = config.get("username1");
+        PASSWORD1 = config.get("password1");
+        USERNAME2 = config.get("username2");
+        PASSWORD2 = config.get("password2");
+        USERNAME3 = config.get("username3");
+        PASSWORD3 = config.get("password3");
+
+        MASTER_MODULE = config.get("master_Module");
+        SUB_MASTER_MODULE = config.get("sub_Master_Module");
+
+        MATERIAL_CODE = config.get("materialCode");
+        SPECIFICATION_NUMBER = config.get("specificationNumber");
+        REQUEST_TYPE = config.get("requestType");
+        EDIT_SPECIFICATION_NUMBER_IN_REVIEW_RETURN = config.get("editSpecificationNumber_In_Review_Return");
+        EDIT_SPECIFICATION_NUMBER_IN_APPROVE_RETURN = config.get("editSpecificationNumber_In_Approve_Return");
+        MATERIALSPEC_VIEW_ACTION = config.get("materialSpec_View");
+        MATERIALSPEC_RETURN_ACTION_IN_REVIEW = config.get("materialSpec_Return_In_Review");
+        MATERIALSPEC_RETURN_ACTION_IN_APPROVE = config.get("materialSpec_Return_In_Approve");
+
+        REVIEW_RETURN_REMARKS = config.get("review_Return_Remarks");
+        REVIEW_REMARKS = config.get("reviewRemarks");
+        APPROVE_RETURN_REMARKS = config.get("approve_Return_Remarks");
+        APPROVE_REMARKS = config.get("approveRemarks");
+        
+        
+        UPDATE_NAME_OF_THE_TEST = config.get("update_Name_Of_The_Test");
+        UPDATE_SPECIFICATION = config.get("update_Specification");
+        UPDATE_VALIDATION = config.get("update_Validation");
+        MATERIALSPEC_UPDATE_AFTER_APPROVE = config.get("materialspec_Update_After_Approve");
+       
+    }
 }

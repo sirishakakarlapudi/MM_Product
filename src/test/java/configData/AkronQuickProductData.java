@@ -35,16 +35,19 @@ public class AkronQuickProductData {
 	public static String PRODUCT_NAME;
 	public static String PRODUCT_CODE;
 	public static String PRODUCT_DESCRIPTION;
+	public static String PRODUCT_UOM;
 	public static String STORAGE_LOCATION;
 	public static String STORAGE_CONDITION;
 	public static String SAMPLING_ACTIVITY;
 	public static String CLEANING_AGENT;
+	public static String PRODUCT_NDC_NUMBER;
 
 	public static String NDC_NUMBER;
 	public static String SHORT_CODE;
 	public static String UOM;
 	public static String PACK_SIZE;
 	public static String NDC_DESCRIPTION;
+	public static String GTN_NUMBER;
 	public static String EDIT_PRODUCT_IN_REVIEW_RETURN;
 
 	public static String PRODUCT_VIEW_ACTION;
@@ -99,7 +102,8 @@ public class AkronQuickProductData {
 		PRODUCT_NAME = quickproductconfig.get("productName");
 		PRODUCT_CODE = quickproductconfig.get("productCode");
 		PRODUCT_DESCRIPTION = quickproductconfig.get("productDescription");
-
+		PRODUCT_NDC_NUMBER = quickproductconfig.get("productNDCNumber");
+		PRODUCT_UOM = quickproductconfig.get("productUOM");
 		STORAGE_CONDITION = quickproductconfig.get("storageCondition");
 		STORAGE_LOCATION = quickproductconfig.get("storageLocation");
 		SAMPLING_ACTIVITY = quickproductconfig.get("samplingActivity");
@@ -109,6 +113,7 @@ public class AkronQuickProductData {
 		UOM = quickproductconfig.get("uom");
 		PACK_SIZE = quickproductconfig.get("packsize");
 		NDC_DESCRIPTION = quickproductconfig.get("ndcDescription");
+		GTN_NUMBER= quickproductconfig.get("gtnNumber");
 		PRODUCT_VIEW_ACTION = quickproductconfig.get("product_View");
 		PRODUCT_RETURN_ACTION_IN_REVIEW = quickproductconfig.get("product_Return_In_Review");
 		EDIT_PRODUCT_IN_REVIEW_RETURN = quickproductconfig.get("editproduct_Review_Return");

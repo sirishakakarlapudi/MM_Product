@@ -28,7 +28,7 @@ public class Material extends BasePage {
 
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='materialCategory']")
 	protected WebElement drpdwn_material_category;
-	
+
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='materialNameOrCode']")
 	protected WebElement drpdwn_material_name_code;
 
@@ -59,11 +59,11 @@ public class Material extends BasePage {
 
 	@FindBy(xpath = "//p-checkbox[@inputid='isSampleCheckBox1']")
 	protected WebElement chk_mixed_analysis_yes;
-	
-	@FindBy(xpath= "//label[normalize-space()='Mixed Analysis']")
+
+	@FindBy(xpath = "//label[normalize-space()='Mixed Analysis']")
 	protected WebElement mixed_analysis_label;
-	
-	@FindBy(xpath= "//label[normalize-space()='Receiving Bay']")
+
+	@FindBy(xpath = "//label[normalize-space()='Receiving Bay']")
 	protected WebElement receiving_bay_label;
 
 	@FindBy(xpath = "//p-checkbox[@inputid='isSampleCheckBox2']")
@@ -109,10 +109,10 @@ public class Material extends BasePage {
 	protected WebElement btn_dialog_no;
 
 	@FindBy(xpath = "//p-autocomplete[@formcontrolname='supplierName']//chevrondownicon")
-	protected WebElement supplier_arrow;
+	protected List<WebElement> supplier_arrow;
 
 	@FindBy(xpath = "//p-autocomplete[@formcontrolname='manufactureName']//chevrondownicon")
-	protected WebElement manufacturer_arrow;
+	protected List<WebElement> manufacturer_arrow;
 
 	/*
 	 * ========================================================================= [
@@ -149,7 +149,7 @@ public class Material extends BasePage {
 						+ name_code + "']")));
 		option.click();
 	}
-	
+
 	public void selTypeOfMaterial(String type) {
 		waitForElementandClick(drpdwn_type_of_material);
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
@@ -171,6 +171,7 @@ public class Material extends BasePage {
 			waitAndSendKeys(material_storage_condition, condition);
 		}
 	}
+
 	public boolean isStorageConditionDisplayed() {
 		try {
 			return material_storage_condition.isDisplayed();
@@ -210,6 +211,7 @@ public class Material extends BasePage {
 			waitForElementandClick(chk_mixed_analysis_no);
 		}
 	}
+
 	public boolean isMixedAnalysisIsDisplayed() {
 		try {
 			return mixed_analysis_label.isDisplayed();
@@ -234,8 +236,6 @@ public class Material extends BasePage {
 		}
 	}
 
-	
-	
 	public boolean isReceivingBayIsDisplayed() {
 		try {
 			return receiving_bay_label.isDisplayed();
@@ -243,7 +243,7 @@ public class Material extends BasePage {
 			return false;
 		}
 	}
-	
+
 	public void setCleaningAgent(String value) {
 		if ("Yes".equalsIgnoreCase(value)) {
 			waitForElementandClick(chk_cleaning_agent_yes);
@@ -253,7 +253,7 @@ public class Material extends BasePage {
 	}
 
 	public void selSupplier(String name) {
-		waitForElementandClick(supplier_arrow);
+		clickLatestElement(supplier_arrow);
 		waitForLoading();
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//p-autocomplete[@formcontrolname='supplierName']//li[normalize-space()='" + name + "']")));
@@ -269,7 +269,7 @@ public class Material extends BasePage {
 	}
 
 	public void selManufacturer(String name) {
-		waitForElementandClick(manufacturer_arrow);
+		clickLatestElement(manufacturer_arrow);
 		waitForLoading();
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath(

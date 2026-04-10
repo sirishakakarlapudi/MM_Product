@@ -13,7 +13,7 @@
           <include name="userLoginBeforeCreate"/>
           <include name="moduleClick"/>
           <include name="Creation_Of_Product"/>
-          <include name="Click_Actions_For_Review"/>
+          <include name="Click_Actions2"/>
           <include name="Click_View"/>
           <include name="product_Review_Return_and_Edit"/>
           <include name="productReview"/>

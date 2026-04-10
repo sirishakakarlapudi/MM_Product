@@ -100,7 +100,7 @@ public class DataProviders {
 	}
 
 	@DataProvider(name = "MaterialspecificationData")
-	public Object[][] getMaterialSpecificationSubset() throws Exception {
+	public static Object[][] getMaterialSpecificationSubset() throws Exception {
 		String filePath = System.getProperty("user.dir") + "\\src\\test\\resources\\OQ TestData\\OQ SpecData.xlsx";
 
 		System.out.println("Excel path: " + filePath);
@@ -118,7 +118,7 @@ public class DataProviders {
 	}
 
 	@DataProvider(name = "ProductspecificationData")
-	public Object[][] getProductSpecificationSubset() throws Exception {
+	public static Object[][] getProductSpecificationSubset() throws Exception {
 		String filePath = System.getProperty("user.dir") + "\\src\\test\\resources\\OQ TestData\\OQ SpecData.xlsx";
 
 		System.out.println("Excel path: " + filePath);

@@ -2,20 +2,24 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
-    <parameter name="configFile" value="oqakronmaterial.properties"/>
+    <parameter name="configFile" value="oqakronquickproduct.properties"/>
     <classes>
-      <class name="testCasesForOQProjects.Material_TC">
+      <class name="testCasesForOQProjects.AkronQuickProduct_TC">
         <methods>
+          <include name="Logout"/>
+          <include name="Duplication_Check"/>
+          <include name="productApprove"/>
           <include name="tearDown"/>
-          <include name="material_Review_Return_and_Edit"/>
+          <include name="Creation_Of_Product"/>
+          <include name="product_Approve_Return_and_Edit_and_Review"/>
           <include name="setUp"/>
-          <include name="Creation_Of_Material"/>
-          <include name="materialUpdate"/>
-          <include name="material_Approve_Return_and_Edit_and_Review"/>
-          <include name="vendorDetails"/>
           <include name="initSoftAssert"/>
+          <include name="Click_Actions2"/>
+          <include name="product_Review_Return_and_Edit"/>
+          <include name="Click_View"/>
+          <include name="productReview"/>
         </methods>
-      </class> <!-- testCasesForOQProjects.Material_TC -->
+      </class> <!-- testCasesForOQProjects.AkronQuickProduct_TC -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

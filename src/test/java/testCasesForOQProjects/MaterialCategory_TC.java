@@ -1,394 +1,138 @@
 package testCasesForOQProjects;
 
 import static configData.MaterialCategoryData.*;
-
-
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import pageObjects.MaterialCategory;
-import testBase.BaseClass;
-import utilities.DatabaseBackupUtil;
-import utilities.ScreenshotUtil;
-import utilities.SoftAssertionUtil;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import pageObjects.MaterialCategory;
+import utilities.ScreenshotUtil;
 
-public class MaterialCategory_TC extends BaseClass {
-	MaterialCategory category;
-	String currentCategoryName;
-	SoftAssertionUtil sa;
+public class MaterialCategory_TC extends OQBaseModule_TC {
 
-	@BeforeClass
-	@Parameters({ "configFile" })
-	public void setUp(@Optional("materialcategory.properties") String configFile) throws Exception {
-		log.info("--- Starting Material Category Test Case Setup with config: {} ---", configFile);
+    private MaterialCategory category;
 
-		// Load the dynamic property file
-		configData.MaterialCategoryData.loadProperties(configFile);
+    @BeforeClass
+    @Parameters({ "configFile" })
+    public void setUp(@Optional("materialcategory.properties") String configFile) throws Exception {
+        log.info("--- Starting Material Category Test Case Setup with config: {} ---", configFile);
+        configData.MaterialCategoryData.loadProperties(configFile);
 
-		// Set conditional screenshot execution
-		boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
-		ScreenshotUtil.setIsEnabled(screenshotsEnabled);
+        // Map static variables to base class fields
+        CONFIG_NAME = CURRENT_CONFIG_NAME;
+        CHROME_URL_VAL = CHROME_URL;
+        APP_URL_VAL = APP_URL;
+        USERNAME_VAL = USERNAME;
+        PASSWORD_VAL = PASSWORD;
+        USERNAME1_VAL = USERNAME1;
+        PASSWORD1_VAL = PASSWORD1;
+        USERNAME2_VAL = USERNAME2;
+        PASSWORD2_VAL = PASSWORD2;
+        USERNAME3_VAL = USERNAME3;
+        PASSWORD3_VAL = PASSWORD3;
+        ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+        PC_DB_NAME_VAL = PC_DB_NAME;
+        MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+        MM_DB_NAME_VAL = MM_DB_NAME;
+        TITLE_MODULE_VAL = "MASTERS";
+        MASTER_MODULE_VAL = MASTER_MODULE;
+        SUB_MASTER_MODULE_VAL = SUB_MASTER_MODULE;
+        SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+        VIEW_ACTION_VAL = MATERIAL_CATEGORY_VIEW_ACTION;
 
-		if (screenshotsEnabled) {
-			log.info("📸 Processing screenshot template and headers...");
-			ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
-			ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
-			ScreenshotUtil.initScript(SCRIPT_NUMBER);
-		}
+        boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
+        ScreenshotUtil.setIsEnabled(screenshotsEnabled);
+        if (screenshotsEnabled) {
+            ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
+            ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+            ScreenshotUtil.initScript(SCRIPT_NUMBER);
+        }
 
-		browserOpen();
-		category = new MaterialCategory(driver);
-		category.setTableHeaders(TABLE_HEADERS);
-		log.info("Setup completed. Screenshots enabled: {}", screenshotsEnabled);
-	}
+        browserOpen();
+        category = new MaterialCategory(driver);
+        this.pageObject = category;
+        category.setTableHeaders(TABLE_HEADERS);
+    }
 
-	@BeforeMethod
-	public void initSoftAssert() {
-		sa = new SoftAssertionUtil();
-	}
-
-	@Test(groups = { "setup" })
-	public void initialSetUp() throws Exception {
-		ScreenshotUtil.nextStep();
-		log.info("Navigating to Chrome URL: {}", CHROME_URL);
-		driver.navigate().to(CHROME_URL);
-		log.info("Waiting for search box to be visible");
-		category.waitForElementToVisible(category.getSearchBox());
-		Assert.assertTrue(category.getSearchBox().isDisplayed(), "Search box is not visible!");
-		log.info("Searching for Application URL: {}", APP_URL);
-		category.searchBox(APP_URL);
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("Initial setup completed and screenshot captured");
-	}
-
-	@Test(groups = { "url" })
-	public void url() throws Throwable {
-		driver.navigate().to(APP_URL);
-		log.info("Navigating to App URL: {}", APP_URL);
-	}
-
-	@Test(groups = { "userlogin" })
-	public void userLoginBeforeCreate() throws Throwable {
-		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
-		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			category.login(USERNAME, PASSWORD, PC_DB_NAME);
-		} else {
-			category.login(USERNAME1, PASSWORD1, PC_DB_NAME);
-		}
-	}
-
-	@Test(groups = { "moduleselect" })
-	public void moduleClick() throws Throwable {
-		log.info("--- Clicking Module ---");
-		ScreenshotUtil.nextStep();
-		category.click_titleMasters();
-		log.info("Clicked on Masters title");
-		ScreenshotUtil.capture();
-		category.waitForLoading();
-		ScreenshotUtil.nextStep();
-		category.masterClick(MASTER_MODULE);
-		log.info("Clicked on Master Module: {}", MASTER_MODULE);
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-		category.masterClick(SUB_MASTER_MODULE);
-		log.info("Clicked on Sub Master Module: {}", SUB_MASTER_MODULE);
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-	}
-
-	@Test(groups = { "Creation" })
-	public void Creation_Of_Material_Category() throws Throwable {
-		log.info("--- Navigating to Create Material Category Screen ---");
-		ScreenshotUtil.nextStep();
-		category.Create();
-		log.info("Clicked on Create button");
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-		ScreenshotUtil.nextStep();
-		log.info("--- Creating Material Category: {} ---", MATERIAL_CATEGORY_NAME);
-		currentCategoryName = MATERIAL_CATEGORY_NAME;
-		category.materialCategoryName(MATERIAL_CATEGORY_NAME);
-		category.selSamplingPlan(SAMPLING_PLAN);
-		category.selWeightVerificationPlan(WEIGHT_VERIFICATION_PLAN);
-
-		category.clickSubmit();
-		log.info("Clicked Submit");
-		ScreenshotUtil.capture();
-
-		category.authenticate(category.currentPassword);
-		String authToast = category.waitForToast();
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-		sa.assertEquals(authToast, "Material Category created successfully", "Created Toaster message",
-				"Creation failed with message: " + authToast);
-		sa.assertAll();
-
-	}
-
-	@Test(groups = { "ClickActions" })
-	public void Click_Actions() throws Throwable {
-
-		log.info("--- Attempting to open Actions Menu for: {} ---", currentCategoryName);
-		category.clickActions(currentCategoryName);
-		log.info("Successfully opened Actions menu for {}", currentCategoryName);
-		ScreenshotUtil.capture();
-		ScreenshotUtil.freezeCapture();
-		category.clickActions(currentCategoryName);
-		ScreenshotUtil.resumeCapture();
+    @Test(groups = { "Creation" })
+    public void Creation_Of_Material_Category() throws Throwable {
+        log.info("--- Navigating to Create Material Category Screen ---");
+        nextStep();
+        category.Create();
+        category.waitForLoading();
+        capture();
+        nextStep();
+        log.info("--- Creating Material Category: {} ---", MATERIAL_CATEGORY_NAME);
+        currentEntryName = MATERIAL_CATEGORY_NAME;
+        category.materialCategoryName(MATERIAL_CATEGORY_NAME);
+        category.selSamplingPlan(SAMPLING_PLAN);
+        category.selWeightVerificationPlan(WEIGHT_VERIFICATION_PLAN);
+        category.clickSubmit();
+        ScreenshotUtil.capture();
+        category.authenticate(category.currentPassword);
+        String authToast = category.waitForToast();
+        category.waitForLoading();
+        sa.assertEquals(authToast, "Material Category created successfully", "Created Toaster message", authToast);
+        sa.assertAll();
+    }
 
 
-	}
+    @Test(groups = { "categoryReviewReturn_categoryEdit" })
+    public void material_Category_Review_Return_and_Edit() throws Throwable {
+        if (MATERIAL_CATEGORY_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReturnReview(REVIEW_RETURN_REMARKS, "Material Category returned successfully");
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performEdit(EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN, "Material Category updated successfully");
+            sa.assertAll();
+        }
+    }
 
-	@Test(groups = { "ClickView" })
-	public void Click_View() throws Throwable {
-		if (MATERIAL_CATEGORY_VIEW_ACTION.equalsIgnoreCase("yes")) {
-			log.info("--- Viewing Material Category: {} ---", currentCategoryName);
-			ScreenshotUtil.nextStep();
-			category.clickView(currentCategoryName);
-			log.info("View screen opened");
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			category.clickBack();
-			log.info("Clicked Back button");
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-		} else {
-			log.info("View step skipped based on configuration");
-		}
-	}
+    @Test(groups = { "categoryReview" })
+    public void materialCategoryReview() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        performReview(REVIEW_REMARKS, "Material Category reviewed successfully");
+        sa.assertAll();
+    }
 
-	@Test(groups = { "categoryReviewReturn_categoryEdit" })
-	public void material_Category_Review_Return_and_Edit() throws Throwable {
+    @Test(groups = { "categoryApproveReturn_categoryEdit_categoryReview" })
+    public void material_Category_Approve_Return_and_Edit_and_Review() throws Throwable {
+        if (MATERIAL_CATEGORY_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            performReturnApprove(APPROVE_RETURN_REMARKS, "Material Category returned successfully");
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performEdit(EDIT_MATERIAL_CATEGORY_IN_APPROVE_RETURN, "Material Category updated successfully");
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReview(REVIEW_REMARKS, "Material Category reviewed successfully");
+            sa.assertAll();
+        }
+    }
 
-		if (MATERIAL_CATEGORY_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
+    @Test(groups = { "categoryApprove" })
+    public void materialCategoryApprove() throws Throwable {
+        switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+        performApprove(APPROVE_REMARKS, "Material Category approved successfully");
+        sa.assertAll();
+    }
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions1() throws Throwable {
+        switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+        Click_Actions();
+    }
 
-			switchUserIfMulti(USERNAME2, PASSWORD2);
-			log.info("--- Initiating Review Return Flow for: {} ---", currentCategoryName);
-			performReturnReview(REVIEW_RETURN_REMARKS);
-			
-			switchUserIfMulti(USERNAME1, PASSWORD1);
-			log.info("Opening Edit screen (After Review Return)");
-			performEdit(EDIT_MATERIAL_CATEGORY_IN_REVIEW_RETURN);
-			sa.assertAll();
-			
-		} else {
-			log.info("Material Category Review Return and Edit skipped based on configuration");
-		}
-	}
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions2() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        Click_Actions();
+    }
 
-	@Test(groups = { "categoryReview" })
-	public void materialCategoryReview() throws Throwable {
+    @Override
+    protected void beforeTitleClick() { nextStep(); }
+    @Override
+    protected void beforeMasterClick() { nextStep(); }
 
-		switchUserIfMulti(USERNAME2, PASSWORD2);
-		log.info("--- Initiating Review Flow for: {} ---", currentCategoryName);
-		performReview(REVIEW_REMARKS);
-		sa.assertAll();
-
-	}
-
-	@Test(groups = { "categoryApproveReturn_categoryEdit_categoryReview" })
-	public void material_Category_Approve_Return_and_Edit_and_Review() throws Throwable {
-
-		if (MATERIAL_CATEGORY_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
-
-			switchUserIfMulti(USERNAME3, PASSWORD3);
-			log.info("--- Initiating Approve Return Flow for: {} ---", currentCategoryName);
-			performReturnApprove(APPROVE_RETURN_REMARKS);
-
-			switchUserIfMulti(USERNAME1, PASSWORD1);
-			log.info("Opening Edit screen (After Return)");
-			performEdit(MATERIAL_CATEGORY_RETURN_ACTION_IN_APPROVE);
-			
-			switchUserIfMulti(USERNAME2, PASSWORD2);
-			log.info("--- Initiating Review Flow for: {} ---", currentCategoryName);
-			performReview(REVIEW_REMARKS);
-			
-			sa.assertAll();
-
-		} else {
-			log.info("Material Category Approve Return and Edit and Review skipped based on configuration");
-		}
-	}
-
-	@Test(groups = { "categoryApprove" })
-	public void materialCategoryApprove() throws Throwable {
-
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			log.info("--- Approving Material Category: {} ---", currentCategoryName);
-			category.switchUser(USERNAME3, PASSWORD3, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-		}
-		log.info("--- Performing Final Approval for: {} ---", currentCategoryName);
-
-		category.waitForLoading();
-		log.info("Opening actions menu for approval");
-		category.clickActions(currentCategoryName);
-		ScreenshotUtil.capture();
-		log.info("Clicking Approve button in the list");
-		category.clickApprove();
-		ScreenshotUtil.capture();
-		category.enterRemarks(APPROVE_REMARKS);
-		log.info("Entered Approve remarks: {}", APPROVE_REMARKS);
-		ScreenshotUtil.capture();
-		category.clickApprove();
-		log.info("Submitted Approval");
-		ScreenshotUtil.capture();
-		category.authenticate(category.currentPassword);
-		String approveToast = category.waitForToast();
-		category.waitForLoading();
-		sa.assertEquals(approveToast, "Material Category approved successfully", "Approved toaster messege",
-				approveToast);
-		sa.assertAll();
-
-	}
-
-	@Test(groups = { "Logout" })
-	public void Logout() throws Throwable {
-		log.info("--- Executing Final Logout ---");
-		category.logout();
-		log.info("Clicked logout button");
-		category.waitForToast();
-		category.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("--- Material Category Test Case Execution Finished ---");
-	}
-
-	@Test(groups = { "DB Back" })
-	public void Database_Backup() {
-		log.info("--- Initiating Post-Test Database Backup ---");
-
-		String backupFolderName = (SCRIPT_NUMBER == null || SCRIPT_NUMBER.trim().isEmpty()) ? CURRENT_CONFIG_NAME
-				: SCRIPT_NUMBER;
-
-		log.info("Backup folder name determined: {}", backupFolderName);
-
-		DatabaseBackupUtil.backupPostgres(backupFolderName, PC_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
-	}
-	
-	
-	
-	
-	// --- HELPER METHODS ---
-
-	
-		private void performReview(String remarks) throws Throwable {
-			log.info("Opening actions menu to access Review/Return");
-			category.clickActions(currentCategoryName);
-			ScreenshotUtil.capture();
-			log.info("Clicking Review to trigger return dialog");
-			category.clickReview();
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			category.enterRemarks(remarks);
-			log.info("Entered Review remarks: {}", remarks);
-			ScreenshotUtil.capture();
-			category.clickReview();
-			log.info("Clicked Review button");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String reviewToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(reviewToast, "Material Category reviewed successfully", "Review toaster message", reviewToast);
-			
-		}
-
-		private void performEdit(String updateName) throws Throwable {
-			log.info("Opening Edit screen");
-			category.clickEdit(currentCategoryName);
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-
-			if (updateName != null
-					&& !updateName.trim().isEmpty()) {
-				log.info("Updating Name to: {}", updateName);
-				category.materialCategoryName(updateName);
-				currentCategoryName = updateName;
-			}
-
-			category.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String editToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(editToast, "Material Category updated successfully", "Updated toaster messege", editToast);
-			
-		}
-
-		private void performReturnReview(String remarks) throws Throwable {
-			log.info("Opening actions menu to access Review/Return");
-			category.clickActions(currentCategoryName);
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Review to trigger return dialog");
-			category.clickReview();
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			category.enterRemarks(remarks);
-			log.info("Entered Return remarks: {}", remarks);
-			ScreenshotUtil.capture();
-			category.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String returnToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(returnToast, "Material Category returned successfully", "Returned toaster message", returnToast);
-			
-		}
-
-		private void performReturnApprove(String remarks) throws Throwable {
-			log.info("Opening actions menu to access Approve/Return");
-			category.clickActions(currentCategoryName);
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			log.info("Clicking Approve to trigger return dialog");
-			category.clickApprove();
-			category.waitForLoading();
-			ScreenshotUtil.capture();
-			category.enterRemarks(remarks);
-			log.info("Entered Return remarks: {}", remarks);
-			ScreenshotUtil.capture();
-			category.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			category.authenticate(category.currentPassword);
-			String returnToast = category.waitForToast();
-			category.waitForLoading();
-			sa.assertEquals(returnToast, "Material Category returned successfully", "Returned toaster message", returnToast);
-			
-		}
-		
-		
-		private void switchUserIfMulti(String username, String password) throws Throwable {
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				category.switchUser(username, password, PC_DB_NAME, MASTER_MODULE, SUB_MASTER_MODULE);
-			}
-		}
-
-	
-	@Test(groups = { "ClickActionRep" })
-	public void Click_Actions_1() throws Throwable {
-		
-		switchUserIfMulti(USERNAME1, PASSWORD1);
-		
-		Click_Actions();	
-		}
-	
-	
-	
-	@Test(groups = { "ClickActionRep" })
-	public void Click_Actions_2() throws Throwable {
-		
-		switchUserIfMulti(USERNAME2, PASSWORD2);
-		
-		Click_Actions();	
-	}
-
+    @Override
+    protected void updateEntryName(String newName) throws Throwable {
+        category.materialCategoryName(newName);
+    }
 }

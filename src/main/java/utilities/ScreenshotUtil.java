@@ -49,9 +49,15 @@ public class ScreenshotUtil {
     private static int stepCounter = 0;
     private static int screenshotCount = 1;
     private static boolean isEnabled = true; // Default to true
+    private static boolean shouldResetStepCounter = true; // Default behavior is to reset
 
     public static boolean isEnabled() {
         return isEnabled;
+    }
+
+    public static void setShouldResetStepCounter(boolean value) {
+        shouldResetStepCounter = value;
+        log.info("📊 Step counter auto-reset is now: " + (value ? "ENABLED" : "DISABLED"));
     }
 
     public static void setIsEnabled(boolean enabled) {
@@ -70,12 +76,12 @@ public class ScreenshotUtil {
         currentScriptId = prefix.trim();
 
         // 🟢 Only reset stepCounter if it's the very first part of a document (no
-        // screenshots yet)
-        if (screenshots.isEmpty()) {
+        // screenshots yet) AND auto-reset is enabled
+        if (screenshots.isEmpty() && shouldResetStepCounter) {
             stepCounter = 0;
             log.info("📊 Script initialized: " + currentScriptId + " (Step counter reset to 0)");
         } else {
-            log.info("📊 Script continued: " + currentScriptId + " (Step counter remains at " + stepCounter + ")");
+            log.info("📊 Script initialized/continued: " + currentScriptId + " (Step counter remains at " + stepCounter + ")");
         }
     }
 
@@ -85,10 +91,12 @@ public class ScreenshotUtil {
      */
     public static void reset() {
         screenshots.clear();
-        stepCounter = 0;
+        if (shouldResetStepCounter) {
+            stepCounter = 0;
+        }
         screenshotCount = 1;
         freezeNextStep = false;
-        log.info("♻️ ScreenshotUtil state has been fully reset.");
+        log.info("♻️ ScreenshotUtil state reset. (Step counter reset: " + shouldResetStepCounter + ")");
     }
 
     /**
@@ -130,7 +138,7 @@ public class ScreenshotUtil {
     public static void capture() throws Exception {
         if (!isEnabled)
             return;
-        String label = String.format("%02d for step No.%s", screenshotCount++, currentStepId);
+        String label = String.format("%02d for Step No:%s", screenshotCount++, currentStepId);
         takeStepScreenshot(label);
     }
 
@@ -140,7 +148,7 @@ public class ScreenshotUtil {
     public static void capture(String suffix) throws Exception {
         if (!isEnabled)
             return;
-        String label = String.format("%02d for step No.%s%s", screenshotCount++, currentStepId, suffix);
+        String label = String.format("%02d for Step No:%s%s", screenshotCount++, currentStepId, suffix);
         takeStepScreenshot(label);
     }
 
@@ -257,15 +265,19 @@ public class ScreenshotUtil {
         }
         // 1. Insert screenshots first
         for (ScreenshotEntry entry : screenshots) {
-            XWPFParagraph para = outputDoc.createParagraph();
-            XWPFRun run = para.createRun();
-            run.setBold(true);
-            run.setFontFamily("Times New Roman");
-            run.setFontSize(12);
-            run.setText("Screenshot - " + entry.label);
+            // Heading paragraph
+            XWPFParagraph headingPara = outputDoc.createParagraph();
+            XWPFRun headingRun = headingPara.createRun();
+            headingRun.setBold(true);
+            headingRun.setFontFamily("Times New Roman");
+            headingRun.setFontSize(12);
+            headingRun.setText("Screenshot - " + entry.label);
 
+            // Image paragraph
+            XWPFParagraph imagePara = outputDoc.createParagraph();
+            XWPFRun imageRun = imagePara.createRun();
             ByteArrayInputStream bais = new ByteArrayInputStream(entry.imageBytes);
-            run.addPicture(bais, XWPFDocument.PICTURE_TYPE_PNG, entry.label + ".png", Units.toEMU(650),
+            imageRun.addPicture(bais, XWPFDocument.PICTURE_TYPE_PNG, entry.label + ".png", Units.toEMU(650),
                     Units.toEMU(360));
             bais.close();
         }
@@ -291,5 +303,8 @@ public class ScreenshotUtil {
         templateDoc.close();
 
         log.info("✅ Document saved: " + outputPath);
+        
+        // ♻️ Reset state so the next test case starts fresh from Step 1
+        reset();
     }
 }

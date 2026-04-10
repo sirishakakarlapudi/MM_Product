@@ -1,163 +1,152 @@
-
 package testCasesForOQProjects;
 
 import static configData.EquipmentData.*;
-
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import pageObjects.Equipment;
-import testBase.BaseClass;
 import utilities.ScreenshotUtil;
-import utilities.WaitUtil;
 
-public class Equipment_TC extends BaseClass {
-	Equipment equipment;
+public class Equipment_TC extends OQBaseModule_TC {
 
-	@BeforeClass
-	public void setUp() throws Exception {
+    private Equipment equipment;
 
-		ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
-		ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+    @BeforeClass
+    @Parameters({ "configFile" })
+    public void setUp(@Optional("equipment.properties") String configFile) throws Exception {
+        log.info("--- Starting Equipment Test Case Setup with config: {} ---", configFile);
+        configData.EquipmentData.loadProperties(configFile);
 
-		browserOpen();
-		equipment = new Equipment(driver);
+        // Map static variables to base class fields
+        CONFIG_NAME = CURRENT_CONFIG_NAME;
+        CHROME_URL_VAL = CHROME_URL;
+        APP_URL_VAL = APP_URL;
+        USERNAME_VAL = USERNAME;
+        PASSWORD_VAL = PASSWORD;
+        USERNAME1_VAL = USERNAME1;
+        PASSWORD1_VAL = PASSWORD1;
+        USERNAME2_VAL = USERNAME2;
+        PASSWORD2_VAL = PASSWORD2;
+        USERNAME3_VAL = USERNAME3;
+        PASSWORD3_VAL = PASSWORD3;
+        ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+        PC_DB_NAME_VAL = PC_DB_NAME;
+        MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+        MM_DB_NAME_VAL = MM_DB_NAME;
+        TITLE_MODULE_VAL = "MASTERS";
+        MASTER_MODULE_VAL = MASTER_MODULE;
+        SUB_MASTER_MODULE_VAL = ""; // Equipment doesn't have a sub-module in navigation
+        SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+        VIEW_ACTION_VAL = EQUIPMENT_VIEW_ACTION;
 
-	}
+        boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
+        ScreenshotUtil.setIsEnabled(screenshotsEnabled);
+        if (screenshotsEnabled) {
+            ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
+            ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+            ScreenshotUtil.initScript(SCRIPT_NUMBER);
+        }
 
-	@Test(priority = 1)
-	public void Step_4_1_1() throws Throwable {
-		driver.get("https://www.google.co.in/");
-		WaitUtil.waitForVisible(driver, equipment.getSearchBox(), 10);
-		equipment.searchBox(APP_URL);
-		WaitUtil.waitForPageLoad(driver, 10);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.1");
-		driver.get(APP_URL);
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.1");
-		equipment.userName(USERNAME);
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.1");
-		equipment.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.1");
-		equipment.loginButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.1");
-		equipment.click_titleMasters();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.1");
-		equipment.masterClick(MASTER_MODULE);
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.1");
-		equipment.Create();
-		ScreenshotUtil.takeStepScreenshot("09 for step No.4.1.1");
+        browserOpen();
+        equipment = new Equipment(driver);
+        this.pageObject = equipment;
+        equipment.setTableHeaders(TABLE_HEADERS);
+    }
 
-	}
+    @Test(groups = { "Creation" })
+    public void Creation_Of_Equipment() throws Throwable {
+        log.info("--- Navigating to Create Equipment Screen ---");
+        equipment.Create();
+        equipment.waitForLoading();
+        ScreenshotUtil.capture();
+        ScreenshotUtil.nextStep();
+        
+        log.info("--- Creating Equipment: {} ---", EQUIPMENT_NAME);
+        currentEntryName = EQUIPMENT_NAME;
+        equipment.equipmentName(EQUIPMENT_NAME);
+        equipment.equipmentId(EQUIPMENT_ID);
+        equipment.selEquipmentType(EQUIPMENT_TYPE);
+        equipment.capacityInKg(CAPACITY_IN_KG);
+        equipment.operationalRangeMin(OPERATIONAL_RANGE_MIN);
+        equipment.operationalRangeMax(OPERATIONAL_RANGE_MAX);
+        equipment.selDepartment(DEPARTMENT);
+        equipment.selFacility(FACILITY);
+        equipment.selWeighingBalanceFacility(WEIGHING_BALANCE_FACILITY);
 
-	@Test(priority = 2)
-	public void Step_4_1_2() throws Throwable {
-		equipment.equipmentName(EQUIPMENT_NAME);
-		equipment.equipmentId(EQUIPMENT_ID);
-		equipment.selEquipmentType(EQUIPMENT_TYPE);
-		equipment.capacityInKg(CAPACITY_IN_KG);
-		equipment.operationalRangeMin(OPERATIONAL_RANGE_MIN);
-		equipment.operationalRangeMax(OPERATIONAL_RANGE_MAX);
-		equipment.selDepartment(DEPARTMENT);
-		equipment.selFacility(FACILITY);
-		equipment.selWeighingBalanceFacility(WEIGHING_BALANCE_FACILITY);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
-		equipment.createSubmit();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.2");
-		equipment.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.2");
-		equipment.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.2");
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
+        equipment.clickSubmit();
+        ScreenshotUtil.capture();
+        equipment.authenticate(equipment.currentPassword);
+        String authToast = equipment.waitForToast();
+        equipment.waitForLoading();
+        sa.assertEquals(authToast, "Equipment created successfully", "Created Toaster message", authToast);
+        sa.assertAll();
+    }
 
-	}
 
-	@Test(priority = 3)
-	public void Step_4_1_3() throws Throwable {
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.3");
-	}
+    @Test(groups = { "equipmentReviewReturn_equipmentEdit" })
+    public void equipment_Review_Return_and_Edit() throws Throwable {
+        if (EQUIPMENT_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReturnReview(REVIEW_RETURN_REMARKS, "Equipment returned successfully");
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performEdit(EDIT_EQUIPMENT_IN_REVIEW_RETURN, "Equipment updated successfully");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 4)
-	public void Step_4_1_4() throws Throwable {
-		equipment.clickActions(EQUIPMENT_NAME);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.4");
+    @Test(groups = { "equipmentReview" })
+    public void equipmentReview() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        performReview(REVIEW_REMARKS, "Equipment reviewed successfully");
+        sa.assertAll();
+    }
 
-	}
+    @Test(groups = { "equipmentApproveReturn_equipmentEdit_equipmentReview" })
+    public void equipment_Approve_Return_and_Edit_and_Review() throws Throwable {
+        if (EQUIPMENT_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            performReturnApprove(APPROVE_RETURN_REMARKS, "Equipment returned successfully");
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performEdit(EDIT_EQUIPMENT_IN_APPROVE_RETURN, "Equipment updated successfully");
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReview(REVIEW_REMARKS, "Equipment reviewed successfully");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 5)
-	public void Step_4_1_5() throws Throwable {
-		equipment.clickReview();
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.5");
-		equipment.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.5");
-		equipment.clickReturn();
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.5");
-		equipment.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.5");
-		equipment.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.5");
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.5");
-	}
+    @Test(groups = { "equipmentApprove" })
+    public void equipmentApprove() throws Throwable {
+        switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+        performApprove(APPROVE_REMARKS, "Equipment approved successfully");
+        sa.assertAll();
+    }
 
-	@Test(priority = 6)
-	public void Step_4_1_6() throws Throwable {
-		equipment.clickEdit(EQUIPMENT_NAME);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.6");
-		equipment.equipmentName(EDIT_EQUIPMENT_NAME);
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.6");
-		equipment.clickUpdate();
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.6");
-		equipment.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.6");
-		equipment.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.6");
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.6");
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions_1() throws Throwable {
+        switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+        Click_Actions();
+    }
 
-	}
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions_2() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        Click_Actions();
+    }
 
-	@Test(priority = 7)
-	public void Step_4_1_7() throws Throwable {
-		equipment.clickActions(EDIT_EQUIPMENT_NAME);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.7");
-		equipment.clickReview();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.7");
-		equipment.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.7");
-		equipment.clickReview();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.7");
-		equipment.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.7");
-		equipment.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.7");
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.7");
+    @Override
+    protected void afterClickActionsScreenshot() throws Throwable {
+        freezeStep();
+        try {
+            equipment.clickActions(currentEntryName);
+        } catch (Exception e) {
+            log.error("Failed to re-click actions during freeze step", e);
+        }
+        resumeStep();
+    }
 
-	}
-
-	@Test(priority = 8)
-	public void Step_4_1_8() throws Throwable {
-		equipment.clickActions(EDIT_EQUIPMENT_NAME);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.7");
-		equipment.clickApprove();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.7");
-		equipment.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.7");
-		equipment.clickApprove();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.7");
-		equipment.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.7");
-		equipment.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.7");
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.7");
-
-	}
-
-	
-	@Test(priority = 9)
-	public void Step_4_1_9() throws Throwable {
-		equipment.click_profileDropdown();
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.9");
-		equipment.logout();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.9");
-
-	}
-
+    @Override
+    protected void updateEntryName(String newName) throws Throwable {
+        equipment.equipmentName(newName);
+    }
 }

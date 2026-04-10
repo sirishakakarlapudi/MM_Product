@@ -52,6 +52,14 @@ public class HelperMethods {
 		}
 	}
 
+	public void waitForToastDisappear() {
+		try {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.p-toast-detail")));
+		} catch (Exception e) {
+			log.warn("Toast message did not disappear within timeout");
+		}
+	}
+
 	public void waitForLoading() {
 		try {
 			driver.manage().timeouts().implicitlyWait(Duration.ZERO);
@@ -93,8 +101,8 @@ public class HelperMethods {
 	}
 
 	/**
-	 * Highlights an element with a red arrow and captured a screenshot.
-	 * The arrow is removed immediately after capture.
+	 * Highlights an element with a red arrow and captured a screenshot. The arrow
+	 * is removed immediately after capture.
 	 */
 
 	public void captureWithPointer(WebElement element) {
@@ -104,48 +112,36 @@ public class HelperMethods {
 
 			String arrowId = "automation-arrow-" + System.currentTimeMillis();
 
-			String js = "var el = arguments[0];" +
-					"var r = el.getBoundingClientRect();" +
-					"var vw = window.innerWidth;" +
-					"var vh = window.innerHeight;" +
+			String js = "var el = arguments[0];" + "var r = el.getBoundingClientRect();" + "var vw = window.innerWidth;"
+					+ "var vh = window.innerHeight;" +
 
 					// Element center
-					"var cx = r.left + r.width / 2;" +
-					"var cy = r.top + r.height / 2;" +
+					"var cx = r.left + r.width / 2;" + "var cy = r.top + r.height / 2;" +
 
 					// Calculate Target Point (tx, ty)
-					"var tx = cx;" +
-					"var ty = cy;" +
+					"var tx = cx;" + "var ty = cy;" +
 
 					// Logic for wide elements (like long text inputs)
-					"if (r.width > 200) {" +
-					"  tx = Math.max(r.left + 20, Math.min(r.right - 20, r.left + 50));" +
-					"}" +
+					"if (r.width > 200) {" + "  tx = Math.max(r.left + 20, Math.min(r.right - 20, r.left + 50));" + "}"
+					+
 
 					// Clamp coordinates to be inside viewport with a 10px margin
-					"tx = Math.max(10, Math.min(vw - 10, tx));" +
-					"ty = Math.max(10, Math.min(vh - 10, ty));" +
+					"tx = Math.max(10, Math.min(vw - 10, tx));" + "ty = Math.max(10, Math.min(vh - 10, ty));" +
 
 					// Mouse cursor tip adjustment (SVG tip is at 7, 2)
-					"var left = tx - 7;" +
-					"var top = ty - 2;" +
+					"var left = tx - 7;" + "var top = ty - 2;" +
 
 					// Create Mouse Cursor
-					"var arrow = document.createElement('div');" +
-					"arrow.id = '" + arrowId + "';" +
-					"arrow.style.position = 'fixed';" +
-					"arrow.style.left = left + 'px';" +
-					"arrow.style.top = top + 'px';" +
-					"arrow.style.width = '24px';" +
-					"arrow.style.height = '24px';" +
-					"arrow.style.zIndex = '1000000';" + // Ultra-high z-index
+					"var arrow = document.createElement('div');" + "arrow.id = '" + arrowId + "';"
+					+ "arrow.style.position = 'fixed';" + "arrow.style.left = left + 'px';"
+					+ "arrow.style.top = top + 'px';" + "arrow.style.width = '24px';" + "arrow.style.height = '24px';"
+					+ "arrow.style.zIndex = '1000000';" + // Ultra-high z-index
 					"arrow.style.pointerEvents = 'none';" +
 
 					// Laptop-style Mouse Pointer SVG in VIBRANT RED
-					"arrow.innerHTML = `<svg width='24' height='24' viewBox='0 0 24 24' style='display:block;'>" +
-					"<path d='M7 2 L18 13 L13.5 13 L16 19 L13 20 L10.5 14 L7 17 Z' " +
-					"fill='#FF0000' stroke='white' stroke-width='1.5' stroke-linejoin='round'/>" +
-					"</svg>`;" +
+					"arrow.innerHTML = `<svg width='24' height='24' viewBox='0 0 24 24' style='display:block;'>"
+					+ "<path d='M7 2 L18 13 L13.5 13 L16 19 L13 20 L10.5 14 L7 17 Z' "
+					+ "fill='#FF0000' stroke='white' stroke-width='1.5' stroke-linejoin='round'/>" + "</svg>`;" +
 
 					"document.body.appendChild(arrow);";
 
@@ -222,6 +218,11 @@ public class HelperMethods {
 		}
 		clickWithArrow(element);
 		element.click();
+	}
+
+	public void scrollToBottom(WebDriver driver) {
+
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	}
 
 	public void scrollToElement(WebElement element) {
@@ -334,31 +335,30 @@ public class HelperMethods {
 				}
 				if (match) {
 					switch (type) {
-						case CLICK:
-							jsClick(driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath)));
-							Thread.sleep(1000);
-							return true;
-						case CHECK_VISIBILITY:
-							boolean visible = !driver.findElements(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath))
-									.isEmpty();
-							if (visible != expectedVisibility)
-								throw new RuntimeException("Visibility mismatch for " + subPath);
-							return true;
-						case GET_TEXT:
-							int col = getColumnIndexByHeader(subPath);
-							return driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]/td[" + col + "]"))
-									.getText()
-									.trim();
-						case CHECK_MENU:
-							jsClick(driver.findElement(
-									By.xpath("(" + rowXpath + ")[" + r + "]//span[contains(@class,'pi-ellipsis-v')]")));
-							Thread.sleep(1000);
-							List<String> actual = driver.findElements(By.xpath(
-									"//ul[@role='menu']//li//span | //div[contains(@class,'p-menu-overlay')]//li//span"))
-									.stream().map(e -> e.getText().trim()).filter(t -> !t.isEmpty())
-									.collect(java.util.stream.Collectors.toList());
-							jsClick(driver.findElement(By.tagName("body")));
-							return actual;
+					case CLICK:
+						jsClick(driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath)));
+						Thread.sleep(1000);
+						return true;
+					case CHECK_VISIBILITY:
+						boolean visible = !driver.findElements(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath))
+								.isEmpty();
+						if (visible != expectedVisibility)
+							throw new RuntimeException("Visibility mismatch for " + subPath);
+						return true;
+					case GET_TEXT:
+						int col = getColumnIndexByHeader(subPath);
+						return driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]/td[" + col + "]")).getText()
+								.trim();
+					case CHECK_MENU:
+						jsClick(driver.findElement(
+								By.xpath("(" + rowXpath + ")[" + r + "]//span[contains(@class,'pi-ellipsis-v')]")));
+						Thread.sleep(1000);
+						List<String> actual = driver.findElements(By.xpath(
+								"//ul[@role='menu']//li//span | //div[contains(@class,'p-menu-overlay')]//li//span"))
+								.stream().map(e -> e.getText().trim()).filter(t -> !t.isEmpty())
+								.collect(java.util.stream.Collectors.toList());
+						jsClick(driver.findElement(By.tagName("body")));
+						return actual;
 					}
 				}
 			}
@@ -374,7 +374,8 @@ public class HelperMethods {
 	protected void performTableActionGeneric(List<WebElement> pageCountElements, String rowXpath,
 			String paginatorButtonPrefix, String actionButtonSubPath, String... expectedValues) throws Exception {
 		int totalPages = driver.findElements(By.xpath(paginatorButtonPrefix)).size();
-		if (totalPages == 0) totalPages = 1;
+		if (totalPages == 0)
+			totalPages = 1;
 		List<Integer> targetIndices = getDynamicColumnIndices();
 
 		for (int p = 1; p <= totalPages; p++) {
@@ -384,9 +385,8 @@ public class HelperMethods {
 				try {
 					boolean rowMatches = true;
 					for (int i = 0; i < targetIndices.size(); i++) {
-						WebElement cell = driver
-								.findElement(
-										By.xpath("(" + rowXpath + ")[" + r + "]/td[" + targetIndices.get(i) + "]"));
+						WebElement cell = driver.findElement(
+								By.xpath("(" + rowXpath + ")[" + r + "]/td[" + targetIndices.get(i) + "]"));
 						if (i == 0)
 							jsScrollToElement(cell);
 						if (!cell.getText().trim().equalsIgnoreCase(expectedValues[i].trim())) {
@@ -419,8 +419,8 @@ public class HelperMethods {
 
 	public String getStatus(String... expItemNames) throws Exception {
 		return (String) scanTable("//tbody[@role='rowgroup']/tr",
-				"//span[@class='p-paginator-pages ng-star-inserted']/button",
-				TableActionType.GET_TEXT, "Status", false, expItemNames);
+				"//span[@class='p-paginator-pages ng-star-inserted']/button", TableActionType.GET_TEXT, "Status", false,
+				expItemNames);
 	}
 
 	public WebElement getButtonByText(String text) {

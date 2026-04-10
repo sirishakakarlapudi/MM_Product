@@ -65,7 +65,7 @@ public class ProductCustomerData {
 
 	public static void loadProperties(String fileName) {
 		if (fileName == null || fileName.isEmpty()) {
-			fileName = "akronquickproduct.properties";
+			fileName = "productcustomer.properties";
 		}
 
 		CURRENT_CONFIG_NAME = fileName.split("\\.")[0];
@@ -99,6 +99,7 @@ public class ProductCustomerData {
 		USERNAME3 = productcustomerconfig.get("username3");
 		PASSWORD3 = productcustomerconfig.get("password3");
 		MASTER_MODULE = productcustomerconfig.get("master_Module");
+		SUB_MASTER_MODULE = productcustomerconfig.get("sub_Master_Module");
 		PRODUCT = productcustomerconfig.get("product");
 		CUSTOMER = productcustomerconfig.get("customer");
 		MARKET_REGION = productcustomerconfig.get("marketRegion");

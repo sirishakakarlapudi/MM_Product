@@ -211,9 +211,10 @@ public class Customer_TC extends BaseClass {
 			performReturnApprove(APPROVE_RETURN_REMARKS);
 			
 			switchUserIfMulti(USERNAME1, PASSWORD1);
+			ScreenshotUtil.freezeStepNumbering();
 			log.info("Opening Edit screen (After Return)");
 			performEdit(EDIT_CUSTOMER_IN_APPROVE_RETURN);
-			ScreenshotUtil.freezeStepNumbering();
+		
 			
 			
 

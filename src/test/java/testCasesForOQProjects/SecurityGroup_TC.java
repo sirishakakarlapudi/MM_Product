@@ -7,36 +7,45 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.SecurityGroup;
-import testBase.BaseClass;
 import utilities.DataProviders;
-import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
-import utilities.SoftAssertionUtil;
 import utilities.securityGroupOQData;
 
-public class SecurityGroup_TC extends BaseClass {
-
-	SecurityGroup securitygroup;
-	String currentSecurityGroupName; // Track the current name (including edits)
-	SoftAssertionUtil sa;
+public class SecurityGroup_TC extends OQBaseModule_TC {
+	private SecurityGroup securitygroup;
 
 	@BeforeClass
 	@Parameters({ "configFile" })
 	public void setUp(@Optional("securitygroup.properties") String configFile) throws Exception {
 		log.info("--- Starting Security Group Test Case Setup with config: {} ---", configFile);
 
-		// CORRECTED: Load SecurityGroup properties
+		// Load SecurityGroup properties
 		configData.SecurityGroupData.loadProperties(configFile);
 
-		// Set conditional screenshot execution
+		// Map static variables to base class fields
+		CONFIG_NAME = CURRENT_CONFIG_NAME;
+		CHROME_URL_VAL = CHROME_URL;
+		APP_URL_VAL = APP_URL;
+		USERNAME_VAL = USERNAME;
+		PASSWORD_VAL = PASSWORD;
+		USERNAME1_VAL = USERNAME1;
+		PASSWORD1_VAL = PASSWORD1;
+		USERNAME2_VAL = USERNAME2;
+		PASSWORD2_VAL = PASSWORD2;
+		ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+		PC_DB_NAME_VAL = PC_DB_NAME;
+		MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+		MM_DB_NAME_VAL = MM_DB_NAME;
+		TITLE_MODULE_VAL = "MASTERS";
+		MASTER_MODULE_VAL = MASTER_MODULE;
+		SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+
 		boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
 		ScreenshotUtil.setIsEnabled(screenshotsEnabled);
 
@@ -49,81 +58,35 @@ public class SecurityGroup_TC extends BaseClass {
 
 		browserOpen();
 		securitygroup = new SecurityGroup(driver);
+		this.pageObject = securitygroup;
 		securitygroup.setTableHeaders(TABLE_HEADERS);
 		log.info("Setup completed. Screenshots enabled: {}", screenshotsEnabled);
 	}
 
-	@BeforeMethod
-	public void initSoftAssert() {
-		sa = new SoftAssertionUtil();
+	@Override
+	protected void updateEntryName(String newName) throws Throwable {
+		securitygroup.securityGroupName(newName);
 	}
 
-	@Test(groups = { "setup" }, priority = 1)
-	public void initialSetUp() throws Exception {
-		ScreenshotUtil.nextStep();
-		log.info("Navigating to Chrome URL: {}", CHROME_URL);
-		driver.navigate().to(CHROME_URL);
-		log.info("Waiting for search box to be visible");
-		securitygroup.waitForElementToVisible(securitygroup.getSearchBox());
-		Assert.assertTrue(securitygroup.getSearchBox().isDisplayed(), "Search box is not visible!");
-		log.info("Searching for Application URL: {}", APP_URL);
-		securitygroup.searchBox(APP_URL);
-		securitygroup.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("Initial setup completed and screenshot captured");
-	}
-
-	@Test(groups = { "url" }, priority = 2)
-	public void url() throws Throwable {
-		driver.navigate().to(APP_URL);
-		log.info("Navigating to App URL: {}", APP_URL);
-	}
-
-	@Test(groups = { "userlogin" }, priority = 3)
-	public void userLoginBeforeCreate() throws Throwable {
-		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
-		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			securitygroup.login(USERNAME, PASSWORD, PC_DB_NAME);
-		} else {
-			securitygroup.login(USERNAME1, PASSWORD1, PC_DB_NAME);
-		}
-	}
-
-	@Test(groups = { "moduleselect" }, priority = 4)
-	public void moduleClick() throws Throwable {
-		log.info("--- Clicking Module ---");
-		ScreenshotUtil.nextStep();
-		securitygroup.click_titleMasters();
-		log.info("Clicked on Masters title");
-		ScreenshotUtil.capture();
-		securitygroup.waitForLoading();
-		ScreenshotUtil.nextStep();
-		securitygroup.masterClick(MASTER_MODULE);
-		log.info("Clicked on Master Module: {}", MASTER_MODULE);
-		securitygroup.waitForLoading();
-		ScreenshotUtil.capture();
-	}
-
-	@Test(groups = { "Creation" }, priority = 5)
+	@Test(groups = { "Creation" })
 	public void Creation_Of_SecurityGroup() throws Throwable {
 		log.info("--- Navigating to Create SecurityGroup Screen ---");
 		securitygroup.Create();
-		log.info("Clicked on Create button");
 		securitygroup.waitForLoading();
-		ScreenshotUtil.capture();
-		ScreenshotUtil.nextStep();
+		capture();
+		nextStep();
+
 		log.info("--- Creating Security Group: {} ---", SECURITYGROUP_NAME);
-		ScreenshotUtil.nextStep();
-		currentSecurityGroupName = SECURITYGROUP_NAME; // Initialize with base name
+		currentEntryName = SECURITYGROUP_NAME;
 
 		securitygroup.securityGroupName(SECURITYGROUP_NAME);
 		securitygroup.securityGroupDesc(SECURITYGROUP_DESC);
 		securitygroup.selModule(SELECT_MODULE);
-		ScreenshotUtil.capture();
+		capture();
 
 		log.info("Entered Name, Description, Module");
 
-		// ================= FETCH PRIVILEGES FROM SEPARATE CREATE CSV =================
+		// Privilege logic from CSV
 		String createCsvPath = System.getProperty("user.dir") + "/src/test/resources/CSV_Data/SecurityGroup_Create.csv";
 		List<Map<String, String>> createData = utilities.CSVUtility.getAllRows(createCsvPath);
 		String creationPrivileges = "";
@@ -143,45 +106,24 @@ public class SecurityGroup_TC extends BaseClass {
 		// Removed extra ScreenshotUtil.capture() as it's now handled inside the loop
 		securitygroup.clickSubmit();
 		log.info("Clicked Submit");
-		ScreenshotUtil.capture();
+		capture();
 
 		securitygroup.authenticate(securitygroup.currentPassword);
 		String authToast = securitygroup.waitForToast();
+		securitygroup.waitForToastDisappear();
 		securitygroup.waitForLoading();
-		ScreenshotUtil.capture();
-		sa.assertEquals(authToast, "Security Group created successfully", "Created Toaster message",
-				"Creation failed with message: " + authToast);
-		ScreenshotUtil.nextStep();
-		ScreenshotUtil.capture();
-
+		capture();
+		sa.assertEquals(authToast, "Security Group created successfully", "Created Toaster message", authToast);
+		sa.assertAll();
 	}
 
-	@Test(groups = { "ClickActions" }, priority = 6)
-	public void Click_Actions_After_Create() throws Throwable {
-		log.info("--- Attempting to open Actions Menu for: {} ---", currentSecurityGroupName);
-		ScreenshotUtil.nextStep();
-		securitygroup.clickActions(currentSecurityGroupName);
-		log.info("Successfully opened Actions menu for {}", currentSecurityGroupName);
-		ScreenshotUtil.capture();
-
-	}
-
-	@Test(groups = { "ClickView" }, priority = 7)
-	public void Click_View() throws Throwable {
-		if (SECURITYGROUP_VIEW_ACTION.equalsIgnoreCase("yes")) {
-			log.info("--- Viewing Security Group: {} ---", currentSecurityGroupName);
-			ScreenshotUtil.nextStep();
-			securitygroup.clickView(currentSecurityGroupName);
-			log.info("View screen opened");
-			securitygroup.waitForLoading();
-			ScreenshotUtil.capture();
-			securitygroup.clickBack();
-			log.info("Clicked Back button");
-			securitygroup.waitForLoading();
-			ScreenshotUtil.capture();
-		} else {
-			log.info("View step skipped based on configuration");
-		}
+	@Test(groups = { "ClickActions" })
+	public void Click_Actions1() throws Throwable {
+		log.info("--- Attempting to open Actions Menu for: {} ---", currentEntryName);
+		nextStep();
+		securitygroup.clickActions(currentEntryName);
+		log.info("Successfully opened Actions menu for {}", currentEntryName);
+		capture();
 	}
 
 	@Test(groups = { "securitygroupReturn_securitygroupEdit" }, priority = 8)
@@ -261,62 +203,39 @@ public class SecurityGroup_TC extends BaseClass {
 				securitygroup.selPrivileges(editPrivileges);
 			}
 
+			capture();
 			securitygroup.clickUpdate();
 			log.info("Clicked Update");
 			ScreenshotUtil.capture();
 			securitygroup.authenticate(securitygroup.currentPassword);
-			String editToast = securitygroup.waitForToast();
-			sa.assertEquals(editToast, "Security Group updated successfully", "Updated toaster messege", editToast);
-
-		} else {
-			log.info("SecurityGroup Return and Edit skipped based on configuration");
+			securitygroup.waitForToastDisappear();
+			securitygroup.waitForLoading();
+			capture();
+			sa.assertAll();
 		}
 	}
 
-	@Test(groups = { "securitygroupApprove" }, priority = 9)
+	@Test(groups = { "securitygroupApprove" })
 	public void securitygroup_Approve() throws Throwable {
-
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			log.info("--- Approving Security Group: {} ---", currentSecurityGroupName);
-			securitygroup.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE);
-		}
-		log.info("--- Performing Final Approval for: {} ---", currentSecurityGroupName);
-		ScreenshotUtil.nextStep();
-		log.info("Opening actions menu for approval");
-		securitygroup.clickActions(currentSecurityGroupName);
-		ScreenshotUtil.capture();
-		log.info("Clicking Approve button in the list");
-		securitygroup.clickApprove();
-		ScreenshotUtil.capture();
-		securitygroup.enterRemarks(APPROVE_REMARKS);
-		log.info("Entered Approve remarks: {}", APPROVE_REMARKS);
-		ScreenshotUtil.capture();
-		securitygroup.clickApprove();
-		log.info("Submitted Approval");
-		ScreenshotUtil.capture();
-		securitygroup.authenticate(securitygroup.currentPassword);
-		String approveToast = securitygroup.waitForToast();
-		sa.assertEquals(approveToast, "Security Group approved successfully", "Approved toaster messege", approveToast);
-
+		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		performApprove(APPROVE_REMARKS, "Security Group approved successfully");
+		sa.assertAll();
 	}
 
-	@Test(groups = { "securitygroupUpdate" }, priority = 10)
+	@Test(groups = { "securitygroupUpdate" })
 	public void securitygroup_Update() throws Throwable {
-		currentSecurityGroupName = EDIT_SECURITYGROUP_NAME_AFTER_RETRUN;
-		if (UPDATE_PRIVILEGES_ACTION.equalsIgnoreCase("yes")) {
 
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				log.info("--- Changing User for Update: {} ---", currentSecurityGroupName);
-				securitygroup.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE);
-			}
-			ScreenshotUtil.nextStep();
+		if (UPDATE_PRIVILEGES_ACTION.equalsIgnoreCase("yes")) {
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+
 			log.info("Opening actions menu to access Update Privileges");
-			securitygroup.clickActions(currentSecurityGroupName);
-			ScreenshotUtil.capture();
+			nextStep();
+			securitygroup.clickActions(currentEntryName);
+			capture();
 			log.info("Clicking Update to trigger privilege dialog");
 			securitygroup.clickUpdate();
 			securitygroup.waitForLoading();
-			ScreenshotUtil.capture();
+			capture();
 
 			// ================= FETCH PRIVILEGES FROM SEPARATE UPDATE CSV =================
 			String updateCsvPath = System.getProperty("user.dir")
@@ -342,50 +261,32 @@ public class SecurityGroup_TC extends BaseClass {
 			ScreenshotUtil.capture();
 			securitygroup.authenticate(securitygroup.currentPassword);
 			String updateToast = securitygroup.waitForToast();
-			sa.assertEquals(updateToast, "Security Group updated successfully", "Updated toaster messege", updateToast);
+			securitygroup.waitForToastDisappear();
+			sa.assertEquals(updateToast, "Security Group updated successfully", "Updated toaster message", updateToast);
+			sa.assertAll();
 		}
 	}
 
-	@Test(groups = { "securitygroupUpdateApprove" }, priority = 11)
+	@Test(groups = { "securitygroupUpdateApprove" })
 	public void securitygroup_Active_Approve() throws Throwable {
-
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			log.info("--- Approving Department: {} ---", currentSecurityGroupName);
-			securitygroup.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE);
-		}
-		log.info("--- Performing Final Approval for: {} ---", currentSecurityGroupName);
-		ScreenshotUtil.nextStep();
-		log.info("Opening actions menu for approval");
-		securitygroup.clickActions(currentSecurityGroupName);
-		ScreenshotUtil.capture();
-		log.info("Clicking Approve button in the list");
-		securitygroup.clickApprove();
-		ScreenshotUtil.capture();
-		securitygroup.enterRemarks(APPROVE_REMARKS);
-		log.info("Entered Approve remarks: {}", APPROVE_REMARKS);
-		ScreenshotUtil.capture();
-		securitygroup.clickApprove();
-		log.info("Submitted Approval");
-		ScreenshotUtil.capture();
-		securitygroup.authenticate(securitygroup.currentPassword);
-		String approveToast = securitygroup.waitForToast();
-		sa.assertEquals(approveToast, "Security Group approved successfully", "Approved toaster messege", approveToast);
+		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		performApprove(APPROVE_REMARKS, "Security Group approved successfully");
+		sa.assertAll();
 	}
 
-	// ===============Search filters========================
-	@Test(groups = { "SearchFilter" }, priority = 12)
+	@Test(groups = { "SearchFilter" })
 	public void Search_Filter() throws Throwable {
-		log.info("--- Validating Search Filters for: {} ---", currentSecurityGroupName);
-		ScreenshotUtil.nextStep();
+		log.info("--- Validating Search Filters ---");
+		nextStep();
 		if (!securitygroup.isFilterPanelExpanded()) {
 			log.info("Filter panel is already not expanded so clicking on Filter button to expand it");
 			securitygroup.clickFilterToggle();
 		}
-		securitygroup.clickSecurityGroupNameFilter(currentSecurityGroupName);
-		ScreenshotUtil.capture();
+		securitygroup.clickSecurityGroupNameFilter(currentEntryName);
+		capture();
 		securitygroup.clickSearch();
 		securitygroup.waitForLoading();
-		ScreenshotUtil.capture();
+		capture();
 	}
 
 	// =====================DUPLICATION CHECK IN CREATE PAGE========================
@@ -396,56 +297,23 @@ public class SecurityGroup_TC extends BaseClass {
 		ScreenshotUtil.nextStep();
 		log.info("--- Checking Duplication Check with Department In Create page: {} ---", currentSecurityGroupName);
 		securitygroup.Create();
-		securitygroup.securityGroupName(currentSecurityGroupName);
-		ScreenshotUtil.capture();// Using currentDeptName to ensure we test with the actual name in the system);
+		securitygroup.securityGroupName(currentEntryName);
+		capture();
 		securitygroup.clickSecurityGroupName();
 		securitygroup.clickSubmit();
 		securitygroup.waitForToast();
-		ScreenshotUtil.capture();
+		securitygroup.waitForToastDisappear();
+		capture();
 	}
 
-	@Test(groups = { "Logout" }, priority = 18)
-	public void Logout() throws Throwable {
-		log.info("--- Executing Final Logout ---");
-		ScreenshotUtil.nextStep();
-		securitygroup.logout();
-		log.info("Clicked logout button");
-		securitygroup.waitForToast();
-		securitygroup.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("--- Department Test Case Execution Finished ---");
-	}
-
-	@Test(groups = { "DB Back" }, priority = 19)
-	public void Database_Backup() {
-		log.info("--- Initiating Post-Test Database Backup ---");
-
-		// Fallback logic: Use config filename if script number is missing
-		String backupFolderName = (SCRIPT_NUMBER == null || SCRIPT_NUMBER.trim().isEmpty()) ? CURRENT_CONFIG_NAME
-				: SCRIPT_NUMBER;
-
-		log.info("Backup folder name determined: {}", backupFolderName);
-
-		// Parameters: folderName, dbName, dbUser, dbPass, host, port
-		DatabaseBackupUtil.backupPostgres(backupFolderName, PC_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
-	}
-
-	@Test(groups = { "sidenavvalidation" }, dependsOnMethods = "moduleClick", priority = 16)
+	@Test(groups = { "sidenavvalidation" }, dependsOnMethods = "moduleClick")
 	public void SideNav_Validation() throws Throwable {
-		log.info("--- Validating Side-Navigation Modules Based on DB Privileges ---");
+		log.info("--- Validating Side-Navigation Modules ---");
 
-		// 1. Get dynamically expected side-nav modules from DB
 		List<String> expectedModules = securitygroup.getExpectedSideNavFromDB(securitygroup.currentUsername,
-				SIDE_NAV_MODULE_MAPPING, PC_DB_NAME);
-		log.info("Dynamically determined expected side-nav modules: {}", expectedModules);
+				SIDE_NAV_MODULE_MAPPING, PC_DB_NAME_VAL);
 
-		// 2. Expand each parent module and collect visible items incrementally (to
-		// handle accordion behavior)
 		List<String> finalActualModules = new ArrayList<>();
-
-		// Initial capture for static/already-open modules
 		finalActualModules.addAll(securitygroup.getAllSideNavModulesDisplayed());
 
 		String[] mappings = SIDE_NAV_MODULE_MAPPING.split(";");
@@ -454,9 +322,7 @@ public class SecurityGroup_TC extends BaseClass {
 			if (parts.length > 2) {
 				String parentModule = parts[0].trim();
 				if (expectedModules.contains(parentModule)) {
-					log.info("Expanding for incremental capture: {}", parentModule);
 					securitygroup.expandSideNavModule(parentModule);
-					// Collect newly visible sub-modules
 					for (String active : securitygroup.getAllSideNavModulesDisplayed()) {
 						if (!finalActualModules.contains(active))
 							finalActualModules.add(active);
@@ -464,7 +330,7 @@ public class SecurityGroup_TC extends BaseClass {
 				}
 			}
 		}
-		ScreenshotUtil.capture();
+		capture();
 
 		System.out.println("====================================================================");
 		System.out.println("SIDE-NAV VALIDATION FOR USER: " + securitygroup.currentUsername);

@@ -28,7 +28,7 @@ public class Customer extends BasePage {
 	protected WebElement customer_code;
 
 	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='regionId']//div/span")
-	protected WebElement storage_location_drpdwn;
+	protected WebElement marketregion_drpdwn;
 
 	/*
 	 * ========================================================================= [
@@ -66,7 +66,7 @@ public class Customer extends BasePage {
 	
 	
 	public void selMarketRegion(String region) {
-		waitForElementandClick(storage_location_drpdwn);
+		waitForElementandClick(marketregion_drpdwn);
 		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//ng-multiselect-dropdown[@formcontrolname='regionId']//li[normalize-space()='"
 						+ region + "']")));

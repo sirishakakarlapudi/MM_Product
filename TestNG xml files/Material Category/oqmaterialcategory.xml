@@ -13,9 +13,8 @@
 					<include name="userLoginBeforeCreate" />
 					<include name="moduleClick" />
 					<include name="Creation_Of_Material_Category" />
-					<include name="Click_Actions_2" />
+					<include name="Click_Actions2" />
 					<include name="Click_View" />
-					<include name="Click_Actions1" />
 					<include name="material_Category_Review_Return_and_Edit" />
 					<include name="materialCategoryReview" />
 					<include name="material_Category_Approve_Return_and_Edit_and_Review" />

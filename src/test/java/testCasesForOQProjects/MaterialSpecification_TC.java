@@ -1,206 +1,229 @@
-
 package testCasesForOQProjects;
 
 import static configData.MaterialSpecificationData.*;
-
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import pageObjects.MaterialSpecification;
-import testBase.BaseClass;
 import utilities.DataProviders;
 import utilities.ScreenshotUtil;
-import utilities.WaitUtil;
-
 import utilities.materialSpecificationData;
 
-public class MaterialSpecification_TC extends BaseClass {
-	MaterialSpecification materialspecification;
+public class MaterialSpecification_TC extends OQBaseModule_TC {
 
-	@BeforeClass
-	public void setUp() throws Exception {
+    private MaterialSpecification materialspecification;
+    
 
-		ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
-		ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+    @BeforeClass
+    @Parameters({ "configFile" })
+    public void setUp(@Optional("oqmaterialspecification.properties") String configFile) throws Exception {
+        log.info("--- Starting Material Specification Test Case Setup with config: {} ---", configFile);
+        configData.MaterialSpecificationData.loadProperties(configFile);
 
-		browserOpen();
-		materialspecification = new MaterialSpecification(driver);
+        // Map static variables to base class fields
+        CONFIG_NAME = CURRENT_CONFIG_NAME;
+        CHROME_URL_VAL = CHROME_URL;
+        APP_URL_VAL = APP_URL;
+        USERNAME_VAL = USERNAME;
+        PASSWORD_VAL = PASSWORD;
+        USERNAME1_VAL = USERNAME1;
+        PASSWORD1_VAL = PASSWORD1;
+        USERNAME2_VAL = USERNAME2;
+        PASSWORD2_VAL = PASSWORD2;
+        USERNAME3_VAL = USERNAME3;
+        PASSWORD3_VAL = PASSWORD3;
+        ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+        PC_DB_NAME_VAL = PC_DB_NAME;
+        MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+        MM_DB_NAME_VAL = MM_DB_NAME;
+        TITLE_MODULE_VAL = "MASTERS";
+        MASTER_MODULE_VAL = MASTER_MODULE;
+        SUB_MASTER_MODULE_VAL = SUB_MASTER_MODULE;
+        SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+        VIEW_ACTION_VAL = MATERIALSPEC_VIEW_ACTION;
 
-	}
+        boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
+        ScreenshotUtil.setIsEnabled(screenshotsEnabled);
+        if (screenshotsEnabled) {
+            ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
+            ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+            ScreenshotUtil.initScript(SCRIPT_NUMBER);
+        }
 
-	@Test(priority = 1)
-	public void Step_4_1_1() throws Throwable {
-		driver.get("https://www.google.co.in/");
-		WaitUtil.waitForVisible(driver, materialspecification.getSearchBox(), 10);
-		materialspecification.searchBox(APP_URL);
-		WaitUtil.waitForPageLoad(driver, 10);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.1");
-		driver.get(APP_URL);
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.1");
-		materialspecification.userName(USERNAME);
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.1");
-		materialspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.1");
-		materialspecification.loginButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.1");
-		materialspecification.click_titleMasters();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.1");
-		materialspecification.masterClick(MASTER_MODULE);
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.1");
-		materialspecification.masterClick(MASTER_SUB_MODULE);
-		ScreenshotUtil.takeStepScreenshot("08 for step No.4.1.1");
-		materialspecification.Create();
-		ScreenshotUtil.takeStepScreenshot("09 for step No.4.1.1");
+        browserOpen();
+        materialspecification = new MaterialSpecification(driver);
+        this.pageObject = materialspecification;
+        materialspecification.setTableHeaders(TABLE_HEADERS);
+    }
 
-	}
+    @Test(groups = { "Creation" })
+    public void Creation_Of_MaterialSpecification() throws Throwable {
+        log.info("--- Navigating to Create Material Specification Screen ---");
+        materialspecification.Create();
+        materialspecification.waitForLoading();
+        ScreenshotUtil.capture();
+        ScreenshotUtil.nextStep();
+        log.info("--- Selecting Material Code: {} ---", MATERIAL_CODE);
+        currentEntryName = SPECIFICATION_NUMBER;
+        materialspecification.selMaterialCode(MATERIAL_CODE);
+        materialspecification.specificationNumber(SPECIFICATION_NUMBER);
+        materialspecification.selRequestType(REQUEST_TYPE);
+        Thread.sleep(5000);
+        ScreenshotUtil.capture();
+    }
 
-	@Test(priority = 2)
-	public void Step_4_1_2_PartA() throws Throwable {
-		materialspecification.selMaterialCode(MATERIAL_CODE);
-		materialspecification.specificationNumber(SPECIFICATION_NUMBER);
-		materialspecification.selRequestType(REQUEST_TYPE);
-		Thread.sleep(5000);
+    @Test(groups = { "Creation" }, dataProvider = "MaterialspecificationData", dataProviderClass = DataProviders.class, singleThreaded = true)
+    public void Creation_Of_MaterialSpecification_Rows(materialSpecificationData materialspec) throws Throwable {
+        materialspecification.nameOfTheTest(materialspec.get_NameOfTheTest());
+        if ("Yes".equalsIgnoreCase(materialspec.get_ReqSub())) {
+            materialspecification.selReqSub();
+        }
+        if (materialspec.get_SpecificationLimit() != null && !materialspec.get_SpecificationLimit().trim().isEmpty()) {
+            materialspecification.specificaitionLimit(materialspec.get_SpecificationLimit());
+        }
+        if (materialspec.get_Validation() != null && !materialspec.get_Validation().trim().isEmpty()) {
+            materialspecification.selValidation(materialspec.get_Validation());
+            if ("Yes".equalsIgnoreCase(materialspec.get_Validation().trim())) {
+                materialspecification.specificaitionLimitMin(materialspec.get_SpecificationLimitMin());
+                materialspecification.specificaitionLimitMax(materialspec.get_SpecificationLimitMax());
+                materialspecification.selUOM(materialspec.get_UOM());
+            }
+        }
+        if (materialspec.get_Buttons() != null && !materialspec.get_Buttons().trim().isEmpty()) {
+            if ("Add".equalsIgnoreCase(materialspec.get_Buttons().trim())) {
+                materialspecification.addButton();
+            } else if ("Plus".equalsIgnoreCase(materialspec.get_Buttons().trim())) {
+                materialspecification.plusButton();
+            }
+        }
+    }
 
-	}
+    @Test(groups = { "Creation" })
+    public void Creation_Of_MaterialSpecification_Submit() throws Throwable {
+        materialspecification.createSubmit();
+        materialspecification.authenticate(materialspecification.currentPassword);
+        String authToast = materialspecification.waitForToast();
+        sa.assertEquals(authToast, "Material Specification created successfully", "Created Toaster message", authToast);
+        sa.assertAll();
+    }
 
-	@Test(priority = 3, dataProvider = "MaterialspecificationData", dataProviderClass = DataProviders.class, singleThreaded = true)
-	public void Step_4_1_2_PartB(materialSpecificationData materialspec) throws Throwable {
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions1() throws Throwable {
+        switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+        log.info("--- Attempting to open Actions Menu (Index 1) for: {} ---", currentEntryName);
+        materialspecification.clickActions(currentEntryName, "1");
+        log.info("Successfully opened Actions menu for {}", currentEntryName);
+        capture();
+        afterClickActionsScreenshot("1");
+    }
 
-		String nameofthetest = materialspec.get_NameOfTheTest();
-		String reqSub = materialspec.get_ReqSub();
-		String specificationLimit = materialspec.get_SpecificationLimit();
-		String validation = materialspec.get_Validation();
-		String specificationLimitMin = materialspec.get_SpecificationLimitMin();
-		String specificationLimitMax = materialspec.get_SpecificationLimitMax();
-		String UOM = materialspec.get_UOM();
-		String button = materialspec.get_Buttons();
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions2() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        log.info("--- Attempting to open Actions Menu (Index 2) for: {} ---", currentEntryName);
+        materialspecification.clickActions(currentEntryName, "2");
+        log.info("Successfully opened Actions menu index 2 for {}", currentEntryName);
+        capture();
+        afterClickActionsScreenshot("1");
+    }
 
-		materialspecification.nameOfTheTest(nameofthetest);
-		if ("Yes".equalsIgnoreCase(reqSub)) {
-			materialspecification.selReqSub();
-		}
+    protected void afterClickActionsScreenshot(String... actions) throws Throwable {
+        freezeCapture();
+        try {
+            materialspecification.clickActions(combine(currentEntryName, actions));
+        } catch (Exception e) {
+            log.error("Failed to re-click actions during freeze capture", e);
+        }
+        resumeCapture();
+    }
 
-		if (specificationLimit != null && !specificationLimit.trim().isEmpty()) {
-			materialspecification.specificaitionLimit(specificationLimit);
-		}
-		if (validation != null && !validation.trim().isEmpty()) {
-			materialspecification.selValidation(validation);
-			if ("Yes".equalsIgnoreCase(validation.trim())) {
-				materialspecification.selValidation(validation);
-				materialspecification.specificaitionLimitMin(specificationLimitMin);
-				materialspecification.specificaitionLimitMax(specificationLimitMax);
-				materialspecification.selUOM(UOM);
-			}
 
-		}
-		if (button != null && !button.trim().isEmpty()) {
-			if ("Add".equalsIgnoreCase(button.trim())) {
-				materialspecification.addButton();
-			} else if ("Plus".equalsIgnoreCase(button.trim())) {
-				materialspecification.plusButton();
-			}
 
-		}
-	}
+    @Test(groups = { "materialSpecReviewReturn_materialSpecEdit" })
+    public void materialSpec_Review_Return_and_Edit() throws Throwable {
+        if (MATERIALSPEC_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReturnReview(REVIEW_RETURN_REMARKS, "Material Specification returned successfully", "1");
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performEdit(EDIT_SPECIFICATION_NUMBER_IN_REVIEW_RETURN, "Material Specification updated successfully", "1");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 4)
-	public void Step_4_1_2_PartC() throws Throwable {
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
-		materialspecification.createSubmit();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.2");
-		materialspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.2");
-		materialspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.2");
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
-	}
+    @Test(groups = { "materialSpecReview" })
+    public void materialSpecReview() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        performReview(REVIEW_REMARKS, "Material Specification reviewed successfully", "1");
+        sa.assertAll();
+    }
 
-	@Test(priority = 3)
-	public void Step_4_1_3() throws Throwable {
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.3");
-	}
+    @Test(groups = { "materialSpecApproveReturn_materialSpecEdit_materialSpecReview" })
+    public void materialSpec_Approve_Return_and_Edit_and_Review() throws Throwable {
+        if (MATERIALSPEC_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            performReturnApprove(APPROVE_RETURN_REMARKS, "Material Specification returned successfully", "1");
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performEdit(EDIT_SPECIFICATION_NUMBER_IN_APPROVE_RETURN, "Material Specification updated successfully", "1");
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReview(REVIEW_REMARKS, "Material Specification reviewed successfully", "1");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 4)
-	public void Step_4_1_4() throws Throwable {
-		materialspecification.clickActions(SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.4");
+    @Test(groups = { "materialSpecApprove" })
+    public void materialSpecApprove() throws Throwable {
+        switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+        performApprove(APPROVE_REMARKS, "Material Specification approved successfully", "1");
+        sa.assertAll();
+    }
 
-	}
+    @Test(groups = { "MaterialSpecUpdate" })
+    public void materialSpecUpdate() throws Throwable {
+        if (MATERIALSPEC_UPDATE_AFTER_APPROVE.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performUpdate(UPDATE_NAME_OF_THE_TEST, UPDATE_SPECIFICATION, UPDATE_VALIDATION, "1");
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReview(REVIEW_REMARKS, "Material Specification reviewed successfully", "2");
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            performApprove(APPROVE_REMARKS, "Material Specification approved successfully", "2");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 5)
-	public void Step_4_1_5() throws Throwable {
-		materialspecification.clickReview();
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.5");
-		materialspecification.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.5");
-		materialspecification.clickReturn();
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.5");
-		materialspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.5");
-		materialspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.5");
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.5");
-	}
+    
+    
+    private void performUpdate(String nameofthetest, String specLimit, String val, String... actions) throws Throwable {
+    	materialspecification.clickActions(combine(currentEntryName, actions));
+    	capture();
+    	materialspecification.clickUpdate();
+    	materialspecification.waitForLoading();
+    	capture();
+    	Thread.sleep(5000);
+    	capture();
+    	materialspecification.clickAddButton();
+    	capture();
+    	materialspecification.nameOfTheTest(nameofthetest);
+        if (specLimit != null) materialspecification.specificaitionLimit(specLimit);
+        if (val != null) materialspecification.selValidation(val);
+        capture();
+        materialspecification.clickSubmit();
+        capture();
+        materialspecification.authenticate(materialspecification.currentPassword);
+        String toast=materialspecification.waitForToast();
+        pageObject.waitForToastDisappear();
+        materialspecification.waitForLoading();
+        capture();
+        sa.assertEquals(toast, "Material Specification updated successfully", "Update toast", "Material Specification updated successfully");
+    }
+ 
+    @Override
+    protected void performClickView() throws Throwable {
+        materialspecification.clickPendingView(currentEntryName, "1");
+    }
 
-	@Test(priority = 6)
-	public void Step_4_1_6() throws Throwable {
-		materialspecification.clickEdit(SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.6");
-		materialspecification.specificationNumber(EDIT_SPECIFICATION_NUMBER);
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.6");
-		materialspecification.clickUpdate();
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.6");
-		materialspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.6");
-		materialspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.6");
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.6");
-
-	}
-
-	@Test(priority = 7)
-	public void Step_4_1_7() throws Throwable {
-		materialspecification.clickActions(EDIT_SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.7");
-		materialspecification.clickReview();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.7");
-		materialspecification.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.7");
-		materialspecification.clickReview();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.7");
-		materialspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.7");
-		materialspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.7");
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.7");
-
-	}
-
-	@Test(priority = 8)
-	public void Step_4_1_8() throws Throwable {
-		materialspecification.clickActions(EDIT_SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.7");
-		materialspecification.clickApprove();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.7");
-		materialspecification.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.7");
-		materialspecification.clickApprove();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.7");
-		materialspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.7");
-		materialspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.7");
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.7");
-
-	}
-
-	@Test(priority = 9)
-	public void Step_4_1_9() throws Throwable {
-		materialspecification.click_profileDropdown();
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.9");
-		materialspecification.logout();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.9");
-
-	}
-
+    @Override
+    protected void updateEntryName(String newName) throws Throwable {
+        materialspecification.specificationNumber(newName);
+    }
 }

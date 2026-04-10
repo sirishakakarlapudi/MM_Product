@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+
+
+	<!-- Supplier -->
+
+	<test thread-count="5" name="Supplier Test">
+		<parameter name="configFile" value="oqsupplier.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Supplier_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Supplier" />
+					<include name="Click_Actions1" />
+					<include name="Click_View" />
+					<include name="Click_Actions2" />
+					<include name="supplier_Review_Return_and_Edit" />
+					<include name="supplierReview" />
+					<include name="supplier_Approve_Return_and_Edit_and_Review" />
+					<include name="supplierApprove" />
+					<include name="checkStatus" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
+	<!-- Manufacturer -->
+
+	<test thread-count="5" name="Manufacturer Test">
+		<parameter name="configFile"
+			value="oqmanufacturer.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Manufacturer_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Manufacturer" />
+					<include name="Click_Actions1" />
+					<include name="Click_View" />
+					<include name="Click_Actions2" />
+					<include name="manufacturer_Review_Return_and_Edit" />
+					<include name="manufacturerReview" />
+					<include name="manufacturer_Approve_Return_and_Edit_and_Review" />
+					<include name="manufacturerApprove" />
+					<include name="checkStatus" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	
+	<!-- Material Category -->
+	
+	<test thread-count="5" name="Material Category Test">
+		<parameter name="configFile" value="oqmaterialcategory.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.MaterialCategory_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Material_Category" />
+					<include name="Click_Actions2" />
+					<include name="Click_View" />
+					<include name="material_Category_Review_Return_and_Edit" />
+					<include name="materialCategoryReview" />
+					<include name="material_Category_Approve_Return_and_Edit_and_Review" />
+					<include name="materialCategoryApprove" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	
+	<!-- Offline Supplier -->
+
+	<test thread-count="5" name="Offline Supplier Test">
+		<parameter name="configFile" value="offlineoqsupplier.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Supplier_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Supplier" />
+					<include name="supplierReview" />
+					<include name="supplierApprove" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<!-- Material Details -->
+	
+	<test thread-count="5" name=" Material Test">
+		<parameter name="configFile" value="oqakronmaterial.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Material_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Material" />
+					<include name="Click_Actions2" />
+					<include name="Click_View" />
+					<include name="material_Review_Return_and_Edit"/>
+					<include name="materialReview" />
+					<include name="material_Approve_Return_and_Edit_and_Review" />
+					<include name="materialApprove" />
+					<include name="materialUpdate" />
+					<include name="vendorDetails" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	
+	<!-- Material Specification -->
+	
+	<test thread-count="5" name="Material Specification Test">
+		<parameter name="configFile"
+			value="oqmaterialspecification.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.MaterialSpecification_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_MaterialSpecification" />
+					<include name="Creation_Of_MaterialSpecification_Rows" />
+					<include name="Creation_Of_MaterialSpecification_Submit" />
+					<include name="Click_Actions_1" />
+					<include name="Click_Actions_2" />
+					<include name="Click_View" />
+					<include name="materialSpec_Review_Return_and_Edit" />
+					<include name="materialSpecReview" />
+					<include name="materialSpec_Approve_Return_and_Edit_and_Review" />
+					<include name="materialSpecApprove" />
+					<include name="materialSpecUpdate" />
+					<include name="CheckStatus" />
+					<include name="Logout" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	
+</suite> <!-- Suite -->

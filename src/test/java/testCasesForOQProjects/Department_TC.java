@@ -4,13 +4,10 @@ import static configData.DepartmentData.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.Department;
-import testBase.BaseClass;
 import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
-import utilities.SoftAssertionUtil;
 
 // Refactored to use BasePage helper methods and static FieldDetails
 
@@ -26,10 +23,8 @@ import java.util.Map;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Department_TC extends BaseClass {
-	Department dept;
-	String currentDeptName; // Track the current name (including edits)
-	SoftAssertionUtil sa;
+public class Department_TC extends OQBaseModule_TC {
+	private Department dept;
 
 	@BeforeClass
 	@Parameters({ "configFile" })
@@ -39,7 +34,24 @@ public class Department_TC extends BaseClass {
 		// Load the dynamic property file
 		configData.DepartmentData.loadProperties(configFile);
 
-		// Set conditional screenshot execution
+		// Map static variables to base class fields
+		CONFIG_NAME = CURRENT_CONFIG_NAME;
+		CHROME_URL_VAL = CHROME_URL;
+		APP_URL_VAL = APP_URL;
+		USERNAME_VAL = USERNAME;
+		PASSWORD_VAL = PASSWORD;
+		USERNAME1_VAL = USERNAME1;
+		PASSWORD1_VAL = PASSWORD1;
+		USERNAME2_VAL = USERNAME2;
+		PASSWORD2_VAL = PASSWORD2;
+		ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+		PC_DB_NAME_VAL = PC_DB_NAME;
+		MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+		MM_DB_NAME_VAL = MM_DB_NAME;
+		TITLE_MODULE_VAL = "MASTERS";
+		MASTER_MODULE_VAL = MASTER_MODULE;
+		SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+
 		boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
 		ScreenshotUtil.setIsEnabled(screenshotsEnabled);
 
@@ -52,290 +64,77 @@ public class Department_TC extends BaseClass {
 
 		browserOpen();
 		dept = new Department(driver);
-		sa = new SoftAssertionUtil();
+		this.pageObject = dept;
 		dept.setTableHeaders(TABLE_HEADERS);
 		log.info("Setup completed. Screenshots enabled: {}", screenshotsEnabled);
 	}
 
-	 @BeforeMethod
-	    public void initSoftAssert() {
-	        sa = new SoftAssertionUtil();
-	    }
-	
-	// ========================Google Search Box=============
-
-	@Test(groups = { "setup" }, priority = 1)
-	public void initialSetUp() throws Exception {
-		ScreenshotUtil.nextStep();
-		log.info("Navigating to Chrome URL: {}", CHROME_URL);
-		driver.navigate().to(CHROME_URL);
-		log.info("Waiting for search box to be visible");
-		dept.waitForElementToVisible(dept.getSearchBox());
-		Assert.assertTrue(dept.getSearchBox().isDisplayed(), "Search box is not visible!");
-		log.info("Searching for Application URL: {}", APP_URL);
-		dept.searchBox(APP_URL);
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("Initial setup completed and screenshot captured");
-	}
-
-	// ===================URL Navigation========================
-
-	@Test(groups = { "url" }, priority = 2)
-	public void url() throws Throwable {
-		driver.navigate().to(APP_URL);
-		log.info("Navigating to App URL: {}", APP_URL);
-	}
-
-	// ====================URL Validation===================
-
-	@Test(groups = { "userlogin" }, priority = 3)
-	public void userLoginBeforeCreate() throws Throwable {
-		// Clear existing user session from DB to prevent login issues
-		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
-		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			dept.login(USERNAME, PASSWORD, PC_DB_NAME);
-		} else {
-			dept.login(USERNAME1, PASSWORD1, PC_DB_NAME);
-		}
-	}
-
-	// ===========================APP AND MASTER Click========================
-
-	@Test(groups = { "moduleselect" }, priority = 4)
-	public void moduleClick() throws Throwable {
-		log.info("--- Clicking Module ---");
-		ScreenshotUtil.nextStep();
-		dept.click_titleMasters();
-		log.info("Clicked on Masters title");
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-		ScreenshotUtil.nextStep();
-		dept.masterClick(MASTER_MODULE);
-		log.info("Clicked on Master Module: {}", MASTER_MODULE);
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
+	@Override
+	protected void updateEntryName(String newName) throws Throwable {
+		dept.deptName(newName);
 	}
 
 	// ===========================CREATION OF DEPARTMENT========================
 
-	@Test(groups = { "Creation" }, priority = 5)
+	@Test(groups = { "Creation" })
 	public void Creation_Of_Department() throws Throwable {
 		log.info("--- Navigating to Create Department Screen ---");
-		log.info("--- Creating Department: {} ---", DEPT_NAME);
-		currentDeptName = DEPT_NAME;
 		dept.Create();
 		dept.waitForLoading();
-		ScreenshotUtil.capture();
-		ScreenshotUtil.nextStep();
+		capture();
+		nextStep();
+
+		log.info("--- Creating Department: {} ---", DEPT_NAME);
+		currentEntryName = DEPT_NAME;
 		dept.deptName(DEPT_NAME);
 		dept.deptDesc(DEPT_DESC);
 		log.info("Entered Name and Description");
-		ScreenshotUtil.capture();
+		capture();
 		dept.clickSubmit();
 		log.info("Clicked Submit");
-		ScreenshotUtil.capture();
+		capture();
 		dept.authenticate(dept.currentPassword);
 		String authToast = dept.waitForToast();
+		dept.waitForToastDisappear();
 		dept.waitForLoading();
-		ScreenshotUtil.capture();
-		Assert.assertEquals(authToast, "Department created successfully", "Creation failed with message: " + authToast);
-		ScreenshotUtil.nextStep();
-		ScreenshotUtil.capture();
+		capture();
+		sa.assertEquals(authToast, "Department created successfully", "Creation toaster message", authToast);
+		sa.assertAll();
 	}
 
 	// ===========================CLICKING ACTIONS MENU TO VERIFY
 	// OPTIONS========================
 
-	@Test(groups = { "ClickActions" }, priority = 6)
-	public void Click_Actions_After_Create() throws Throwable {
-		log.info("--- Attempting to open Actions Menu for: {} ---", currentDeptName);
-		ScreenshotUtil.nextStep();
-		dept.clickActions(currentDeptName);
-		log.info("Successfully opened Actions menu for {}", currentDeptName);
-		ScreenshotUtil.capture();
-	}
-
-	// ========================CLICKING VIEW TO VERIFY
-	// DETAILS========================
-
-	@Test(groups = { "ClickView" }, priority = 7)
-	public void Click_View() throws Throwable {
-		if (DEPARTMENT_VIEW.equalsIgnoreCase("yes")) {
-			log.info("--- Viewing Department: {} ---", currentDeptName);
-			ScreenshotUtil.nextStep();
-			dept.clickView(currentDeptName);
-			log.info("View screen opened");
-			dept.waitForLoading();
-			ScreenshotUtil.capture();
-			dept.clickBack();
-			log.info("Clicked Back button");
-			dept.waitForLoading();
-			ScreenshotUtil.capture();
-		} else {
-			log.info("View step skipped based on configuration");
-		}
+	@Test(groups = { "ClickActions" })
+	public void Click_Actions1() throws Throwable {
+		log.info("--- Attempting to open Actions Menu for: {} ---", currentEntryName);
+		nextStep();
+		dept.clickActions(currentEntryName);
+		log.info("Successfully opened Actions menu for {}", currentEntryName);
+		capture();
 	}
 
 	// ===========================RETURN AND EDIT========================
 
-	@Test(groups = { "DeptReturn_DeptEdit" }, priority = 8)
+	@Test(groups = { "DeptReturn_DeptEdit" })
 	public void Dept_Return_and_Edit() throws Throwable {
 
 		if (DEPARTMENT_RETURN.equalsIgnoreCase("yes")) {
-
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				dept.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE);
-			}
-
-			log.info("--- Initiating Return Flow for: {} ---", currentDeptName);
-			ScreenshotUtil.nextStep();
-			log.info("Opening actions menu to access Approve/Return");
-			dept.clickActions(currentDeptName);
-			ScreenshotUtil.capture();
-			log.info("Clicking Approve to trigger return dialog");
-			dept.clickApprove();
-			dept.waitForLoading();
-			ScreenshotUtil.capture();
-			dept.enterRemarks(RETURN_REMARKS);
-			log.info("Entered Return remarks: {}", RETURN_REMARKS);
-			ScreenshotUtil.capture();
-			dept.clickReturn();
-			log.info("Clicked Return button");
-			ScreenshotUtil.capture();
-			dept.authenticate(dept.currentPassword);
-			String returnToast = dept.waitForToast();
-			Assert.assertEquals(returnToast, "Department returned successfully",
-					"Return failed with message: " + returnToast);
-
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				dept.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE);
-			}
-
-			// This part will now execute for BOTH single and multiple users
-			log.info("Opening Edit screen (After Return)");
-			dept.waitForLoading();
-			ScreenshotUtil.capture();
-			ScreenshotUtil.nextStep();
-			dept.clickEdit(currentDeptName);
-			dept.waitForLoading();
-			ScreenshotUtil.capture();
-
-			if (EDIT_DEPT_NAME_AFTER_RETRUN != null && !EDIT_DEPT_NAME_AFTER_RETRUN.trim().isEmpty()) {
-				log.info("Updating Name to: {}", EDIT_DEPT_NAME_AFTER_RETRUN);
-				dept.deptName(EDIT_DEPT_NAME_AFTER_RETRUN);
-				currentDeptName = EDIT_DEPT_NAME_AFTER_RETRUN; // Update tracker
-			}
-
-			if (EDIT_DEPT_DESC_AFTER_RETURN != null && !EDIT_DEPT_DESC_AFTER_RETURN.trim().isEmpty()) {
-				log.info("Updating Description to: {}", EDIT_DEPT_DESC_AFTER_RETURN);
-				dept.deptDesc(EDIT_DEPT_DESC_AFTER_RETURN);
-			}
-
-			ScreenshotUtil.capture();
-			dept.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			dept.authenticate(dept.currentPassword);
-			dept.waitForLoading();
-			ScreenshotUtil.capture();
-		} else {
-			log.info("Department Return and Edit skipped based on configuration");
+			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+			performReturnApprove(RETURN_REMARKS, "Department returned successfully");
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+			performEdit(EDIT_DEPT_NAME_AFTER_RETRUN, "Department updated successfully");
+			sa.assertAll();
 		}
 	}
 
 	// ===========================DEPARTMENT APPROVAL========================
 
-	@Test(groups = { "DeptApprove" }, priority = 9)
+	@Test(groups = { "DeptApprove" })
 	public void Department_Approve() throws Throwable {
-
-		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			log.info("--- Approving Department: {} ---", currentDeptName);
-			dept.switchUser(USERNAME2, PASSWORD2, PC_DB_NAME, MASTER_MODULE);
-		}
-		log.info("--- Performing Final Approval for: {} ---", currentDeptName);
-		ScreenshotUtil.nextStep();
-		log.info("Opening actions menu for approval");
-		dept.clickActions(currentDeptName);
-		ScreenshotUtil.capture();
-		log.info("Clicking Approve button in the list");
-		dept.clickApprove();
-		ScreenshotUtil.capture();
-		dept.enterRemarks(APPROVE_REMARKS);
-		log.info("Entered Approve remarks: {}", APPROVE_REMARKS);
-		ScreenshotUtil.capture();
-		dept.clickApprove();
-		log.info("Submitted Approval");
-		ScreenshotUtil.capture();
-		dept.authenticate(dept.currentPassword);
-		String approveToast = dept.waitForToast();
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-		Assert.assertEquals(approveToast, "Department approved successfully",
-				"Approval failed with message: " + approveToast);
-	}
-
-	// ===============Search filters========================
-	@Test(groups = { "SearchFilter" }, priority = 10)
-	public void Search_Filter() throws Throwable {
-		log.info("--- Validating Search Filters for: {} ---", currentDeptName);
-		ScreenshotUtil.nextStep();
-		if (!dept.isFilterPanelExpanded()) {
-			log.info("Filter panel is already not expanded so clicking on Filter button to expand it");
-			dept.clickFilterToggle();
-		}
-		dept.clickDepartmentNameFilter(currentDeptName);
-		ScreenshotUtil.capture();
-		dept.clickSearch();
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-	}
-
-	// =====================DUPLICATION CHECK IN CREATE PAGE========================
-
-	@Test(groups = { "duplicationcheck" }, priority = 11)
-	public void Duplication_Check() throws Throwable {
-
-		ScreenshotUtil.nextStep();
-		log.info("--- Checking Duplication Check with Department In Create page: {} ---", currentDeptName);
-		dept.Create();
-		dept.deptName(currentDeptName);
-		ScreenshotUtil.capture();// Using currentDeptName to ensure we test with the actual name in the system);
-		dept.clickDeptName();
-		dept.clickSubmit();
-		dept.waitForToast();
-		ScreenshotUtil.capture();
-	}
-
-	// ===========================LOGOUT========================
-
-	@Test(groups = { "Logout" }, priority = 12)
-	public void Logout() throws Throwable {
-		log.info("--- Executing Final Logout ---");
-		ScreenshotUtil.nextStep();
-		dept.logout();
-		log.info("Clicked logout button");
-		dept.waitForToast();
-		dept.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("--- Department Test Case Execution Finished ---");
-	}
-
-	// ===========================DATABASE BACKUP========================
-	@Test(groups = { "DB Back" }, priority = 13)
-	public void Database_Backup() {
-		log.info("--- Initiating Post-Test Database Backup ---");
-
-		// Fallback logic: Use config filename if script number is missing
-		String backupFolderName = (SCRIPT_NUMBER == null || SCRIPT_NUMBER.trim().isEmpty()) ? CURRENT_CONFIG_NAME
-				: SCRIPT_NUMBER;
-
-		log.info("Backup folder name determined: {}", backupFolderName);
-
-		// Parameters: folderName, dbName, dbUser, dbPass, host, port
-		DatabaseBackupUtil.backupPostgres(backupFolderName, PC_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
+		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		performApprove(APPROVE_REMARKS, "Department approved successfully");
+		sa.assertAll();
 	}
 
 	// ===========================LIST PAGE VALIDATION========================
@@ -1008,7 +807,7 @@ public class Department_TC extends BaseClass {
 		// =================
 		log.info("Phase: Validating User Activity Details from Database (Edit Screen)...");
 
-		String deptNameForQuery = "OQ Validation Test3"; // currentDeptName != null ? currentDeptName : DEPT_NAME;
+		String deptNameForQuery = "OQ Validation Test3"; // currentEntryName != null ? currentEntryName : DEPT_NAME;
 		List<Map<String, String>> dbDetails = dept.getUserdetailsFromDB(deptNameForQuery, MASTER_DB_NAME);
 		List<Map<String, String>> uiDetails = dept.getUserActivityDetailsUI();
 
@@ -1140,7 +939,7 @@ public class Department_TC extends BaseClass {
 		dept.waitForLoading();
 		ScreenshotUtil.capture();
 		log.info("Clicking Edit button again to go back to Edit screen");
-		dept.clickEdit(currentDeptName);
+		dept.clickEdit(currentEntryName);
 
 		log.info("🎯 Edit Screen UI Contract validated successfully");
 		sa.assertAll();
@@ -1154,7 +953,7 @@ public class Department_TC extends BaseClass {
 		log.info("--- Navigating to Create Department Screen for Duplication Check ---");
 		ScreenshotUtil.nextStep();
 		log.info("--- Checking Duplication Check with Department In Create page: {} ---", DEPT_NAME);
-		currentDeptName = DEPT_NAME;
+		currentEntryName = DEPT_NAME;
 		dept.Create();
 		dept.deptName(DEPT_NAME);
 		dept.clickSubmit();
@@ -1175,8 +974,8 @@ public class Department_TC extends BaseClass {
 		log.info("--- Navigating to Edit Department Screen for Duplication Check ---");
 		ScreenshotUtil.nextStep();
 		log.info("--- Checking Duplication Check with Department in Edit page: {} ---", DEPT_NAME);
-		currentDeptName = DEPT_NAME;
-		dept.clickEdit(currentDeptName);
+		currentEntryName = DEPT_NAME;
+		dept.clickEdit(currentEntryName);
 		log.info(
 				"--- Checking Duplication Check with Department in Edit page when already created name is given: {} ---",
 				DUPLICATE_DEPARTMENT_NAME);
@@ -1322,10 +1121,10 @@ public class Department_TC extends BaseClass {
 		log.info("--- Validating Breadcrumbs in Department View Page ---");
 		ScreenshotUtil.nextStep();
 		// Navigate to View page
-		if (currentDeptName == null || currentDeptName.isEmpty()) {
-			currentDeptName = DEPT_NAME; // Fallback if not set
+		if (currentEntryName == null || currentEntryName.isEmpty()) {
+			currentEntryName = DEPT_NAME; // Fallback if not set
 		}
-		dept.clickView(currentDeptName);
+		dept.clickView(currentEntryName);
 		dept.waitForLoading();
 		ScreenshotUtil.capture();
 		// 1. Validate Current URL
@@ -1359,7 +1158,7 @@ public class Department_TC extends BaseClass {
 				"Should be on List Page");
 		// 6. Navigate back to View and verify Home link
 		log.info("Navigating back to View page...");
-		dept.clickView(currentDeptName);
+		dept.clickView(currentEntryName);
 		dept.waitForLoading();
 		log.info("Clicking on Home breadcrumb to verify navigation back to All Apps...");
 		dept.HomeBreadcrumbLink();
@@ -1387,10 +1186,10 @@ public class Department_TC extends BaseClass {
 		ScreenshotUtil.nextStep();
 
 		// Navigate to Edit page
-		if (currentDeptName == null || currentDeptName.isEmpty()) {
-			currentDeptName = DEPT_NAME;
+		if (currentEntryName == null || currentEntryName.isEmpty()) {
+			currentEntryName = DEPT_NAME;
 		}
-		dept.clickEdit(currentDeptName);
+		dept.clickEdit(currentEntryName);
 		dept.waitForLoading();
 		ScreenshotUtil.capture();
 
@@ -1432,7 +1231,7 @@ public class Department_TC extends BaseClass {
 
 		// 6. Navigate back to Edit and verify Home link
 		log.info("Navigating back to Edit page...");
-		dept.clickEdit(currentDeptName);
+		dept.clickEdit(currentEntryName);
 		dept.waitForLoading();
 
 		log.info("Clicking on Home breadcrumb to verify navigation back to All Apps...");
@@ -1527,13 +1326,13 @@ public class Department_TC extends BaseClass {
 	// STATUS========================
 	@Test(groups = { "actionsvalidation" }, priority = 6)
 	public void ViewEdit_Icons_Validation() throws Throwable {
-		if (currentDeptName == null || currentDeptName.isEmpty())
-			currentDeptName = DEPT_NAME;
+		if (currentEntryName == null || currentEntryName.isEmpty())
+			currentEntryName = DEPT_NAME;
 
-		String currentStatus = dept.getStatus(currentDeptName);
-		log.info("Performing View/Edit Icon validation for {} with status: {}", currentDeptName, currentStatus);
+		String currentStatus = dept.getStatus(currentEntryName);
+		log.info("Performing View/Edit Icon validation for {} with status: {}", currentEntryName, currentStatus);
 
-		Icon_Validation_By_Status(currentDeptName, currentStatus);
+		Icon_Validation_By_Status(currentEntryName, currentStatus);
 		sa.assertAll();
 	}
 
@@ -1542,13 +1341,13 @@ public class Department_TC extends BaseClass {
 
 	@Test(groups = { "actionsvalidation" }, priority = 7)
 	public void Action_Menu_Validation() throws Throwable {
-		if (currentDeptName == null || currentDeptName.isEmpty())
-			currentDeptName = DEPT_NAME;
+		if (currentEntryName == null || currentEntryName.isEmpty())
+			currentEntryName = DEPT_NAME;
 
-		String currentStatus = dept.getStatus(currentDeptName);
-		log.info("Performing Action Menu validation for {} with status: {}", currentDeptName, currentStatus);
+		String currentStatus = dept.getStatus(currentEntryName);
+		log.info("Performing Action Menu validation for {} with status: {}", currentEntryName, currentStatus);
 
-		Icon_Validation_By_Status(currentDeptName, currentStatus);
+		Icon_Validation_By_Status(currentEntryName, currentStatus);
 		sa.assertAll();
 	}
 
@@ -1665,7 +1464,7 @@ public class Department_TC extends BaseClass {
 		// =================
 		log.info("Phase: Validating User Activity Details from Database...");
 
-		String deptNameForQuery = currentDeptName != null ? currentDeptName : DEPT_NAME;
+		String deptNameForQuery = currentEntryName != null ? currentEntryName : DEPT_NAME;
 		List<Map<String, String>> dbDetails = dept.getUserdetailsFromDB(deptNameForQuery, MASTER_DB_NAME);
 
 		List<Map<String, String>> uiDetails = dept.getUserActivityDetailsUI();
@@ -1799,13 +1598,13 @@ public class Department_TC extends BaseClass {
 		log.info("--- Validating Department Approve Screen ---");
 		ScreenshotUtil.nextStep();
 
-		if (currentDeptName == null || currentDeptName.isEmpty()) {
-			currentDeptName = DEPT_NAME;
+		if (currentEntryName == null || currentEntryName.isEmpty()) {
+			currentEntryName = DEPT_NAME;
 		}
 
 		// 1. Open Approve screen from Actions menu
-		log.info("Opening Approve screen for: {}", currentDeptName);
-		dept.clickActions(currentDeptName);
+		log.info("Opening Approve screen for: {}", currentEntryName);
+		dept.clickActions(currentEntryName);
 		dept.clickApprove();
 		dept.waitForLoading();
 		ScreenshotUtil.capture();
@@ -1886,7 +1685,7 @@ public class Department_TC extends BaseClass {
 		// =================
 		log.info("Phase: Validating User Activity Details from Database (Edit Screen)...");
 
-		String deptNameForQuery = currentDeptName != null ? currentDeptName : DEPT_NAME;
+		String deptNameForQuery = currentEntryName != null ? currentEntryName : DEPT_NAME;
 		List<Map<String, String>> dbDetails = dept.getUserdetailsFromDB(deptNameForQuery, MASTER_DB_NAME);
 		List<Map<String, String>> uiDetails = dept.getUserActivityDetailsUI();
 
@@ -2024,10 +1823,10 @@ public class Department_TC extends BaseClass {
 		ScreenshotUtil.nextStep();
 
 		// Navigate to Approve page
-		if (currentDeptName == null || currentDeptName.isEmpty()) {
-			currentDeptName = DEPT_NAME;
+		if (currentEntryName == null || currentEntryName.isEmpty()) {
+			currentEntryName = DEPT_NAME;
 		}
-		dept.clickActions(currentDeptName);
+		dept.clickActions(currentEntryName);
 		dept.clickApprove();
 		dept.waitForLoading();
 		ScreenshotUtil.capture();
@@ -2070,7 +1869,7 @@ public class Department_TC extends BaseClass {
 
 		// 6. Navigate back to Approve and verify Home link
 		log.info("Navigating back to Approve page...");
-		dept.clickActions(currentDeptName);
+		dept.clickActions(currentEntryName);
 		dept.clickApprove();
 		dept.waitForLoading();
 
@@ -2100,9 +1899,9 @@ public class Department_TC extends BaseClass {
 	public void Edit_After_Create() throws Throwable {
 
 		if (DEPARTMENT_EDIT_AFTER_CREATE.equalsIgnoreCase("yes")) {
-			log.info("--- Editing Department (After Creation): {} ---", currentDeptName);
+			log.info("--- Editing Department (After Creation): {} ---", currentEntryName);
 			ScreenshotUtil.nextStep();
-			dept.clickEdit(currentDeptName);
+			dept.clickEdit(currentEntryName);
 			log.info("Edit screen opened");
 			dept.waitForLoading();
 			ScreenshotUtil.capture();
@@ -2111,7 +1910,7 @@ public class Department_TC extends BaseClass {
 			if (EDIT_DEPT_NAME_AFTER_CREATE != null && !EDIT_DEPT_NAME_AFTER_CREATE.trim().isEmpty()) {
 				log.info("Updating Name to: {}", EDIT_DEPT_NAME_AFTER_CREATE);
 				dept.deptName(EDIT_DEPT_NAME_AFTER_CREATE);
-				currentDeptName = EDIT_DEPT_NAME_AFTER_CREATE;
+				currentEntryName = EDIT_DEPT_NAME_AFTER_CREATE;
 			}
 
 			if (EDIT_DEPT_DESC_AFTER_CREATE != null && !EDIT_DEPT_DESC_AFTER_CREATE.trim().isEmpty()) {

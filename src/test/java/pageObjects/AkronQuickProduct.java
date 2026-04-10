@@ -33,6 +33,12 @@ public class AkronQuickProduct extends BasePage {
 
 	@FindBy(xpath = "//input[@formcontrolname='description']")
 	protected WebElement product_desc;
+	
+	@FindBy(xpath = "//ng-multiselect-dropdown[@formcontrolname='uomId']")
+	protected WebElement product_uom;
+	
+	@FindBy(xpath = "//input[@formcontrolname='mainNdcNumber']")
+	protected WebElement product_ndc_number;
 
 	@FindBy(xpath = "//textarea[@formcontrolname='storageCondition']")
 	protected WebElement storage_condition;
@@ -63,6 +69,9 @@ public class AkronQuickProduct extends BasePage {
 
 	@FindBy(xpath = "//input[@formcontrolname='packSize']")
 	protected List<WebElement> pack_size_fields;
+	
+	@FindBy(xpath = "//textarea[@formcontrolname='gtnNumber']")
+	protected List<WebElement> gtn_number;
 
 	@FindBy(xpath = "//input[@formcontrolname='stageDes']")
 	protected List<WebElement> ndc_desc_fields;
@@ -84,7 +93,7 @@ public class AkronQuickProduct extends BasePage {
 	}
 
 	public void clickProductName() {
-		waitForElementandClick(product_name);
+		product_name.click();;
 	}
 
 	public void clickProduct() throws Throwable {
@@ -99,6 +108,12 @@ public class AkronQuickProduct extends BasePage {
 		}
 	}
 
+	public void productNDCNumber(String productndcnumber) {
+		if (productndcnumber != null && !productndcnumber.trim().isEmpty()) {
+			product_ndc_number.clear();
+			waitAndSendKeys(product_ndc_number, productndcnumber);
+		}
+	}
 	public void productDesc(String desc) {
 		if (desc != null && !desc.trim().isEmpty()) {
 			product_desc.clear();
@@ -161,9 +176,18 @@ public class AkronQuickProduct extends BasePage {
 
 		enterValueInLatestElement(pack_size_fields, packsize);
 	}
-
+	
+	
 	public void packSize_AtIndex(String packsize, int index) {
 		enterValueInElementAtIndex(pack_size_fields, index, packsize);
+	}
+	
+	public void gtnNumber(String gtnNumber) {
+		enterValueInLatestElement(gtn_number, gtnNumber);
+	}
+
+	public void gtnNumber_AtIndex(String gtnNumber, int index) {
+		enterValueInElementAtIndex(gtn_number, index, gtnNumber);
 	}
 
 	public void ndcDesc(String ndcdesc) {
@@ -188,12 +212,21 @@ public class AkronQuickProduct extends BasePage {
 						+ location + "']")));
 		option.click();
 	}
+	
+	
+	public void selProductUom(String productuom) {
+		waitForElementandClick(product_uom);
+		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//ng-multiselect-dropdown[@formcontrolname='uomId']//li[normalize-space()='"
+						+ productuom + "']")));
+		option.click();
+	}
 
 	public void selUOM(String uom) {
 		WebElement icon = uom_dropdown_icons.get(uom_dropdown_icons.size() - 1);
 		icon.click();
 		WebElement option = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='" + uom + "']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//p-autocomplete[@formcontrolname='uom']//li[normalize-space()='"+ uom +"']")));
 		((JavascriptExecutor) driver).executeScript(
 				"arguments[0].scrollIntoView({behavior: 'auto', block: 'center', inline: 'nearest'});",
 				option);

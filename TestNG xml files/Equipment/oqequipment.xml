@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+
+	<test thread-count="5" name="Test">
+		<parameter name="configFile" value="oqequipment.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.Equipment_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_Equipment" />
+					<include name="Click_Actions_1" />
+					<include name="Click_Actions_2" />
+					<include name="Click_View" />
+					<include name="equipment_Review_Return_and_Edit" />
+					<include name="equipmentReview" />
+					<include name="equipment_Approve_Return_and_Edit_and_Review" />
+					<include name="equipmentApprove" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

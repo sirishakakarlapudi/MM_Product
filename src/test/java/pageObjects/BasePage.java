@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
@@ -273,9 +274,13 @@ public class BasePage extends HelperMethods {
 		waitAndSendKeys(txt_username, username);
 		waitAndSendKeys(txt_password, password);
 		waitForElementandClick(btn_login);
-		waitForToast();
+		String Toast = waitForToast();
 		ScreenshotUtil.capture();
 		waitForLoading();
+		Assert.assertTrue(
+			    Toast.equals("Login successful") || Toast.equals("Please Change the Password"),
+			    "Creation failed with message: " + Toast
+			);
 		ScreenshotUtil.capture();
 	}
 
@@ -298,6 +303,7 @@ public class BasePage extends HelperMethods {
 		log.info("--- Switching User to: {} ---", username);
 		logout();
 		log.info("Logged out previous user");
+		waitForLoading();
 		login(username, password, dbname);
 		click_titleMasters();
 		ScreenshotUtil.capture();

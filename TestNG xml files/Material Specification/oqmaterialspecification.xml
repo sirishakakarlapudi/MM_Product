@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+
+	<test thread-count="5" name="Test">
+		<parameter name="configFile"
+			value="oqmaterialspecification.properties" />
+		<classes>
+			<class name="testCasesForOQProjects.MaterialSpecification_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="Creation_Of_MaterialSpecification" />
+					<include name="Creation_Of_MaterialSpecification_Rows" />
+					<include name="Creation_Of_MaterialSpecification_Submit" />
+					<include name="Click_Actions_1" />
+					<include name="Click_Actions_2" />
+					<include name="Click_View" />
+					<include name="materialSpec_Review_Return_and_Edit" />
+					<include name="materialSpecReview" />
+					<include name="materialSpec_Approve_Return_and_Edit_and_Review" />
+					<include name="materialSpecApprove" />
+					<include name="materialSpecUpdate" />
+					<include name="CheckStatus" />
+					<include name="Logout" />
+
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

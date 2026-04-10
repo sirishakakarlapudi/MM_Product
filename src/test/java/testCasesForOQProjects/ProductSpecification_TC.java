@@ -1,228 +1,210 @@
-
 package testCasesForOQProjects;
 
 import static configData.ProductSpecificationData.*;
-
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import pageObjects.ProductSpecification;
-import testBase.BaseClass;
 import utilities.DataProviders;
 import utilities.ScreenshotUtil;
-import utilities.WaitUtil;
 import utilities.productSpecificationData;
 
-public class ProductSpecification_TC extends BaseClass {
-	ProductSpecification productspecification;
+public class ProductSpecification_TC extends OQBaseModule_TC {
 
+    private ProductSpecification productspecification;
 
-	@BeforeClass
-	public void setUp() throws Exception {
+    @BeforeClass
+    @Parameters({ "configFile" })
+    public void setUp(@Optional("productspecification.properties") String configFile) throws Exception {
+        log.info("--- Starting Product Specification Test Case Setup with config: {} ---", configFile);
+        configData.ProductSpecificationData.loadProperties(configFile);
 
-		ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
-		ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+        // Map static variables to base class fields
+        CONFIG_NAME = CURRENT_CONFIG_NAME;
+        CHROME_URL_VAL = CHROME_URL;
+        APP_URL_VAL = APP_URL;
+        USERNAME_VAL = USERNAME;
+        PASSWORD_VAL = PASSWORD;
+        USERNAME1_VAL = USERNAME1;
+        PASSWORD1_VAL = PASSWORD1;
+        USERNAME2_VAL = USERNAME2;
+        PASSWORD2_VAL = PASSWORD2;
+        USERNAME3_VAL = USERNAME3;
+        PASSWORD3_VAL = PASSWORD3;
+        ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+        PC_DB_NAME_VAL = PC_DB_NAME;
+        MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+        MM_DB_NAME_VAL = MM_DB_NAME;
+        TITLE_MODULE_VAL = "MASTERS";
+        MASTER_MODULE_VAL = MASTER_MODULE;
+        SUB_MASTER_MODULE_VAL = SUB_MASTER_MODULE;
+        SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+        VIEW_ACTION_VAL = PRODUCTSPEC_VIEW_ACTION;
 
-		browserOpen();
-		productspecification = new ProductSpecification(driver);
+        boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
+        ScreenshotUtil.setIsEnabled(screenshotsEnabled);
+        if (screenshotsEnabled) {
+            ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
+            ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
+            ScreenshotUtil.initScript(SCRIPT_NUMBER);
+        }
 
-	}
+        browserOpen();
+        productspecification = new ProductSpecification(driver);
+        this.pageObject = productspecification;
+        productspecification.setTableHeaders(TABLE_HEADERS);
+    }
 
-	@Test(priority = 1)
-	public void Step_4_1_1() throws Throwable {
-		driver.get("https://www.google.co.in/");
-		WaitUtil.waitForVisible(driver, productspecification.getSearchBox(), 10);
-		productspecification.searchBox(APP_URL);
-		WaitUtil.waitForPageLoad(driver, 10);
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.1");
-		driver.get(APP_URL);
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.1");
-		productspecification.userName(USERNAME);
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.1");
-		productspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.1");
-		productspecification.loginButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.1");
-		productspecification.click_titleMasters();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.1");
-		productspecification.masterClick(MASTER_MODULE);
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.1");
-		productspecification.masterClick(MASTER_SUB_MODULE);
-		ScreenshotUtil.takeStepScreenshot("08 for step No.4.1.1");
-		productspecification.Create();
-		ScreenshotUtil.takeStepScreenshot("09 for step No.4.1.1");
+    @Override
+    protected void updateEntryName(String newName) throws Throwable {
+        productspecification.specificationNumber(newName);
+    }
 
-	}
-	
-	@Test(priority = 2)
-	public void Step_4_1_2_PartA() throws Throwable {
-		productspecification.selProductCode(PRODUCT_CODE);
-		productspecification.specificationNumber(SPECIFICATION_NUMBER);
-		
-		Thread.sleep(5000);
-	
-		
-		
-	}
+    @Test(groups = { "Creation" })
+    public void Creation_Of_ProductSpecification() throws Throwable {
+        log.info("--- Navigating to Create Product Specification Screen ---");
+        productspecification.Create();
+        productspecification.waitForLoading();
+        capture();
+        nextStep();
 
-	@Test(priority = 3, dataProvider = "ProductspecificationData", dataProviderClass = DataProviders.class, singleThreaded = true)
-	public void Step_4_1_2_PartB(productSpecificationData productspec) throws Throwable {
-		
-	
+        log.info("--- Selecting Product Code: {} ---", PRODUCT_CODE);
+        currentEntryName = SPECIFICATION_NUMBER;
+        productspecification.selProductCode(PRODUCT_CODE);
+        productspecification.specificationNumber(SPECIFICATION_NUMBER);
+        Thread.sleep(5000);
+        capture();
+    }
 
-		
-		String nameofthetest=productspec.get_NameOfTheTest();
-		String reqSub=productspec.get_ReqSub();
-		String specificationLimit=productspec.get_SpecificationLimit();
-		String validation=productspec.get_Validation();
-		String specificationLimitMin=productspec.get_SpecificationLimitMin();
-		String specificationLimitMax=productspec.get_SpecificationLimitMax();
-		String UOM=productspec.get_UOM();
-		String button=productspec.get_Buttons();
-		
-		
-		
-		productspecification.nameOfTheTest(nameofthetest);
-		  if ("Yes".equalsIgnoreCase(reqSub)) {
-			  productspecification.selReqSub();
-			}
-		  
-		  if (specificationLimit != null && !specificationLimit.trim().isEmpty()) {
-			  productspecification.specificaitionLimit(specificationLimit);
-			}
-		  if(validation != null && !validation.trim().isEmpty()) {
-			  productspecification.selValidation(validation);
-			  if("Yes".equalsIgnoreCase(validation.trim())) {
-				  productspecification.selValidation(validation);
-				  productspecification.specificaitionLimitMin(specificationLimitMin);
-				  productspecification.specificaitionLimitMax(specificationLimitMax);
-				  productspecification.selUOM(UOM);
-			  }
-				
-                  
-                  
-		  }
-			if (button != null && !button.trim().isEmpty()) {
-				if ("Add".equalsIgnoreCase(button.trim())) {
-					productspecification.addButton();
-				}
-				else if ("Plus".equalsIgnoreCase(button.trim())) {
-					productspecification.plusButton();
-				}
+    @Test(groups = { "Creation" }, dataProvider = "ProductspecificationData", dataProviderClass = DataProviders.class, singleThreaded = true)
+    public void Creation_Of_ProductSpecification_Rows(productSpecificationData productspec) throws Throwable {
+        productspecification.nameOfTheTest(productspec.get_NameOfTheTest());
+        if ("Yes".equalsIgnoreCase(productspec.get_ReqSub())) {
+            productspecification.selReqSub();
+        }
+        if (productspec.get_SpecificationLimit() != null && !productspec.get_SpecificationLimit().trim().isEmpty()) {
+            productspecification.specificaitionLimit(productspec.get_SpecificationLimit());
+        }
+        if (productspec.get_Validation() != null && !productspec.get_Validation().trim().isEmpty()) {
+            productspecification.selValidation(productspec.get_Validation());
+            if ("Yes".equalsIgnoreCase(productspec.get_Validation().trim())) {
+                productspecification.specificaitionLimitMin(productspec.get_SpecificationLimitMin());
+                productspecification.specificaitionLimitMax(productspec.get_SpecificationLimitMax());
+                productspecification.selUOM(productspec.get_UOM());
+            }
+        }
+        if (productspec.get_Buttons() != null && !productspec.get_Buttons().trim().isEmpty()) {
+            if ("Add".equalsIgnoreCase(productspec.get_Buttons().trim())) {
+                productspecification.addButton();
+            } else if ("Plus".equalsIgnoreCase(productspec.get_Buttons().trim())) {
+                productspecification.plusButton();
+            }
+        }
+    }
 
-			}
-		}
-		  
-		 
-		
-		
-		
+    @Test(groups = { "Creation" })
+    public void Creation_Of_ProductSpecification_Submit() throws Throwable {
+        productspecification.clickSubmit();
+        productspecification.authenticate(productspecification.currentPassword);
+        String authToast = productspecification.waitForToast();
+        sa.assertEquals(authToast, "Product Specification created successfully", "Created Toaster message", authToast);
+        sa.assertAll();
+    }
 
-	    
-	
-		
-	
-	
-	
-	@Test(priority = 4)
-	public void Step_4_1_2_PartC() throws Throwable {
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
-		productspecification.createSubmit();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.2");
-		productspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.2");
-		productspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.2");
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.2");
-	}
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions_1() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        log.info("--- Attempting to open Actions Menu (Index 1) for: {} ---", currentEntryName);
+        productspecification.clickActions(currentEntryName, "1");
+        log.info("Successfully opened Actions menu for {}", currentEntryName);
+        capture();
+    }
 
-	@Test(priority = 3)
-	public void Step_4_1_3() throws Throwable {
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.3");
-	}
+    @Test(groups = { "productSpecReviewReturn_productSpecEdit" })
+    public void productSpec_Review_Return_and_Edit() throws Throwable {
+        if (PRODUCTSPEC_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReturnReview(REVIEW_RETURN_REMARKS, "Product Specification returned successfully", "1");
+            
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            nextStep();
+            performEdit(EDIT_SPECIFICATION_NUMBER_IN_REVIEW_RETURN, "Product Specification updated successfully", "1");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 4)
-	public void Step_4_1_4() throws Throwable {
-		productspecification.clickActions(SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.4");
+    @Test(groups = { "productSpecReview" })
+    public void productSpecReview() throws Throwable {
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        performReview(REVIEW_REMARKS, "Product Specification reviewed successfully", "1");
+        sa.assertAll();
+    }
 
-	}
+    @Test(groups = { "productSpecApproveReturn_productSpecEdit_productSpecReview" })
+    public void productSpec_Approve_Return_and_Edit_and_Review() throws Throwable {
+        if (PRODUCTSPEC_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            performReturnApprove(APPROVE_RETURN_REMARKS, "Product Specification returned successfully", "1");
+            
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            nextStep();
+            performEdit(EDIT_SPECIFICATION_NUMBER_IN_APPROVE_RETURN, "Product Specification updated successfully", "1");
+            
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReview(REVIEW_REMARKS, "Product Specification reviewed successfully", "1");
+            sa.assertAll();
+        }
+    }
 
-	@Test(priority = 5)
-	public void Step_4_1_5() throws Throwable {
-		productspecification.clickReview();
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.5");
-		productspecification.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.5");
-		productspecification.clickReturn();
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.5");
-		productspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.5");
-		productspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.5");
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.5");
-	}
+    @Test(groups = { "productSpecApprove" })
+    public void productSpecApprove() throws Throwable {
+        switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+        performApprove(APPROVE_REMARKS, "Product Specification approved successfully", "1");
+        sa.assertAll();
+    }
 
-	@Test(priority = 6)
-	public void Step_4_1_6() throws Throwable {
-		productspecification.clickEdit(SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.6");
-		productspecification.specificationNumber(EDIT_SPECIFICATION_NUMBER);
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.6");
-		productspecification.clickUpdate();
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.6");
-		productspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.6");
-		productspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.6");
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.6");
+    @Test(groups = { "ProductSpecUpdate" })
+    public void prodSpecUpdate() throws Throwable {
+        if (PRODUCTSPEC_UPDATE_AFTER_APPROVE.equalsIgnoreCase("yes")) {
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            performUpdate(UPDATE_NAME_OF_THE_TEST, UPDATE_SPECIFICATION, UPDATE_VALIDATION, "1");
+            
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            performReview(REVIEW_REMARKS, "Product Specification reviewed successfully", "2");
+            
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            performApprove(APPROVE_REMARKS, "Product Specification approved successfully", "2");
+            sa.assertAll();
+        }
+    }
 
-	}
+    private void performUpdate(String nameofthetest, String specLimit, String val, String... actions) throws Throwable {
+        productspecification.clickActions(combine(currentEntryName, actions));
+        capture();
+        productspecification.clickUpdate();
+        productspecification.waitForLoading();
+        capture();
+        Thread.sleep(5000);
+        capture();
+        productspecification.clickAddButton();
+        capture();
+        productspecification.nameOfTheTest(nameofthetest);
+        if (specLimit != null) productspecification.specificaitionLimit(specLimit);
+        if (val != null) productspecification.selValidation(val);
+        capture();
+        productspecification.clickSubmit();
+        capture();
+        productspecification.authenticate(productspecification.currentPassword);
+        String toast = productspecification.waitForToast();
+        pageObject.waitForToastDisappear();
+        productspecification.waitForLoading();
+        capture();
+        sa.assertEquals(toast, "Product Specification version updated successfully", "Update toast", toast);
+    }
 
-	@Test(priority = 7)
-	public void Step_4_1_7() throws Throwable {
-		productspecification.clickActions(EDIT_SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.7");
-		productspecification.clickReview();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.7");
-		productspecification.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.7");
-		productspecification.clickReview();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.7");
-		productspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.7");
-		productspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.7");
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.7");
-
-	}
-
-	@Test(priority = 8)
-	public void Step_4_1_8() throws Throwable {
-		productspecification.clickActions(EDIT_SPECIFICATION_NUMBER, "1");
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.7");
-		productspecification.clickApprove();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.7");
-		productspecification.enterRemarks("Remarks");
-		ScreenshotUtil.takeStepScreenshot("03 for step No.4.1.7");
-		productspecification.clickApprove();
-		ScreenshotUtil.takeStepScreenshot("04 for step No.4.1.7");
-		productspecification.passWord(PASSWORD);
-		ScreenshotUtil.takeStepScreenshot("05 for step No.4.1.7");
-		productspecification.authenticateButton();
-		ScreenshotUtil.takeStepScreenshot("06 for step No.4.1.7");
-		ScreenshotUtil.takeStepScreenshot("07 for step No.4.1.7");
-
-	}
-
-	
-	@Test(priority = 9)
-	public void Step_4_1_9() throws Throwable {
-		productspecification.click_profileDropdown();
-		ScreenshotUtil.takeStepScreenshot("01 for step No.4.1.9");
-		productspecification.logout();
-		ScreenshotUtil.takeStepScreenshot("02 for step No.4.1.9");
-
-	}
-
+    @Override
+    protected void performClickView() throws Throwable {
+        productspecification.clickView(currentEntryName, "1");
+    }
 }

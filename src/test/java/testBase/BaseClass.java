@@ -35,10 +35,13 @@ public class BaseClass {
 		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
 		options.setExperimentalOption("useAutomationExtension", false);
-		options.addArguments("start-maximized", "--force-device-scale-factor=0.8");
+		options.addArguments("start-maximized", "--force-device-scale-factor=1.0", "--disable-features=PasswordLeakDetection", "--disable-notifications");
 		Map<String, Object> prefs = new HashMap<>();
 		prefs.put("credentials_enable_service", false);
 		prefs.put("profile.password_manager_enabled", false);
+		prefs.put("profile.password_manager_leak_detection", false);
+		prefs.put("autofill.profile_enabled", false);
+		prefs.put("safebrowsing.enabled", false);
 		options.setExperimentalOption("prefs", prefs);
 		prefs.put("download.default_directory", downloadPath);
 		prefs.put("download.prompt_for_download", false);
