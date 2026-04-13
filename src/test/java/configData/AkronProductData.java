@@ -33,7 +33,12 @@ public class AkronProductData {
 	public static String TABLE_SEARCH_VALUES;
 	public static String PRODUCT_NAME;
 	public static String PRODUCT_VIEW_ACTION;
+	public static String REVIEW_RETURN_REMARKS;
+	public static String REVIEW_REMARKS;
+	public static String APPROVE_RETURN_REMARKS;
+	public static String APPROVE_REMARKS;
 	public static String INACTIVE_REMARKS;
+	
 	public static String PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION;
 	public static String INACTIVE_REVIEW_REJECT_REMARKS;
 	public static String INACTIVE_REVIEW__REMARKS;
@@ -52,16 +57,19 @@ public class AkronProductData {
 	public static String ADD_NDC_PACK_SIZE;
 	public static String ADD_NDC_NDC_DESCRIPTION;
 	public static String ADD_NDC_UOM;
+	public static String ADD_NDC_GTN_NUMBER;
 	public static String ADD_NDC_EDIT_ACTION_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_INDEX_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_NDC_NUMBER_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_SHORT_CODE_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_PACK_SIZE_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_NDC_DESCRIPTION_AFTER_REVIEW_RETURN;
+	public static String ADD_NDC_EDIT_EXISTING_GTN_NUMBER_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_NEW_NDC_NUMBER_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_NEW_SHORT_CODE_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_NEW_PACK_SIZE_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_NEW_NDC_DESCRIPTION_AFTER_REVIEW_RETURN;
+	public static String ADD_NDC_EDIT_NEW_GTN_NUMBER_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_DELETE_INDEX_AFTER_REVIEW_RETURN;
 	public static String ADD_NDC_EDIT_ACTION_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_INDEX_AFTER_APPROVE_RETURN;
@@ -69,10 +77,12 @@ public class AkronProductData {
 	public static String ADD_NDC_EDIT_EXISTING_SHORT_CODE_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_PACK_SIZE_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_EXISTING_NDC_DESCRIPTION_AFTER_APPROVE_RETURN;
+	public static String ADD_NDC_EDIT_EXISTING_GTN_NUMBER_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_NEW_NDC_NUMBER_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_NEW_SHORT_CODE_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_NEW_PACK_SIZE_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_NEW_NDC_DESCRIPTION_AFTER_APPROVE_RETURN;
+	public static String ADD_NDC_EDIT_NEW_GTN_NUMBER_AFTER_APPROVE_RETURN;
 	public static String ADD_NDC_EDIT_DELETE_INDEX_AFTER_APPROVE_RETURN;
 
 	public static void loadProperties(String fileName) {
@@ -116,6 +126,10 @@ public class AkronProductData {
 		TABLE_SEARCH_VALUES = productconfig.get("table_Search_Values");
 		PRODUCT_NAME = productconfig.get("productName");
 		PRODUCT_VIEW_ACTION = productconfig.get("product_View");
+		REVIEW_RETURN_REMARKS = productconfig.get("review_Return_Remarks");
+		REVIEW_REMARKS = productconfig.get("reviewRemarks");
+		APPROVE_RETURN_REMARKS = productconfig.get("approve_Return_Remarks");
+		APPROVE_REMARKS = productconfig.get("approveRemarks");
 		INACTIVE_REMARKS = productconfig.get("inactive_Remarks");
 		PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION = productconfig.get("product_Inactive_Reject_In_Review");
 		INACTIVE_REVIEW_REJECT_REMARKS = productconfig.get("inactive_Review_Reject_Remarks");
@@ -136,16 +150,19 @@ public class AkronProductData {
 		ADD_NDC_PACK_SIZE = productconfig.get("add_NDC_Pack_Size");
 		ADD_NDC_NDC_DESCRIPTION = productconfig.get("add_NDC_NDC_Description");
 		ADD_NDC_UOM= productconfig.get("add_NDC_UOM");
+		ADD_NDC_GTN_NUMBER= productconfig.get("add_GTN_Number");
 		ADD_NDC_EDIT_ACTION_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Action_After_Review_Return");
 		ADD_NDC_EDIT_EXISTING_INDEX_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Existing_Index_After_Review_Return");
 		ADD_NDC_EDIT_EXISTING_NDC_NUMBER_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Existing_NDC_Number_After_Review_Return");
 		ADD_NDC_EDIT_EXISTING_SHORT_CODE_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Existing_Short_Code_After_Review_Return");
 		ADD_NDC_EDIT_EXISTING_PACK_SIZE_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Existing_Pack_Size_After_Review_Return");
 		ADD_NDC_EDIT_EXISTING_NDC_DESCRIPTION_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Existing_NDC_Description_After_Review_Return");
+		ADD_NDC_EDIT_EXISTING_GTN_NUMBER_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_Existing_GTN_Number_After_Review_Return");
 		ADD_NDC_EDIT_NEW_NDC_NUMBER_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_New_NDC_Number_After_Review_Return");
 		ADD_NDC_EDIT_NEW_SHORT_CODE_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_New_Short_Code_After_Review_Return");
 		ADD_NDC_EDIT_NEW_PACK_SIZE_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_New_Pack_Size_After_Review_Return");
 		ADD_NDC_EDIT_NEW_NDC_DESCRIPTION_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_New_NDC_Description_After_Review_Return");
+		ADD_NDC_EDIT_NEW_GTN_NUMBER_AFTER_REVIEW_RETURN = productconfig.get("add_NDC_Edit_New_GTN_Number_After_Review_Return");
 		ADD_NDC_EDIT_DELETE_INDEX_AFTER_REVIEW_RETURN =productconfig.get("add_NDC_Edit_Delete_Index_After_Review_Return");
 		
 		ADD_NDC_EDIT_ACTION_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Action_After_Approve_Return");
@@ -154,10 +171,12 @@ public class AkronProductData {
 		ADD_NDC_EDIT_EXISTING_SHORT_CODE_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_Short_Code_After_Approve_Return");
 		ADD_NDC_EDIT_EXISTING_PACK_SIZE_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_Pack_Size_After_Approve_Return");
 		ADD_NDC_EDIT_EXISTING_NDC_DESCRIPTION_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_NDC_Description_After_Approvew_Return");
+		ADD_NDC_EDIT_EXISTING_GTN_NUMBER_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_GTN_Number_After_Approvew_Return");
 		ADD_NDC_EDIT_NEW_NDC_NUMBER_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_New_NDC_Number_After_Approve_Return");
 		ADD_NDC_EDIT_NEW_SHORT_CODE_AFTER_APPROVE_RETURN= productconfig.get("add_NDC_Edit_New_Short_Code_After_Approve_Return");
 		ADD_NDC_EDIT_NEW_PACK_SIZE_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_New_Pack_Size_After_Approve_Return");
 		ADD_NDC_EDIT_NEW_NDC_DESCRIPTION_AFTER_APPROVE_RETURN= productconfig.get("add_NDC_Edit_New_NDC_Description_After_Approve_Return");
+		ADD_NDC_EDIT_NEW_GTN_NUMBER_AFTER_APPROVE_RETURN= productconfig.get("add_NDC_Edit_New_GTN_Number_After_Approve_Return");
 		ADD_NDC_EDIT_DELETE_INDEX_AFTER_APPROVE_RETURN =productconfig.get("add_NDC_Edit_Delete_Index_After_Approve_Return");
 	}
 

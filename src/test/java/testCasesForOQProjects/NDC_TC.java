@@ -3,6 +3,7 @@ package testCasesForOQProjects;
 
 import static configData.NDCData.*;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -14,6 +15,8 @@ import utilities.ScreenshotUtil;
 
 public class NDC_TC extends OQBaseModule_TC {
 	private int actionIterationCount = 0;
+	private int inactiveIterationCount = 0;
+	private int activeIterationCount = 0;
 	@BeforeClass
 	@Parameters({ "configFile" })
 	public void setUp(@Optional("ndc.properties") String configFile) throws Exception {
@@ -68,6 +71,7 @@ public class NDC_TC extends OQBaseModule_TC {
 		log.info("--- Performing Inactive for: {} ---", currentEntryName);
 		performInactive(INACTIVE_REMARKS, "NDC Inactive Request initiated successfully");
 		sa.assertAll();
+		
 	}
 
 	@Test(groups = { "Ndc_Inactive_Review_Reject" })
@@ -93,6 +97,7 @@ public class NDC_TC extends OQBaseModule_TC {
 	public void ndc_Inactive_Approve_Reject() throws Throwable {
 		if (NDC_INACTIVE_REJECT_IN_APPROVE_ACTION.equalsIgnoreCase("yes")) {
 			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+			ScreenshotUtil.freezeStepNumbering();
 			log.info("--- Initiating Inactive Reject In Approve Flow for: {} ---", currentEntryName);
 			performApproveReject(INACTIVE_APPROVE_REJECT_REMARKS, "NDC Reject successfully");
 			sa.assertAll();
@@ -106,6 +111,7 @@ public class NDC_TC extends OQBaseModule_TC {
 		switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
 		log.info("--- Initiating Inactive Approve Flow for: {} ---", currentEntryName);
 		performApprove(INACTIVE_APPROVE_REMARKS, "NDC Inactivated successfully");
+		ScreenshotUtil.resumeStepNumbering();
 		sa.assertAll();
 	}
 
@@ -221,7 +227,32 @@ public class NDC_TC extends OQBaseModule_TC {
 		nextStep();
 		
 	}
-
-
-
+	
+	
+	@Override
+	protected void beforeInactive() {
+		inactiveIterationCount++;
+		if(inactiveIterationCount==1)
+		nextStep();
+		
+	}
+	
+	@Override
+	protected void beforeActive() {
+		activeIterationCount++;
+		if(activeIterationCount==1)
+		nextStep();
+		
+	}
+	
+	@AfterClass
+	public void continueStepCounter() {
+        ScreenshotUtil.setShouldResetStepCounter(false);
+        log.info("Step counter will continue");
+    }
 }
+	
+
+
+
+

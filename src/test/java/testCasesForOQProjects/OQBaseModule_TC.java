@@ -218,6 +218,12 @@ public abstract class OQBaseModule_TC extends BaseClass {
 
 	protected void beforeRemarks() {
 	}
+	
+	protected void beforeInactive() {
+	}
+	
+	protected void beforeActive() {
+	}
 
 	protected void performEdit(String updateName, String successMessage) throws Throwable {
 		log.info("Opening Edit screen");
@@ -241,11 +247,15 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		sa.assertEquals(toast, successMessage, "Updated toaster message", toast);
 	}
 
+	protected void reviewMenuClick() {
+		pageObject.clickReview();
+	}
+	
 	protected void performReview(String remarks, String successMessage, String... actions) throws Throwable {
 		reviewIterationCount++;
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
-		pageObject.clickReview();
+		reviewMenuClick();
 		pageObject.waitForLoading();
 		capture();
 		if (reviewIterationCount == 3)
@@ -261,12 +271,16 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		capture();
 		sa.assertEquals(toast, successMessage, "Review toast", successMessage);
 	}
+	
+	protected void approveMenuClick() {
+		pageObject.clickApprove();
+	}
 
 	protected void performApprove(String remarks, String successMessage, String... actions) throws Throwable {
 		approveIterationCount++;
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
-		pageObject.clickApprove();
+		approveMenuClick();
 		pageObject.waitForLoading();
 		capture();
 		if (approveIterationCount == 2)
@@ -300,13 +314,20 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		capture();
 		sa.assertEquals(toast, successMessage, "Edit toast", successMessage);
 	}
+	
+	
+	protected void noScreenshotForActionsInReviewReturn(String... actions) throws Throwable {
+	
+			pageObject.clickActions(combine(currentEntryName, actions));
+			
+	}
 
 	protected void performReturnReview(String remarks, String successMessage, String... actions) throws Throwable {
 		log.info("Opening actions menu to access Review/Return");
-		pageObject.clickActions(combine(currentEntryName, actions));
+		noScreenshotForActionsInReviewReturn(actions);
 		capture();
 		nextStep();
-		pageObject.clickReview();
+		reviewMenuClick();
 		pageObject.waitForLoading();
 		capture();
 		beforeRemarks();
@@ -326,7 +347,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
 		nextStep();
-		pageObject.clickApprove();
+		approveMenuClick();
 		pageObject.waitForLoading();
 		capture();
 		beforeRemarks();
@@ -345,6 +366,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 	protected void performInactive(String remarks, String successMessage, String... actions) throws Throwable {
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
+		beforeInactive();
 		pageObject.clickInactive();
 		pageObject.waitForLoading();
 		capture();
@@ -363,6 +385,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 	protected void performActive(String remarks, String successMessage, String... actions) throws Throwable {
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
+		beforeActive();
 		pageObject.clickActive();
 		pageObject.waitForLoading();
 		capture();
@@ -402,7 +425,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		pageObject.clickActions(currentEntryName);
 		capture();
 		nextStep();
-		pageObject.clickReview();
+		reviewMenuClick();
 		pageObject.waitForLoading();
 		capture();
 		pageObject.enterRemarks(remarks);
@@ -420,7 +443,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 	protected void performApproveReject(String remarks, String successMessage) throws Throwable {
 		pageObject.clickActions(currentEntryName);
 		capture();
-		pageObject.clickApprove();
+		approveMenuClick();
 		pageObject.waitForLoading();
 		capture();
 		pageObject.enterRemarks(remarks);
