@@ -1,4 +1,4 @@
-Module,FieldName,FieldType,Placeholder,isMandatory
+﻿Module,FieldName,FieldType,Placeholder,isMandatory
 Department,Department Name,input,Department Name,Yes
 Department,Description,input,Description,No
 Facility,Facility Name,input,Enter Facility Name,Yes

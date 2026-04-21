@@ -35,7 +35,12 @@ public class BaseClass {
 		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
 		options.setExperimentalOption("useAutomationExtension", false);
-		options.addArguments("start-maximized", "--force-device-scale-factor=1.0", "--disable-features=PasswordLeakDetection", "--disable-notifications");
+		options.addArguments("start-maximized", "--force-device-scale-factor=1.0",
+				"--disable-features=PasswordLeakDetection", "--disable-notifications");
+		
+		// 🛠️ Uncomment the line below whenever you want Chrome to automatically open the "Inspect" field!
+		// options.addArguments("--auto-open-devtools-for-tabs");
+
 		Map<String, Object> prefs = new HashMap<>();
 		prefs.put("credentials_enable_service", false);
 		prefs.put("profile.password_manager_enabled", false);
@@ -64,7 +69,11 @@ public class BaseClass {
 	public void tearDown() throws Exception {
 
 		// Finalize the document (this adds template at the end)
-		ScreenshotUtil.insertScreenshotsAndAppendTemplate();
+		if (!ScreenshotUtil.isCombineNextClass()) {
+			ScreenshotUtil.insertScreenshotsAndAppendTemplate();
+		} else {
+			log.info("⏭️ Preserving document open for the next test class to append to.");
+		}
 
 		driver.quit();
 	}

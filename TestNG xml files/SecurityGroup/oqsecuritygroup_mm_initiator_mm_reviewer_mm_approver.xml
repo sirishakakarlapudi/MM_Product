@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+
+<test thread-count="5" name="MM_Initiator_Test">
+    <parameter name="configFile" value="oqsecuritygroup_mm_initiator.properties"/>
+    <parameter name="createCsvFile" value="SecurityGroup_Create_MMInitiator.csv"/>
+    <classes>
+      <class name="testCasesForOQProjects.SecurityGroup_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_SecurityGroup"/> 
+          <include name="securitygroup_Approve"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+
+  <test thread-count="5" name="MM_Reviewer_Test">
+    <parameter name="configFile" value="oqsecuritygroup_mm_reviewer.properties"/>
+    <parameter name="createCsvFile" value="SecurityGroup_Create_MMReviewer.csv"/>
+    <classes>
+      <class name="testCasesForOQProjects.SecurityGroup_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_SecurityGroup"/> 
+          <include name="securitygroup_Approve"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+  <test thread-count="5" name="MM_Approver_Test">
+    <parameter name="configFile" value="oqsecuritygroup_mm_approver.properties"/>
+    <parameter name="createCsvFile" value="SecurityGroup_Create_MMApprover.csv"/>
+    <classes>
+      <class name="testCasesForOQProjects.SecurityGroup_TC">
+        <methods>
+        
+          <include name="url"/>
+          <include name="userLoginBeforeCreate"/>
+          <include name="moduleClick"/>
+          <include name="Creation_Of_SecurityGroup"/> 
+          <include name="securitygroup_Approve"/>
+          <include name="Logout"/>
+ 		  <include name="Database_Backup"/>	
+          
+        </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "../testng-1.0.dtd">
+
+<suite name="Suite">
+	<test thread-count="5"
+		name="MMInitiator_MMReviewer_MMApprover_Test">
+		<parameter name="configFile"
+			value="oqusermanagement.properties" />
+		<parameter name="userCreationSheet"
+			value="User Creation(MMIni_MMRev_MMAp)" />
+		<classes>
+			<class name="testCasesForOQProjects.UserManagement_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="userLoginBeforeCreate" />
+					<include name="moduleClick" />
+					<include name="createUserWithBulkData" />
+					<include name="Logout" />
+					<include name="Database_Backup" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
+	<test thread-count="5"
+		name="ChangrPassword_MMInitiator_MMReviewer_MMApprover_Test">
+		<parameter name="configFile"
+			value="oqpasswordchange_foruser.properties" />
+		<parameter name="userCreationSheet"
+			value="User Creation(MMIni_MMRev_MMAp)" />
+		<classes>
+
+			<class
+				name="testCasesForOQProjects.PasswordChange_Complexity_TC">
+				<methods>
+
+					<include name="url" />
+					<include name="changeUserPasswordWithBulkData" />
+					<include name="Database_Backup" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
+</suite> <!-- Suite -->
+
+

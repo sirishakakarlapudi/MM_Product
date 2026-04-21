@@ -295,7 +295,7 @@ public class BasePage extends HelperMethods {
 		ScreenshotUtil.capture();
 	}
 
-	public void switchUser(String username, String password, String dbname, String... modulePath) throws Throwable {
+	public void switchUser(String username, String password, String dbname, String titlename, String... modulePath) throws Throwable {
 		if (username.equalsIgnoreCase(currentUsername)) {
 			log.info("Already logged in as {}, skipping switch.", username);
 			return;
@@ -305,7 +305,7 @@ public class BasePage extends HelperMethods {
 		log.info("Logged out previous user");
 		waitForLoading();
 		login(username, password, dbname);
-		click_titleMasters();
+		click_titleClick(titlename);
 		ScreenshotUtil.capture();
 		waitForLoading();
 
@@ -319,6 +319,22 @@ public class BasePage extends HelperMethods {
 
 		ScreenshotUtil.capture();
 
+	}
+	
+	public void click_titleClick(String title) throws Throwable {
+		log.info("--- Clicking Module Navigation ---");
+
+		// 1. Handle Top Level Title
+		if (title != null && !title.trim().isEmpty()) {
+			if (title.equalsIgnoreCase("MASTERS")) {
+				click_titleMasters();
+			} else if (title.equalsIgnoreCase("MM")) {
+				click_titleMM();
+			}
+			log.info("Clicked on Title");
+			waitForLoading();
+			ScreenshotUtil.capture();
+		}
 	}
 
 	public void authenticate(String password) throws Throwable {

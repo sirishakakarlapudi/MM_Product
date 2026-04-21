@@ -38,6 +38,8 @@ public class AkronProductData {
 	public static String APPROVE_RETURN_REMARKS;
 	public static String APPROVE_REMARKS;
 	public static String INACTIVE_REMARKS;
+	public static String PRODUCT_RETURN_ACTION_IN_REVIEW;
+	public static String PRODUCT_RETURN_ACTION_IN_APPROVE;
 	
 	public static String PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION;
 	public static String INACTIVE_REVIEW_REJECT_REMARKS;
@@ -130,6 +132,8 @@ public class AkronProductData {
 		REVIEW_REMARKS = productconfig.get("reviewRemarks");
 		APPROVE_RETURN_REMARKS = productconfig.get("approve_Return_Remarks");
 		APPROVE_REMARKS = productconfig.get("approveRemarks");
+		PRODUCT_RETURN_ACTION_IN_REVIEW =productconfig.get("product_Return_In_Review");
+		PRODUCT_RETURN_ACTION_IN_APPROVE=productconfig.get("product_Return_In_Approve");
 		INACTIVE_REMARKS = productconfig.get("inactive_Remarks");
 		PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION = productconfig.get("product_Inactive_Reject_In_Review");
 		INACTIVE_REVIEW_REJECT_REMARKS = productconfig.get("inactive_Review_Reject_Remarks");
@@ -170,8 +174,8 @@ public class AkronProductData {
 		ADD_NDC_EDIT_EXISTING_NDC_NUMBER_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_NDC_Number_After_Approve_Return");
 		ADD_NDC_EDIT_EXISTING_SHORT_CODE_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_Short_Code_After_Approve_Return");
 		ADD_NDC_EDIT_EXISTING_PACK_SIZE_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_Pack_Size_After_Approve_Return");
-		ADD_NDC_EDIT_EXISTING_NDC_DESCRIPTION_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_NDC_Description_After_Approvew_Return");
-		ADD_NDC_EDIT_EXISTING_GTN_NUMBER_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_GTN_Number_After_Approvew_Return");
+		ADD_NDC_EDIT_EXISTING_NDC_DESCRIPTION_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_NDC_Description_After_Approve_Return");
+		ADD_NDC_EDIT_EXISTING_GTN_NUMBER_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_Existing_GTN_Number_After_Approve_Return");
 		ADD_NDC_EDIT_NEW_NDC_NUMBER_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_New_NDC_Number_After_Approve_Return");
 		ADD_NDC_EDIT_NEW_SHORT_CODE_AFTER_APPROVE_RETURN= productconfig.get("add_NDC_Edit_New_Short_Code_After_Approve_Return");
 		ADD_NDC_EDIT_NEW_PACK_SIZE_AFTER_APPROVE_RETURN = productconfig.get("add_NDC_Edit_New_Pack_Size_After_Approve_Return");

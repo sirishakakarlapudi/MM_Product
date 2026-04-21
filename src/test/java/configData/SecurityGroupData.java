@@ -14,8 +14,8 @@ public class SecurityGroupData {
 	public static String ACTIONSPERFORMEDBY;
 	public static String USERNAME1;
 	public static String PASSWORD1;
-	public static String USERNAME2;
-	public static String PASSWORD2;
+	public static String USERNAME3;
+	public static String PASSWORD3;
 	public static String ACTUALHEADER;
 	public static String EXPECTEDHEADER;
 	public static String TEMPLATE_PATH;
@@ -74,10 +74,10 @@ public class SecurityGroupData {
 		SIDE_NAV_MODULE_MAPPING = loginconfig.get("side_nav_module_mapping");
 		
 		ACTIONSPERFORMEDBY = securitygroupconfig.get("actions_PerformedBy");
-		USERNAME1 = securitygroupconfig.get("username1");
-		PASSWORD1 = securitygroupconfig.get("password1");
-		USERNAME2 = securitygroupconfig.get("username2");
-		PASSWORD2 = securitygroupconfig.get("password2");
+		USERNAME1 = loginconfig.get("username1");
+		PASSWORD1 = loginconfig.get("password1");
+		USERNAME3 = loginconfig.get("username3");
+		PASSWORD3 = loginconfig.get("password3");
 		ACTUALHEADER = securitygroupconfig.get("actualHeader");
 		EXPECTEDHEADER = securitygroupconfig.get("expectedHeader");
 		TEMPLATE_PATH = securitygroupconfig.get("templatePath");

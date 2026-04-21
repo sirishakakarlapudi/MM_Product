@@ -335,37 +335,38 @@ public class HelperMethods {
 				}
 				if (match) {
 					switch (type) {
-					case CLICK:
-						jsClick(driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath)));
-						Thread.sleep(1000);
-						return true;
-					case CHECK_VISIBILITY:
-						boolean visible = !driver.findElements(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath))
-								.isEmpty();
-						if (visible != expectedVisibility)
-							throw new RuntimeException("Visibility mismatch for " + subPath);
-						return true;
-					case GET_TEXT:
-						int col = getColumnIndexByHeader(subPath);
-						return driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]/td[" + col + "]")).getText()
-								.trim();
-					case CHECK_MENU:
-						jsClick(driver.findElement(
-								By.xpath("(" + rowXpath + ")[" + r + "]//span[contains(@class,'pi-ellipsis-v')]")));
-						Thread.sleep(1000);
-						List<String> actual = driver.findElements(By.xpath(
-								"//ul[@role='menu']//li//span | //div[contains(@class,'p-menu-overlay')]//li//span"))
-								.stream().map(e -> e.getText().trim()).filter(t -> !t.isEmpty())
-								.collect(java.util.stream.Collectors.toList());
-						jsClick(driver.findElement(By.tagName("body")));
-						return actual;
+						case CLICK:
+							jsClick(driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath)));
+							Thread.sleep(500); // Reduced from 1000
+							return true;
+						case CHECK_VISIBILITY:
+							boolean visible = !driver.findElements(By.xpath("(" + rowXpath + ")[" + r + "]" + subPath))
+									.isEmpty();
+							if (visible != expectedVisibility)
+								throw new RuntimeException("Visibility mismatch for " + subPath);
+							return true;
+						case GET_TEXT:
+							int col = getColumnIndexByHeader(subPath);
+							return driver.findElement(By.xpath("(" + rowXpath + ")[" + r + "]/td[" + col + "]"))
+									.getText()
+									.trim();
+						case CHECK_MENU:
+							jsClick(driver.findElement(
+									By.xpath("(" + rowXpath + ")[" + r + "]//span[contains(@class,'pi-ellipsis-v')]")));
+							Thread.sleep(500); // Reduced from 1000
+							List<String> actual = driver.findElements(By.xpath(
+									"//ul[@role='menu']//li//span | //div[contains(@class,'p-menu-overlay')]//li//span"))
+									.stream().map(e -> e.getText().trim()).filter(t -> !t.isEmpty())
+									.collect(java.util.stream.Collectors.toList());
+							jsClick(driver.findElement(By.tagName("body")));
+							return actual;
 					}
 				}
 			}
 			if (p < totalPages) {
 				jsClick(wait.until(
 						ExpectedConditions.elementToBeClickable(By.xpath(paginatorXpath + "[" + (p + 1) + "]"))));
-				Thread.sleep(2000);
+				Thread.sleep(1000); // Reduced from 2000
 			}
 		}
 		throw new RuntimeException("Item not found: " + Arrays.toString(expectedValues));
@@ -399,7 +400,7 @@ public class HelperMethods {
 								.findElement(By.xpath("(" + rowXpath + ")[" + r + "]" + actionButtonSubPath));
 						clickWithArrow(actionBtn);
 						jsClick(actionBtn);
-						Thread.sleep(2000);
+						Thread.sleep(1000); // Reduced from 2000
 						return;
 					}
 				} catch (Exception e) {
@@ -410,7 +411,7 @@ public class HelperMethods {
 				WebElement nextPage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nextBtnXpath)));
 				jsScrollToElement(nextPage);
 				nextPage.click();
-				Thread.sleep(3000);
+				Thread.sleep(1000); // Reduced from 3000
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
 			}
 		}

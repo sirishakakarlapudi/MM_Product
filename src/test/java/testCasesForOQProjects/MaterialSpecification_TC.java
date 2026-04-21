@@ -122,8 +122,8 @@ public class MaterialSpecification_TC extends OQBaseModule_TC {
     public void Click_Actions2() throws Throwable {
         switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
         log.info("--- Attempting to open Actions Menu (Index 2) for: {} ---", currentEntryName);
-        materialspecification.clickActions(currentEntryName, "2");
-        log.info("Successfully opened Actions menu index 2 for {}", currentEntryName);
+        materialspecification.clickActions(currentEntryName, "1");
+        log.info("Successfully opened Actions menu index 1 for {}", currentEntryName);
         capture();
         afterClickActionsScreenshot("1");
     }

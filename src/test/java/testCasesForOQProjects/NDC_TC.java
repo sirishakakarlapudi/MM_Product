@@ -189,7 +189,6 @@ public class NDC_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "ClickActiveRep" })
 	public void Click_Active_1() throws Throwable {
-		nextStep();
 		Click_Active();
 	}
 
@@ -221,6 +220,11 @@ public class NDC_TC extends OQBaseModule_TC {
 	}
 	
 	@Override
+	protected void reviewIterationCount() {
+	
+	}
+	
+	@Override
 	protected void beforeClickActionsScreenshot() {
 		actionIterationCount++;
 		if(actionIterationCount==1)
@@ -248,7 +252,8 @@ public class NDC_TC extends OQBaseModule_TC {
 	@AfterClass
 	public void continueStepCounter() {
         ScreenshotUtil.setShouldResetStepCounter(false);
-        log.info("Step counter will continue");
+        ScreenshotUtil.continueDocumentNextClass();
+        log.info("Step counter and document will naturally continue into the next test module");
     }
 }
 	

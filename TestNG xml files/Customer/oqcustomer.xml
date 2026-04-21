@@ -13,7 +13,7 @@
 					<include name="userLoginBeforeCreate" />
 					<include name="moduleClick" />
 					<include name="Creation_Of_Customer" />
-					<include name="Click_Actions_For_Review" />
+					<include name="Click_Actions2" />
 					<include name="Click_View" />
 					<include name="customer_Review_Return_and_Edit" />
 					<include name="customerReview" />
@@ -23,9 +23,9 @@
 
 
 					<!-- Iteration 1 -->
-					<include name="Click_Actions_1" />
+					<include name="Click_Actions1" />
 					<include name="Click_Inactive_1" />
-					<include name="Click_Actions_2" />
+					<include name="Click_Actions2" />
 					<include name="customer_Inactive_Review_Reject" />
 
 					<!-- Iteration 2 -->
@@ -41,7 +41,7 @@
 					<!-- Active Flow -->
 
 					<!-- Iteration 1 -->
-					<include name="Click_Actions_1" />
+					<include name="Click_Actions1" />
 					<include name="Click_Active_1" />
 					<include name="customer_Active_Review_Reject" />
 

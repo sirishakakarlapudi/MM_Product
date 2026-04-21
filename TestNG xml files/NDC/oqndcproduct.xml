@@ -12,6 +12,7 @@
 					<include name="userLoginBeforeCreate" />
 					<include name="moduleClick" />
 					<include name="Click_Actions" />
+					<include name="CLick_View"/>
 					
 					<!-- Inactive Flow-->
 					
@@ -52,7 +53,7 @@
 	</test>
 	
 	<test thread-count="5" name="Product_Test">
-		<parameter name="configFile" value="akronproduct.properties" />
+		<parameter name="configFile" value="oqakronproduct.properties" />
 		<classes>
 			<class name="testCasesForOQProjects.AkronProduct_TC">
 				<methods>

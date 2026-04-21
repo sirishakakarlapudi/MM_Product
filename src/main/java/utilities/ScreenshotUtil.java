@@ -29,6 +29,16 @@ public class ScreenshotUtil {
     private static XWPFDocument outputDoc;
     private static String outputPath;
     private static boolean freezeNextStep = false;
+    private static boolean combineNextClass = false;
+
+    public static boolean isCombineNextClass() {
+        return combineNextClass;
+    }
+
+    public static void continueDocumentNextClass() {
+        combineNextClass = true;
+        log.info("🔗 Document is flagged to continue into the next test class.");
+    }
 
     private static class ScreenshotEntry {
         String label;
@@ -177,6 +187,12 @@ public class ScreenshotUtil {
 
     // === Load Template and Prepare Output ===
     public static void loadTemplateForEndAppend(String templatePath, String outputPath) throws Exception {
+        if (combineNextClass && outputDoc != null) {
+            log.info("⏩ Bypassing template reload to append to existing document.");
+            combineNextClass = false; // Reset so the appended class saves properly at its end
+            return;
+        }
+
         FileInputStream fis = new FileInputStream(templatePath);
         templateDoc = new XWPFDocument(fis);
         fis.close();
@@ -304,6 +320,7 @@ public class ScreenshotUtil {
 
         log.info("✅ Document saved: " + outputPath);
         
+        combineNextClass = false; // Safety reset
         // ♻️ Reset state so the next test case starts fresh from Step 1
         reset();
     }

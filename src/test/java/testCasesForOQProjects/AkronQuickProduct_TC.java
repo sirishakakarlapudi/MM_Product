@@ -228,7 +228,7 @@ public class AkronQuickProduct_TC extends OQBaseModule_TC {
 	
 	@Test(groups = { "ClickActions" })
 	public void Click_Actions2() throws Throwable {
-		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		switchUserIfMulti(USERNAME2, PASSWORD2);
 		Click_Actions();
 	}
 	

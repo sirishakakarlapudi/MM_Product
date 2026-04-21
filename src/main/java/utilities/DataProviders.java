@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
@@ -154,14 +155,19 @@ public class DataProviders {
 	}
 
 	@DataProvider(name = "SecurityGroupOQData")
-	public Object[][] getSecurityGroupOQSubset() throws Exception {
+	public Object[][] getSecurityGroupOQSubset(ITestContext context) throws Exception {
 		String filePath = System.getProperty("user.dir") + "\\src\\test\\resources\\OQ TestData\\OQ SpecData.xlsx";
 
 		System.out.println("Excel path: " + filePath);
 		System.out.println("File exists: " + new File(filePath).exists());
 
+		String sheetName = context.getCurrentXmlTest().getParameter("securityGroupSheet");
+		if (sheetName == null || sheetName.isEmpty()) {
+			sheetName = "Security Group(MR_MA)";
+		}
+
 		// ExcelUtil reads Excel rows as Map<String, String>
-		List<Map<String, String>> rows = ExcelUtility.getRowsAsMap(filePath, "Security Group(MR_MA)");
+		List<Map<String, String>> rows = ExcelUtility.getRowsAsMap(filePath, sheetName);
 
 		Object[][] data = new Object[rows.size()][1];
 		for (int i = 0; i < rows.size(); i++) {
@@ -172,14 +178,19 @@ public class DataProviders {
 	}
 
 	@DataProvider(name = "UserManagementOQ")
-	public Object[][] getUserManagementOQSubset() throws Exception {
+	public Object[][] getUserManagementOQSubset(ITestContext context) throws Exception {
 		String filePath = System.getProperty("user.dir") + "\\src\\test\\resources\\OQ TestData\\OQ SpecData.xlsx";
 
 		System.out.println("Excel path: " + filePath);
 		System.out.println("File exists: " + new File(filePath).exists());
 
+		String sheetName = context.getCurrentXmlTest().getParameter("userCreationSheet");
+		if (sheetName == null || sheetName.isEmpty()) {
+			sheetName = "User Creation(MR_MA)";
+		}
+
 		// ExcelUtil reads Excel rows as Map<String, String>
-		List<Map<String, String>> rows = ExcelUtility.getRowsAsMap(filePath, "User Creation(MR_MA)");
+		List<Map<String, String>> rows = ExcelUtility.getRowsAsMap(filePath, sheetName);
 
 		Object[][] data = new Object[rows.size()][1];
 		for (int i = 0; i < rows.size(); i++) {

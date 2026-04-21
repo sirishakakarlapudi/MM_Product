@@ -16,8 +16,8 @@
 					<include name="Creation_Of_ProductSpecification" />
 					<include name="Creation_Of_ProductSpecification_Rows" />
 					<include name="Creation_Of_ProductSpecification_Submit" />
-					<include name="Click_Actions_1" />
-					<include name="Click_Actions_2" />
+					<include name="Click_Actions1" />
+					<include name="Click_Actions2" />
 					<include name="Click_View" />
 					<include name="productSpec_Review_Return_and_Edit" />
 					<include name="productSpecReview" />

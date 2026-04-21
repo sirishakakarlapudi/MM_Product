@@ -113,7 +113,16 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
     }
 
     @Test(groups = { "ClickActions" })
-    public void Click_Actions_1() throws Throwable {
+    public void Click_Actions1() throws Throwable {
+        switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+        log.info("--- Attempting to open Actions Menu (Index 1) for: {} ---", currentEntryName);
+        productspecification.clickActions(currentEntryName, "1");
+        log.info("Successfully opened Actions menu for {}", currentEntryName);
+        capture();
+    }
+
+    @Test(groups = { "ClickActions" })
+    public void Click_Actions2() throws Throwable {
         switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
         log.info("--- Attempting to open Actions Menu (Index 1) for: {} ---", currentEntryName);
         productspecification.clickActions(currentEntryName, "1");

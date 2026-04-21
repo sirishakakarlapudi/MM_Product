@@ -6,7 +6,7 @@ public class PasswordChange_AndComplexityData {
 	public static String CURRENT_CONFIG_NAME;
 	public static String CHROME_URL;
 	public static String APP_URL;
-	public static String USERNAME;
+	public static String USERNAME1;
 	public static String TEMPORARY_PASSWORD;
 	public static String ACTUALHEADER;
 	public static String EXPECTEDHEADER;
@@ -22,11 +22,7 @@ public class PasswordChange_AndComplexityData {
 	public static String NEW_PASSWORD_1;
 	public static String NEW_PASSWORD_2;
 	public static String NEW_PASSWORD_3;
-	
-	
-	
-	
-	
+
 	public static void loadProperties(String fileName) {
 		// Ensure we handle potential null or empty fileName
 		if (fileName == null || fileName.isEmpty()) {
@@ -41,7 +37,7 @@ public class PasswordChange_AndComplexityData {
 
 		CHROME_URL = loginconfig.get("chrome.url");
 		APP_URL = loginconfig.get("app.url");
-		USERNAME = pwdchange_complexityconfig.get("username");
+		USERNAME1 = pwdchange_complexityconfig.get("username1");
 		TEMPORARY_PASSWORD = pwdchange_complexityconfig.get("temporaryPassword");
 		ACTUALHEADER = pwdchange_complexityconfig.get("actualHeader");
 		EXPECTEDHEADER = pwdchange_complexityconfig.get("expectedHeader");

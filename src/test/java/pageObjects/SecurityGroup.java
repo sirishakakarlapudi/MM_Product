@@ -107,7 +107,7 @@ public class SecurityGroup extends BasePage {
 	                selectedPrivilegesContainer,
 	                scrollStep);
 
-	        Thread.sleep(700);
+	        Thread.sleep(400); // Reduced from 700
 
 	        long newScrollTop = ((Number) js.executeScript(
 	                "return arguments[0].scrollTop;",

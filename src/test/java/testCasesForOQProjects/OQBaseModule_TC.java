@@ -193,10 +193,10 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		DatabaseBackupUtil.backupPostgres(bkpName, MM_DB_NAME_VAL, "postgres", "root", "localhost", "5432");
 	}
 
-	protected void switchUserIfMulti(String username, String password) throws Throwable {
+	protected void switchUserIfMulti(String username, String password, String titlename) throws Throwable {
 		if (!ACTIONSPERFORMEDBY_VAL.equalsIgnoreCase("single")) {
 			String[] path = getNavigationPath();
-			pageObject.switchUser(username, password, PC_DB_NAME_VAL, path);
+			pageObject.switchUser(username, password,titlename, PC_DB_NAME_VAL, path);
 		}
 	}
 
@@ -211,17 +211,15 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		return pathList.toArray(new String[0]);
 	}
 
-
-
 	protected void beforeEdit() {
 	}
 
 	protected void beforeRemarks() {
 	}
-	
+
 	protected void beforeInactive() {
 	}
-	
+
 	protected void beforeActive() {
 	}
 
@@ -247,22 +245,46 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		sa.assertEquals(toast, successMessage, "Updated toaster message", toast);
 	}
 
+	protected void reviewOpenClick() {
+		reviewMenuClick();
+	}
+
+	protected void reviewSubmitClick() {
+		reviewMenuClick();
+	}
+
+	protected void returnReviewOpenClick() {
+		reviewOpenClick();
+	}
+
+	protected void rejectReviewOpenClick() {
+		reviewOpenClick();
+	}
+
 	protected void reviewMenuClick() {
 		pageObject.clickReview();
 	}
+
 	
+	
+	
+	
+	protected void reviewIterationCount() {
+		if (reviewIterationCount == 3)
+			nextStep();
+	}
+
 	protected void performReview(String remarks, String successMessage, String... actions) throws Throwable {
 		reviewIterationCount++;
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
-		reviewMenuClick();
+		reviewIterationCount();
+		reviewOpenClick();
 		pageObject.waitForLoading();
 		capture();
-		if (reviewIterationCount == 3)
-			nextStep();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickReview();
+		reviewSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -271,22 +293,45 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		capture();
 		sa.assertEquals(toast, successMessage, "Review toast", successMessage);
 	}
-	
+
+	protected void approveOpenClick() {
+		approveMenuClick();
+	}
+
+	protected void approveSubmitClick() {
+		approveMenuClick();
+	}
+
+	protected void returnApproveOpenClick() {
+		approveOpenClick();
+	}
+
+	protected void rejectApproveOpenClick() {
+		approveOpenClick();
+	}
+
 	protected void approveMenuClick() {
 		pageObject.clickApprove();
 	}
 
+
+	
+	protected void approveIterationCount() {
+		if (approveIterationCount == 2)
+			nextStep();
+	}
+
+	
 	protected void performApprove(String remarks, String successMessage, String... actions) throws Throwable {
 		approveIterationCount++;
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
-		approveMenuClick();
+		approveIterationCount();
+		approveOpenClick();
 		pageObject.waitForLoading();
 		capture();
-		if (approveIterationCount == 2)
-			nextStep();
 		pageObject.enterRemarks(remarks);
-		pageObject.clickApprove();
+		approveSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -314,26 +359,28 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		capture();
 		sa.assertEquals(toast, successMessage, "Edit toast", successMessage);
 	}
-	
-	
-	protected void noScreenshotForActionsInReviewReturn(String... actions) throws Throwable {
-	
-			pageObject.clickActions(combine(currentEntryName, actions));
-			
-	}
 
+	protected void noScreenshotForActionsInReviewReturn(String... actions) throws Throwable {
+
+		pageObject.clickActions(combine(currentEntryName, actions));
+
+	}
+	protected void returnSubmitClick() {
+		pageObject.clickReturn();
+	}
+	
 	protected void performReturnReview(String remarks, String successMessage, String... actions) throws Throwable {
 		log.info("Opening actions menu to access Review/Return");
 		noScreenshotForActionsInReviewReturn(actions);
 		capture();
 		nextStep();
-		reviewMenuClick();
+		returnReviewOpenClick();
 		pageObject.waitForLoading();
 		capture();
 		beforeRemarks();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickReturn();
+		returnSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -347,13 +394,13 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
 		nextStep();
-		approveMenuClick();
+		returnApproveOpenClick();
 		pageObject.waitForLoading();
 		capture();
 		beforeRemarks();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickReturn();
+		returnSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -363,6 +410,11 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		sa.assertEquals(toast, successMessage, "Return Approve toast", successMessage);
 	}
 
+	
+	protected void inactiveSubmitClick() {
+		pageObject.clickInactive();
+	}
+	
 	protected void performInactive(String remarks, String successMessage, String... actions) throws Throwable {
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
@@ -372,7 +424,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		capture();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickInactive();
+		inactiveSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -382,6 +434,10 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		sa.assertEquals(toast, successMessage, "Inactive toaster message", toast);
 	}
 
+	protected void activeSubmitClick() {
+		pageObject.clickActive();
+	}
+	
 	protected void performActive(String remarks, String successMessage, String... actions) throws Throwable {
 		pageObject.clickActions(combine(currentEntryName, actions));
 		capture();
@@ -391,7 +447,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 		capture();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickActive();
+		activeSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -421,16 +477,22 @@ public abstract class OQBaseModule_TC extends BaseClass {
 	 * sa.assertEquals(toast, successMessage, "Reject toaster message", toast);
 	 * }
 	 */
+	
+	protected void rejectSubmitClick() {
+		pageObject.clickReject();
+	}
+	
+	
 	protected void performReviewReject(String remarks, String successMessage) throws Throwable {
 		pageObject.clickActions(currentEntryName);
 		capture();
 		nextStep();
-		reviewMenuClick();
+		rejectReviewOpenClick();
 		pageObject.waitForLoading();
 		capture();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickReject();
+		rejectSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();
@@ -443,12 +505,12 @@ public abstract class OQBaseModule_TC extends BaseClass {
 	protected void performApproveReject(String remarks, String successMessage) throws Throwable {
 		pageObject.clickActions(currentEntryName);
 		capture();
-		approveMenuClick();
+		rejectApproveOpenClick();
 		pageObject.waitForLoading();
 		capture();
 		pageObject.enterRemarks(remarks);
 		capture();
-		pageObject.clickReject();
+		rejectSubmitClick();
 		capture();
 		pageObject.authenticate(pageObject.currentPassword);
 		String toast = pageObject.waitForToast();

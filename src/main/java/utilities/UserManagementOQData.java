@@ -20,6 +20,7 @@ public class UserManagementOQData {
 	private String jobcode;
 	private String modeoftraining;
 	private String requirequestionnaire;
+	private String newpassword;
 
 	public UserManagementOQData(Map<String, String> row) {
 		try {
@@ -40,6 +41,7 @@ public class UserManagementOQData {
 			this.jobcode = getValue(row, "Job Code");
 			this.modeoftraining = getValue(row, "Mode Of Training");
 			this.requirequestionnaire = getValue(row, "Require Questionnaire");
+			this.newpassword= getValue(row, "New Password");
 
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Excel row data is incomplete or missing headers", e);
@@ -119,6 +121,10 @@ public class UserManagementOQData {
 
 	public String getRequireQuestionnaire() {
 		return requirequestionnaire;
+	}
+	
+	public String getNewPassword() {
+		return newpassword;
 	}
 
 }

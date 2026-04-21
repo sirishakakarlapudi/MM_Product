@@ -4,23 +4,18 @@ import static configData.UserManagementData.*;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.UserManagement;
-import testBase.BaseClass;
 import utilities.DataProviders;
-import utilities.DatabaseBackupUtil;
 import utilities.ScreenshotUtil;
-import utilities.SoftAssertionUtil;
 import utilities.UserManagementOQData;
 
-public class UserManagement_TC extends BaseClass {
+public class UserManagement_TC extends OQBaseModule_TC {
 	UserManagement user;
 	String currentemployeeid;
-	SoftAssertionUtil sa;
 
 	@BeforeClass
 	@Parameters({ "configFile" })
@@ -30,6 +25,24 @@ public class UserManagement_TC extends BaseClass {
 		// Load the dynamic property file
 		configData.UserManagementData.loadProperties(configFile);
 
+		// Initialize Base Class Variables
+		CONFIG_NAME = CURRENT_CONFIG_NAME;
+		CHROME_URL_VAL = CHROME_URL;
+		APP_URL_VAL = APP_URL;
+		USERNAME_VAL = USERNAME;
+		PASSWORD_VAL = PASSWORD;
+		USERNAME1_VAL = USERNAME1;
+		PASSWORD1_VAL = PASSWORD1;
+		ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+		PC_DB_NAME_VAL = PC_DB_NAME;
+		MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+		MM_DB_NAME_VAL = MM_DB_NAME;
+		TITLE_MODULE_VAL = "MASTERS"; // Hardcoded in previous version
+		MASTER_MODULE_VAL = MASTER_MODULE;
+		SUB_MASTER_MODULE_VAL = SUB_MASTER_MODULE;
+		SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+		VIEW_ACTION_VAL = USER_VIEW;
+
 		// Set conditional screenshot execution
 		boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
 		ScreenshotUtil.setIsEnabled(screenshotsEnabled);
@@ -38,83 +51,32 @@ public class UserManagement_TC extends BaseClass {
 			log.info("📸 Processing screenshot template and headers...");
 			ScreenshotUtil.loadTemplateForEndAppend(TEMPLATE_PATH, OUTPUT_PATH);
 			ScreenshotUtil.updateHeaderCellText(ACTUALHEADER, EXPECTEDHEADER);
-			ScreenshotUtil.initScript(SCRIPT_NUMBER);
+			ScreenshotUtil.initScript(SCRIPT_NUMBER_VAL);
 		}
 
 		browserOpen();
 		user = new UserManagement(driver);
+		pageObject = user; // Essential for base class methods
 		user.setTableHeaders(TABLE_HEADERS);
 		log.info("Setup completed. Screenshots enabled: {}", screenshotsEnabled);
 	}
 
-	@BeforeMethod
-	public void initSoftAssert() {
-		sa = new SoftAssertionUtil();
+	@Override
+	protected void updateEntryName(String newName) throws Throwable {
+		user.employeeName(newName);
 	}
 
-	// ========================Google Search Box=============
+	// ==================== Module Specific Tests ====================
 
-	@Test(groups = { "setup" }, priority = 1)
-	public void initialSetUp() throws Exception {
-		ScreenshotUtil.nextStep();
-		log.info("Navigating to Chrome URL: {}", CHROME_URL);
-		driver.navigate().to(CHROME_URL);
-		log.info("Waiting for search box to be visible");
-		user.waitForElementToVisible(user.getSearchBox());
-		Assert.assertTrue(user.getSearchBox().isDisplayed(), "Search box is not visible!");
-		log.info("Searching for Application URL: {}", APP_URL);
-		user.searchBox(APP_URL);
-		user.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("Initial setup completed and screenshot captured");
-	}
-
-	// ===================URL Navigation========================
-
-	@Test(groups = { "url" }, priority = 2)
-	public void url() throws Throwable {
-		driver.navigate().to(APP_URL);
-		log.info("Navigating to App URL: {}", APP_URL);
-	}
-
-	// ====================URL Validation===================
-
-	@Test(groups = { "userlogin" }, priority = 3)
-	public void userLoginBeforeCreate() throws Throwable {
-		// Clear existing user session from DB to prevent login issues
-		log.info("Executing the flow with single/multiple : {}", ACTIONSPERFORMEDBY);
-		if (ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			user.login(USERNAME, PASSWORD, PC_DB_NAME);
-		} else {
-			user.login(USERNAME1, PASSWORD1, PC_DB_NAME);
-		}
-	}
-
-	@Test(groups = { "moduleselect" }, priority = 4)
-	public void moduleClick() throws Throwable {
-		log.info("--- Clicking Module ---");
-		ScreenshotUtil.nextStep();
-		user.click_titleMasters();
-		log.info("Clicked on Masters title");
-		user.waitForLoading();
-		ScreenshotUtil.capture();
-		ScreenshotUtil.nextStep();
-		user.masterClick(MASTER_MODULE);
-		log.info("Clicked on Master Module: {}", MASTER_MODULE);
-		ScreenshotUtil.capture();
-		user.masterClick(SUB_MASTER_MODULE);
-		log.info("Clicked on Master Module: {}", SUB_MASTER_MODULE);
-		ScreenshotUtil.capture();
-	}
-
-	@Test(groups = { "Creation" }, priority = 5)
+	@Test(groups = { "Creation" })
 	public void Creation_Of_User() throws Throwable {
 		ScreenshotUtil.nextStep();
 		user.Create();
 		log.info("--- Navigating to User Creation Screen ---");
 		log.info("--- Creating User: {} ---", EMPLOYEE_ID);
-		System.out.println("employee id" + EMPLOYEE_ID);
 		currentemployeeid = EMPLOYEE_ID;
+		currentEntryName = EMPLOYEE_ID; // Set for base class actions
+		
 		user.employeeID(EMPLOYEE_ID);
 		user.employeeName(EMPLOYEE_NAME);
 
@@ -156,93 +118,9 @@ public class UserManagement_TC extends BaseClass {
 		Assert.assertEquals(authToast, "User created successfully", "Creation failed with message: " + authToast);
 		ScreenshotUtil.nextStep();
 		ScreenshotUtil.capture();
-
 	}
 
-	@Test(groups = { "ClickActions" }, priority = 6)
-	public void Click_Actions_After_Create() throws Throwable {
-		log.info("--- Attempting to open Actions Menu for: {} ---", currentemployeeid);
-		ScreenshotUtil.nextStep();
-		user.clickActions(currentemployeeid);
-		log.info("Successfully opened Actions menu for {}", currentemployeeid);
-		ScreenshotUtil.capture();
-	}
-
-	// ========================CLICKING VIEW TO VERIFY
-	// DETAILS========================
-
-	@Test(groups = { "ClickView" }, priority = 7)
-	public void Click_View() throws Throwable {
-		if (USER_VIEW.equalsIgnoreCase("yes")) {
-			log.info("--- Viewing Department: {} ---", currentemployeeid);
-			ScreenshotUtil.nextStep();
-			user.clickView(currentemployeeid);
-			log.info("View screen opened");
-			user.waitForLoading();
-			ScreenshotUtil.capture();
-			user.clickBack();
-			log.info("Clicked Back button");
-			user.waitForLoading();
-			ScreenshotUtil.capture();
-		} else {
-			log.info("View step skipped based on configuration");
-		}
-	}
-
-	// ========================USER EDIT========================
-
-	@Test(groups = { "ClickEdit" }, priority = 8)
-	public void Click_Edit() throws Throwable {
-
-		if (USER_EDIT.equalsIgnoreCase("yes")) {
-			if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-				user.switchUser(USERNAME1, PASSWORD1, PC_DB_NAME, MASTER_MODULE);
-			}
-
-			// This part will now execute for BOTH single and multiple users
-			log.info("Opening Edit screen)");
-			ScreenshotUtil.nextStep();
-			user.clickEdit(currentemployeeid);
-			user.waitForLoading();
-			ScreenshotUtil.capture();
-
-			if (EDIT_EMPLOYEE_NAME != null && !EDIT_EMPLOYEE_NAME.trim().isEmpty()) {
-				log.info("Updating Employee Name to: {}", EDIT_EMPLOYEE_NAME);
-				user.employeeName(EDIT_EMPLOYEE_NAME);
-			}
-
-			if (EDIT_EMAIL != null && !EDIT_EMAIL.trim().isEmpty()) {
-				log.info("Updating Emial to: {}", EDIT_EMAIL);
-				user.email(EDIT_EMAIL);
-			}
-
-			if (EDIT_MOBILE_NUMBER != null && !EDIT_MOBILE_NUMBER.trim().isEmpty()) {
-				log.info("Updating Mobile Number to: {}", EDIT_MOBILE_NUMBER);
-				user.employeeName(EDIT_MOBILE_NUMBER);
-
-			}
-			if (EDIT_DESIGNATION != null && !EDIT_DESIGNATION.trim().isEmpty()) {
-				log.info("Updating Designation to: {}", EDIT_DESIGNATION);
-				user.employeeName(EDIT_DESIGNATION);
-
-			}
-
-			ScreenshotUtil.capture();
-			user.clickUpdate();
-			log.info("Clicked Update");
-			ScreenshotUtil.capture();
-			user.authenticate(user.currentPassword);
-			user.waitForLoading();
-			ScreenshotUtil.capture();
-		} else {
-			log.info("User Edit skipped based on configuration");
-		}
-
-	}
-
-	// ========================CREATING BULK USERS========================
-
-	@Test(priority = 9, dataProvider = "UserManagementOQ", dataProviderClass = DataProviders.class, singleThreaded = true)
+	@Test(dataProvider = "UserManagementOQ", dataProviderClass = DataProviders.class, singleThreaded = true)
 	public void createUserWithBulkData(UserManagementOQData userdata) throws Throwable {
 		String empid = userdata.getEmpID();
 		String empname = userdata.getEmpName();
@@ -254,6 +132,7 @@ public class UserManagement_TC extends BaseClass {
 		String designation = userdata.getDesignation();
 		String module = userdata.getModule();
 		String sgname = userdata.getSecurityGroupName();
+		
 		log.info("--- Creating User: {} ---", empid);
 		user.Create();
 		user.waitForLoading();
@@ -295,51 +174,55 @@ public class UserManagement_TC extends BaseClass {
 		user.authenticate(user.currentPassword);
 		user.waitForLoading();
 		ScreenshotUtil.capture();
-
 	}
 
-	// =====================DUPLICATION CHECK IN CREATE PAGE========================
-
-	@Test(groups = { "duplicationcheck" }, priority = 10)
+	@Test(groups = { "duplicationcheck" })
 	public void Duplication_Check() throws Throwable {
-
 		ScreenshotUtil.nextStep();
-		log.info("--- Checking Duplication Check with Employee ID In Create page: {} ---", currentemployeeid);
+		log.info("--- Checking Duplication Check with Employee ID: {} ---", currentEntryName);
 		user.Create();
-		user.employeeID(currentemployeeid);
+		user.employeeID(currentEntryName);
 		user.clickEmployeeID();
 		user.waitForToast();
 	}
 
-	// ===========================LOGOUT========================
+	@Test(groups = { "ClickEdit" })
+	public void Click_Edit() throws Throwable {
+		if (USER_EDIT.equalsIgnoreCase("yes")) {
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
 
-	@Test(groups = { "Logout" }, priority = 11)
-	public void Logout() throws Throwable {
-		log.info("--- Executing Final Logout ---");
-		ScreenshotUtil.nextStep();
-		user.logout();
-		log.info("Clicked logout button");
-		user.waitForToast();
-		user.waitForLoading();
-		ScreenshotUtil.capture();
-		log.info("--- UserManagement Test Case Execution Finished ---");
+			log.info("Opening Edit screen");
+			ScreenshotUtil.nextStep();
+			user.clickEdit(currentEntryName);
+			user.waitForLoading();
+			ScreenshotUtil.capture();
+
+			if (EDIT_EMPLOYEE_NAME != null && !EDIT_EMPLOYEE_NAME.trim().isEmpty()) {
+				log.info("Updating Employee Name to: {}", EDIT_EMPLOYEE_NAME);
+				user.employeeName(EDIT_EMPLOYEE_NAME);
+				currentEntryName = EDIT_EMPLOYEE_NAME;
+			}
+
+			if (EDIT_EMAIL != null && !EDIT_EMAIL.trim().isEmpty()) {
+				log.info("Updating Email to: {}", EDIT_EMAIL);
+				user.email(EDIT_EMAIL);
+			}
+
+			if (EDIT_MOBILE_NUMBER != null && !EDIT_MOBILE_NUMBER.trim().isEmpty()) {
+				log.info("Updating Mobile Number");
+				user.mobileNumber(EDIT_MOBILE_NUMBER);
+			}
+			
+			if (EDIT_DESIGNATION != null && !EDIT_DESIGNATION.trim().isEmpty()) {
+				log.info("Updating Designation");
+				user.designation(EDIT_DESIGNATION);
+			}
+
+			ScreenshotUtil.capture();
+			user.clickUpdate();
+			user.authenticate(user.currentPassword);
+			user.waitForLoading();
+			ScreenshotUtil.capture();
+		}
 	}
-
-	// ===========================DATABASE BACKUP========================
-	@Test(groups = { "DB Back" }, priority = 12)
-	public void Database_Backup() {
-		log.info("--- Initiating Post-Test Database Backup ---");
-
-		// Fallback logic: Use config filename if script number is missing
-		String backupFolderName = (SCRIPT_NUMBER == null || SCRIPT_NUMBER.trim().isEmpty()) ? CURRENT_CONFIG_NAME
-				: SCRIPT_NUMBER;
-
-		log.info("Backup folder name determined: {}", backupFolderName);
-
-		// Parameters: folderName, dbName, dbUser, dbPass, host, port
-		DatabaseBackupUtil.backupPostgres(backupFolderName, PC_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MASTER_DB_NAME, "postgres", "root", "localhost", "5432");
-		DatabaseBackupUtil.backupPostgres(backupFolderName, MM_DB_NAME, "postgres", "root", "localhost", "5432");
-	}
-
 }

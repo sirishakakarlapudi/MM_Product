@@ -32,24 +32,25 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 		configData.AkronProductData.loadProperties(configFile);
 
 		// Map to OQBaseModule_TC required fields
-		CONFIG_NAME = configData.AkronProductData.CURRENT_CONFIG_NAME;
-		CHROME_URL_VAL = configData.AkronProductData.CHROME_URL;
-		APP_URL_VAL = configData.AkronProductData.APP_URL;
-		USERNAME_VAL = configData.AkronProductData.USERNAME;
-		PASSWORD_VAL = configData.AkronProductData.PASSWORD;
-		USERNAME1_VAL = configData.AkronProductData.USERNAME1;
-		PASSWORD1_VAL = configData.AkronProductData.PASSWORD1;
-		USERNAME2_VAL = configData.AkronProductData.USERNAME2;
-		PASSWORD2_VAL = configData.AkronProductData.PASSWORD2;
-		USERNAME3_VAL = configData.AkronProductData.USERNAME3;
-		PASSWORD3_VAL = configData.AkronProductData.PASSWORD3;
-		ACTIONSPERFORMEDBY_VAL = configData.AkronProductData.ACTIONSPERFORMEDBY;
-		PC_DB_NAME_VAL = configData.AkronProductData.PC_DB_NAME;
-		MASTER_DB_NAME_VAL = configData.AkronProductData.MASTER_DB_NAME;
-		MM_DB_NAME_VAL = configData.AkronProductData.MM_DB_NAME;
-		MASTER_MODULE_VAL = configData.AkronProductData.MASTER_MODULE;
-		SUB_MASTER_MODULE_VAL = configData.AkronProductData.SUB_MASTER_MODULE;
-		SCRIPT_NUMBER_VAL = configData.AkronProductData.SCRIPT_NUMBER;
+		CONFIG_NAME = CURRENT_CONFIG_NAME;
+		APP_URL_VAL = APP_URL;
+		USERNAME_VAL = USERNAME;
+		PASSWORD_VAL = PASSWORD;
+		USERNAME1_VAL = USERNAME1;
+		PASSWORD1_VAL = PASSWORD1;
+		USERNAME2_VAL = USERNAME2;
+		PASSWORD2_VAL = PASSWORD2;
+		USERNAME3_VAL = USERNAME3;
+		PASSWORD3_VAL = PASSWORD3;
+		ACTIONSPERFORMEDBY_VAL = ACTIONSPERFORMEDBY;
+		PC_DB_NAME_VAL = PC_DB_NAME;
+		MASTER_DB_NAME_VAL = MASTER_DB_NAME;
+		MM_DB_NAME_VAL = MM_DB_NAME;
+		TITLE_MODULE_VAL = "MASTERS";
+		MASTER_MODULE_VAL = MASTER_MODULE;
+		SUB_MASTER_MODULE_VAL = SUB_MASTER_MODULE;
+		SCRIPT_NUMBER_VAL = SCRIPT_NUMBER;
+		VIEW_ACTION_VAL = PRODUCT_VIEW_ACTION;
 
 		// Set conditional screenshot execution
 		boolean screenshotsEnabled = "yes".equalsIgnoreCase(TAKE_SCREENSHOTS);
@@ -81,7 +82,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "AddNDC" })
 	public void Click_Add_NDC() throws Throwable {
 
-		switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+		switchUserIfMulti(USERNAME1, PASSWORD1, TITLE_MODULE_VAL);
 		log.info("--- Performing Add NDC for: {} ---", currentEntryName);
 		product.waitForLoading();
 		nextStep();
@@ -134,14 +135,14 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Click_Review_Return_And_Edit_For_ADD_NDC" })
 	public void Click_Review_Return_And_Edit_For_Add_NDC() throws Throwable {
-		if (PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION != null
-				&& PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION.equalsIgnoreCase("yes")) {
+		if (PRODUCT_RETURN_ACTION_IN_REVIEW != null
+				&& PRODUCT_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
 
-			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 
 			log.info("--- Initiating Add NDC Review Return Flow for: {} ---", currentEntryName);
 			performReturnReview(REVIEW_RETURN_REMARKS, "Product returned successfully");
-			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
 			log.info("Opening Edit NDC screen (After Review Return)");
 			product.clickEdit(currentEntryName);
 			product.waitForLoading();
@@ -284,7 +285,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "Click_Review_For_ADD_NDC" })
 	public void Click_Review_For_Add_NDC() throws Throwable {
 
-		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 		log.info("--- Initiating Add NDC Review Flow for: {} ---", currentEntryName);
 		performReview(REVIEW_REMARKS, "Product reviewed successfully");
 		sa.assertAll();
@@ -292,13 +293,13 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Click_Approve_Return_And_Edit_And_Review_For_ADD_NDC" })
 	public void Click_Approve_Return_And_Edit_And_Review_For_Add_NDC() throws Throwable {
-		if (PRODUCT_INACTIVE_REJECT_IN_APPROVE_ACTION != null
-				&& PRODUCT_INACTIVE_REJECT_IN_APPROVE_ACTION.equalsIgnoreCase("yes")) {
-				switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+		if (PRODUCT_RETURN_ACTION_IN_APPROVE != null
+				&& PRODUCT_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
+				switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
 			freezeStep();
 			log.info("--- Initiating Add NDC Approve Return Flow for: {} ---", currentEntryName);
 			performReturnApprove(APPROVE_RETURN_REMARKS, "Product returned successfully");
-			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
 			log.info("Opening Edit NDC screen (After Approve Return)");
 			freezeStep();
 			product.clickEdit(currentEntryName);
@@ -442,7 +443,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Click_Approve_For_ADD_NDC" })
 	public void Click_Approve_For_Add_NDC() throws Throwable {
-			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
 		
 		log.info("--- Initiating Add NDC Approve Flow for: {} ---", currentEntryName);
 		performApprove(APPROVE_REMARKS,"Product approved successfully");
@@ -452,7 +453,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "ClickInactive" })
 	public void Click_Inactive() throws Throwable {
-		switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+		switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
 		log.info("--- Performing Inactive for: {} ---", currentEntryName);
 		performInactive(INACTIVE_REMARKS, "Product Inactive Request initiated successfully");
 	}
@@ -460,7 +461,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "Product_Inactive_Review_Reject" })
 	public void Product_Inactive_Review_Reject() throws Throwable {
 		if (PRODUCT_INACTIVE_REJECT_IN_REVIEW_ACTION.equalsIgnoreCase("yes")) {
-			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 			log.info("--- Initiating Inactive Reject In Review Flow for: {} ---", currentEntryName);
 			log.info("Opening actions menu to access InActive Review/Reject");
 			currentReviewContext = "INACTIVE";
@@ -472,9 +473,8 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Product_Inactive_Review" })
 	public void Product_Inactive_Review() throws Throwable {
-		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 		log.info("--- Initiating Inactive Review Flow for: {} ---", currentEntryName);
-		freezeStep();
 		currentReviewContext = "INACTIVE";
 		performReview(INACTIVE_REVIEW__REMARKS, "Product Reviewed successfully");
 		currentReviewContext = "";
@@ -485,7 +485,8 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "Product_Inactive_Approve_Reject" })
 	public void Product_Inactive_Approve_Reject() throws Throwable {
 		if (PRODUCT_INACTIVE_REJECT_IN_APPROVE_ACTION.equalsIgnoreCase("yes")) {
-			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
+			freezeStep();
 			log.info("--- Initiating Inactive Reject In ApproveFlow for: {} ---", currentEntryName);
 			log.info("Opening actions menu to access InActive Approve/Reject");
 			currentApproveContext = "INACTIVE";
@@ -497,10 +498,10 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Product_Inactive_Approve" })
 	public void Product_Inactive_Approve() throws Throwable {
-		switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+		switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
 		log.info("--- Initiating Inactive Approve Flow for: {} ---", currentEntryName);
 		currentApproveContext = "INACTIVE";
-		performReview(INACTIVE_REVIEW__REMARKS, "Product Reviewed successfully");
+		performApprove(INACTIVE_APPROVE_REMARKS, "Product Inactivated successfully");
 		currentApproveContext = "";
 		resumeStep();
 		sa.assertAll();
@@ -508,7 +509,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "ClickActive" })
 	public void Click_Active() throws Throwable {
-		switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+		switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
 		log.info("--- Performing Active for: {} ---", currentEntryName);
 		performActive(ACTIVE_REMARKS, "Product active request initiated successfully");
 	}
@@ -516,7 +517,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "Product_Active_Review_Reject" })
 	public void Product_Active_Review_Reject() throws Throwable {
 		if (PRODUCT_ACTIVE_REJECT_IN_REVIEW_ACTION.equalsIgnoreCase("yes")) {
-			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 			log.info("--- Initiating Active Reject In Review Flow for: {} ---", currentEntryName);
 			log.info("Opening actions menu to access Active Review/Reject");
 			currentReviewContext = "ACTIVE";
@@ -529,7 +530,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Product_Active_Review" })
 	public void Product_Active_Review() throws Throwable {
-		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+		switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 		log.info("--- Initiating Active Review Flow for: {} ---", currentEntryName);
 
 		currentReviewContext = "ACTIVE";
@@ -542,7 +543,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "Product_Active_Approve_Reject" })
 	public void Product_Active_Approve_Reject() throws Throwable {
 		if (PRODUCT_ACTIVE_REJECT_IN_APPROVE_ACTION.equalsIgnoreCase("yes")) {
-			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+			switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
 			log.info("--- Initiating Active Reject In Approve Flow for: {} ---", currentEntryName);
 			freezeStep();
 			log.info("Opening actions menu to access Active Approve/Reject");
@@ -555,12 +556,10 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 
 	@Test(groups = { "Product_Active_Approve" })
 	public void Product_Active_Approve() throws Throwable {
-		switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+		switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
 		log.info("--- Initiating Active Approve Flow for: {} ---", currentEntryName);
-
-
 		currentApproveContext = "ACTIVE";
-		performApprove(ACTIVE_APPROVE_REMARKS, "Product active request reviewed successfully");
+		performApprove(ACTIVE_APPROVE_REMARKS, "Product activated successfully");
 		currentApproveContext = "";
 		resumeStep();
 		sa.assertAll();
@@ -569,10 +568,11 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "ClickActionsRep" })
 	public void Click_Actions_1() throws Throwable {
 		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
 		}
 		actionIterationCount++;
 		if(actionIterationCount==3){
+			Click_Actions();
 		}
 		else {
 		nextStep();}
@@ -582,7 +582,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "ClickActionsRep" })
 	public void Click_Actions_2() throws Throwable {
 		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+			switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
 		}
 		Click_Actions();
 	}
@@ -590,7 +590,7 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 	@Test(groups = { "ClickActionsRep" })
 	public void Click_Actions_3() throws Throwable {
 		if (!ACTIONSPERFORMEDBY.equalsIgnoreCase("single")) {
-			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+			switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
 		}
 		Click_Actions();
 	}
@@ -660,10 +660,6 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 		// Not implemented for AkronQuickProduct explicitly
 	}
 
-	@Override
-	protected void beforeClickActionsScreenshot() {
-		nextStep();
-	}
 	
 	@Override
 	protected void reviewMenuClick() {
@@ -713,6 +709,13 @@ public class AkronProduct_TC extends OQBaseModule_TC {
 		if(activeIterationCount==1)
 		nextStep();
 	}
+	
+	@Override
+	protected void beforeLogout() {
+		nextStep();
+	}
+
+	
 	
 	
 

@@ -4,6 +4,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <parameter name="configFile" value="oqsecuritygroup.properties"/>
+    <parameter name="createCsvFile" value="SecurityGroup_Create.csv"/>
     <classes>
       <class name="testCasesForOQProjects.SecurityGroup_TC">
         <methods>
@@ -12,7 +13,7 @@
           <include name="userLoginBeforeCreate"/>
           <include name="moduleClick"/>
           <include name="Creation_Of_SecurityGroup"/>
-          <include name="Click_Actions_After_Create"/>
+          <include name="Click_Actions1"/>
           <include name="Click_View"/>
           <include name="securitygroup_Return_and_Edit"/>
           <include name="securitygroup_Approve"/>
