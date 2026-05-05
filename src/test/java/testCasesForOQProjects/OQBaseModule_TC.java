@@ -196,7 +196,7 @@ public abstract class OQBaseModule_TC extends BaseClass {
 	protected void switchUserIfMulti(String username, String password, String titlename) throws Throwable {
 		if (!ACTIONSPERFORMEDBY_VAL.equalsIgnoreCase("single")) {
 			String[] path = getNavigationPath();
-			pageObject.switchUser(username, password,titlename, PC_DB_NAME_VAL, path);
+			pageObject.switchUser(username, password, PC_DB_NAME_VAL, titlename, path);
 		}
 	}
 

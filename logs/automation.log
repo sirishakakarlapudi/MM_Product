@@ -46988,3 +46988,434 @@ Session ID: a8e663cdbb8b3b44645419fab2c0900e
 2026-04-21 17:29:48 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260421_172948.dump
 2026-04-21 17:29:49 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/AkronBOM.docx
 2026-04-21 17:29:49 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-04-28 10:17:00 INFO  UserManagement_TC - --- Starting UserManagement Test Case Setup with config: oqusermanagement.properties ---
+2026-04-28 10:17:00 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-04-28 10:17:00 INFO  UserManagement_TC - 📸 Processing screenshot template and headers...
+2026-04-28 10:17:01 INFO  ScreenshotUtil - 📊 Script initialized: 4.4 (Step counter reset to 0)
+2026-04-28 10:17:11 INFO  UserManagement_TC - Setup completed. Screenshots enabled: true
+2026-04-28 10:17:13 INFO  UserManagement_TC - Navigating to App URL: http:/localhost:9080/login
+2026-04-28 10:17:13 INFO  UserManagement_TC - Executing the flow with single/multiple : single
+2026-04-28 10:17:13 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-04-28 10:17:13 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-04-28 10:17:13 INFO  UserManagement - Logging in as: admin
+2026-04-28 10:17:13 INFO  ScreenshotUtil - 📍 Current Step set to: 4.4.1
+2026-04-28 10:17:18 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:17:19 INFO  UserManagement_TC - --- Clicking Module Navigation ---
+2026-04-28 10:17:20 INFO  UserManagement_TC - Clicked on Title: MASTERS
+2026-04-28 10:17:21 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:17:23 INFO  UserManagement_TC - Clicked on Master Module: User Management
+2026-04-28 10:17:24 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:17:26 INFO  UserManagement_TC - Clicked on Sub Master Module: Users List
+2026-04-28 10:17:26 INFO  UserManagement - Loader displayed: true
+2026-04-28 10:17:38 INFO  ScreenshotUtil - 📍 Current Step set to: 4.4.2
+2026-04-28 10:17:40 INFO  UserManagement_TC - --- Navigating to User Creation Screen ---
+2026-04-28 10:17:40 INFO  UserManagement_TC - --- Creating User: OQ-006 ---
+2026-04-28 10:17:53 INFO  UserManagement_TC - --- Executing Final Logout ---
+2026-04-28 10:17:56 INFO  UserManagement_TC - Clicked logout button
+2026-04-28 10:17:57 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:18:10 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/UserManagement.docx
+2026-04-28 10:18:10 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-04-28 10:18:56 INFO  UserManagement_TC - --- Starting UserManagement Test Case Setup with config: oqusermanagement.properties ---
+2026-04-28 10:18:56 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-04-28 10:18:56 INFO  UserManagement_TC - 📸 Processing screenshot template and headers...
+2026-04-28 10:18:57 INFO  ScreenshotUtil - 📊 Script initialized: 4.4 (Step counter reset to 0)
+2026-04-28 10:18:58 INFO  UserManagement_TC - Setup completed. Screenshots enabled: true
+2026-04-28 10:18:59 INFO  UserManagement_TC - Navigating to App URL: http:/localhost:9080/login
+2026-04-28 10:18:59 INFO  UserManagement_TC - Executing the flow with single/multiple : single
+2026-04-28 10:18:59 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-04-28 10:19:00 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-04-28 10:19:00 INFO  UserManagement - Logging in as: admin
+2026-04-28 10:19:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.4.1
+2026-04-28 10:19:05 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:19:05 INFO  UserManagement_TC - --- Clicking Module Navigation ---
+2026-04-28 10:19:07 INFO  UserManagement_TC - Clicked on Title: MASTERS
+2026-04-28 10:19:07 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:19:10 INFO  UserManagement_TC - Clicked on Master Module: User Management
+2026-04-28 10:19:10 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:19:12 INFO  UserManagement_TC - Clicked on Sub Master Module: Users List
+2026-04-28 10:19:12 INFO  UserManagement - Loader displayed: true
+2026-04-28 10:19:25 INFO  ScreenshotUtil - 📍 Current Step set to: 4.4.2
+2026-04-28 10:19:26 INFO  UserManagement_TC - --- Navigating to User Creation Screen ---
+2026-04-28 10:19:26 INFO  UserManagement_TC - --- Creating User: OQ-006 ---
+2026-04-28 10:19:39 INFO  UserManagement_TC - --- Executing Final Logout ---
+2026-04-28 10:19:42 INFO  UserManagement_TC - Clicked logout button
+2026-04-28 10:19:43 INFO  UserManagement - Loader displayed: false
+2026-04-28 10:19:56 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/UserManagement.docx
+2026-04-28 10:19:56 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-05-05 12:24:36 INFO  AkronBOM_TC - --- Starting Akron BOM Test Case Setup with config: oqakronbom.properties ---
+2026-05-05 12:24:36 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-05-05 12:24:37 INFO  ScreenshotUtil - 📊 Script initialized: 4.1 (Step counter reset to 0)
+2026-05-05 12:24:41 INFO  AkronBOM_TC - Navigating to App URL: http:/localhost:8080/login
+2026-05-05 12:24:41 INFO  AkronBOM_TC - Executing the flow with single/multiple : multiple
+2026-05-05 12:24:41 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 12:24:42 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 12:24:42 INFO  AkronBOM - Logging in as: test4
+2026-05-05 12:24:42 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-05-05 12:24:48 INFO  AkronBOM - Loader displayed: false
+2026-05-05 12:24:48 INFO  AkronBOM_TC - --- Clicking Module Navigation ---
+2026-05-05 12:24:50 INFO  AkronBOM_TC - Clicked on Title: MM
+2026-05-05 12:24:50 INFO  AkronBOM - Loader displayed: true
+2026-05-05 12:25:00 INFO  AkronBOM - Loader displayed: false
+2026-05-05 12:25:00 INFO  AkronBOM_TC - --- Executing Creation of BOM ---
+2026-05-05 12:25:00 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 12:25:00 INFO  AkronBOM_TC - --- Viewing oqakronbom.properties: null ---
+2026-05-05 12:25:00 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-05-05 12:25:00 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 12:25:00 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 12:25:00 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 12:25:00 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 12:25:00 INFO  AkronBOM - Already logged in as test4, skipping switch.
+2026-05-05 12:25:00 INFO  AkronBOM_TC - --- Executing Final Logout ---
+2026-05-05 12:25:00 INFO  AkronBOM_TC - --- Initiating Post-Test Database Backup ---
+2026-05-05 12:25:00 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-05-05 12:25:00 INFO  DatabaseBackupUtil - Created backup subdirectory: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1
+2026-05-05 12:25:00 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_122500.dump" pc-akron-prod]
+2026-05-05 12:25:01 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_122500.dump
+2026-05-05 12:25:01 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-05-05 12:25:01 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_122501.dump" masters-akron-prod]
+2026-05-05 12:25:02 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_122501.dump
+2026-05-05 12:25:02 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-05-05 12:25:02 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_122502.dump" mm-akron-prod]
+2026-05-05 12:25:02 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_122502.dump
+2026-05-05 12:25:03 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/AkronBOM.docx
+2026-05-05 12:25:03 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-05-05 12:25:48 INFO  AkronBOM_TC - --- Starting Akron BOM Test Case Setup with config: oqakronbom.properties ---
+2026-05-05 12:25:49 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-05-05 12:25:49 INFO  ScreenshotUtil - 📊 Script initialized: 4.1 (Step counter reset to 0)
+2026-05-05 12:25:52 INFO  AkronBOM_TC - Navigating to App URL: http:/localhost:8080/login
+2026-05-05 12:25:52 INFO  AkronBOM_TC - Executing the flow with single/multiple : multiple
+2026-05-05 12:25:52 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 12:25:52 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 12:25:52 INFO  AkronBOM - Logging in as: test4
+2026-05-05 12:25:52 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-05-05 12:25:58 INFO  AkronBOM - Loader displayed: false
+2026-05-05 12:25:59 INFO  AkronBOM_TC - --- Clicking Module Navigation ---
+2026-05-05 12:26:00 INFO  AkronBOM_TC - Clicked on Title: MM
+2026-05-05 12:26:01 INFO  AkronBOM - Loader displayed: true
+2026-05-05 12:26:14 INFO  AkronBOM_TC - Clicked on Master Module: Bill Of Materials
+2026-05-05 12:26:15 INFO  AkronBOM - Loader displayed: false
+2026-05-05 12:26:15 INFO  AkronBOM_TC - --- Executing Creation of BOM ---
+2026-05-05 12:26:18 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-05-05 12:26:18 INFO  AkronBOM_TC - --- Filling BOM Header Details ---
+2026-05-05 12:26:24 INFO  AkronBOM_TC - --- Filling BOM Material Items ---
+2026-05-05 12:26:26 INFO  AkronBOM - Clicked on the latest element.
+2026-05-05 12:26:26 INFO  AkronBOM - Entered value '20' into the latest element.
+2026-05-05 12:26:26 INFO  AkronBOM - Entered value '1' into the latest element.
+2026-05-05 12:26:28 INFO  AkronBOM - Clicked on the latest element.
+2026-05-05 12:26:30 INFO  AkronBOM - Clicked on the latest element.
+2026-05-05 12:26:31 INFO  AkronBOM - Entered value '30' into the latest element.
+2026-05-05 12:26:31 INFO  AkronBOM - Entered value '1' into the latest element.
+2026-05-05 12:26:39 INFO  AkronBOM - Entered authentication password
+2026-05-05 12:26:41 INFO  AkronBOM - Clicked Authenticate
+2026-05-05 12:26:44 ERROR SoftAssertionUtil - ❌ Created Toaster message mismatch for: Bill Of Materials created succesfully [Expected: Bill Of Materials created successfully, Actual: Bill Of Materials created succesfully]
+2026-05-05 12:26:44 ERROR SoftAssertionUtil - ❌❌❌ ASSERTION FAILURES DETECTED ❌❌❌
+2026-05-05 12:26:44 ERROR SoftAssertionUtil - ═══════════════════════════════════════════════════════
+2026-05-05 12:26:44 ERROR SoftAssertionUtil - Failure 1: Created Toaster message mismatch for: Bill Of Materials created succesfully expected [Bill Of Materials created successfully] but found [Bill Of Materials created succesfully]
+2026-05-05 12:26:44 ERROR SoftAssertionUtil - ═══════════════════════════════════════════════════════
+2026-05-05 12:26:44 ERROR SoftAssertionUtil - ❌❌❌ The following asserts failed: ❌❌❌
+2026-05-05 12:26:44 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 12:26:47 INFO  AkronBOM - Logged out previous user
+2026-05-05 12:26:48 INFO  AkronBOM - Loader displayed: false
+2026-05-05 12:26:48 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/MM
+2026-05-05 12:26:48 INFO  AkronBOM_TC - --- Viewing oqakronbom.properties: p-12 ---
+2026-05-05 12:26:48 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-05-05 12:26:48 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 12:26:48 INFO  AkronBOM_TC - Opening actions menu to access Review/Return
+2026-05-05 12:26:48 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 12:26:48 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 12:27:10 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 12:27:30 INFO  AkronBOM - --- Switching User to: test4 ---
+2026-05-05 12:27:50 INFO  AkronBOM_TC - --- Executing Final Logout ---
+2026-05-05 12:28:10 INFO  AkronBOM_TC - --- Initiating Post-Test Database Backup ---
+2026-05-05 12:28:10 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-05-05 12:28:10 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_122810.dump" pc-akron-prod]
+2026-05-05 12:28:10 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_122810.dump
+2026-05-05 12:28:10 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-05-05 12:28:10 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_122810.dump" masters-akron-prod]
+2026-05-05 12:28:11 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_122810.dump
+2026-05-05 12:28:11 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-05-05 12:28:11 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_122811.dump" mm-akron-prod]
+2026-05-05 12:28:11 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_122811.dump
+2026-05-05 12:28:12 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/AkronBOM.docx
+2026-05-05 12:28:12 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-05-05 13:14:09 INFO  AkronBOM_TC - --- Starting Akron BOM Test Case Setup with config: oqakronbom.properties ---
+2026-05-05 13:14:09 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-05-05 13:14:11 INFO  ScreenshotUtil - 📊 Script initialized: 4.1 (Step counter reset to 0)
+2026-05-05 13:14:14 INFO  AkronBOM_TC - Navigating to App URL: http:/localhost:8080/login
+2026-05-05 13:14:14 INFO  AkronBOM_TC - Executing the flow with single/multiple : multiple
+2026-05-05 13:14:14 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:14:15 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:14:15 INFO  AkronBOM - Logging in as: test4
+2026-05-05 13:14:15 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-05-05 13:14:20 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:14:21 INFO  AkronBOM_TC - --- Clicking Module Navigation ---
+2026-05-05 13:14:22 INFO  AkronBOM_TC - Clicked on Title: MM
+2026-05-05 13:14:23 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:14:26 INFO  AkronBOM_TC - Clicked on Master Module: Bill Of Materials
+2026-05-05 13:14:27 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:14:27 INFO  AkronBOM_TC - --- Executing Creation of BOM ---
+2026-05-05 13:14:30 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-05-05 13:14:30 INFO  AkronBOM_TC - --- Filling BOM Header Details ---
+2026-05-05 13:14:37 INFO  AkronBOM_TC - --- Filling BOM Material Items ---
+2026-05-05 13:14:38 INFO  AkronBOM - Clicked on the latest element.
+2026-05-05 13:14:39 INFO  AkronBOM - Entered value '20' into the latest element.
+2026-05-05 13:14:39 INFO  AkronBOM - Entered value '1' into the latest element.
+2026-05-05 13:14:40 INFO  AkronBOM - Clicked on the latest element.
+2026-05-05 13:14:43 INFO  AkronBOM - Clicked on the latest element.
+2026-05-05 13:14:43 INFO  AkronBOM - Entered value '30' into the latest element.
+2026-05-05 13:14:43 INFO  AkronBOM - Entered value '1' into the latest element.
+2026-05-05 13:14:51 INFO  AkronBOM - Entered authentication password
+2026-05-05 13:14:53 INFO  AkronBOM - Clicked Authenticate
+2026-05-05 13:14:56 ERROR SoftAssertionUtil - ❌ Created Toaster message mismatch for: Bill Of Materials created succesfully [Expected: Bill Of Materials created successfully, Actual: Bill Of Materials created succesfully]
+2026-05-05 13:14:56 ERROR SoftAssertionUtil - ❌❌❌ ASSERTION FAILURES DETECTED ❌❌❌
+2026-05-05 13:14:56 ERROR SoftAssertionUtil - ═══════════════════════════════════════════════════════
+2026-05-05 13:14:56 ERROR SoftAssertionUtil - Failure 1: Created Toaster message mismatch for: Bill Of Materials created succesfully expected [Bill Of Materials created successfully] but found [Bill Of Materials created succesfully]
+2026-05-05 13:14:56 ERROR SoftAssertionUtil - ═══════════════════════════════════════════════════════
+2026-05-05 13:14:56 ERROR SoftAssertionUtil - ❌❌❌ The following asserts failed: ❌❌❌
+2026-05-05 13:14:56 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 13:15:00 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:15:00 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:15:00 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:15:01 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:15:01 INFO  AkronBOM - Logging in as: test5
+2026-05-05 13:15:01 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-05-05 13:15:07 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:15:08 INFO  AkronBOM - --- Clicking Module Navigation ---
+2026-05-05 13:15:10 INFO  AkronBOM - Clicked on Title
+2026-05-05 13:15:10 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:15:23 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:15:25 INFO  AkronBOM - Navigated to Module: Bill Of Materials
+2026-05-05 13:15:25 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:15:35 INFO  AkronBOM_TC - --- Attempting to open Actions Menu (Index 1) for: p-12 ---
+2026-05-05 13:15:36 INFO  AkronBOM_TC - --- Viewing oqakronbom.properties: p-12 ---
+2026-05-05 13:15:36 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-05-05 13:15:36 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 13:15:36 INFO  AkronBOM_TC - Opening actions menu to access Review/Return
+2026-05-05 13:15:36 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 13:15:36 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 13:15:39 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:15:40 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:15:40 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:15:40 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:15:40 INFO  AkronBOM - Logging in as: test6
+2026-05-05 13:15:40 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-05-05 13:15:47 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:15:48 INFO  AkronBOM - --- Clicking Module Navigation ---
+2026-05-05 13:15:48 ERROR AkronBOM - Arrow capture failed
+org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //h5[normalize-space()='MM (Material Management)']
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168) ~[selenium-remote-driver-4.32.0.jar:?]
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59) ~[selenium-remote-driver-4.32.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368) ~[selenium-remote-driver-4.32.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362) ~[selenium-remote-driver-4.32.0.jar:?]
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68) ~[selenium-support-4.32.0.jar:?]
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38) ~[selenium-support-4.32.0.jar:?]
+	at jdk.proxy2/jdk.proxy2.$Proxy31.getWrappedElement(Unknown Source) ~[?:?]
+	at org.openqa.selenium.remote.WebElementToJsonConverter.apply(WebElementToJsonConverter.java:48) ~[selenium-remote-driver-4.32.0.jar:?]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024) ~[?:?]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[?:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:474) ~[selenium-remote-driver-4.32.0.jar:?]
+	at utilities.HelperMethods.captureWithPointer(HelperMethods.java:148) ~[classes/:?]
+	at utilities.HelperMethods.clickWithArrow(HelperMethods.java:167) ~[classes/:?]
+	at utilities.HelperMethods.waitForElementandClick(HelperMethods.java:41) ~[classes/:?]
+	at pageObjects.BasePage.click_titleMM(BasePage.java:187) ~[test-classes/:?]
+	at pageObjects.BasePage.click_titleClick(BasePage.java:332) ~[test-classes/:?]
+	at pageObjects.BasePage.switchUser(BasePage.java:308) ~[test-classes/:?]
+	at testCasesForOQProjects.OQBaseModule_TC.switchUserIfMulti(OQBaseModule_TC.java:199) ~[test-classes/:?]
+	at testCasesForOQProjects.AkronBOM_TC.bom_Approve_Return_and_Edit_and_Review(AkronBOM_TC.java:138) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134) ~[org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) [?:?]
+	at org.testng.TestRunner.privateRun(TestRunner.java:741) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.TestRunner.run(TestRunner.java:616) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.TestNG.runSuites(TestNG.java:1112) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.TestNG.run(TestNG.java:1079) [org.testng_7.11.0.r202503091654.jar:7.11.0]
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115) [testng-remote.jar:?]
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293) [testng-remote.jar:?]
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91) [testng-remote.jar:?]
+2026-05-05 13:15:58 INFO  AkronBOM - Already logged in as test6, skipping switch.
+2026-05-05 13:15:58 INFO  AkronBOM - --- Switching User to: test4 ---
+2026-05-05 13:16:08 INFO  AkronBOM_TC - --- Executing Final Logout ---
+2026-05-05 13:16:19 INFO  AkronBOM_TC - --- Initiating Post-Test Database Backup ---
+2026-05-05 13:16:19 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-05-05 13:16:19 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_131619.dump" pc-akron-prod]
+2026-05-05 13:16:19 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_131619.dump
+2026-05-05 13:16:19 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-05-05 13:16:19 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_131619.dump" masters-akron-prod]
+2026-05-05 13:16:20 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_131619.dump
+2026-05-05 13:16:20 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-05-05 13:16:20 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_131620.dump" mm-akron-prod]
+2026-05-05 13:16:21 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_131620.dump
+2026-05-05 13:16:22 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/AkronBOM.docx
+2026-05-05 13:16:22 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-05-05 13:20:35 INFO  AkronBOM_TC - --- Starting Akron BOM Test Case Setup with config: oqakronbom.properties ---
+2026-05-05 13:20:35 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-05-05 13:20:36 INFO  ScreenshotUtil - 📊 Script initialized: 4.1 (Step counter reset to 0)
+2026-05-05 13:20:40 INFO  AkronBOM_TC - Navigating to App URL: http:/localhost:8080/login
+2026-05-05 13:20:40 INFO  AkronBOM_TC - Executing the flow with single/multiple : multiple
+2026-05-05 13:20:40 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:20:40 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:20:40 INFO  AkronBOM - Logging in as: test4
+2026-05-05 13:20:40 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-05-05 13:20:45 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:20:46 INFO  AkronBOM_TC - --- Clicking Module Navigation ---
+2026-05-05 13:20:47 INFO  AkronBOM_TC - Clicked on Title: MM
+2026-05-05 13:20:48 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:21:02 INFO  AkronBOM_TC - Clicked on Master Module: Bill Of Materials
+2026-05-05 13:21:03 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:03 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 13:21:06 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:21:07 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:07 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:21:07 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:21:07 INFO  AkronBOM - Logging in as: test5
+2026-05-05 13:21:07 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-05-05 13:21:14 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:14 INFO  AkronBOM - --- Clicking Module Navigation ---
+2026-05-05 13:21:16 INFO  AkronBOM - Clicked on Title
+2026-05-05 13:21:16 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:21:29 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:31 INFO  AkronBOM - Navigated to Module: Bill Of Materials
+2026-05-05 13:21:31 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:32 INFO  AkronBOM_TC - --- Attempting to open Actions Menu (Index 1) for: null ---
+2026-05-05 13:21:32 INFO  AkronBOM_TC - --- Viewing oqakronbom.properties: null ---
+2026-05-05 13:21:32 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-05-05 13:21:33 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 13:21:33 INFO  AkronBOM_TC - Opening actions menu to access Review/Return
+2026-05-05 13:21:33 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 13:21:33 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 13:21:36 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:21:36 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:36 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:21:37 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:21:37 INFO  AkronBOM - Logging in as: test6
+2026-05-05 13:21:37 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-05-05 13:21:43 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:21:43 INFO  AkronBOM - Already logged in as test6, skipping switch.
+2026-05-05 13:21:43 INFO  AkronBOM - --- Switching User to: test4 ---
+2026-05-05 13:21:43 INFO  AkronBOM_TC - --- Executing Final Logout ---
+2026-05-05 13:21:43 INFO  AkronBOM_TC - --- Initiating Post-Test Database Backup ---
+2026-05-05 13:21:43 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-05-05 13:21:43 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_132143.dump" pc-akron-prod]
+2026-05-05 13:21:43 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_132143.dump
+2026-05-05 13:21:43 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-05-05 13:21:43 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_132143.dump" masters-akron-prod]
+2026-05-05 13:21:44 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_132143.dump
+2026-05-05 13:21:44 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-05-05 13:21:44 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_132144.dump" mm-akron-prod]
+2026-05-05 13:21:44 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_132144.dump
+2026-05-05 13:21:45 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/AkronBOM.docx
+2026-05-05 13:21:45 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)
+2026-05-05 13:23:30 INFO  AkronBOM_TC - --- Starting Akron BOM Test Case Setup with config: oqakronbom.properties ---
+2026-05-05 13:23:30 INFO  ScreenshotUtil - 📸 Screenshot capture is now: ENABLED
+2026-05-05 13:23:31 INFO  ScreenshotUtil - 📊 Script initialized: 4.1 (Step counter reset to 0)
+2026-05-05 13:23:34 INFO  AkronBOM_TC - Navigating to App URL: http:/localhost:8080/login
+2026-05-05 13:23:34 INFO  AkronBOM_TC - Executing the flow with single/multiple : multiple
+2026-05-05 13:23:34 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:23:35 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:23:35 INFO  AkronBOM - Logging in as: test4
+2026-05-05 13:23:35 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.1
+2026-05-05 13:23:40 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:23:40 INFO  AkronBOM_TC - --- Clicking Module Navigation ---
+2026-05-05 13:23:42 INFO  AkronBOM_TC - Clicked on Title: MM
+2026-05-05 13:23:43 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:23:56 INFO  AkronBOM_TC - Clicked on Master Module: Bill Of Materials
+2026-05-05 13:23:56 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:23:57 INFO  AkronBOM - --- Switching User to: test5 ---
+2026-05-05 13:24:00 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:24:00 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:00 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:24:01 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:24:01 INFO  AkronBOM - Logging in as: test5
+2026-05-05 13:24:01 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.2
+2026-05-05 13:24:07 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:08 INFO  AkronBOM - --- Clicking Module Navigation ---
+2026-05-05 13:24:10 INFO  AkronBOM - Clicked on Title
+2026-05-05 13:24:10 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:24:23 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:24 INFO  AkronBOM - Navigated to Module: Bill Of Materials
+2026-05-05 13:24:25 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:26 INFO  AkronBOM_TC - --- Attempting to open Actions Menu (Index 1) for: null ---
+2026-05-05 13:24:26 INFO  AkronBOM_TC - --- Viewing oqakronbom.properties: null ---
+2026-05-05 13:24:26 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.3
+2026-05-05 13:24:26 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 13:24:26 INFO  AkronBOM_TC - Opening actions menu to access Review/Return
+2026-05-05 13:24:26 INFO  AkronBOM - Already logged in as test5, skipping switch.
+2026-05-05 13:24:26 INFO  AkronBOM - --- Switching User to: test6 ---
+2026-05-05 13:24:29 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:24:30 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:30 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:24:30 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:24:30 INFO  AkronBOM - Logging in as: test6
+2026-05-05 13:24:30 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.4
+2026-05-05 13:24:37 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:37 INFO  AkronBOM - --- Clicking Module Navigation ---
+2026-05-05 13:24:39 INFO  AkronBOM - Clicked on Title
+2026-05-05 13:24:39 INFO  AkronBOM - Loader displayed: true
+2026-05-05 13:24:52 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:53 INFO  AkronBOM - Navigated to Module: Bill Of Materials
+2026-05-05 13:24:54 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:54 INFO  AkronBOM_TC - Opening actions menu to access Approve/Return
+2026-05-05 13:24:54 INFO  AkronBOM - Already logged in as test6, skipping switch.
+2026-05-05 13:24:55 INFO  AkronBOM - --- Switching User to: test4 ---
+2026-05-05 13:24:57 INFO  AkronBOM - Logged out previous user
+2026-05-05 13:24:58 INFO  AkronBOM - Loader displayed: false
+2026-05-05 13:24:58 INFO  DatabaseBackupUtil - Connecting to PostgreSQL DB: jdbc:postgresql://localhost:5432/pc-akron-prod
+2026-05-05 13:24:58 INFO  DatabaseBackupUtil - Executed update/delete. Rows affected: 0
+2026-05-05 13:24:58 INFO  AkronBOM - Logging in as: test4
+2026-05-05 13:24:58 INFO  ScreenshotUtil - 📍 Current Step set to: 4.1.5
+2026-05-05 13:25:08 ERROR AkronBOM - Failed to send keys to element: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=147.0.7727.138)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6f1031eff53d44edd8b220003def9349, findElement {using=css selector, value=input[autocomplete='username']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57960}, goog:processID: 28124, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57960/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6f1031eff53d44edd8b220003def9349
+2026-05-05 13:25:19 ERROR AkronBOM - Failed to send keys to element: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=147.0.7727.138)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6f1031eff53d44edd8b220003def9349, findElement {using=id, value=password}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57960}, goog:processID: 28124, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57960/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6f1031eff53d44edd8b220003def9349
+2026-05-05 13:25:29 INFO  AkronBOM_TC - --- Executing Final Logout ---
+2026-05-05 13:25:39 INFO  AkronBOM_TC - --- Initiating Post-Test Database Backup ---
+2026-05-05 13:25:39 INFO  DatabaseBackupUtil - --- Starting Database Backup for: pc-akron-prod (Script: 4.1) ---
+2026-05-05 13:25:39 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_132539.dump" pc-akron-prod]
+2026-05-05 13:25:40 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\pc-akron-prod_backup_20260505_132539.dump
+2026-05-05 13:25:40 INFO  DatabaseBackupUtil - --- Starting Database Backup for: masters-akron-prod (Script: 4.1) ---
+2026-05-05 13:25:40 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_132540.dump" masters-akron-prod]
+2026-05-05 13:25:40 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\masters-akron-prod_backup_20260505_132540.dump
+2026-05-05 13:25:40 INFO  DatabaseBackupUtil - --- Starting Database Backup for: mm-akron-prod (Script: 4.1) ---
+2026-05-05 13:25:40 INFO  DatabaseBackupUtil - Executing backup command: [cmd, /c, set PGPASSWORD=root&& "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -Fc -U postgres -h localhost -p 5432 -f "D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_132540.dump" mm-akron-prod]
+2026-05-05 13:25:41 INFO  DatabaseBackupUtil - ✅ Database backup successful! File saved at: D:\Automation\MM\MM_Product\src\test\resources\DB_Backups\4.1\mm-akron-prod_backup_20260505_132540.dump
+2026-05-05 13:25:41 INFO  ScreenshotUtil - ✅ Document saved: src/test/resources/MM Product Documents/AkronBOM.docx
+2026-05-05 13:25:41 INFO  ScreenshotUtil - ♻️ ScreenshotUtil state reset. (Step counter reset: true)

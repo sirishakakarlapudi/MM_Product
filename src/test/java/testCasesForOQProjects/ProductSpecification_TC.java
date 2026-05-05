@@ -114,7 +114,7 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
 
     @Test(groups = { "ClickActions" })
     public void Click_Actions1() throws Throwable {
-        switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+        switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
         log.info("--- Attempting to open Actions Menu (Index 1) for: {} ---", currentEntryName);
         productspecification.clickActions(currentEntryName, "1");
         log.info("Successfully opened Actions menu for {}", currentEntryName);
@@ -123,7 +123,7 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
 
     @Test(groups = { "ClickActions" })
     public void Click_Actions2() throws Throwable {
-        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
         log.info("--- Attempting to open Actions Menu (Index 1) for: {} ---", currentEntryName);
         productspecification.clickActions(currentEntryName, "1");
         log.info("Successfully opened Actions menu for {}", currentEntryName);
@@ -133,10 +133,10 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
     @Test(groups = { "productSpecReviewReturn_productSpecEdit" })
     public void productSpec_Review_Return_and_Edit() throws Throwable {
         if (PRODUCTSPEC_RETURN_ACTION_IN_REVIEW.equalsIgnoreCase("yes")) {
-            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL,TITLE_MODULE_VAL);
             performReturnReview(REVIEW_RETURN_REMARKS, "Product Specification returned successfully", "1");
             
-            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL,TITLE_MODULE_VAL);
             nextStep();
             performEdit(EDIT_SPECIFICATION_NUMBER_IN_REVIEW_RETURN, "Product Specification updated successfully", "1");
             sa.assertAll();
@@ -145,7 +145,7 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
 
     @Test(groups = { "productSpecReview" })
     public void productSpecReview() throws Throwable {
-        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+        switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL,TITLE_MODULE_VAL);
         performReview(REVIEW_REMARKS, "Product Specification reviewed successfully", "1");
         sa.assertAll();
     }
@@ -153,14 +153,14 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
     @Test(groups = { "productSpecApproveReturn_productSpecEdit_productSpecReview" })
     public void productSpec_Approve_Return_and_Edit_and_Review() throws Throwable {
         if (PRODUCTSPEC_RETURN_ACTION_IN_APPROVE.equalsIgnoreCase("yes")) {
-            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL,TITLE_MODULE_VAL);
             performReturnApprove(APPROVE_RETURN_REMARKS, "Product Specification returned successfully", "1");
             
-            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL,TITLE_MODULE_VAL);
             nextStep();
             performEdit(EDIT_SPECIFICATION_NUMBER_IN_APPROVE_RETURN, "Product Specification updated successfully", "1");
             
-            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
             performReview(REVIEW_REMARKS, "Product Specification reviewed successfully", "1");
             sa.assertAll();
         }
@@ -168,7 +168,7 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
 
     @Test(groups = { "productSpecApprove" })
     public void productSpecApprove() throws Throwable {
-        switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+        switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL, TITLE_MODULE_VAL);
         performApprove(APPROVE_REMARKS, "Product Specification approved successfully", "1");
         sa.assertAll();
     }
@@ -176,13 +176,13 @@ public class ProductSpecification_TC extends OQBaseModule_TC {
     @Test(groups = { "ProductSpecUpdate" })
     public void prodSpecUpdate() throws Throwable {
         if (PRODUCTSPEC_UPDATE_AFTER_APPROVE.equalsIgnoreCase("yes")) {
-            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL);
+            switchUserIfMulti(USERNAME1_VAL, PASSWORD1_VAL, TITLE_MODULE_VAL);
             performUpdate(UPDATE_NAME_OF_THE_TEST, UPDATE_SPECIFICATION, UPDATE_VALIDATION, "1");
             
-            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL);
+            switchUserIfMulti(USERNAME2_VAL, PASSWORD2_VAL, TITLE_MODULE_VAL);
             performReview(REVIEW_REMARKS, "Product Specification reviewed successfully", "2");
             
-            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL);
+            switchUserIfMulti(USERNAME3_VAL, PASSWORD3_VAL,TITLE_MODULE_VAL);
             performApprove(APPROVE_REMARKS, "Product Specification approved successfully", "2");
             sa.assertAll();
         }

@@ -52,6 +52,7 @@ public class AkronBOM_TC extends OQBaseModule_TC {
 		bom = new AkronBOM(driver);
 		this.pageObject = bom;
 		bom.setTableHeaders(TABLE_HEADERS);
+
 	}
 
 	@Test(groups = { "Creation" })
@@ -71,6 +72,7 @@ public class AkronBOM_TC extends OQBaseModule_TC {
 		bom.yieldTarget(YIELD_RANGE_TARGET);
 		bom.checkStandardBom(STANDARD_BOM);
 		capture();
+		
 
 		log.info("--- Filling BOM Material Items ---");
 		String[] materialCodes = MATERIAL_CODE.split(",");
@@ -86,6 +88,7 @@ public class AkronBOM_TC extends OQBaseModule_TC {
 			}
 		}
 		capture();
+		Thread.sleep(5000);
 		bom.clickSubmit();
 		capture();
 		bom.authenticate(bom.currentPassword);
@@ -168,6 +171,7 @@ public class AkronBOM_TC extends OQBaseModule_TC {
 	private void performUpdate(String... actions) throws Throwable {
 		bom.clickActions(combine(currentEntryName, actions));
 		capture();
+		nextStep();
 		bom.clickUpdate();
 		bom.waitForLoading();
 		capture();
@@ -188,7 +192,7 @@ public class AkronBOM_TC extends OQBaseModule_TC {
 
 	@Override
 	protected void performClickView() throws Throwable {
-		bom.clickView(currentEntryName);
+		bom.clickView(currentEntryName, "1");
 	}
 
 	@Override

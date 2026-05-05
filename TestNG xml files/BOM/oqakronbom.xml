@@ -13,7 +13,7 @@
 					<include name="url" />
 					<include name="userLoginBeforeCreate" />
 					<include name="moduleClick" />
-					<include name="Creation_Of_BOM" />
+				<!-- 	<include name="Creation_Of_BOM" /> -->
 					<include name="Click_Actions2" />
 					<include name="Click_View" />
 					<include name="bom_Review_Return_and_Edit" />
