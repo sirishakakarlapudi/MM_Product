@@ -71,7 +71,7 @@ public class AkronBOM_TC extends OQBaseModule_TC {
 		bom.yieldMaxRange(YIELD_RANGE_MAX);
 		bom.yieldTarget(YIELD_RANGE_TARGET);
 		bom.checkStandardBom(STANDARD_BOM);
-		capture();
+		capture(); 
 		
 
 		log.info("--- Filling BOM Material Items ---");
