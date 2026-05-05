@@ -1,171 +1,546 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="15" passed="13" failed="0" skipped="0">
+<testng-results ignored="4" total="16" passed="4" failed="8" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-10T12:58:51 IST" name="Suite" finished-at="2026-04-10T13:07:17 IST" duration-ms="505283">
+  <suite started-at="2026-05-05T13:23:30 IST" name="Suite" finished-at="2026-05-05T13:25:41 IST" duration-ms="131267">
     <groups>
       <group name="DB Back">
-        <method signature="OQBaseModule_TC.Database_Backup()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Database_Backup" class="testCasesForOQProjects.OQBaseModule_TC"/>
+        <method signature="OQBaseModule_TC.Database_Backup()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="Database_Backup" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- DB Back -->
-      <group name="productApproveReturn_productEdit_productReview">
-        <method signature="AkronQuickProduct_TC.product_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="product_Approve_Return_and_Edit_and_Review" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
-      </group> <!-- productApproveReturn_productEdit_productReview -->
+      <group name="bomApprove">
+        <method signature="AkronBOM_TC.bomApprove()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="bomApprove" class="testCasesForOQProjects.AkronBOM_TC"/>
+      </group> <!-- bomApprove -->
+      <group name="bomApproveReturn_bomEdit_bomReview">
+        <method signature="AkronBOM_TC.bom_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="bom_Approve_Return_and_Edit_and_Review" class="testCasesForOQProjects.AkronBOM_TC"/>
+      </group> <!-- bomApproveReturn_bomEdit_bomReview -->
       <group name="ClickActions">
-        <method signature="AkronQuickProduct_TC.Click_Actions2()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Click_Actions2" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
+        <method signature="AkronBOM_TC.Click_Actions2()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="Click_Actions2" class="testCasesForOQProjects.AkronBOM_TC"/>
       </group> <!-- ClickActions -->
-      <group name="Creation">
-        <method signature="AkronQuickProduct_TC.Creation_Of_Product()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Creation_Of_Product" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
-      </group> <!-- Creation -->
+      <group name="bomReviewReturn_bomEdit">
+        <method signature="AkronBOM_TC.bom_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="bom_Review_Return_and_Edit" class="testCasesForOQProjects.AkronBOM_TC"/>
+      </group> <!-- bomReviewReturn_bomEdit -->
       <group name="Logout">
-        <method signature="OQBaseModule_TC.Logout()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Logout" class="testCasesForOQProjects.OQBaseModule_TC"/>
+        <method signature="OQBaseModule_TC.Logout()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="Logout" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- Logout -->
-      <group name="duplicationcheck">
-        <method signature="AkronQuickProduct_TC.Duplication_Check()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Duplication_Check" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
-      </group> <!-- duplicationcheck -->
-      <group name="productReviewReturn_productEdit">
-        <method signature="AkronQuickProduct_TC.product_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="product_Review_Return_and_Edit" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
-      </group> <!-- productReviewReturn_productEdit -->
-      <group name="productReview">
-        <method signature="AkronQuickProduct_TC.productReview()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="productReview" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
-      </group> <!-- productReview -->
+      <group name="bomReview">
+        <method signature="AkronBOM_TC.bomReview()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="bomReview" class="testCasesForOQProjects.AkronBOM_TC"/>
+      </group> <!-- bomReview -->
       <group name="url">
-        <method signature="OQBaseModule_TC.url()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="url" class="testCasesForOQProjects.OQBaseModule_TC"/>
+        <method signature="OQBaseModule_TC.url()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="url" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- url -->
       <group name="userlogin">
-        <method signature="OQBaseModule_TC.userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="userLoginBeforeCreate" class="testCasesForOQProjects.OQBaseModule_TC"/>
+        <method signature="OQBaseModule_TC.userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="userLoginBeforeCreate" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- userlogin -->
       <group name="moduleselect">
-        <method signature="OQBaseModule_TC.moduleClick()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="moduleClick" class="testCasesForOQProjects.OQBaseModule_TC"/>
+        <method signature="OQBaseModule_TC.moduleClick()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="moduleClick" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- moduleselect -->
       <group name="ClickView">
-        <method signature="OQBaseModule_TC.Click_View()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="Click_View" class="testCasesForOQProjects.OQBaseModule_TC"/>
+        <method signature="OQBaseModule_TC.Click_View()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="Click_View" class="testCasesForOQProjects.OQBaseModule_TC"/>
       </group> <!-- ClickView -->
-      <group name="productApprove">
-        <method signature="AkronQuickProduct_TC.productApprove()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" name="productApprove" class="testCasesForOQProjects.AkronQuickProduct_TC"/>
-      </group> <!-- productApprove -->
+      <group name="BOMUpdate">
+        <method signature="AkronBOM_TC.bomUpdate()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" name="bomUpdate" class="testCasesForOQProjects.AkronBOM_TC"/>
+      </group> <!-- BOMUpdate -->
     </groups>
-    <test started-at="2026-04-10T12:58:51 IST" name="Test" finished-at="2026-04-10T13:07:17 IST" duration-ms="505283">
-      <class name="testCasesForOQProjects.AkronQuickProduct_TC">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:51 IST" name="setUp" finished-at="2026-04-10T12:58:54 IST" duration-ms="2842" status="PASS">
+    <test started-at="2026-05-05T13:23:30 IST" name="Test" finished-at="2026-05-05T13:25:41 IST" duration-ms="131267">
+      <class name="testCasesForOQProjects.AkronBOM_TC">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:30 IST" name="setUp" finished-at="2026-05-05T13:23:33 IST" duration-ms="2987" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[oqakronquickproduct.properties]]>
+                <![CDATA[oqakronbom.properties]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:54 IST" name="initSoftAssert" finished-at="2026-04-10T12:58:54 IST" duration-ms="14" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:33 IST" name="initSoftAssert" finished-at="2026-05-05T13:23:33 IST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="url()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:54 IST" name="url" finished-at="2026-04-10T12:58:55 IST" duration-ms="1020" status="PASS">
+        <test-method signature="url()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:33 IST" name="url" finished-at="2026-05-05T13:23:34 IST" duration-ms="1141" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- url -->
-        <test-method signature="userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:55 IST" name="userLoginBeforeCreate" finished-at="2026-04-10T12:59:02 IST" duration-ms="6621" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:34 IST" name="initSoftAssert" finished-at="2026-05-05T13:23:34 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSoftAssert -->
+        <test-method signature="userLoginBeforeCreate()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:34 IST" name="userLoginBeforeCreate" finished-at="2026-05-05T13:23:40 IST" duration-ms="6151" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userLoginBeforeCreate -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:58:55 IST" name="initSoftAssert" finished-at="2026-04-10T12:58:55 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:40 IST" name="initSoftAssert" finished-at="2026-05-05T13:23:40 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="moduleClick()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:02 IST" name="moduleClick" finished-at="2026-04-10T12:59:10 IST" duration-ms="8702" status="PASS">
+        <test-method signature="moduleClick()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:40 IST" name="moduleClick" finished-at="2026-05-05T13:23:57 IST" duration-ms="16475" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- moduleClick -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:02 IST" name="initSoftAssert" finished-at="2026-04-10T12:59:02 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initSoftAssert -->
-        <test-method signature="Creation_Of_Product()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:10 IST" name="Creation_Of_Product" finished-at="2026-04-10T12:59:51 IST" duration-ms="40132" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Creation_Of_Product -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:10 IST" name="initSoftAssert" finished-at="2026-04-10T12:59:10 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:51 IST" name="initSoftAssert" finished-at="2026-04-10T12:59:51 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initSoftAssert -->
-        <test-method signature="Click_Actions2()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T12:59:51 IST" name="Click_Actions2" finished-at="2026-04-10T13:00:19 IST" duration-ms="28218" status="PASS">
+        <test-method signature="Click_Actions2()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:57 IST" name="Click_Actions2" finished-at="2026-05-05T13:24:26 IST" duration-ms="28882" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Item not found in table: [null, 1]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Item not found in table: [null, 1]
+at utilities.HelperMethods.performTableActionGeneric(HelperMethods.java:418)
+at pageObjects.BasePage.clickActions(BasePage.java:385)
+at testCasesForOQProjects.AkronBOM_TC.Click_Actions2(AkronBOM_TC.java:113)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Click_Actions2 -->
-        <test-method signature="Click_View()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:19 IST" name="Click_View" finished-at="2026-04-10T13:00:26 IST" duration-ms="7404" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:23:57 IST" name="initSoftAssert" finished-at="2026-05-05T13:23:57 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSoftAssert -->
+        <test-method signature="Click_View()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="Click_View" finished-at="2026-05-05T13:24:26 IST" duration-ms="180" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Item not found in table: [null, 1]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Item not found in table: [null, 1]
+at utilities.HelperMethods.performTableActionGeneric(HelperMethods.java:418)
+at pageObjects.BasePage.clickView(BasePage.java:371)
+at testCasesForOQProjects.AkronBOM_TC.performClickView(AkronBOM_TC.java:195)
+at testCasesForOQProjects.OQBaseModule_TC.Click_View(OQBaseModule_TC.java:158)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Click_View -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:19 IST" name="initSoftAssert" finished-at="2026-04-10T13:00:19 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="initSoftAssert" finished-at="2026-05-05T13:24:26 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="product_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:26 IST" name="product_Review_Return_and_Edit" finished-at="2026-04-10T13:01:42 IST" duration-ms="76057" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- product_Review_Return_and_Edit -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:00:26 IST" name="initSoftAssert" finished-at="2026-04-10T13:00:26 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="initSoftAssert" finished-at="2026-05-05T13:24:26 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:01:42 IST" name="initSoftAssert" finished-at="2026-04-10T13:01:42 IST" duration-ms="2" status="PASS">
+        <test-method signature="bom_Review_Return_and_Edit()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="bom_Review_Return_and_Edit" finished-at="2026-05-05T13:24:26 IST" duration-ms="184" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Item not found in table: [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Item not found in table: [null]
+at utilities.HelperMethods.performTableActionGeneric(HelperMethods.java:418)
+at pageObjects.BasePage.clickActions(BasePage.java:385)
+at testCasesForOQProjects.OQBaseModule_TC.noScreenshotForActionsInReviewReturn(OQBaseModule_TC.java:365)
+at testCasesForOQProjects.OQBaseModule_TC.performReturnReview(OQBaseModule_TC.java:374)
+at testCasesForOQProjects.AkronBOM_TC.bom_Review_Return_and_Edit(AkronBOM_TC.java:122)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- bom_Review_Return_and_Edit -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="initSoftAssert" finished-at="2026-05-05T13:24:26 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="productReview()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:01:42 IST" name="productReview" finished-at="2026-04-10T13:02:33 IST" duration-ms="50365" status="PASS">
+        <test-method signature="bomReview()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="bomReview" finished-at="2026-05-05T13:24:26 IST" duration-ms="247" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Item not found in table: [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Item not found in table: [null]
+at utilities.HelperMethods.performTableActionGeneric(HelperMethods.java:418)
+at pageObjects.BasePage.clickActions(BasePage.java:385)
+at testCasesForOQProjects.OQBaseModule_TC.performReview(OQBaseModule_TC.java:279)
+at testCasesForOQProjects.AkronBOM_TC.bomReview(AkronBOM_TC.java:132)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- productReview -->
-        <test-method signature="product_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:02:33 IST" name="product_Approve_Return_and_Edit_and_Review" finished-at="2026-04-10T13:05:31 IST" duration-ms="178042" status="PASS">
+        </test-method> <!-- bomReview -->
+        <test-method signature="bom_Approve_Return_and_Edit_and_Review()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="bom_Approve_Return_and_Edit_and_Review" finished-at="2026-05-05T13:24:54 IST" duration-ms="27898" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Item not found in table: [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Item not found in table: [null]
+at utilities.HelperMethods.performTableActionGeneric(HelperMethods.java:418)
+at pageObjects.BasePage.clickActions(BasePage.java:385)
+at testCasesForOQProjects.OQBaseModule_TC.performReturnApprove(OQBaseModule_TC.java:394)
+at testCasesForOQProjects.AkronBOM_TC.bom_Approve_Return_and_Edit_and_Review(AkronBOM_TC.java:140)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- product_Approve_Return_and_Edit_and_Review -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:02:33 IST" name="initSoftAssert" finished-at="2026-04-10T13:02:33 IST" duration-ms="0" status="PASS">
+        </test-method> <!-- bom_Approve_Return_and_Edit_and_Review -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:26 IST" name="initSoftAssert" finished-at="2026-05-05T13:24:26 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="productApprove()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:05:31 IST" name="productApprove" finished-at="2026-04-10T13:06:21 IST" duration-ms="50101" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- productApprove -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:05:31 IST" name="initSoftAssert" finished-at="2026-04-10T13:05:31 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:54 IST" name="initSoftAssert" finished-at="2026-05-05T13:24:54 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:06:21 IST" name="initSoftAssert" finished-at="2026-04-10T13:06:21 IST" duration-ms="2" status="PASS">
+        <test-method signature="bomApprove()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:54 IST" name="bomApprove" finished-at="2026-05-05T13:24:55 IST" duration-ms="159" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Item not found in table: [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Item not found in table: [null]
+at utilities.HelperMethods.performTableActionGeneric(HelperMethods.java:418)
+at pageObjects.BasePage.clickActions(BasePage.java:385)
+at testCasesForOQProjects.OQBaseModule_TC.performApprove(OQBaseModule_TC.java:327)
+at testCasesForOQProjects.AkronBOM_TC.bomApprove(AkronBOM_TC.java:152)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- bomApprove -->
+        <test-method signature="bomUpdate()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:55 IST" name="bomUpdate" finished-at="2026-05-05T13:25:29 IST" duration-ms="34425" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchWindowException">
+            <message>
+              <![CDATA[no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=147.0.7727.138)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6f1031eff53d44edd8b220003def9349, findElement {using=xpath, value=//button[@type='submit']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57960}, goog:processID: 28124, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57960/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6f1031eff53d44edd8b220003def9349]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=147.0.7727.138)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6f1031eff53d44edd8b220003def9349, findElement {using=xpath, value=//button[@type='submit']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57960}, goog:processID: 28124, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57960/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6f1031eff53d44edd8b220003def9349
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at jdk.proxy2/jdk.proxy2.$Proxy31.toString(Unknown Source)
+at java.base/java.lang.String.valueOf(String.java:4454)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.toString(ExpectedConditions.java:295)
+at java.base/java.lang.String.valueOf(String.java:4454)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:225)
+at utilities.HelperMethods.waitForElementandClick(HelperMethods.java:40)
+at pageObjects.BasePage.login(BasePage.java:276)
+at pageObjects.BasePage.switchUser(BasePage.java:307)
+at testCasesForOQProjects.OQBaseModule_TC.switchUserIfMulti(OQBaseModule_TC.java:199)
+at testCasesForOQProjects.AkronBOM_TC.bomUpdate(AkronBOM_TC.java:159)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- bomUpdate -->
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:24:55 IST" name="initSoftAssert" finished-at="2026-05-05T13:24:55 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="Duplication_Check()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:06:21 IST" name="Duplication_Check" finished-at="2026-04-10T13:07:04 IST" duration-ms="42651" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Duplication_Check -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:04 IST" name="initSoftAssert" finished-at="2026-04-10T13:07:04 IST" duration-ms="3" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:25:29 IST" name="initSoftAssert" finished-at="2026-05-05T13:25:29 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method signature="Logout()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:04 IST" name="Logout" finished-at="2026-04-10T13:07:08 IST" duration-ms="4717" status="PASS">
+        <test-method signature="Logout()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:25:29 IST" name="Logout" finished-at="2026-05-05T13:25:39 IST" duration-ms="10256" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchWindowException">
+            <message>
+              <![CDATA[no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=147.0.7727.138)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6f1031eff53d44edd8b220003def9349, findElement {using=xpath, value=//button[@class='profile-btn']/i}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57960}, goog:processID: 28124, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57960/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6f1031eff53d44edd8b220003def9349]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=147.0.7727.138)
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [6f1031eff53d44edd8b220003def9349, findElement {using=xpath, value=//button[@class='profile-btn']/i}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57960}, goog:processID: 28124, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57960/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6f1031eff53d44edd8b220003def9349
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at jdk.proxy2/jdk.proxy2.$Proxy31.toString(Unknown Source)
+at java.base/java.lang.String.valueOf(String.java:4454)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.toString(ExpectedConditions.java:295)
+at java.base/java.lang.String.valueOf(String.java:4454)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:225)
+at utilities.HelperMethods.waitForElementandClick(HelperMethods.java:40)
+at pageObjects.BasePage.logout(BasePage.java:358)
+at testCasesForOQProjects.OQBaseModule_TC.Logout(OQBaseModule_TC.java:178)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Logout -->
-        <test-method signature="Database_Backup()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:08 IST" name="Database_Backup" finished-at="2026-04-10T13:07:11 IST" duration-ms="2776" status="PASS">
+        <test-method signature="Database_Backup()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:25:39 IST" name="Database_Backup" finished-at="2026-05-05T13:25:41 IST" duration-ms="1352" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Database_Backup -->
-        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:08 IST" name="initSoftAssert" finished-at="2026-04-10T13:07:08 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initSoftAssert()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:25:39 IST" name="initSoftAssert" finished-at="2026-05-05T13:25:39 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initSoftAssert -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.AkronQuickProduct_TC@75cd8043]" started-at="2026-04-10T13:07:11 IST" name="tearDown" finished-at="2026-04-10T13:07:17 IST" duration-ms="5498" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCasesForOQProjects.AkronBOM_TC@33b1c5c5]" started-at="2026-05-05T13:25:41 IST" name="tearDown" finished-at="2026-05-05T13:25:41 IST" duration-ms="825" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- testCasesForOQProjects.AkronQuickProduct_TC -->
+      </class> <!-- testCasesForOQProjects.AkronBOM_TC -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>
